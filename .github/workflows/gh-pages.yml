@@ -23,9 +23,8 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 14
-
-    - name: Install express-engine
-      run: ng add  @nguniversal/express-engine
+    - name: Install universal
+      run: npm i @nguniversal/express-engine
       
     - name: Install dependencies
       run: npm install
