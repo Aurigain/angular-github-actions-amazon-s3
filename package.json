@@ -11,7 +11,11 @@
     "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test:headless": "ng test --watch=false --browsers=ChromeHeadless"
+    "test:headless": "ng test --watch=false --browsers=ChromeHeadless",
+    "dev:ssr": "ng run angular-github-action-amazon-s3:serve-ssr",
+    "serve:ssr": "node dist/angular-github-action-amazon-s3/server/main.js",
+    "build:ssr": "ng build && ng run angular-github-action-amazon-s3:server",
+    "prerender": "ng run angular-github-action-amazon-s3:prerender"
   },
   "dependencies": {
     "@angular/animations": "~13.1.3",
