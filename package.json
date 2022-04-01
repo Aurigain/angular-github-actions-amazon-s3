@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve:ssr",
-    "build": "ng build:ssr",
+    "start": "npm run serve:ssr",
+    "build": "npm run build:ssr",
     "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
