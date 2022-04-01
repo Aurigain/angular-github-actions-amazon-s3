@@ -35,6 +35,9 @@ jobs:
     - name: Build
       run: npm run build
 
+    - name: Start
+      run: npm run start
+
     - name: Deploy
       if: success()
       run: aws s3 sync ./dist/angular-github-actions-amazon-s3 s3://aurigain-angular-github-actions-amazon-s3
