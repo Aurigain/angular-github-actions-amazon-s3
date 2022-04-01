@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve:ssr",
+    "build": "ng build:ssr",
     "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -15,8 +15,7 @@
     "dev:ssr": "ng run angular-github-actions-amazon-s3:serve-ssr",
     "serve:ssr": "node dist/angular-github-actions-amazon-s3/server/main.js",
     "build:ssr": "ng build && ng run angular-github-actions-amazon-s3:server",
-    "prerender": "ng run angular-github-actions-amazon-s3:prerender",
-    "dev": "ng build:ssr & ng serve:ssr"
+    "prerender": "ng run angular-github-actions-amazon-s3:prerender"
   },
   "dependencies": {
     "@angular/animations": "~13.3.1",
