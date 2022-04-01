@@ -15,7 +15,8 @@
     "dev:ssr": "ng run angular-github-actions-amazon-s3:serve-ssr",
     "serve:ssr": "node dist/angular-github-actions-amazon-s3/server/main.js",
     "build:ssr": "ng build && ng run angular-github-actions-amazon-s3:server",
-    "prerender": "ng run angular-github-actions-amazon-s3:prerender"
+    "prerender": "ng run angular-github-actions-amazon-s3:prerender",
+    "dev": "ng build:ssr & ng serve:ssr"
   },
   "dependencies": {
     "@angular/animations": "~13.3.1",
