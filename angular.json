@@ -166,5 +166,8 @@
       }
     }
   },
-  "defaultProject": "angular-github-actions-amazon-s3"
+  "defaultProject": "angular-github-actions-amazon-s3",
+  "cli": {
+    "analytics": false
+  }
 }
