@@ -33,7 +33,7 @@ jobs:
     #   run: npm run test:headless
 
     - name: Build
-      run: npm run prerender
+      run: npm run build
 
     - name: Deploy
       if: success()
