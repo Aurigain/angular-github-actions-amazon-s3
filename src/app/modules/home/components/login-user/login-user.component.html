@@ -1,0 +1,124 @@
+
+<!-- login page -->
+<div class="log">
+  <div class="container mt30">
+      <div class="row bgcolor">
+          <div class="col-xl-10 offset-xl-2 col-lg-10 offset-lg-2 col-md-12 col-sm-12 col-12">
+            <div *ngIf="isLoginForm">
+              <div class="col-xl-9 col-lg-6 col-sm-10 col-12 mt-5">
+                  <h1 class="text-center">Login</h1>
+              </div>
+              <form>
+                  <div class="form-group row mt-5">
+                      <!-- <div class="text-sm-left"> -->
+                        <label for="inputEmail3" class="col-xl-2 col-lg-2 col-md-3 col-sm-2 col-form-label text-xl-right text-lg-right text-md-right">E-Mail Address</label>
+                      <!-- </div> -->
+                      
+                      <div class="col-xl-6 col-lg-6 col-md-9 col-sm-10 col-12">
+                          <input [(ngModel)]="username"
+                          name="username" type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                      </div>
+                  </div>
+                  <div class="form-group row">
+                      <label for="inputPassword3" class="col-xl-2 col-lg-2 col-md-3 col-sm-2 col-form-label text-xl-right text-lg-right text-md-right">Password</label>
+                      <div class="col-xl-6 col-lg-6 col-md-9 col-sm-10 col-12">
+                          <input [(ngModel)]="password"
+                          name="password"
+                          type="password" class="form-control" id="inputPassword3"
+                              placeholder="First time login using your Mobile No.">
+                      </div>
+                  </div>
+                  <!-- <div class="form-group row">
+                      <div class="col-sm-10 offset-sm-2">
+                          <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="gridCheck1">
+                              <label class="form-check-label" for="gridCheck1">
+                                  Remember Me
+                              </label>
+                          </div>
+                      </div>
+                  </div> -->
+                  <div class="form-group row">
+                      <div class="col-xl-10 offset-xl-2 col-lg-10 offset-lg-2 col-md-9 offset-md-3 col-sm-10 offset-sm-2">
+                          <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
+                      </div>
+                  </div>
+                  <div class="form-group row mt-0 pt-0">
+                      <div class="col-xl-10 offset-xl-2 col-lg-10 offset-lg-2 col-md-9 offset-md-3 col-sm-10 offset-sm-2 link-color">
+                          <a class="btn btn-link" routerLink="/forgot-password">Forgot Your Password?</a>
+                          <br> <button class="btn btn-link" (click)="switchRegisterForm()">Create an Account</button>
+                      </div>
+                  </div>
+                  <div
+                    class="form-group row alert alert-success"
+                    id="successMsg"
+                    *ngIf="successMsg"
+                  >
+                    {{ successMsg }}
+                  </div>
+                  <div
+                    class="form-group row alert alert-danger"
+                    id="errors"
+                    *ngIf="errors"
+                  >
+                    {{ errors }}
+                  </div>
+              </form>
+            </div>
+            <div *ngIf="!isLoginForm">
+              <div class="col-xl-9 col-lg-6 col-sm-10 col-12 mt-5">
+                <h1 class="text-center">Register</h1>
+              </div>
+            <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+                <div class="form-group row mt-5">
+                    <label for="inputEmail3" class="col-xl-2 col-lg-2 col-md-3 col-sm-12 col-form-label text-xl-right text-lg-right text-md-right">Name</label>
+                    <div class="col-xl-6 col-lg-6 col-md-9 col-sm-12">
+                        <input type="text"
+                        formControlName="name" class="form-control" id="inputName" placeholder="Enter your Full Name" required (click)="resetValidations()">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-xl-2 col-lg-2 col-md-3 col-sm-12 col-form-label text-xl-right text-lg-right text-md-right">E-Mail Address</label>
+                    <div class="col-xl-6 col-lg-6 col-md-9 col-sm-12">
+                        <input type="email"
+                        formControlName="email" class="form-control" id="inputEmail3" placeholder="Enter your Email"  (click)="resetValidations()"  required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-xl-2 col-lg-2 col-md-3 col-sm-12 col-form-label text-xl-right text-lg-right text-md-right">Mobile No.</label>
+                    <div class="col-xl-6 col-lg-6 col-md-9 col-sm-12">
+                        <input type="tel"
+                        formControlName="contactNumber" class="form-control" id="inputMobile" placeholder="Enter your Mobile No."   (click)="resetValidations()" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-xl-2 col-lg-2 col-md-3 col-sm-12 col-form-label text-xl-right text-lg-right text-md-right">Password</label>
+                    <div class="col-xl-6 col-lg-6 col-md-9 col-sm-12">
+                        <input formControlName="password"
+                        type="password" class="form-control" id="inputPassword3"
+                            placeholder="Create your Password"   required (click)="resetValidations()">
+                    </div>
+                </div>                    
+                <div class="form-group row">
+                    <div class="col-xl-10 offset-xl-2 col-lg-10 offset-lg-2 col-md-9 offset-md-3 col-sm-10 offset-sm-2">
+                        <button type="submit" class="btn btn-primary">Signin</button>
+                    </div>
+                </div>
+                <div class="form-group row mt-0 pt-0">
+                  <div class="col-xl-10 offset-xl-2 col-lg-10 offset-lg-2 col-md-9 offset-md-3 col-sm-10 offset-sm-2 link-color">
+                      <button class="btn btn-link" (click)="switchToLoginForm()">Already Have an Account? Then Login!</button>
+                  </div>
+              </div>
+              <div class="form-group alert alert-success"  style="margin-top: 20px; margin-left: 0px; max-width: 300px;" *ngIf="successMsg">
+                {{ successMsg }}
+              </div>
+              <div class="form-group alert alert-danger" style="margin-top: 20px; margin-left: 0px; max-width: 300px;" *ngIf="errors">
+                  {{ errors }}
+              </div>
+            </form>
+        
+            </div>
+          </div>
+      </div>
+  </div>
+</div>

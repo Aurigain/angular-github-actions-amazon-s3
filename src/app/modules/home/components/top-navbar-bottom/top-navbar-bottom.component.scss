@@ -1,0 +1,41 @@
+.sticky-bottom{
+    position: sticky;
+    top:33px;
+    z-index: 999999;
+}
+
+nav img{
+    width: 60px;
+}
+
+nav li{
+    padding: 0 10px;
+}
+nav ul li a{
+     font-weight: bold; 
+    color: #3c4d6b!important;
+    text-decoration: none;
+     text-transform: uppercase; 
+}
+
+nav ul li a:hover{
+    color: #f51f8a!important;
+    text-decoration: none;
+    
+}
+
+/* dropdown */
+
+.dropdown-item a{
+  text-transform: none!important;
+}
+
+.dropdown-item:focus, .dropdown-item:hover{
+  background-color: white!important;
+ 
+}
+
+.dropdown-item:hover{
+    text-decoration: none;
+    text-transform: none;
+}

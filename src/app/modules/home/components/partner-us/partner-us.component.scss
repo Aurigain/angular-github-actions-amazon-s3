@@ -1,0 +1,103 @@
+
+    /* header image */
+.page-header7{
+    margin: 0;
+    padding: 175px 0px 80px;
+    min-height: 300px;
+    border: none;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), rgba(0, 0, 0, 0.2) url(https://aurigain.com/images/partner.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.list ol{
+    list-style: none;  
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+}
+.list ol li{
+    display: inline;
+}
+.list ol li a{
+    text-decoration: none;
+    color: #15549a;
+    
+}
+
+.list ol li a:hover{
+    
+    color: #f51f8a;
+    
+}
+.slash{
+    color: #15549a;
+}
+/* login css */
+.mt30{
+  background-color: white;
+color: #778191;
+
+  
+}
+
+h1{
+    font-size: 32px!important;
+    line-height: 44px!important;
+    letter-spacing: -1px!important;
+  color: #0a2759;
+}
+
+.btn{
+  font-size: 14px;
+  border-radius: 2px;
+  line-height: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 15px!important;
+  font-weight: 600;
+}
+
+.btn-primary{
+  background-color: #f51f8a!important;
+    color: #fff;
+    border-color: #f51f8a!important;
+}
+
+.btn-primary:hover{
+    background-color: #ff389c!important;
+  }
+
+.link-color a{
+  color:#f51f8a!important;
+  font-weight: 500!important;
+  display: inline;
+  text-decoration: none!important;
+  border-bottom: none;
+}
+
+.link-color a:hover{
+  color: #15549a!important;
+}
+
+/* partner us */
+.partner1{
+ nav a{
+  color: #f51f8a;
+}
+nav a:hover{
+  color: #495057;
+}
+nav a.active{
+  color: #f51f8a!important;
+}
+.control-label{
+  text-transform: uppercase;
+    color: #0a2759;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+// .bg-secondary{
+//   background: #eff3f8!important;
+// }
+}

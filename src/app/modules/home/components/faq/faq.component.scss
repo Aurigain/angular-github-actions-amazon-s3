@@ -1,0 +1,92 @@
+.faq{
+    .page-header9{
+        margin: 0;
+        padding: 175px 0px 80px;
+        min-height: 300px;
+        border: none;
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), rgba(0, 0, 0, 0.2) url(https://aurigain.com/images/faq.jpg) no-repeat center;
+        background-size: cover;
+    }
+
+    .list ol{
+        list-style: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 24px;
+    }
+    .list ol li{
+        display: inline;
+        font-size: 24px;
+    }
+    .list ol li a{
+        text-decoration: none;
+        color: #15549a;
+        font-size: 24px;
+    }
+
+    .list ol li a:hover{
+
+        color: #f51f8a;
+
+    }
+    .slash{
+        color: #15549a;
+    }
+
+    .mt30{
+        background-color: white;
+      color: #778191;
+
+      }
+
+    .loan{
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
+    /* h2{
+        margin: 0px 0px 10px 0px;
+    color: #0a2759;
+    font-weight: 500;
+
+    } */
+    p{
+        color: #778191;
+        margin: 0px 0px 10px 0px;
+    }
+    h1{
+        font-size: 24px!important;
+        line-height: 32px!important;
+        margin: 0px 0px 10px 0px!important;
+        color: #0a2759!important;
+        font-weight: 500!important;
+
+    }
+
+
+
+    a{
+        color: #f51f8a;
+        text-decoration: none;
+        font-size: 16px;
+    line-height: 1.6;
+    font-weight: 500;
+    }
+
+    a:hover{
+        color: #0a2759;
+        text-decoration: none;
+    }
+    .accordion > .card > .card-header {
+        border-radius: 4px;
+        margin-bottom: -1px;
+        padding: 2px 10px;
+        border-bottom: 0px;
+    }
+
+     .card-body {
+        padding: 10px 20px 20px 20px;
+        line-height: 1.5;
+    color: #778191;
+    font-size: 15px;
+    }
+}

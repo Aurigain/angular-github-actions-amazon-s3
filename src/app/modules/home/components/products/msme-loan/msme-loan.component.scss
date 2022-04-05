@@ -1,0 +1,279 @@
+.msme-section{
+    /* header image */
+    .page-header{
+        
+        min-height: 350px;
+        border: none;
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), rgba(0, 0, 0, 0.2) url(https://aurigain.com/images/lapbanner.jpg) no-repeat center;
+        background-size: cover;
+    }
+    .list ol{
+        list-style: none;  
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 24px;
+    }
+    .list ol li{
+        display: inline;
+    }
+    .list ol li a{
+        text-decoration: none;
+        color: #15549a;    
+    }
+    .list ol li a:hover{  
+        color: #f51f8a;  
+    }
+    .slash{
+        color: #15549a;
+    }
+    .container h1{
+        font-size: 32px;
+        line-height: 44px;
+        letter-spacing: -1px;
+        margin: 0px 0px 10px 0px;
+        color: #0a2759;
+        font-weight: 500;
+    }
+    .container h4{
+        letter-spacing: -1px;
+        margin: 0px 0px 10px 0px;
+        color: #0a2759;
+        font-weight: 400;
+    }
+    .lead{
+      color: #0a2759;
+        line-height: 30px;
+        font-size: 20px;
+        font-weight: 300;
+    }
+    .lead1{
+        color: #0a2759;
+        line-height: 60px;
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .lead3{
+        color: #0a2759;
+          line-height: 30px;
+          font-size: 20px;
+          font-weight: 600;
+      }
+    p {
+      margin: 0 0 26px;
+      line-height: 1.6;
+      font-weight: 400;
+      color: #778191;
+    }
+    .text-list ul{
+        list-style: disc inside;
+    }
+    .text-list ul ul{
+        list-style: circle;
+    }
+    .text-list ul li{
+        color: #778191;
+        font-weight: 400;
+        padding-top: 10px;
+        line-height: 30px;
+    }
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .table {
+        border-collapse: collapse;
+    }
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: clip!important;
+    }
+    .table > thead > tr > th {
+    padding: 12px 43px 12px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    }
+    .table-bordered > thead > tr > th {
+        border: 1px solid #dee4ee;
+        color: #0a2759;
+    }
+    .table-bordered > tbody > tr > th {
+        border: 1px solid #dee4ee;
+        color: #0a2759;
+    }
+    .table-bordered > tbody > tr > td {
+        border: 1px solid #dee4ee;
+        color: #0a2759;
+    }
+    .bg-white .h3{
+        color: #0a2759;
+        line-height: 30px;
+    }
+    .form-control {
+        width: 100%;
+        height: 52px;
+        padding: 6px 16px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-image: none;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: inset 0 0px 0px rgb(0 0 0 / 8%);
+        margin-bottom: 10px;
+        border: 2px solid #e6ecef;
+    }    
+    .st-tabs .nav-link {
+        display: block;
+        padding: 16px 62px;
+        border: 1px solid #dee7f2;
+        border-radius: 0px;
+        // background-color: #eff3f8;
+        margin-bottom: 1px;
+    }
+    .nav-tabs .nav-link:hover {
+        border-color: #e9ecef #e9ecef #dee2e6;
+    }
+    .st-tabs a{
+        color: #778191;
+        background: #EFF3F8;
+        font-size: 14px;
+        font-style: initial;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+    .st-tabs a:hover{
+        color: #f51f8a;
+      }
+      .st-tabs a.active{
+        color: #f51f8a!important;
+        background: #fff;
+      }
+      .control-label{
+        text-transform: uppercase;
+          color: #0a2759;
+          font-size: 13px;
+          font-weight: 600;
+      }
+      .tab-content {
+        background: #eff3f8;
+        position: relative;
+        z-index: 8;
+      }
+      .st-tabs .tab-content {
+        padding: 30px;
+        border: 1px solid #e6e9eb;
+        background-color: #fff;
+        margin-top: -1px;
+        border-top: 0px;
+    }
+    .btn {
+        font-size: 14px;
+        border-radius: 2px;
+        line-height: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 19px 30px;
+        font-weight: 600;
+    }
+    
+    .btn-primary{
+      background-color: #f51f8a!important;
+        color: #fff;
+        border-color: #f51f8a!important;
+    }
+    
+    .btn-primary:hover{
+        background-color: #ff389c!important;
+      }
+    
+    .link-color a{
+      color:#f51f8a!important;
+      font-weight: 500!important;
+      display: inline;
+      text-decoration: none!important;
+      border-bottom: none;
+    }
+    
+    .link-color a:hover{
+      color: #15549a!important;
+    }
+    .h1{
+        font-size: 32px;
+        line-height: 44px;
+        letter-spacing: -1px;
+        margin: 0px 0px 10px 0px;
+        color: #0a2759;
+        font-weight: 500;
+    }
+    .mb30 {
+        margin-bottom: 30px;
+    }
+    .accordion > .card > .card-header {
+        border-radius: 4px;
+        margin-bottom: -1px;
+        padding: 8px 10px;
+        border-bottom: 0px;
+    }
+    .card {
+        border: 1px solid #d3dbea;
+        background-color: #fff;
+        border-radius: 3px;
+        // margin-bottom: 30px;
+    }
+    .accordion>.card {
+        overflow: hidden;
+    }
+    .accordion > .card:not(:last-of-type) {
+        border-bottom: 1px solid #e0e7ea;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+    .card-header {
+        background-color: #fff;
+    }
+    .accordion > .card > .card-header {
+        border-radius: 4px;
+        margin-bottom: -1px;
+        padding: 8px 10px;
+        border-bottom: 0px;
+    }
+    .accordion h4{
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    .accordion h4 a{
+        color: #f51f8a;
+        font-size: 20px;
+        text-decoration: none;
+        // -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+    .accordion h4 a:hover{
+        color: #15549a;
+        font-size: 20px;
+        text-decoration: none;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+    .accordion .card .card-body {
+        padding: 10px 20px 20px 20px;
+        color: #778191;
+    }
+    .card-body ul{
+        list-style: disc inside;
+    }
+    .card-body ul ul{
+        list-style: circle;
+    }
+    .card-body ul li{
+        color: #778191;
+        font-weight: 400;
+        padding-top: 10px;
+        line-height: 30px;
+    }
+    }

@@ -1,0 +1,505 @@
+<div class="page-header7">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="list">
+          <ol class="">
+            <li><a href="https://aurigain.com">Home </a></li>
+            <li class="slash">/</li>
+            <li class="active text-white">{{ navText | uppercase }}</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="partner" *ngIf="partner">
+        <div class="container mt-3 mb-5 mt30">
+            <div class="row bgcolor justify-content-center">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+                    <div class="col-xl-12 col-lg-12 col-sm-12 col-12 text-center mt-3">
+                        <h1>Become our Partner</h1>
+                        <p>Become our partner and earn. To know more send us your details.</p>
+                    </div>
+                    <div class="m-5">
+                        <form [formGroup]="partnerForm">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+
+                                    <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Name" required>
+                                </div>
+                                <div class="form-group col-md-6">
+
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email"  required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" id="inputphone" placeholder="Phone" formControlName="phone"   required>
+                            </div>
+                            <div class="form-group">
+
+                                <textarea type="text" class="form-control" id="inputMessage"
+                                    placeholder="Message" formControlName="message"   required></textarea>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-12 ">
+                                    <button type="submit" (click)="submitPatnerForm()" class="btn btn-primary btn-lg mr-2">Apply</button>
+                                                    <a (click)="changeForm()"><button type="button" class="btn btn-primary btn-lg">Join as Agent</button></a>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div> -->
+
+<div class="partner1">
+  <div class="container mt-3 mt30">
+    <div class="row bgcolor justify-content-center">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+        <div class="col-xl-12 col-lg-12 col-sm-12 col-12 text-center mt-3">
+          <h1>Become our Agent</h1>
+        </div>
+        <div class="container">
+          <div class="m-5">
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a *ngIf="!otpVerified" class="nav-item nav-link" [ngClass]="{ active: currentStep == 1 }"
+                  id="basic-tab" data-toggle="tab" href="#nav-basic" role="tab" aria-controls="nav-basic"
+                  aria-selected="true" (click)="setStep(1)">Basic Details</a>
+
+                <a *ngIf="otpVerified" class="nav-item nav-link" [ngClass]="{ active: currentStep == 2 }"
+                  id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address"
+                  aria-selected="false" (click)="setStep(2)">Address Details</a>
+
+                <a *ngIf="otpVerified" class="nav-item nav-link" [ngClass]="{ active: currentStep == 3 }"
+                  id="nav-kyc-tab" data-toggle="tab" href="#nav-kyc" role="tab" aria-controls="nav-kyc"
+                  aria-selected="false" (click)="setStep(3)">KYC & Qualification Details</a>
+
+                <a *ngIf="otpVerified" class="nav-item nav-link" [ngClass]="{ active: currentStep == 4 }"
+                  id="nav-bank-tab" data-toggle="tab" href="#nav-bank" role="tab" aria-controls="nav-bank"
+                  aria-selected="false" (click)="setStep(4)">Bank Details</a>
+                <!--
+                <a
+                  class="nav-item nav-link"
+                  [ngClass]="{ active: currentStep == 5 }"
+                  id="nav-referral-tab"
+                  data-toggle="tab"
+                  href="#nav-referral"
+                  role="tab"
+                  aria-controls="nav-referral"
+                  aria-selected="false"
+                  (click)="setStep(5)"
+                  >Referral Code</a
+                > -->
+              </div>
+            </nav>
+            <div class="tab-content bg-light p-5" id="nav-tabContent">
+              <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 1 }" id="nav-basic" role="tabpanel"
+                aria-labelledby="nav-basic-tab">
+                <form [formGroup]="authenticationForm" *ngIf="isAuthenticationForm"
+                  (ngSubmit)="submitAuthenticationForm()">
+                  <div class="form-row">
+                    <div class="form-group col-md-5">
+                      <input [class.is-invalid]="name.invalid && name.touched" type="text" class="form-control"
+                        id="inputName" placeholder="Full Name" formControlName="name" required />
+                      <div style="margin-left: 10px;" *ngIf="name.invalid && name.touched">
+                        <small *ngIf="name.errors?.['required']" class="text-danger">Name is required</small><br>
+                        <!-- <small *ngIf="name.errors?.['pattern']" class="text-danger">Name should not contain number or special correctors</small><br> -->
+                        <small *ngIf="name.errors?.['minlength']" class="text-danger">Name should not contain atleast 2
+                          characters</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <input [class.is-invalid]="phoneNumber1.invalid && phoneNumber1.touched" type="text"
+                        class="form-control" id="inputPhone" placeholder="Phone" formControlName="phoneNumber1"
+                        required />
+                      <div style="margin-left: 10px;" *ngIf="phoneNumber1.invalid && phoneNumber1.touched">
+                        <small *ngIf="phoneNumber1.errors?.['required']" class="text-danger">Phone Number is
+                          required</small><br>
+                        <small *ngIf="phoneNumber1.errors?.['pattern']" class="text-danger">Phone Number must be of 10
+                          digit</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <input type="text" class="form-control" id="inputReferral" placeholder=" Enter Referral Code"
+                        formControlName="referralCode" />
+                    </div>
+                    <div class="form-group col-md-4">
+                      <input [class.is-invalid]="password.invalid && password.touched" type="password"
+                        class="form-control" id="inputpassword" placeholder="Password" formControlName="password"
+                        required />
+                      <div style="margin-left: 10px;" *ngIf="password.invalid && password.touched">
+                        <small *ngIf="password.errors?.['required']" class="text-danger">password is
+                          required</small><br>
+                        <small *ngIf="password.errors?.['minLength']" class="text-danger">password must be of minimum 8
+                          characters</small>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" [disabled]="!authenticationForm.valid">Submit</button>
+                </form>
+                <div *ngIf="isOtpForm" class="otpDiv">
+                  <input type="text" class="form-control mb-4 mt-4" [(ngModel)]="otp" name="otp" placeholder="Enter OTP"
+                    aria-label="Username" aria-describedby="basic-addon1" required>
+                  <button type="button" (click)="verifyOtp()" [ngStyle]="{'font-family': 'Poppins'}"
+                    class="btn mt-4 btnSendOtp btn-block">Verify
+                    OTP</button>
+                  <button type="button" (click)="sendOTP(phoneNumber1.value)" [ngStyle]="{'font-family': 'Poppins'}"
+                    class="btn btn-primary btn-block">Resend OTP</button>
+
+                </div>
+                <form [formGroup]="basicDetailForm" *ngIf="isBasicDetailForm">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <input [class.is-invalid]="fatherName.invalid && fatherName.touched" type="text"
+                        class="form-control" id="inputFathername" placeholder="Father Name" formControlName="fatherName"
+                        required />
+                      <div style="margin-left: 10px;" *ngIf="fatherName.invalid && fatherName.touched">
+                        <small *ngIf="fatherName.errors?.['required']" class="text-danger">Father Name is
+                          required</small>
+                        <small *ngIf="fatherName.errors?.['pattern']" class="text-danger">Name should not contain number
+                          or special correctors</small>
+                        <small *ngIf="fatherName.errors?.['minlength']" class="text-danger">Name should not contain
+                          atleast 2 characters</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input [class.is-invalid]="dob.invalid && dob.touched" type="date" class="form-control"
+                        id="inputdob" placeholder="Date of Birth" formControlName="dob" required />
+                      <div style="margin-left: 10px;" *ngIf="dob.invalid && dob.touched">
+                        <small *ngIf="dob.errors?.['required']" class="text-danger">dob is required</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input [class.is-invalid]="email.invalid && email.touched" type="email" class="form-control"
+                        id="inputName" placeholder="email" formControlName="email" required />
+                      <div style="margin-left: 10px;" *ngIf="email.invalid && email.touched">
+                        <small *ngIf="email.errors?.['required']" class="text-danger">Email is required</small>
+                        <small *ngIf="email.errors?.['pattern']" class="text-danger">Not a valid email pattern</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <select [class.is-invalid]="gender.invalid && gender.touched" class="form-control"
+                        formControlName="gender" id="exampleFormControlSelect1">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                      </select>
+                      <div style="margin-left: 10px;" *ngIf="gender.invalid && gender.touched">
+                        <small *ngIf="gender.errors?.['required']" class="text-danger">Gender is required</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12 mt-2">
+                      <a (click)="stepUp(currentStep)">
+                        <button [disabled]="basicDetailForm.invalid" type="submit" class="btn btn-primary">
+                          Next
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 2 }" id="nav-address"
+                role="tabpanel" aria-labelledby="nav-address-tab">
+                <form [formGroup]="addressDetailForm">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <input [class.is-invalid]="addressLine1.invalid && addressLine1.touched" type="text"
+                        class="form-control" id="inputLine1" placeholder="Address Line 1" formControlName="addressLine1"
+                        required />
+                      <div style="margin-left: 10px;" *ngIf="addressLine1.invalid && addressLine1.touched">
+                        <small *ngIf="addressLine1.errors?.['required']" class="text-danger">Address is required</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input [class.is-invalid]="addressLine2.invalid && addressLine2.touched" type="text"
+                        class="form-control" id="inputLine2" placeholder="Address Line 2" formControlName="addressLine2"
+                        required />
+                      <div style="margin-left: 10px;" *ngIf="addressLine2.invalid && addressLine2.touched">
+                        <small *ngIf="addressLine2.errors?.['required']" class="text-danger">Address is required</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input [class.is-invalid]="pinCode.invalid && pinCode.touched" type="number" class="form-control"
+                        id="inputPincode" placeholder="Pincode" formControlName="pinCode" required
+                        (input)="searchDistrict()" />
+                      <div style="margin-left: 10px;" *ngIf="pinCode.invalid && pinCode.touched">
+                        <small *ngIf="pinCode.errors?.['required']" class="text-danger">PinCode is required</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <!-- <input
+                      [class.is-invalid]="district.invalid && district.touched"
+                      type="text"
+                        class="form-control"
+                        id="inputdistrict"
+                        placeholder="District"
+                        formControlName="district"
+                        required
+                      /> -->
+                      <select [class.is-invalid]="district.invalid && district.touched" class="form-control"
+                        id="exampleFormControlSelect1" formControlName="district">
+                        <option value="" disabled>Select District</option>
+                        <option *ngFor="let district of pinCodeDetail" [value]="district?.id">{{district?.district}}
+                        </option>
+                      </select>
+                      <div style="margin-left: 10px;" *ngIf="district.invalid && district.touched">
+                        <small *ngIf="district.errors?.['required']" class="text-danger">District is required</small>
+                      </div>
+                    </div>
+                    <!-- <div class="form-group col-md-6">
+                      <input
+                      [class.is-invalid]="city.invalid && city.touched"
+                      type="text"
+                        class="form-control"
+                        id="inputEmail"
+                        placeholder="City"
+                        formControlName="city"
+                        required
+                      />
+                      <div style="margin-left: 10px;" *ngIf="city.invalid && city.touched">
+                        <small *ngIf="city.errors?.['required']" class="text-danger">City is required</small>
+                      </div>
+                    </div> -->
+                    <div class="form-group col-md-6">
+                      <select [class.is-invalid]="state.invalid && state.touched" class="form-control"
+                        id="exampleFormControlSelect1" formControlName="state">
+                        <option value="">Select State</option>
+                        <option *ngFor="let state of pinCodeDetail" [value]="state?.id">{{state?.state}}</option>
+                      </select>
+                      <div style="margin-left: 10px;" *ngIf="state.invalid && state.touched">
+                        <small *ngIf="state.errors?.['required']" class="text-danger">State is required</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12 mt-2">
+                      <a (click)="stepUp(currentStep)">
+                        <button [disabled]="addressDetailForm.invalid" type="submit" class="btn btn-primary">
+                          Next
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 3 }" id="nav-kyc" role="tabpanel"
+                aria-labelledby="nav-kyc-tab">
+                <form [formGroup]="kycDetailForm">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <select [class.is-invalid]="qualification.invalid && qualification.touched" class="form-control"
+                        id="exampleFormControlSelect1" formControlName="qualification">
+                        <option value="">Select Qualification</option>
+                        <option *ngFor="let qualifications of qualificationList" [value]="qualifications?.id">
+                          {{qualifications?.label}}</option>
+                        <!-- <option value="12th">12th</option>
+                        <option value="graduation">Graduate</option>
+                        <option value="postgraduation">Post Graduate</option>
+                        <option value="other">Other</option> -->
+                      </select>
+                      <div style="margin-left: 10px;" *ngIf="qualification.invalid && qualification.touched">
+                        <small *ngIf="qualification.errors?.['required']" class="text-danger">Qualification is
+                          required</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input [class.is-invalid]="adhaarNumber.invalid && adhaarNumber.touched" type="number"
+                        class="form-control" id="inputAadhar" placeholder="AADHAR Number Name"
+                        formControlName="adhaarNumber" required />
+                      <div style="margin-left: 10px;" *ngIf="adhaarNumber.invalid && adhaarNumber.touched">
+                        <small *ngIf="adhaarNumber.errors?.['required']" class="text-danger">Adhaar Number is
+                          required</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input [class.is-invalid]="panNumber.invalid && panNumber.touched" type="text"
+                        class="form-control" id="inputPan" placeholder="PAN Number" formControlName="panNumber"
+                        required />
+                      <div style="margin-left: 10px;" *ngIf="panNumber.invalid && panNumber.touched">
+                        <small *ngIf="panNumber.errors?.['required']" class="text-danger">PAN number is required</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input [class.is-invalid]="occupation.invalid && occupation.touched" type="text"
+                        class="form-control" id="inputOccupation" placeholder="Occupation" formControlName="occupation"
+                        required />
+                      <div style="margin-left: 10px;" *ngIf="occupation.invalid && occupation.touched">
+                        <small *ngIf="occupation.errors?.['required']" class="text-danger">Occupation is
+                          required</small>
+                      </div>
+                    </div>
+
+                    <!-- <div class="form-group col-md-12">
+                      <label class="control-label"> Profile picture</label>
+                      <div class="input-group mb-2">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="profilepic" (change)="onChange($event)" />
+                          <label class="custom-file-label" for="profilepic">Choose file</label>
+                        </div>
+                      </div>
+                    </div> -->
+
+                    <div class="form-group col-md-12">
+                      <label class="control-label"> AAdhar Card (Front)</label>
+                      <div class="input-group mb-2">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="aadharfront" (change)="onChange($event, 'aadhar_front_image')" />
+                          <label class="custom-file-label" for="aadharfront">Choose file</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                      <label class="control-label"> AAdhar Card (Back)</label>
+                      <div class="input-group mb-2">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="aadharback" (change)="onChange($event, 'aadhar_back_image')"  />
+                          <label class="custom-file-label" for="aadharback">Choose file</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                      <label class="control-label"> Pan Card</label>
+                      <div class="input-group mb-2">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="panimg" (change)="onChange($event, 'pan_image')" />
+                          <label class="custom-file-label" for="panimg">Choose file</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12 mt-2">
+                      <a (click)="stepUp(currentStep)">
+                        <button [disabled]="kycDetailForm.invalid" type="submit" class="btn btn-primary">
+                          Next
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 4 }" id="nav-bank" role="tabpanel"
+                aria-labelledby="nav-bank-tab">
+                <form [formGroup]="bankDetailForm">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <input [class.is-invalid]="ifscCode.invalid && ifscCode.touched" type="text" class="form-control"
+                        id="inputifsc" placeholder="IFSC Code" formControlName="ifscCode" required
+                        (input)="searchIFSC()" />
+                      <div style="margin-left: 10px;" *ngIf="ifscCode.invalid && ifscCode.touched">
+                        <small *ngIf="ifscCode.errors?.['required']" class="text-danger">IFSC code is required</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+
+                      <input [class.is-invalid]="bankName.invalid && bankName.touched" class="form-control"
+                        id="exampleFormControlSelect1" formControlName="bankName">
+
+                      <div style="margin-left: 10px;" *ngIf="bankName.invalid && bankName.touched">
+                        <small *ngIf="bankName.errors?.['required']" class="text-danger">Bank Name is required</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+
+                      <input [class.is-invalid]="branchName.invalid && branchName.touched" class="form-control"
+                        id="exampleFormControlSelect1" formControlName="branchName">
+
+                      <div style="margin-left: 10px;" *ngIf="branchName.invalid && branchName.touched">
+                        <small *ngIf="branchName.errors?.['required']" class="text-danger">Branch Name is
+                          required</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <input [class.is-invalid]="accountNumber.invalid && accountNumber.touched" type="number"
+                        class="form-control" id="inputAccount" placeholder="Account Number"
+                        formControlName="accountNumber" required />
+                      <div style="margin-left: 10px;" *ngIf="accountNumber.invalid && accountNumber.touched">
+                        <small *ngIf="accountNumber.errors?.['required']" class="text-danger">Account Number is
+                          required</small>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group col-md-12">
+                      <label class="control-label"> CANCELLED CHEQUE</label>
+                      <div class="input-group mb-2">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="cheque" (change)="onChange($event, 'cancelled_cheque')"/>
+                          <label class="custom-file-label" for="cheque">Choose file</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-12 mt-2">
+                      <a (click)="submitAgentForm()">
+                        <button [disabled]="bankDetailForm.invalid" type="submit" class="btn btn-primary"
+                          *ngIf="successForm.length === 3">
+                          Submit
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <!-- <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 5 }"
+                id="nav-referral"
+                role="tabpanel"
+                aria-labelledby="nav-referral-tab"
+              >
+                <form [formGroup]="refrralDetailForm">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="inputReferral"
+                        placeholder=" Enter Referral Code"
+                        formControlName="referralCode"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-12 mt-2">
+                      <a (click)="submitAgentForm()">
+                        <button type="submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </form>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

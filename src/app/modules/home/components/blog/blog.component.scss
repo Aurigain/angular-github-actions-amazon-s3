@@ -1,0 +1,171 @@
+.blog-section{
+    /* blog css */
+.page-header8{
+    margin: 0;
+    padding: 175px 0px 80px;
+    min-height: 300px;
+    border: none;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), rgba(0, 0, 0, 0.2) url(	https://aurigain.com/images/blog.jpg) no-repeat center;
+    background-size: cover;
+}
+@media (max-width: 468px) {
+    .page-header8 {    
+        margin: 0;
+        width: 100%;
+    }
+}
+.list ol{
+    list-style: none;  
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+}
+.list ol li{
+    display: inline;
+}
+.list ol li a{
+    text-decoration: none;
+    color: #15549a;
+    
+}
+
+.list ol li a:hover{
+    
+    color: #f51f8a;
+    
+}
+.slash{
+    color: #15549a;
+}
+
+.mt30{
+    background-color: white;
+  color: #778191;
+    
+  }
+
+.loan{
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+/* h2{
+    margin: 0px 0px 10px 0px;
+color: #0a2759;
+font-weight: 500;
+
+} */
+p{
+    color: #778191;
+    margin: 0px 0px 10px 0px;
+}
+
+
+h2{
+    font-size: 24px!important;
+    line-height: 32px!important;
+    margin: 0px 0px 10px 0px!important;
+    color: #0a2759!important;
+    font-weight: 500!important;
+    /* text-decoration: none!important; */
+}
+
+
+.box1{
+    border: 1px solid #dee4ee;
+    
+}
+
+.padding-inside{
+    padding: 40px;
+}
+ .box-width:hover{
+    background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+  
+} 
+
+.title{
+    color: #0a2759;
+
+}
+
+.title:hover {
+    color: #15549a;
+    text-decoration: none;
+  }
+
+.meta {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #a4a7ac;
+    margin-bottom: 14px;
+    margin-top: 14px;
+}
+
+.meta-date {
+    color: #f51f8a;
+    font-weight: 600;
+}
+
+.box1 p a {
+    color: #f51f8a;
+    text-decoration: none;
+}
+
+.meta span:after {
+    margin-left: 15px;
+    margin-right: 15px;
+    color: #b0b0b0;
+    content: "|";
+}
+
+.meta span:last-child:after {
+    margin-left: 0px;
+    margin-right: 0px;
+    content: "";
+}
+
+  /* .content p{
+    margin: 0 10px;
+  }
+  .title h2 a{
+    font-size: 24px;
+  line-height: 32px;
+  margin: 0px 0px 10px 0px;
+  font-weight: 500;
+  color: #0a2759;
+  text-decoration: none;
+  padding: 40px;
+  }
+  
+  .title h2 a:hover {
+    color: #15549a;
+    
+  }
+  
+  .title p{
+      padding: 40px;
+      text-align: left;
+  } 
+   */
+ .btn-link {
+    color: #15549a;
+  font-weight: 500;
+  
+  padding-bottom: 4px;
+  border-bottom: 2px solid #15549a;
+  display: inline-block;
+  text-decoration: none;
+    
+  }
+  .btn-link:hover {
+    color: #f51f8a!important;
+  font-weight: 500;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #f51f8a!important;
+  text-decoration: none!important;
+  
+}
+}

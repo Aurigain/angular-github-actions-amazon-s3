@@ -1,0 +1,145 @@
+/* header image */
+.contact-us{
+
+.page-header6{
+    margin: 0;
+    padding: 175px 0px 80px;
+    min-height: 300px;
+    border: none;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), rgba(0, 0, 0, 0.2) url(https://aurigain.com/images/contact.jpg
+    ) no-repeat center;
+    background-size: cover;
+}
+
+.list ol{
+    list-style: none;  
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+}
+.list ol li{
+    display: inline;
+}
+.list ol li a{
+    text-decoration: none;
+    color: #15549a;
+    
+}
+
+.list ol li a:hover{
+    
+    color: #f51f8a;
+    
+}
+.slash{
+    color: #15549a;
+}
+/* login css */
+.mt30{
+  background-color: white;
+color: #778191;
+
+  
+}
+h1{
+    font-size: 32px!important;
+    line-height: 44px!important;
+    letter-spacing: -1px!important;
+  color: #0a2759;
+}
+
+.btn{
+  // font-size: 14px;
+  border-radius: 2px;
+  line-height: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 15px!important;
+  font-weight: 600;
+}
+
+.btn-primary{
+  background-color: #f51f8a!important;
+    color: #fff;
+    border-color: #f51f8a!important;
+}
+
+.btn-primary:hover{
+    background-color: #ff389c!important;
+  }
+
+.link-color a{
+  color:#f51f8a!important;
+  font-weight: 500!important;
+  display: inline;
+  text-decoration: none!important;
+  border-bottom: none;
+}
+
+.link-color a:hover{
+  color: #15549a!important;
+}
+
+ /* bottom content */
+ .bottom-content h2{
+    margin: 0px 0px 10px 0px;
+      margin-bottom: 10px;
+  color: #0a2759;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px
+  }
+  
+  .bottom-content .text-big a{
+    font-size: 20px;
+    color: #f51f8a;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 0px;
+  }
+  
+  .card-shadow a{
+    
+    color: #f51f8a;
+    text-decoration: none;
+  }
+.fas{
+    font-size: 48px;
+    color: #15549a;
+}
+
+.icon-color .fas{
+  color: #f51f8a!important;
+} 
+
+.card-shadow{
+    background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+  padding: 60px;
+  }
+  
+
+.lead{
+    color: #0a2759;
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: 400!important;
+}
+
+.map{
+    padding-bottom: 20px;
+    
+}
+form{
+        padding: 30px;
+        margin-top: -1px;
+        border-top: 0px;
+}
+form input{
+  font-size: 18px;
+}
+form .custom-select{
+  font-size: 18px;
+}
+}

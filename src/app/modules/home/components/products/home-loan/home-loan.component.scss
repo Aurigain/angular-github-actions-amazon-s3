@@ -1,0 +1,45 @@
+.home-section{
+    /* header image */
+    .page-header{
+        
+        min-height: 350px;
+        // width: 100%;
+        border: none;
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), rgba(0, 0, 0, 0.2) url(https://aurigain.com/images/homeLoan.jpg) no-repeat center;
+        background-size: cover;
+    }
+    .list ol{
+        list-style: none;  
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 24px;
+    }
+    .list ol li{
+        display: inline;
+    }
+    .list ol li a{
+        text-decoration: none;
+        color: #15549a;    
+    }
+    .list ol li a:hover{  
+        color: #f51f8a;  
+    }
+    .slash{
+        color: #15549a;
+    }
+    .container h1{
+        font-size: 32px;
+        line-height: 44px;
+        letter-spacing: -1px;
+        margin: 0px 0px 10px 0px;
+        color: #0a2759;
+        font-weight: 500;
+    }
+    .container h4{
+        letter-spacing: -1px;
+        margin: 0px 0px 10px 0px;
+        color: #0a2759;
+        font-weight: 400;
+    }
+    
+    }

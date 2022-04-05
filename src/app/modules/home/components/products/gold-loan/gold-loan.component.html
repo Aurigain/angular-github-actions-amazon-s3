@@ -1,0 +1,533 @@
+<div class="gold-section">
+  <div class="page-header mt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"></div>
+      </div>
+    </div>
+  </div>
+  <div class="list">
+    <ol class="">
+      <li><a href="https://aurigain.com">Home </a></li>
+      <li class="slash">/</li>
+      <li class="active text-dark">Gold Loan</li>
+    </ol>
+  </div>
+  <div class="container">
+    <div class="container text-list">
+      <div class="p-5">
+        <h1>Get Loan Against Your Personal Gold Ornaments</h1>
+        <p>
+          While selling this gold is one way to go about it, another option
+          would be collateralising the same to avail a gold loan.
+        </p>
+        <h4>What Is A Gold Loan?</h4>
+        <p>
+          A gold loan is a loan against one's owned gold. Individuals need to
+          pledge their gold ornaments to a Bank or non-banking financial
+          institution, based on which the lender would extend funds to the
+          owner. In most cases, borrowers would acquire only a certain
+          percentage of the gold's worth, known as the loan-to-value (LTV).
+        </p>
+        <h4>
+          Why go for Personal or Business loans when you have the power of gold
+          at your disposal! Get your gold loan, instantly on the spot, in
+          minutes!
+        </h4>
+        <ul class="pl-2 pb-3">
+          <li>Get instant cash against your Gold Ornaments.</li>
+          <li>
+            Get Higher loan amounts, depending on purity, net weight of the
+            gold.
+          </li>
+          <li>Quick appraisal, sanction and disbursement.</li>
+          <li>Simple procedures, easy to understand.</li>
+          <li>
+            Pay interest only for the exact period of loan, and to the exact
+            number of days.
+          </li>
+          <li>Safety, Trust and Transparency in our transactions.</li>
+        </ul>
+        <hr />
+        <p>
+          Gold Loan or loan against gold allows a borrower to get instant funds
+          against his gold ornaments for any personal or business use.
+        </p>
+        <p>
+          Gold Loan also known as jewel loan offers unique features such as low
+          interest rates, no income proof or CIBIL score requirement and instant
+          disbursal within a few hours.
+        </p>
+        <p>
+          Currently, Lowest rates of gold loan start at 9.50% which makes it a
+          good option for borrowers.
+        </p>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="mr-5 ml-5 bg-white">
+            <div class="pt-3">
+              <div class="table-responsive p-5">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th colspan="2">Eligibility Criteria</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Gold Loan per gram</th>
+                      <td>₹ 2,642 to ₹ 3,229</td>
+                    </tr>
+                    <tr>
+                      <th>Eligible Age</th>
+                      <td>18 to 75 years</td>
+                    </tr>
+                    <tr>
+                      <th>Loan Amount Eligibility</th>
+                      <td>₹ 1,000 to ₹ 2,00,00,000</td>
+                    </tr>
+                    <tr>
+                      <th>Lowest Gold Loan Interest Rates</th>
+                      <td>9.50%</td>
+                    </tr>
+                    <tr>
+                      <th>Loan as percent of gold value</th>
+                      <td>Up to 90%</td>
+                    </tr>
+                    <tr>
+                      <th>Purity of gold</th>
+                      <td>18 carat to 22 carat</td>
+                    </tr>
+                    <tr>
+                      <th>Type of gold</th>
+                      <td>
+                        Gold jewelry and gold coins of banks of up to 50 grams
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Who is Eligible?</th>
+                      <td>
+                        All individuals with basic KYC documents for address and
+                        identity proof. No income documents and no CIBIL score
+                        required.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="bg-white mt-5 p-3 p-lg-5">
+          <div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-12">
+                <div class="p-5">
+                  <p class="lead3 text-center">Apply for Loan</p>
+                  <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-3">
+                      <div class="st-tabs">
+                        <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="new-loan-tab" data-toggle="pill" href="#new-loan" role="tab"
+                              aria-controls="new-loan" aria-selected="true">New Loan</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                              role="tab" aria-controls="pills-profile" aria-selected="false">Balance Transfer</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                          <div class="tab-pane fade show active" id="new-loan" role="tabpanel"
+                            aria-labelledby="new-loan-tab">
+                            <form [formGroup]="newLoanForm" (ngSubmit)="submitLoanForm()" *ngIf="isLoanForm">
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <input [class.is-invalid]="name.invalid && name.touched" type="text"
+                                    class="form-control" id="inputName" placeholder="Enter Your Full Name"
+                                    formControlName="name" required />
+                                  <div style="margin-left: 10px;" *ngIf="name.invalid && name.touched">
+                                    <small *ngIf="name.errors?.['required']" class="text-danger">Name is
+                                      required</small>
+                                    <small *ngIf="name.errors?.['minlength']" class="text-danger">Name must be atleast 2
+                                      characters</small>
+                                    <small *ngIf="name.errors?.['pattern']" class="text-danger">Enter only alphabets
+                                      without spaces</small>
+                                  </div>
+                                </div>
+                                <!-- <div class="form-group col-md-6">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    id="inputMail"
+                                    placeholder="Your Email"
+                                    value=""
+                                    required
+                                  />
+                                </div> -->
+                                <div class="form-group col-md-6">
+                                  <input [class.is-invalid]="phone.invalid && phone.touched" type="number"
+                                    class="form-control" id="inputMobile" placeholder="Mobile Number"
+                                    formControlName="phone" required />
+                                  <div style="margin-left: 10px;" *ngIf="phone.invalid && phone.touched">
+                                    <small *ngIf="phone.errors?.['required']" class="text-danger">Phone Number is
+                                      required</small>
+                                    <small *ngIf="phone.errors?.['pattern']" class="text-danger">Enter only numbers
+                                      without spaces</small>
+                                  </div>
+                                </div>
+                                <!-- <div class="form-group col-md-6">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    id="inputResidence"
+                                    placeholder="Place of residence(PINCODE)"
+                                    value=""
+                                    required
+                                  />
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    id="inputAmount-need"
+                                    placeholder="Loan amount Needed"
+                                    value=""
+                                    required
+                                  />
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    id="inputWeight"
+                                    placeholder="Weight of Gold in Grams"
+                                    value=""
+                                    required
+                                  />
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    id="inputNeed"
+                                    placeholder="How Soon you need the loan"
+                                    value=""
+                                    required
+                                  />
+                                </div> -->
+                                <div class="form-group col-md-12">
+                                  <p>
+                                    <input type="checkbox" id="vehicle1" name="vehicle1" (change)="onChange($event)"
+                                      formControlName="subscribe" required />
+                                    I authorize Aurigain and its Consultants to
+                                    call / SMS / email towards this application
+                                    and other products/services. This consent
+                                    overrides my registration for DNC/NDNC. T&C
+                                    Apply
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-12 mt-2">
+                                  <button [disabled]="!newLoanForm.valid" type="submit" class="btn btn-primary">
+                                    Submit
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
+
+                            <div *ngIf="isOtpForm" class="otpDiv">
+                              <input type="text" class="form-control mb-4 mt-4" [(ngModel)]="otp" name="otp"
+                                placeholder="Enter OTP" aria-label="Username" aria-describedby="basic-addon1" required>
+                              <button [disabled]="!newLoanForm.valid" type="button" (click)="submitOTP()"
+                                [ngStyle]="{'font-family': 'Poppins'}" class="btn mt-4 btnSendOtp btn-block">Verify
+                                OTP</button>
+                              <button type="button" (click)="sendOTP()" [ngStyle]="{'font-family': 'Poppins'}"
+                                class="btn btn-primary btn-block">Resend OTP</button>
+
+                            </div>
+                            <form *ngIf="!isLoanForm && !isOtpForm" (ngSubmit)="submitDetailForm()"
+                              [formGroup]="detailForm">
+                              <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                  <input type="text" class="form-control" id="inputMail" placeholder="Your Email"
+                                    formControlName="email" required />
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                  <input type="text" class="form-control" id="inputResidence"
+                                    placeholder="Place of residence(PINCODE)" formControlName="pinCode" required />
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input type="text" class="form-control" id="inputAmount-need"
+                                    placeholder="Loan amount Needed" formControlName="loanAmount" required />
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input type="text" class="form-control" id="inputWeight"
+                                    placeholder="Weight of Gold in Grams" formControlName="weightOfGold" required />
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input type="text" class="form-control" id="inputNeed"
+                                    placeholder="How Soon you need the loan" formControlName="dateOfLoan" required />
+                                </div>
+
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-12 mt-2">
+                                  <button type="submit" class="btn btn-primary">
+                                    Submit
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                            aria-labelledby="pills-profile-tab">
+                            <form [formGroup]="balanceTransferForm" (ngSubmit)="submitBalanceTransferForm()">
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <input [class.is-invalid]="bName.invalid && bName.touched" type="text"
+                                    class="form-control" id="inputName" placeholder="Enter Your Full Name"
+                                    formControlName="name" required />
+                                  <div style="margin-left: 10px;" *ngIf="bName.invalid && bName.touched">
+                                    <small *ngIf="bName.errors?.['required']" class="text-danger">Full Name is
+                                      required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input [class.is-invalid]="bEmail.invalid && bEmail.touched" type="text"
+                                    class="form-control" id="inputMail" placeholder="Your Email" formControlName="email"
+                                    required />
+                                  <div style="margin-left: 10px;" *ngIf="bEmail.invalid && bEmail.touched">
+                                    <small *ngIf="bEmail.errors?.['required']" class="text-danger">Email is
+                                      required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input [class.is-invalid]="bPinCode.invalid && bPinCode.touched" type="text"
+                                    class="form-control" id="inputResidence" placeholder="Place of residence (PINCODE)"
+                                    formControlName="pinCode" required />
+                                  <div style="margin-left: 10px;" *ngIf="bPinCode.invalid && bPinCode.touched">
+                                    <small *ngIf="bPinCode.errors?.['required']" class="text-danger">Please provide pin
+                                      code</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input [class.is-invalid]="bExistingLoanFrom.invalid && bExistingLoanFrom.touched"
+                                    type="text" class="form-control" id="inputAmount-need"
+                                    placeholder="Existing Loan from" formControlName="existingLoanFrom" required />
+                                  <div style="margin-left: 10px;"
+                                    *ngIf="bExistingLoanFrom.invalid && bExistingLoanFrom.touched">
+                                    <small *ngIf="bExistingLoanFrom.errors?.['required']" class="text-danger">Please
+                                      provide existing loan from</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input
+                                    [class.is-invalid]="bCurrentOutstandingAmount.invalid && bCurrentOutstandingAmount.touched"
+                                    type="text" class="form-control" id="inputWeight"
+                                    placeholder="Current Outstanding Amount" formControlName="currentOutstandingAmount"
+                                    required />
+                                  <div style="margin-left: 10px;"
+                                    *ngIf="bCurrentOutstandingAmount.invalid && bCurrentOutstandingAmount.touched">
+                                    <small *ngIf="bCurrentOutstandingAmount.errors?.['required']"
+                                      class="text-danger">Existing Loan Amount is Required</small>
+                                  </div>
+                                </div>
+
+                                <div class="form-row">
+                                  <div class="form-group col-md-8">
+                                    <input [class.is-invalid]="bPhone.invalid && bPhone.touched" type="number"
+                                      class="form-control" id="inputMobile" placeholder="Mobile Number"
+                                      formControlName="phone" required />
+                                    <button class="ml-5 btn-sm btn-primary">Send OTP</button>
+                                    <div style="margin-left: 10px;" *ngIf="bPhone.invalid && bPhone.touched">
+                                      <small *ngIf="bPhone.errors?.['required']" class="text-danger">Phone number is
+                                        required</small>
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <input type="email" class="form-control" id="inputMobile" placeholder="OTP"
+                                      formControlName="otp" required />
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                  <p>
+                                    <input type="checkbox" id="vehicle1" name="vehicle1" formControlName="subscribe"
+                                      (change)="onChange($event)" required />
+                                    I authorize Aurigain and its Consultants to
+                                    call / SMS / email towards this application
+                                    and other products/services. This consent
+                                    overrides my registration for DNC/NDNC. T&C
+                                    Apply
+                                  </p>
+                                </div>
+                              </div>
+
+                              <div class="form-group row">
+                                <div class="col-12 mt-2">
+                                  <button type="submit" class="btn btn-primary">
+                                    Submit
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                        <div class="mt-5 text-list">
+                          <p class="lead">Salient Features:</p>
+                          <ul class="pl-2 pb-3">
+                            <li>No processing fee.</li>
+                            <li>
+                              Interest: - Please call our branches to know the
+                              current lending rates (both interest and rate per
+                              gram)
+                            </li>
+                            <li>
+                              Individuals are required to provide proof of
+                              residence and identity proof for applying for gold
+                              loans.
+                            </li>
+                            <ul>
+                              <li>
+                                Identity proof: Aadhaar card, PAN Card, Voter's
+                                ID, Passport, Driving license, etc.
+                              </li>
+                              <li>
+                                Proof of Residence: Aadhaar Card, Electricity
+                                Bill, Ration's Card, Passport, Driving License
+                                etc.
+                              </li>
+                              <li>Signature proof</li>
+                              <li>Photograph</li>
+                            </ul>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="wrapper-content bg-white mt-5 mb-5 p-3 p-lg-5">
+          <div class="">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-12">
+                <div class="section-title mb30">
+                  <h1>FAQ</h1>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="accordion" id="Faqaccordionsone">
+                  <div class="card mb-1">
+                    <div class="card-header" id="faqOne">
+                      <h4 class="mb-0">
+                        <a href="#!" class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                          aria-controls="collapseOne">
+                          <i class="fa fa-plus-circle mr-1"></i>
+                          Why should I take a gold loan
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="faqOne"
+                      data-parent="#Faqaccordionsone">
+                      <div class="card-body">
+                        If you have any short-term goals or may need some
+                        financial assistance it could be medical expense or an
+                        unexpected cash crisis or paying education fee in such
+                        situation, you can use your gold jewellery that is lying
+                        dormant in your home lockers to fulfil your
+                        requirements. As gold loans are good in a rising market,
+                        a lender offering good LTV will get you the most out of
+                        your gold jewellery. If the expected appreciation in
+                        value is greater than the cost of the loan, it is better
+                        to take a loan bearing in mind to keep it short-term and
+                        being able to repay the principal. Ideally, you should
+                        go for a gold loan in <b>cityname</b> if you are looking
+                        for emergency funds.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card mb-1">
+                    <div class="card-header" id="faqTwo">
+                      <h4 class="mb-0">
+                        <a href="#!" class="collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                          aria-expanded="false" aria-controls="collapseTwo">
+                          <i class="fa fa-plus-circle mr-1"></i>
+                          What are the things to keep in mind when taking a gold
+                          loan?
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="faqTwo" data-parent="#Faqaccordionsone">
+                      <div class="card-body">
+                        As far as urgent funds or emergency loans are concerned,
+                        as long as you have the collateral, a gold loan is your
+                        best bet. Gold loan is secured loan, hence lender offers
+                        lower interest rate and offer the maximum benefits to
+                        the borrowers. The security of the asset that has been
+                        pledged with the lender enables the lender to offer many
+                        benefits to the borrowers. Since a personal loan or a
+                        credit card loan is an unsecured loan. They also require
+                        much more paperwork than a collateral-bases loan.
+                        Further, the borrower will also be expected to have a
+                        high credit score - over 700 to get a favourable loan.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card mb-1">
+                    <div class="card-header" id="faqThree">
+                      <h4 class="mb-0">
+                        <a href="#!" class="collapsed" data-toggle="collapse" data-target="#collapseThree"
+                          aria-expanded="false" aria-controls="collapseThree">
+                          <i class="fa fa-plus-circle mr-1"></i>
+                          Is a CIBIL score required for a gold loan?
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="faqThree" data-parent="#Faqaccordionsone">
+                      <div class="card-body">
+                        CIBIL scores aren't always required while you are
+                        applying for a loan. One of the several perks of
+                        subscribing to an online gold loan is that it does not
+                        require a stellar credit history. The borrower's credit
+                        score is not an integral element of the eligibility
+                        criteria. All one requires to avail of a gold loan is
+                        collateral and a few basic KYC documents. The said basic
+                        documents comprise of basic identity and address proof.
+                        Sometimes, lenders even approve loans just based on the
+                        Aadhar Card. On the other hand, in the case of an
+                        unsecured loan, the borrower has to submit their CIBIL
+                        score as a mark of their financial health.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,237 @@
+/* carousel start */
+.carousel-caption{
+  position: absolute!important;
+  right: 46%!important;
+  bottom: 20px!important;
+  left: 4%!important;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #3c4d6b!important;
+  text-align: left!important;
+  font-weight: bold!important;
+}
+
+.carousel-inner .btn {
+      background-color: #f51f8a!important;
+      color: #fff!important;
+      border-color: #f51f8a!important;
+      font-size: x-large!important;
+      
+}
+.carousel-caption .img{
+      height: 400px;
+}
+
+.mt20{
+    margin-top: 30px;
+}
+/* Responsive layout - makes a one column-layout instead of a two-column layout */
+@media (max-width: 468px) {
+  .carousel-caption {    
+    
+    right: 0%!important;
+    
+    left: 4%!important;
+    
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+    text-align: left!important;
+    font-weight: bold!important;
+  }
+} 
+
+@media (max-width: 768px) {
+  .carousel-caption {    
+    
+    right: 0%!important;
+    
+    left: 4%!important;
+    
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+    text-align: left!important;
+    font-weight: bold!important;
+  }
+} 
+/* carousal end */
+
+/* rate section */ 
+
+.icon-svg-1x {
+  width: 60px;
+}
+
+
+
+
+.rate-title {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #778191;
+}
+
+.rate-table-border{
+  border: 1px solid #dee7f2;
+  padding-top: 0px;
+padding-bottom: 20px;
+}
+
+/* rate section end */ 
+.loan{
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+h3{
+  margin: 0px 0px 10px 0px;
+color: #0a2759;
+font-weight: 500;
+}
+p{
+  color: #778191;
+  margin: 0px 0px 10px 0px;
+}
+
+
+.card-shadow{
+  background-color: white;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+margin-bottom: 25px;
+}
+.card-shadow a{
+  text-decoration: none;
+}
+.content p{
+  margin: 0 10px;
+}
+.title h2 a{
+  font-size: 24px;
+line-height: 32px;
+margin: 0px 0px 10px 0px;
+font-weight: 500;
+color: #0a2759;
+}
+
+.title h2 a:hover {
+  color: #15549a;
+  
+}
+
+
+.btn-link {
+  color: #15549a;
+font-weight: 500;
+
+padding-bottom: 4px;
+border-bottom: 2px solid #15549a;
+display: inline-block;
+text-decoration: none;
+  
+}
+.btn-link:hover {
+  color: #f51f8a!important;
+font-weight: 500;
+padding-bottom: 4px;
+border-bottom: 2px solid #f51f8a!important;
+text-decoration: none!important;
+
+}
+
+/* number */ 
+.circle{
+  background-color: #e3f0fe;
+width: 60px;
+height: 60px;
+border: 1px solid #15549a;
+border-radius: 100px;
+color: #15549a;
+margin: -70px auto 40px auto;
+padding: 10px;
+text-align: center;
+line-height: 1.7;
+}
+
+/* number section css */
+
+.box-outline{
+  border: 1px solid #dee4ee;
+  box-shadow: 0px 4px 16px 3px rgba(213, 221, 234, 0.5);
+  padding: 40px;
+  /* margin-bottom: 60px; */
+}
+.number{
+  font-size: 24px;
+font-weight: 500;
+}
+
+.number-title{
+  margin: 0px 0px 10px 0px;
+    margin-bottom: 10px;
+color: #0a2759;
+font-weight: 600;
+font-size: 18px;
+line-height: 28px
+}
+
+.number-button{
+  font-size: large!important;
+  background-color: #f51f8a!important;
+color: #fff!important;
+border-color: #f51f8a!important;
+}
+
+.number-button:hover {
+  color: #fff;
+  background-color: #ff389c;
+  border-color: #ff389c;
+}
+
+.box-outline a{
+  border: 2px solid #e4e9f1;
+background-color: white;
+color: #9aa9c3;
+text-transform: uppercase;
+}
+
+.box-outline a:hover{
+  border: 2px solid #dee4ee;
+color: #6a7a94;
+background-color: #dee4ee;
+}
+
+.box-outline h3{
+  font-size: 16px;
+  line-height: 28px;
+}
+.card-num{
+    padding: 40px;
+    margin-bottom: 60px;
+}
+
+/* bottom content */
+.bottom-content h2{
+  margin: 0px 0px 10px 0px;
+    margin-bottom: 10px;
+color: #0a2759;
+font-weight: 600;
+font-size: 18px;
+line-height: 28px
+}
+
+.bottom-content .text-big {
+  font-size: 20px;
+  color: #f51f8a;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+
+.fas{
+  font-size: 68px;
+  color: #15549a;
+}
+
+.icon-color .fas{
+color: #f51f8a!important;
+} 
