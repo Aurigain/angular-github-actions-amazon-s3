@@ -12,7 +12,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
     initialNavigation: 'enabledBlocking',
-    useHash: true
+    // useHash: true
 }),
 
   ],
