@@ -1,0 +1,188 @@
+
+<div class="box bg-white h-100">
+    <div class="widget-header">
+        <div class="row ">
+        <div class="mt-4 ml-5">
+          <nav>
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                  <a routerlink="/dashboard" href="/dashboard">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                  <a href="javascript:void(0)">Agent Mapping</a>
+                  </li>
+                  <li aria-current="page" class="breadcrumb-item active">
+                    Agent – Supervisor Mapping / Hierarchy Definition for Approval
+                  </li>
+              </ol>
+          </nav>
+          <h3 class="pl-3">Agent – Supervisor Mapping /<br> Hierarchy Definition for Approval</h3>
+            
+        </div>
+        </div>
+    </div>
+     
+    <form [formGroup]="selectedForm" class="form-inline box-end my-2 my-lg-0">
+        <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <select id="inputState" class="form-control" formControlName="selectCategory" (change)="searchedCategory()">
+            <option value="" selected>All Users</option>
+            <option value="approved">Approved</option>
+            <option value="pending">Pending</option>
+            <option value="rejected">Rejected</option>
+        </select>
+    </form>
+    <div class="row m-4">
+        
+        <div class="col-sm-3" *ngFor="let user of filterArray | paginate: { itemsPerPage:4, currentPage: p }" >
+        <div class="card mb-4 shadow">
+            <div class="card-body">
+
+                <div ngbDropdown class="float-right menu">
+                    <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                    <div ngbDropdownMenu >                           
+                        <a ngbDropdownItem href="#" (click)="editUser(user.Id)" data-toggle="modal" data-target="#staticBackdrop">Edit User</a>
+                        <a ngbDropdownItem (click)="deleteUser(user.Id)">Delete User</a>
+                    </div>
+                </div>
+
+                <div class="text-center upper-card">
+                    <img src="..." alt="..."class="image-thumbnail">             
+                    <h5 class="card-title mt-4 ">{{user.FullName}}</h5>
+                    <p>BT - #{{user.Id}}</p>
+                    <p class="h5">{{user.age}}</p>
+                    <p>Agent - {{user.FatherName}}</p>
+                    <a (click)="currentUser(user.id)" data-toggle="modal" data-target="#mapSupervisor"> <button class="btn btn-primary my-2">Map Supervisor</button></a>
+                </div>
+                <div class="internal-card">
+                 <p><strong>Working Days</strong> <span>-</span></p>
+                 <p><strong>Working Hours</strong> <span>-</span></p>
+                 <p><strong>Capacity</strong> <span>-</span></p>
+                 <p><strong>Location</strong> <span>-</span></p>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+        
+    </div>
+    
+        <pagination-controls (pageChange)="p =$event" class="float-right"></pagination-controls>
+    
+    <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" style="margin-top: 5%;" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Edit User</h5>
+          <span class="text-success ml-5 pt-1" *ngIf="successMsg">{{successMsg}}</span>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="editUserForm">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputName">Full Name</label>
+                  <input type="text" class="form-control" id="inputName" formControlName="FullName">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputFatherName">Father Name</label>
+                  <input type="text" class="form-control" id="inputFName" formControlName="FatherName">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail">Email</label>
+                <input type="email" class="form-control" formControlName="Email" id="inputAddress" placeholder="1234 Main St">
+              </div>
+              <div class="form-group">
+                <label for="inputDob">DOB</label>
+                <input type="text" formControlName="Dob" class="form-control" id="inputAddress2">
+              </div>             
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <a (click)="submitEditedUser()"><button type="button" class="btn btn-primary">Update</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" style="margin-top: 5%;" id="mapSupervisor" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="mapSupervisor1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Mapping Supervisor</h5>
+          <span class="text-success ml-5 pt-1" *ngIf="successMsg">{{successMsg}}</span>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="mapSupervisor">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputName">Select Supervisor</label>
+                  <select [class.is-invalid]="selectSupervisor.invalid && selectSupervisor.touched" id="inputState" class="form-control" formControlName="selectSupervisor" >
+                    <option value="" selected>Select Supervisor</option>
+                    <option *ngFor="let supervisor of supervisors; let i = index" [value]="supervisor">{{supervisor | titlecase}}</option>
+                </select>
+                    <div style="margin-left: 10px;" *ngIf="selectSupervisor.invalid && selectSupervisor.touched">
+                        <small *ngIf="selectSupervisor.errors?.['required']" class="text-danger">Supervisor is required</small>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputFatherName">Location</label>
+                  <input [class.is-invalid]="location.invalid && location.touched" type="text" class="form-control" id="inputFName" formControlName="location">
+                  <div style="margin-left: 10px;" *ngIf="location.invalid && location.touched">
+                    <small *ngIf="location.errors?.['required']" class="text-danger">location is required</small>
+                </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail">PinCode</label>
+                    <input [class.is-invalid]="pinCode.invalid && pinCode.touched" type="number" class="form-control" formControlName="pinCode" id="inputPinCode" placeholder="Pin Code">
+                    <div style="margin-left: 10px;" *ngIf="pinCode.invalid && pinCode.touched">
+                        <small *ngIf="pinCode.errors?.['required']" class="text-danger">PinCode is required</small>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputDob">Working Days</label>
+                    <input [class.is-invalid]="workingDays.invalid && workingDays.touched" type="date" formControlName="workingDays" class="form-control" id="inputAddress2">
+                    <div style="margin-left: 10px;" *ngIf="workingDays.invalid && workingDays.touched">
+                        <small *ngIf="workingDays.errors?.['required']" class="text-danger">Working days are required</small>
+                    </div>
+                </div>             
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputDob">Working Time</label>
+                    <input [class.is-invalid]="workingHours.invalid && workingHours.touched" type="time" formControlName="workingHours" class="form-control" id="inputAddress2">
+                    <div style="margin-left: 10px;" *ngIf="workingHours.invalid && workingHours.touched">
+                        <small *ngIf="workingHours.errors?.['required']" class="text-danger">Working hours are required</small>
+                    </div>
+                </div>             
+                <div class="form-group col-md-6">
+                    <label for="inputDob">Capacity</label>
+                    <input [class.is-invalid]="capacity.invalid && capacity.touched" type="number" formControlName="capacity" class="form-control" id="inputAddress2">
+                    <div style="margin-left: 10px;" *ngIf="selectSupervisor.invalid && capacity.touched">
+                        <small *ngIf="capacity.errors?.['required']" class="text-danger">Capacity is required</small>
+                    </div>
+                </div>     
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <a (click)="mappingSupervisor()"><button type="button" class="btn btn-primary">Save</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,251 @@
+<nav id="sidebar" [ngClass]="{ hidden: toggle }">
+  <ul class="list-unstyled components mt-4">
+    <li>
+      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <span class="title"><i class="fa fa-home" style="margin-left: -5px"></i> Dashboard</span>
+      </a>
+    </li>
+
+    <li>
+      <a routerLinkActive="active" href="#course" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <span><i class="fa fa-book" style="margin-left: -5px"></i></span>
+        Lead</a>
+      <ul class="collapse list-unstyled" id="course">
+        <li>
+          <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+              class="fa fa-diamond" aria-hidden="true"></i>Gold Loan</a>
+          <ul class="collapse list-unstyled" id="submenu1">
+            <li>
+              <a routerLink="fresh-leads">Fresh Lead</a>
+            </li>
+            <li>
+              <a routerLink="balance-transfer-leads">BT Lead</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+              class="fa fa-id-card" aria-hidden="true"></i>Personal Loan</a>
+          <ul class="collapse list-unstyled" id="submenu2">
+            <li>
+              <a routerLink="personal-leads">Fresh Lead</a>
+            </li>
+            <li>
+              <a routerLink="view-applications">BT Lead</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-home"
+              aria-hidden="true"></i>Home Loan</a>
+          <ul class="collapse list-unstyled" id="submenu3">
+            <li>
+              <a routerLink="fresh-leads">Lead Generation</a>
+            </li>
+            <li>
+              <a routerLink="view-applications">View Applications</a>
+            </li>
+            <li>
+              <a routerLink="update-status">Update Status</a>
+            </li>
+            <li>
+              <a routerLink="application-approval">Application Approval</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#submenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-car"
+              aria-hidden="true"></i>Vehicle Loan</a>
+          <ul class="collapse list-unstyled" id="submenu4">
+            <li>
+              <a routerLink="fresh-leads">Lead Generation</a>
+            </li>
+            <li>
+              <a routerLink="view-applications">View Applications</a>
+            </li>
+            <li>
+              <a routerLink="update-status">Update Status</a>
+            </li>
+            <li>
+              <a routerLink="application-approval">Application Approval</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a routerLinkActive="active" href="#master" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <span><i class="fa fa-book" style="margin-left: -5px"></i></span>
+        Master</a>
+      <ul class="collapse list-unstyled" id="master">
+        <li>
+          <a routerLink="manager/banks"><i class="fa fa-user" aria-hidden="true"></i>Banks</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a routerLinkActive="active" href="#commissions" data-toggle="collapse" aria-expanded="false"
+        class="dropdown-toggle">
+        <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>
+        Commissions</a>
+      <ul class="collapse list-unstyled" id="commissions">
+        <li>
+          <a routerLink="commissions-setting" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
+              aria-hidden="true"></i>Commissions
+            Settings</a>
+        </li>
+        <li>
+          <a routerLink="commissions-reversal" data-toggle="collapse" aria-expanded="false"><i
+              class="fas fa-address-card" aria-hidden="true"></i>Commissions
+            Reversal</a>
+          <!-- <ul class="collapse list-unstyled " id="submenu2">
+                                <li>
+                                    <a href="#">Fresh Lead</a>
+                                </li>
+                                <li>
+                                    <a href="#">BT Lead</a>
+                                </li>
+                            </ul> -->
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a routerLinkActive="active" href="#agent" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Employee Management</a>
+      <ul class="collapse list-unstyled" id="agent">
+        <li>
+          <a routerLink="employee-list" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
+              aria-hidden="true"></i>Employee List</a>
+        </li>
+        <li>
+          <a routerLink="user-role-master" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
+              aria-hidden="true"></i>Role Master</a>
+        </li>
+        <!-- <li>
+          <a routerLink="agent-mapping" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
+              aria-hidden="true"></i>Agent Mapping</a>
+        </li>
+        <li>
+          <a routerLink="agent-performance" data-toggle="collapse" aria-expanded="false"><i class="fas fa-address-card"
+              aria-hidden="true"></i>Agent
+            Performance</a>
+        </li> -->
+      </ul>
+    </li>
+    <li>
+      <a routerLinkActive="active" href="#user" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Customer Management</a>
+      <ul class="collapse list-unstyled" id="user">
+        <li>
+          <a routerLink="user-list" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
+              aria-hidden="true"></i>Users</a>
+        </li>
+
+        <li>
+          <a routerLink="reset-password" data-toggle="collapse" aria-expanded="false"><i class="fas fa-address-card"
+              aria-hidden="true"></i>Reset
+            Password</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a routerLinkActive="active" href="#checkers" data-toggle="collapse" aria-expanded="false"
+        class="dropdown-toggle">
+        <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Accounts Panels</a>
+      <ul class="collapse list-unstyled" id="checkers">
+        <li>
+          <a routerLink="accounts-checker-panel" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
+              aria-hidden="true"></i>Account Checker
+            Panel</a>
+        </li>
+        <li>
+          <a routerLink="accounts-maker-panel" data-toggle="collapse" aria-expanded="false"><i
+              class="fas fa-address-card" aria-hidden="true"></i>Account Maker
+            Panel</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a routerLinkActive="active" href="#approval" data-toggle="collapse" aria-expanded="false"
+        class="dropdown-toggle">
+        <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Approvals</a>
+      <ul class="collapse list-unstyled" id="approval">
+        <li>
+          <a routerLink="balance-transfer-approval-list" data-toggle="collapse" aria-expanded="false"><i
+              class="fa fa-diamond" aria-hidden="true"></i>BT Approval</a>
+        </li>
+        <li>
+          <a routerLink="compliance-panel" data-toggle="collapse" aria-expanded="false"><i
+              class="fa fa-diamond" aria-hidden="true"></i>Compliance Panel</a>
+        </li>
+        <li>
+          <a routerLink="final-approval" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
+              aria-hidden="true"></i>Final BT
+            Approval</a>
+        </li>
+        <li>
+          <a routerLink="agent-approval-panel" data-toggle="collapse" aria-expanded="false"><i
+              class="fas fa-address-card" aria-hidden="true"></i>Agent
+            Approval Panel</a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- <li>
+					<a href="#Career" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+						<span class="title"><i class="fa fa-graduation-cap" style="margin-left:-5px;"></i></span> Master</a>
+					<ul class="collapse" id="Career">
+						<li>
+							<a href="#">User Role</a>
+						</li>
+						<li>
+							<a href="#"> User Manager</a>
+						</li>
+						<li>
+							<a href="#"> State</a>
+						</li>
+						<li>
+							<a href="#"> District</a>
+						</li>
+						<li>
+							<a href="#"> Qualification</a>
+						</li>
+						<li>
+							<a href="#"> Document KYC Type</a>
+						</li>
+						<li>
+							<a href="#"> Payment Mode</a>
+						</li>
+						<li>
+							<a href="#"> Purpose</a>
+						</li>
+						<li>
+							<a href="#"> Jewellery Type</a>
+						</li>
+						<li>
+							<a href="#"> Product Category</a>
+						</li>
+						<li>
+							<a href="#"> Products</a>
+						</li>
+						<li>
+							<a href="#"> Banks</a>
+						</li>
+					</ul>
+				</li> -->
+
+    <!-- <li>
+					<a routerLink="/dashboard/door-step-agent" routerLinkActive="active">
+						<span class="title"><i class="fa fa-lock" style="margin-left:-5px;"></i></span> Door Step Agent</a>
+				</li> -->
+
+    <!-- <li>
+					<a href="#" routerLinkActive="active">
+						<span class="title"><i class="fa fa-phone" style="margin-left:-5px;"></i></span> Agent</a>
+				</li> -->
+    <!-- <li>
+					<a href="javascript void(0)>" routerLinkActive="active">
+						<span class="title"> <i class="fa fa-users" aria-hidden="true"></i> Customer</span></a>
+				</li> -->
+  </ul>
+</nav>

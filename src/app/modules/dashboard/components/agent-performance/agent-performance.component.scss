@@ -1,0 +1,106 @@
+
+.bg-white{
+    background-color: #fff;
+}
+
+.box{
+    margin: 10px;
+}
+
+.breadcrumb{
+    background-color: #fff;
+}
+
+
+
+.card{
+    border-radius: 5px;
+}
+
+.hanging-card{
+    position: absolute;
+    background-color: #f7c41e;
+    color: #fff;
+    top: 0;
+    right: 0;
+    padding: 3px;
+}
+
+
+.box-end{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 20px 20px 0;
+}
+
+.internal-card {
+
+    padding-top: 15px;
+
+    p{
+        border-bottom: 1px solid #d3def1;
+        display: flex;
+        justify-content: space-between;        
+    }
+
+    p:nth-child(4){
+        border-bottom: none;
+
+        span{
+            color: blue;
+        }
+    }
+}
+.card-body{
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.upper-card p{
+    margin: 0;
+}
+
+
+.menu{
+
+
+    button{
+        border: none;
+        background-color: transparent;
+    }
+    
+    .dropdown-toggle::after{
+        content: none;
+    }
+}
+
+.image-thumbnail{
+    width: 80px;
+    height: 80px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    background-color: #000;
+}
+.bg-color{
+    background: #e6e6e6;
+    border-radius: 5px;
+}
+.box{
+    position: relative;
+}
+.box1{
+    height: 30px;
+    width: 30px;
+    background: black;
+    position:absolute;
+    left: -20px;
+    top: 40px;
+    border-radius: 5px;   
+}
+.check{
+    position: absolute;
+    font-size: 20px;
+    color: green;
+    top: -10px;
+    right: -10px;
+}

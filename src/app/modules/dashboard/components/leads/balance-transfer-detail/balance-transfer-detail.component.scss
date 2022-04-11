@@ -1,0 +1,135 @@
+.custom-breadcrum {
+    .breadcrumb {
+        background: #0000;
+        padding: 0;
+        border: none;
+        margin: 8px 0 5px;
+    }
+    .breadcrumb li {
+        font-size: 15px;
+    }
+    .breadcrumb-item+.breadcrumb-item {
+        padding-left: 0.5rem;
+    }
+    .breadcrumb-item+.breadcrumb-item:before {
+        float: left;
+        padding-right: 0.5rem;
+        color: #6c757d;
+        content: "/";
+    }
+}
+
+.bg-white{
+    background-color: #fff;
+}
+
+.box{
+    margin: 10px;
+}
+
+.breadcrumb{
+    background-color: #fff;
+}
+
+.widget {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 6px;
+    box-shadow: 0 0 40px 0 #e6e6e6;
+
+    .widget-header {
+        padding: 8px 30px;
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+        background: #d3def1;
+    }
+    .widget-header:before {
+        display: table;
+        content: "";
+        line-height: 0;
+    }
+}
+.box{
+    border: 1px solid #efefef;
+    // margin: 40px 20px 20px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 0 20px 2px #c9d8f1;
+}
+.box2{
+    margin-top: -23px!important;
+    background: #fff;
+    width: -webkit-max-content;
+    width: max-content;
+    // font-size: 20px;
+    color: #000;
+    margin-bottom: 18px!important;
+    padding: 4px 15px;
+    border-radius: 50px;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    border: 2px solid #ff8400;
+    font-weight: 600!important;
+}
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
+table{
+    color: #212529;
+}
+table tr td{
+    padding: 3px 0!important;
+    font-size: 15px;
+}
+@media (max-width: 767px){
+table tr td {
+    display: block;
+    padding: 5px 0!important;
+    font-size: 16px!important;
+    width: 100%!important;
+}
+}
+.bottom-box{
+    margin-top: 10px;
+    background: #fffdfd;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #ededed;
+}
+.form-group>label {
+    font-size: 15px;
+    color: #000;
+    font-weight: 700;
+}
+.small-media-items-img{
+    height: 80px;
+    width: 100px;
+    border-radius: 5px;
+    position: relative;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    flex: 0 0 75px;
+    background-color: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.small-media-items-img img {
+    max-width: 70px;
+}
+.bottom-icon {
+    position: absolute;
+    top: 27px;
+    left: -5px;
+    padding: 5px;
+    border-radius: 100%;
+    color: #135da4;
+    font-size: 18px;
+    font-weight: 900;
+}

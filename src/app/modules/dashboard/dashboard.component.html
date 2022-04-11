@@ -1,0 +1,22 @@
+<!-- <router-outlet></router-outlet> -->
+<app-top-nav-bar></app-top-nav-bar>
+<div class="wrapper" style="margin-top:45px">
+    <app-side-bar></app-side-bar>
+        <div id="content" [ngStyle]="{'margin-left': toggle ? '0' : marginWidth }">
+    
+            <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn  btn-outline-info" (click)="sidenavservice.toggleSideNav(); toggled()">
+                        <i class="fa fa-align-left"></i>
+                    </button>
+                </div>
+            </nav> -->
+            
+            <router-outlet></router-outlet>
+    
+            <!-- footer -->
+            <app-dashboard-footer></app-dashboard-footer>
+        </div>
+        
+    </div>
+    

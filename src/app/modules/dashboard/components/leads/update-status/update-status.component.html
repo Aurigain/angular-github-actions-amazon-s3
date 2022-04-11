@@ -1,0 +1,92 @@
+
+<div class="box bg-white h-100">
+    <div class="widget-header">
+        <div class="row ">
+        <div class="mt-4 ml-5">
+          <nav>
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                  <a routerlink="/dashboard" href="/dashboard">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                  <a href="javascript:void(0)"> Loan Application</a
+                  >
+                  </li>
+                  <li aria-current="page" class="breadcrumb-item active">
+                  View Applications
+                  </li>
+              </ol>
+          </nav>
+          <h3 class="pl-3">View Applications</h3>
+            
+        </div>
+        </div>
+    </div>
+    <form [formGroup]="selectedForm" class="form-inline my-2 my-lg-0">
+        <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <select id="inputState" class="form-control" formControlName="selectCategory" (change)="searchedCategory()">
+            <option value="" selected>Select Product</option>
+            <option value="approved">Approved</option>
+            <option value="pending">Pending</option>
+            <option value="rejected">Rejected</option>
+        </select>
+    </form>
+    <div class="row m-4">
+        <div class="col-sm-3" *ngFor="let user of filterArray">
+        <div class="card mb-4 shadow">
+            <div class="card-body">
+            <span class="hanging-card" style="background-color: #f7c41e" *ngIf="user.type === 'pending'">Pending For Approval</span>
+            <span class="hanging-card" style="background-color: #51ED43" *ngIf="user.type === 'approved'">Approved</span>
+            <span class="hanging-card" style="background-color: #FF0000" *ngIf="user.type === 'rejected'">Rejected</span>
+            <span class="hanging-card" style="background-color: #000" *ngIf="user.type === 'closed'">Closed</span>
+            <div class="intercal-card text-center">
+                <h5 class="card-title mt-4 ">{{user.FullName}}</h5>
+                <p>BT - #{{user.Id}}</p>
+                <p class="h5">{{user.age}}</p>
+                <p>Agent - {{user.FatherName}}</p>
+                
+                <a (click)="updateStatus(user.Id)"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" [disabled]="user.type === 'closed'">
+                    Update Status
+                </button></a>
+
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" style="margin-top: 10%;" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Update Stauts</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="editStatus">
+              <input type="text" placeholder="{{fullname}}" disabled>
+              <input type="text" placeholder="{{fathername}}" disabled>
+              <select id="inputState" class="form-control" formControlName="type">
+                <option value="" selected>Select Product</option>
+                <option value="approved">Approved</option>
+                <option value="pending">Pending</option>
+                <option value="rejected">Rejected</option>
+              </select>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <a (click)="submitUpdateStatus()"><button type="button" class="btn btn-primary">Update</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

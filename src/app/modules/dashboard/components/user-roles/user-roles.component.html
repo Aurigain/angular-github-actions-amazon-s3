@@ -1,0 +1,134 @@
+
+<div class="box bg-white h-100">
+    <div class="widget-header">
+        <div class="row ">
+        <div class="mt-4 ml-5">
+          <nav>
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                  <a routerlink="/dashboard" href="/dashboard">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                  <a href="javascript:void(0)">User Management</a>
+                  </li>
+                  <li aria-current="page" class="breadcrumb-item active">
+                  Role
+                  </li>
+              </ol>
+          </nav>
+          <h3 class="pl-3">USER MANAGEMENT - ROLE</h3>
+            
+        </div>
+        </div>
+    </div>
+    <div class="box-end">
+        <a (click)="createRole()"><button class="btn btn-primary" data-toggle="modal" data-target="#createNewRole">Add Role</button></a>
+    </div> 
+    <form [formGroup]="selectedForm" class="form-inline box-end my-2 my-lg-0">
+        <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <select id="inputState" class="form-control" formControlName="selectCategory" (change)="searchedCategory()">
+            <option value="" selected>All Roles</option>
+            <option *ngFor="let role of Roles; let i = index" [value]="role">{{role | titlecase}}</option>
+        </select>
+    </form>
+    <div class="row m-4">
+        <div class="col-sm-3" *ngFor="let user of filterArray | paginate: { itemsPerPage:4, currentPage: p }" >
+        <div class="card mb-4 shadow">
+            <div class="card-body">
+
+                <div ngbDropdown class="float-right menu">
+                    <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                    <div ngbDropdownMenu >
+                        <a ngbDropdownItem href="#" (click)="editUser(user.Id)" data-toggle="modal" data-target="#staticBackdrop">Edit Role</a>
+                        <!-- <a ngbDropdownItem (click)="deleteUser(user.Id)">Delete Role</a> -->
+                    </div>
+                </div>
+
+                <div class="text-center upper-card">
+                    <h5 class="card-title mt-4 ">{{user.FullName}}</h5>
+                    <p>BT - #{{user.Id}}</p>
+                    <p class="h5">{{user.age}}</p>
+                    <p>Agent - {{user.FatherName}}</p>
+                    <a (click)="assignRole(user.id)" data-toggle="modal" data-target="#staticBackdrop"><button class="mt-2 btn btn-primary">Assign Role</button></a>
+                </div>
+                
+            </div>
+        </div>
+        </div>
+        
+    </div>
+    
+        <pagination-controls (pageChange)="p =$event" class="float-right"></pagination-controls>
+    
+    <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+
+  <div class="modal fade" style="margin-top: 5%;" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">{{roleTitle}}</h5>
+          <span class="text-success ml-5 pt-1" *ngIf="successMsg">{{successMsg}}</span>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="editUserForm">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputId">ID</label>
+                <input type="text" class="form-control" id="inputFName" formControlName="Id" readonly>
+              </div>
+                <div class="form-group col-md-6">
+                  <label for="inputName">Full Name</label>
+                  <input type="text" class="form-control" id="inputName" formControlName="FullName" readonly>
+                </div>
+              </div>             
+              <div class="form-row">
+                <label for="inputRole">Select Role</label>
+                <select id="inputRole" class="form-control" formControlName="Role">
+                  <option value="" selected>All Roles</option>
+                  <option *ngFor="let role of Roles; let i = index" [value]="role">{{role}}</option>
+              </select>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <a (click)="submitEditedUser()"><button type="button" class="btn btn-primary">{{saveRoleFooter}}</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" style="margin-top: 5%;" id="createNewRole" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="createNewRole" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createNewRoleLabel">Add Role</h5>
+          <span class="text-success ml-5 pt-1" *ngIf="successMsg">{{successMsg}}</span>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="addRoleForm">
+              <div class="form-group">
+                <label for="inputRole">Role</label>
+                  <input type="text" class="form-control" id="inputRole" formControlName="Role">
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <a (click)="submitCreatedRole()"><button type="button" class="btn btn-primary">Add</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</div>

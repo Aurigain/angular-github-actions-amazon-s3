@@ -1,0 +1,125 @@
+.custom-breadcrum {
+    .breadcrumb {
+        background: #0000;
+        padding: 0;
+        border: none;
+        margin: 8px 0 5px;
+    }
+    .breadcrumb li {
+        font-size: 15px;
+    }
+    .breadcrumb-item+.breadcrumb-item {
+        padding-left: 0.5rem;
+    }
+    .breadcrumb-item+.breadcrumb-item:before {
+        float: left;
+        padding-right: 0.5rem;
+        color: #6c757d;
+        content: "/";
+    }
+}
+
+.bg-white{
+    background-color: #fff;
+}
+
+.box{
+    margin: 10px;
+}
+
+.breadcrumb{
+    background-color: #fff;
+}
+
+// .custom-cards{
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: space-evenly;
+// }
+
+// .form-inline{
+//     display: flex;
+//     justify-content: flex-end;
+//     padding: 0 20px 20px 0;
+// }
+
+.widget {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 6px;
+    box-shadow: 0 0 40px 0 #e6e6e6;
+
+    .widget-header {
+        padding: 8px 30px;
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+        background: #d3def1;
+    }
+    .widget-header:before {
+        display: table;
+        content: "";
+        line-height: 0;
+    }
+    
+}
+
+table{
+    color: #212529;
+}
+
+.th{
+    width: 100%;
+}
+.table-responsive{
+    border-radius: 15px;
+    
+}
+.table-shadow {
+    box-shadow: 0 5px 5px -3px #0003, 0 8px 10px 1px #00000024, 0 3px 14px 2px #0000001f;
+}
+thead{
+    background: #607d8b!important;
+}
+.search-container button:hover {
+    background: #ccc;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .topnav .search-container {
+      float: none;
+    }
+     input[type=text], .topnav .search-container button {
+      float: none;
+      display: block;
+      text-align: left;
+      width: 100%;
+      margin: 0;
+      padding: 14px;
+    }
+    .topnav input[type=text] {
+      border: 1px solid #ccc;  
+    }
+}
+
+.menu{
+
+
+    button{
+        border: none;
+        background-color: transparent;
+    }
+    
+    .dropdown-toggle::after{
+        content: none;
+    }
+}
+
+.popup-box{
+    label{
+        display: block;
+        font-size: 15px;
+        color: #000;
+        font-weight: 800;
+    }
+}

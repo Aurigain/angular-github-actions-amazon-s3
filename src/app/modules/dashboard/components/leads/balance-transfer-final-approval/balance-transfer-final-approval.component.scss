@@ -1,0 +1,159 @@
+.layout-px-spacing {
+  padding: 0 20px 0 18px!important;
+  min-height: calc(100vh - 170px)!important;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.widget {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 6px;
+  box-shadow: 0 0 40px 0 #e6e6e6;
+
+  .widget-header {
+      padding: 8px 30px;
+      border-top-right-radius: 6px;
+      border-top-left-radius: 6px;
+      background: #d3def1;
+  }
+  .widget-header:before {
+      display: table;
+      content: "";
+      line-height: 0;
+  }
+}
+
+.custom-breadcrum {
+  .breadcrumb {
+      background: #0000;
+      padding: 0;
+      border: none;
+      margin: 8px 0 5px;
+  }
+  .breadcrumb li {
+      font-size: 15px;
+  }
+  .breadcrumb-item+.breadcrumb-item {
+      padding-left: 0.5rem;
+  }
+  .breadcrumb-item+.breadcrumb-item:before {
+      float: left;
+      padding-right: 0.5rem;
+      color: #6c757d;
+      content: "/";
+  }
+}
+
+.detail-image{
+  height:65px;
+  width:65px;
+  border-radius: 50%;
+  margin: 5px 20px;
+}
+
+.completed-step{
+  height:65px;
+  width:65px;
+  border-radius: 50%;
+  margin: 5px 20px;
+  background-color: green;
+
+  i{
+      color: white;
+      font-size: 40px;
+      padding: 10px;
+      margin: 2px;
+  }
+}
+
+
+.detail-div .row{
+  padding: 10px;
+}
+
+.personal-form{
+  margin: 36px;
+  border: 0;
+  position: relative;
+
+
+  form{
+      display: block;
+      margin: 20px;
+  }
+
+  .form-btn{
+      margin: 10px;
+      padding: 10px;
+
+      i{
+          padding-right: 5px;
+      }
+  }
+}
+
+.form-content{
+  background-color: #efefef;
+  padding: 24px;
+  border-radius: 25px;
+}
+
+.vertical-line::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  border-left: 1px solid black;
+}
+.bg-white {
+  background-color: #fff!important;
+}
+
+.custom-invalid-feedback{
+  display: block;
+
+}
+
+.form-row{
+  margin-top:10px;
+}
+
+.gender-row{
+  label{
+      padding-left:10px;
+
+      input{
+          margin-right: 10px;
+      }
+  }
+}
+
+
+.form-div{
+  background-color:#efefef;
+  border-radius: 5px;
+  padding: 10px;
+  .inner-form-div{
+
+    background-color: #fff;
+  }
+
+  .col-md-4{
+    border: 1px solid black;
+  }
+}
+
+.box-border{
+  border: 1px solid black;
+  padding: 10px;
+  width: 200px;
+
+}
+.detail{
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}

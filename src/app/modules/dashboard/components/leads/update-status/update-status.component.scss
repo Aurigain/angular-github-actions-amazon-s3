@@ -1,0 +1,32 @@
+
+.bg-white{
+    background-color: #fff;
+}
+
+.box{
+    margin: 10px;
+}
+
+.breadcrumb{
+    background-color: #fff;
+}
+
+.card{
+    border-radius: 5px;
+}
+
+.hanging-card{
+    position: absolute;
+    background-color: #f7c41e;
+    color: #fff;
+    top: 0;
+    right: 0;
+    padding: 3px;
+}
+
+
+.form-inline{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 20px 20px 0;
+}

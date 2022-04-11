@@ -1,0 +1,317 @@
+<div class="layout-px-spacing h-100">
+    <div class="row h-100" style="min-height: 100vh;">
+      <div class="col-xl-12 col-lg-12 col-md-12">
+          <div class="widget bg-white h-100">
+              <div class="widget-header">
+              <div
+              class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
+              <div>
+                <nav class="custom-breadcrum">
+                    <ol class="breadcrumb justify-content-center justify-content-sm-start" >
+                        <li class="breadcrumb-item">
+                        <a routerlink="/dashboard" href="/dashboard">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                        <a routerLink="/dashboard/user-list">User Management</a>
+                        >
+                        </li>
+                        <li aria-current="page" class="breadcrumb-item active">
+                        Edit User
+                        </li>
+                    </ol>
+                </nav>
+                <h3>EDIT USER</h3>
+                  
+              </div>
+              </div>
+              </div>
+              <div class="d-flex flex-md-row px-3 mt-4 flex-column-reverse">
+
+              <div class="col-md-4">
+                <ul id="progressbar">
+                    <li class="active StepProgress-item" [ngClass]="{'active': currentStep >= 1}"><span class="span1">Status</span></li>
+                    <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 2}"><span class="span1">Personal Details</span></li>
+                    <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 3}"><span class="span1">Jewellery Details</span></li>
+                    <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 4}"><span class="span1">Appointment Details</span></li>
+                  </ul>
+              </div>
+              
+              <div class="main-container col-md-8">
+                  <div class="detail-div">
+
+                      <div class="vertical-line personal-form" *ngIf="currentStep == 1">
+                          <div class="form-content">
+                              <form [formGroup]="statusDetails">
+                                  <div class="form-row">
+                                  
+                                  <div class="form-group col-md-8">
+                                      <label for="inputState">Select Status</label>
+                                      <select id="inputState" class="form-control" formControlName="status">
+                                      <option value="" selected>Select Status</option>
+                                      <option value="active">Active</option>
+                                      <option value="inactive">InActive</option>
+                                      </select>
+                                          <ng-container *ngIf="statusDetails.get('status').invalid && statusDetails.get('status').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="statusDetails.get('status').invalid && statusDetails.get('status').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="statusDetails.get('status').errors?.['required']">Type is required</small>
+                                          </div>
+                                  </div>
+                                  
+                                  </div>
+                                  
+                              </form>
+                          </div>
+                          <div class="form-btn">
+                              <a (click)="saveStatusDetails()"><button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Next</button></a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="detail-div">
+                      <div class="vertical-line personal-form" *ngIf="currentStep == 2">
+                          <div class="form-content">
+                            <form [formGroup]="personalDetails">
+                                <div class="form-row">
+                                
+                                    <div class="form-group col-md-4">
+                                        <label for="inputFullName">Full Name</label>
+                                        <input formControlName="name" type="text" class="form-control" placeholder="Full name">
+
+                                        <ng-container *ngIf="personalDetails.get('name').invalid && personalDetails.get('name').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="personalDetails.get('name').invalid && personalDetails.get('name').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="personalDetails.get('name').errors?.['required']">Enter Full Name</small>
+                                            </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail">Email</label>
+                                        <input type="email" formControlName="email" class="form-control" id="inputEmail" placeholder="Email"> 
+
+                                        <ng-container *ngIf="personalDetails.get('email').invalid && personalDetails.get('email').touched" class="col-sm-3 col-form-label"></ng-container>
+                                            <div *ngIf="personalDetails.get('email').invalid && personalDetails.get('email').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                <small class="text-danger" *ngIf="personalDetails.get('email').errors?.['required']">Enter Email</small>
+                                            </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputMobile">Mobile Number</label>
+                                        <input type="number" formControlName="phoneNumber1" class="form-control" id="inputMobile" placeholder="Enter Mobile Number">
+
+                                        <ng-container *ngIf="personalDetails.get('phoneNumber1').invalid && personalDetails.get('phoneNumber1').touched" class="col-sm-3 col-form-label"></ng-container>
+                                        <div *ngIf="personalDetails.get('phoneNumber1').invalid && personalDetails.get('phoneNumber1').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                            <small class="text-danger" *ngIf="personalDetails.get('phoneNumber1').errors?.['required']">Enter Mobile Number</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="inputDate">Address</label>
+                                    <input formControlName="address" type="text" class="form-control" id="inputDate" placeholder="Address">
+                                    <ng-container *ngIf="personalDetails.get('address').invalid && personalDetails.get('address').touched" class="col-sm-3 col-form-label"></ng-container>
+                                        <div *ngIf="personalDetails.get('address').invalid && personalDetails.get('address').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                            <small class="text-danger" *ngIf="personalDetails.get('address').errors?.['required']">Address is required</small>
+                                        </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputDate">Select Role</label>
+                                
+                                    <select id="inputState" class="form-control" formControlName="role">
+                                        <option value="" selected>Select Role</option>
+                                        <option *ngFor="let role of Roles; let i = index" [value]="role">{{role | titlecase}}</option>
+                                    </select>
+                                    <ng-container *ngIf="personalDetails.get('role').invalid && personalDetails.get('role').touched" class="col-sm-3 col-form-label"></ng-container>
+                                        <div *ngIf="personalDetails.get('role').invalid && personalDetails.get('role').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                            <small class="text-danger" *ngIf="personalDetails.get('role').errors?.['required']">role is required</small>
+                                        </div>
+                                </div>
+                                
+                                
+                                </div>
+                                
+                            </form>
+                          </div>
+                          <div class="row">
+                              <div class="form-btn"> 
+                                  <a (click)="stepDown()"><button type="submit" class="btn btn-dark"><i class="fa fa-arrow-left"></i> Back</button></a>
+                              </div>
+                              <div class="form-btn">
+                                  
+                                <a (click)="savePersonalDetails()"><button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Next</button></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="detail-div">
+                      <!-- <div class="row">                        
+                          <div *ngIf="currentStep >3; else elseBlock">
+                              <div class="completed-step"> <i class="fa fa-check"></i></div>
+                          </div>
+                          <ng-template #elseBlock>
+                              <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
+                          </ng-template>
+                      
+                      <h3 style="padding-top:15px">Jewellery Detials</h3>
+                      </div> -->
+                      <div class="vertical-line personal-form" *ngIf="currentStep == 3">
+                          <div class="form-content">
+                              <form [formGroup]="jewelleryDetails">
+                                  <div class="form-row">
+                                  
+                                  <div class="form-group col-md-4">
+                                      <label for="inputState">Jewellery Type      </label>
+                                      <select id="inputJewelleryType" class="form-control" formControlName="jewelleryType">
+                                      <option value="" selected>Selected Jewellery Type</option>
+                                      <option value="Neckless">Neckless</option>
+                                      <option value="Ring">Ring</option>
+                                      <option value="Gold Biscuit">Gold Biscuit</option>
+                                      <option value="Armlet">Armlet</option>
+                                      </select>
+                                          <ng-container *ngIf="jewelleryDetails.get('jewelleryType').invalid && jewelleryDetails.get('jewelleryType').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="jewelleryDetails.get('jewelleryType').invalid && jewelleryDetails.get('jewelleryType').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="jewelleryDetails.get('jewelleryType').errors?.['required']">Document Type is required</small>
+                                          </div>
+                                  </div>
+                                  
+                                  <div class="form-group col-md-4">
+                                      <label for="inputquantity">Quantity</label>
+                                      <input formControlName="quantity" type="number" class="form-control" placeholder="Document Number">
+  
+                                      <ng-container *ngIf="jewelleryDetails.get('quantity').invalid && jewelleryDetails.get('quantity').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="jewelleryDetails.get('quantity').invalid && jewelleryDetails.get('quantity').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="jewelleryDetails.get('quantity').errors?.['required']">Enter Document Number</small>
+                                          </div>
+                                  </div>
+                                  
+                                  <div class="form-group col-md-4">
+                                      <label for="inputWeight">Weight (in grams)</label>
+                                      <input formControlName="weight" type="number" class="form-control" placeholder="Weight">
+  
+                                      <ng-container *ngIf="jewelleryDetails.get('weight').invalid && jewelleryDetails.get('weight').touched" class="col-sm-3 col-form-label"></ng-container>
+                                          <div *ngIf="jewelleryDetails.get('weight').invalid && jewelleryDetails.get('weight').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                              <small class="text-danger" *ngIf="jewelleryDetails.get('weight').errors?.['required']">Enter Weight</small>
+                                          </div>
+                                  </div>
+                                  </div>
+                                  <div class="form-row">
+                                      <div class="form-group col-md-4">
+                                          <label for="inputKarats">Karats</label>
+                                          <select id="inputKarats" class="form-control" formControlName="karats">
+                                          <option value="" selected>Select Karats</option>
+                                          <option value="18 Karats">18 karats</option>
+                                          <option value="20 Karats">20 Karats</option>
+                                          <option value="22 Karats">22 Karats</option>
+                                          <option value="24 Karats">24 Karats</option>
+                                          </select>
+                                              <ng-container *ngIf="jewelleryDetails.get('karats').invalid && jewelleryDetails.get('karats').touched" class="col-sm-3 col-form-label"></ng-container>
+                                              <div *ngIf="jewelleryDetails.get('karats').invalid && jewelleryDetails.get('karats').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                  <small class="text-danger" *ngIf="jewelleryDetails.get('karats').errors?.['required']">Document Type is required</small>
+                                              </div>
+                                      </div>
+                                      <div class="form-group col-md-4" style="padding: 33px 0 0 15px;">
+                                       <a (click)="addJewellery()"><button class="btn btn-primary btn-sm"><i class="fa fa-plus mr-1" ></i>Add</button></a> &nbsp; 
+                                       <a><button class="btn btn-outline-danger btn-sm"><i class="fa fa-times mr-1"></i>Cancel</button></a> 
+                                          
+                                      </div>
+                                  
+                                  </div>
+                                  <div class="row">
+                                      <table class="table">
+                                          <thead class="thead-dark">
+                                            <tr>
+                                              <th scope="col">Jewellery Type</th>
+                                              <th scope="col">Quantity</th>
+                                              <th scope="col">Weight</th>
+                                              <th scope="col">Karats</th>
+                                              <th scope="col">Action</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr *ngFor="let item of tabelData">
+                                              <th scope="row">{{item.jewelleryType}}</th>
+                                              <td>{{item.quantity}}</td>
+                                              <td>{{item.weight}}</td>
+                                              <td>{{item.karats}}</td>
+                                              <td><button type="button" class="btn btn-primary" (click)="removeItem(item)">Remove</button></td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                  </div>
+                              </form>
+                          </div>
+                          <div class="row">
+                              <div class="form-btn"> 
+                                  <a (click)="stepDown()"><button type="submit" class="btn btn-dark"><i class="fa fa-arrow-left"></i> Back</button></a>
+                              </div>
+                              <div class="form-btn">
+                                  
+                                  <a (click)="saveJewelleryDetails()"><button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right"></i> Next</button></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="detail-div">
+                      <!-- <div class="row">                        
+                          <div *ngIf="currentStep >4; else elseBlock">
+                              <div class="completed-step"> <i class="fa fa-check"></i></div>
+                          </div>
+                          <ng-template #elseBlock>
+                              <img src="https://cdn-icons-png.flaticon.com/512/201/201567.png" class="detail-image" alt="">
+                          </ng-template>
+                      
+                      <h3 style="padding-top:15px">Appointment Details </h3>
+                      </div> -->
+                      <div class="vertical-line personal-form" *ngIf="currentStep == 4">
+                          <div class="form-content">
+                              <form [formGroup]="appointmentDetails">
+                                  <div class="form-row">
+                                  
+                                      <div class="form-group col-md-4">
+                                          <label for="inputbranch">Branch</label>
+                                          <select id="inputBranch" class="form-control" formControlName="branch">
+                                          <option value="" selected>Selected Branch</option>
+                                          <option value="Adhar Card">Provide branches</option>
+                                          </select>
+                                              <ng-container *ngIf="documentDetails.get('branch').invalid && documentDetails.get('branch').touched" class="col-sm-3 col-form-label"></ng-container>
+                                              <div *ngIf="documentDetails.get('branch').invalid && documentDetails.get('branch').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                  <small class="text-danger" *ngIf="documentDetails.get('branch').errors?.['required']">Document Type is required</small>
+                                              </div>
+                                      </div>
+                                      
+                                      <div class="form-group col-md-4">
+                                          <label for="inputAppointment">Date of Appointment</label>
+                                          <input formControlName="dateOfAppointment" type="date" class="form-control" placeholder="DD-MM-YYYY">
+      
+                                          <ng-container *ngIf="documentDetails.get('dateOfAppointment').invalid && documentDetails.get('dateOfAppointment').touched" class="col-sm-3 col-form-label"></ng-container>
+                                              <div *ngIf="documentDetails.get('dateOfAppointment').invalid && documentDetails.get('dateOfAppointment').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                  <small class="text-danger" *ngIf="documentDetails.get('dateOfAppointment').errors?.['required']">Enter Appointment Details</small>
+                                              </div>
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                          <label for="inputTime">Time of Appointment</label>
+                                          <input formControlName="timeOfAppointment" type="time" class="form-control" placeholder="">
+      
+                                          <ng-container *ngIf="documentDetails.get('timeOfAppointment').invalid && documentDetails.get('timeOfAppointment').touched" class="col-sm-3 col-form-label"></ng-container>
+                                              <div *ngIf="documentDetails.get('timeOfAppointment').invalid && documentDetails.get('timeOfAppointment').touched" class="custom-invalid-feedback" style="margin-top: 5px;">
+                                                  <small class="text-danger" *ngIf="documentDetails.get('timeOfAppointment').errors?.['required']">Enter Appointment Time</small>
+                                              </div>
+                                      </div>
+                                      
+                                      
+                                  </div>
+                              </form>
+                          </div>
+                          <div class="row">
+                              <div class="form-btn"> 
+                                  <a (click)="stepDown()"><button type="submit" class="btn btn-dark"><i class="fa fa-arrow-left"></i> Back</button></a>
+                              </div>
+                              <div class="form-btn">
+                                  
+                                  <a (click)="saveForms()"><button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Submit</button></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  

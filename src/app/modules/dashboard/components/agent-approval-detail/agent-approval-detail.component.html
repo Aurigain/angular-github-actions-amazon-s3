@@ -1,0 +1,134 @@
+<div class="layout-px-spacing">
+  <div class="row h-100" style="min-height: 100vh;">
+      <div class="col-xl-12 col-lg-12 col-md-12">
+          <div class="widget bg-white pb-4">
+              <div class="widget-header">
+                  <div
+                      class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
+                      <div>
+                          <h3>Agent Detail</h3>
+                          <nav class="custom-breadcrum">
+                              <ol class="breadcrumb justify-content-center justify-content-sm-start" >
+                                  <li class="breadcrumb-item">
+                                  <a routerLink="/dashboard">Home</a>
+                                  </li>
+                                  <li class="breadcrumb-item">
+                                  <a routerLink="../../">Agent Approval Panel</a
+                                  >
+                                  </li>
+                                  <li aria-current="page" class="breadcrumb-item active">
+                                  Agent Detail
+                                  </li>
+                              </ol>
+                          </nav>
+                      </div>
+                  </div>
+              </div>
+              <div class="mt-5 box">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="box2">
+                          <h5>
+                              <!-- <img src="" alt="personal"> -->
+                              Personal Details
+                          </h5>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-8 pl-3">
+                            <table class="table table-borderless">
+                              <tbody class="table-custom">
+                                  <tr>
+                                      <td><strong>Name</strong></td>
+                                      <td>{{agentDetails?.profile?.first_name}} {{agentDetails?.profile?.last_name}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>Mobile Number</strong></td>
+                                      <td>{{agentDetails?.phonenumber}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>Address</strong></td>
+                                      <td>{{agentDetails.address}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>Qualification</strong></td>
+                                      <td>12th</td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>Date of Birth:</strong></td>
+                                      <td>{{agentDetails?.profile?.dob | date: 'medium'}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>Current Occupation</strong></td>
+                                      <td>Sales Agent</td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>KYC</strong></td>
+                                      <td>
+                                        <strong class="">Aadhar Number:</strong> 5544 <br>
+                                        <strong class="strong">PAN Number:</strong> 6644
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                          </div>
+                          <div class="col-md-4">
+                            <img width="250" height="250" src="https://thispersondoesnotexist.com/image" class="float-right mr-3 mb-3" alt="demoImage">
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+
+              <div class="mt-5 box">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="box2">
+                          <h5>
+                              <!-- <img src="" alt="personal"> -->
+                              Document Details
+                          </h5>
+                      </div>
+                      <div class="bottom-box">
+                          <div class="row">
+                              <div class="form-group col-md-2" *ngFor="let img of image?.url">
+                                  <!-- <label for="">Customer Photo</label> -->
+                                  <a href="javascript:void(0);">
+                                      <div class="small-media-items-img">
+                                          <a (click)="previewImage(img)">
+                                            <img [src]="img" alt="" title="img"/>
+                                          </a>
+                                      </div>
+                                      <i class="fas fa-link bottom-icon"></i>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="mt-5 box" *ngIf="isImagePreview">
+
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                      <div class="box2">
+                          <h5>
+                              <!-- <img src="" alt="personal"> -->
+                              Document Preview
+                          </h5>
+
+
+                      </div>
+                      <div class="float-right"><a (click)="closePreview()"><button class="btn btn-danger">Close</button></a></div>
+                      <div class="bottom-box">
+                          <div class="row">
+                              <img [src]="previewImg" width="500" height="500">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="d-flex justify-content-center mt-3">
+              <a (click)="agentApproval()"><button class="btn btn-success mr-3"><i class="fa fa-check mr-2"></i>Approve</button></a>
+              <a (click)="agentDisApproval()"><button class="btn btn-outline-danger"><i class="fa fa-multiply mr-2"></i>Disapprove</button></a>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

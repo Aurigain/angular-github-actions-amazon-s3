@@ -1,0 +1,171 @@
+a , a:hover , a:focus{
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.3s;
+	border-radius: 30px 0 0 30px;
+}
+
+/* SideBar*/
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar{
+	min-width: 250px;
+	max-width: 250px;
+	position: fixed;
+	background: #002767;
+	color: #fff;
+	transition: all 0.3s;
+	height: 100vh;
+	overflow: scroll;
+	padding-right: 20px;
+	z-index: 10000;
+}
+#sidebar ul{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+#sidebar ul li{
+	position: relative;
+	width: 100%;
+	list-style: none;
+}
+#sidebar ul ul{
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+#sidebar ul ul ul{
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+#sidebar ul li a{
+	padding: 10px;
+	font-size: 17px;
+	display: block;	
+}
+
+#sidebar ul li a:hover{
+	color: #fff;
+	// opacity: .5;
+}
+
+#sidebar ul ul li a:hover {
+    color: #FF8400;
+    text-decoration: none;
+}
+
+// #sidebar ul ul ul li a:hover {
+//     color: #999728;
+//     text-decoration: none;
+// }
+
+#sidebar ul ul ul li a {
+    margin-left: 50px;
+}
+// #sidebar ul ul {
+// 	list-style-type: circle inside!important;
+// }
+#sidebar ul li a.active{
+	color:black;
+	background-color: #fff;	
+}
+#sidebar ul .title{
+	text-align: start;
+	white-space: nowrap;
+}
+
+
+
+// #sidebar ul li.active>a,
+// a[aria-expanded="true"] {
+// 	color: #000;
+// 	background-color: #fff;
+	
+// }
+
+a[data-toggle="collapse"]{
+	position: relative;
+}
+
+.dropdown-toggle::after{
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 8%;
+	transform: translateY(-50%);
+}
+
+i{
+	padding: 0 10px;
+}
+
+ul ul a{
+	color: #fff;
+	font-size: 0.9em !important;
+	padding-left: 30px !important;
+}
+#submenu1, #submenu2, #submenu3, #submenu4, #submenu5  li {
+	background-color: #0000004d;
+}
+
+// #content{
+// 	width: 100%;
+// 	padding: 20px;
+// 	min-height: 100vh;
+// 	transition: all 0.3s;
+// }
+
+#sidebar.hidden {
+    margin-left: 0;
+}
+
+@media (max-width: 768px) {
+    
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+    
+#sidebar.hidden {
+      margin-left: -250px;
+    }
+
+/* curve outside */
+#sidebar ul li a.active ::before{
+	content: '';
+	position: absolute;
+	right: 0;
+	top: -50px;
+	width: 50px;
+	height: 50px;
+	background: transparent;
+	border-radius: 50%;
+	box-shadow: 35px 35px 0 10px white;
+}
+
+#sidebar ul li a.active ::after{
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: -50px;
+	width: 50px;
+	height: 50px;
+	background: transparent;
+	border-radius: 50%;
+	box-shadow: 35px -35px 0 10px white;
+}
+
+::-webkit-scrollbar{
+	width: 0px;
+}

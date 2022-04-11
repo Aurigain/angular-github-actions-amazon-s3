@@ -1,0 +1,57 @@
+
+<div class="box bg-white h-100">
+    <div class="widget-header">
+        <div class="row ">
+        <div class="mt-4 ml-5">
+          <nav>
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                  <a routerlink="/dashboard" href="/dashboard">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                  <a href="javascript:void(0)">Agent Mapping</a>
+                  </li>
+                  <li aria-current="page" class="breadcrumb-item active">
+                    Commissions Reversal
+                  </li>
+              </ol>
+          </nav>
+          <h3 class="pl-3 mb-3">COMMISSION REVERSAL</h3>
+            <form [formGroup]="selectAgentForm" (ngSubmit)="submitCommissionSetting()">
+                <div class="form-group">
+                    <label for="inputAgent">Select Agent</label>
+                    <select [class.is-invalid]="agent.invalid && agent.touched" id="inputState" class="form-control" formControlName="selectAgent" (change)="getSupervisorData()">
+                        <option value="" selected>Select Supervisor</option>
+                        <option *ngFor="let supervisor of supervisors; let i = index" [value]="supervisor.id">{{supervisor.name | titlecase}}</option>
+                    </select>
+                    <div style="margin-left: 10px;" *ngIf="agent.invalid && agent.touched">
+                        <small *ngIf="agent.errors?.['required']" class="text-danger">Agent is required</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAgent">Old Commissions Percentage</label>
+                    <input [class.is-invalid]="currentCommissionPercentage.invalid && currentCommissionPercentage.touched" id="inputState" class="form-control" formControlName="currentCommissionPercentage" readonly>
+                    <div style="margin-left: 10px;" *ngIf="currentCommissionPercentage.invalid && currentCommissionPercentage.touched">
+                        <small *ngIf="currentCommissionPercentage.errors?.['required']" class="text-danger">Commission Percentage is required</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAgent">New Commissions Percentage</label>
+                    <select [class.is-invalid]="newCommissionPercentage.invalid && newCommissionPercentage.touched" id="inputState" class="form-control" formControlName="newCommissionPercentage" >
+                        <option value="" selected>Select Percentage</option>
+                        <option value="5">5%</option>
+                        <option value="10">10%</option>
+                        <option value="15">15%</option>
+                    </select>
+                    <div style="margin-left: 10px;" *ngIf="newCommissionPercentage.invalid && newCommissionPercentage.touched">
+                        <small *ngIf="newCommissionPercentage.errors?.['required']" class="text-danger">Commission Percentage is required</small>
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary mr-3">CANCEL</button>
+                <button class="btn btn-primary">SUBMIT</button>
+            </form>
+        </div>
+        </div>
+    </div>   
+</div>

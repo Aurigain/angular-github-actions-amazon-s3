@@ -1,0 +1,148 @@
+
+<div class="box bg-white h-100">
+    <div class="widget-header">
+        <div class="row ">
+        <div class="mt-4 ml-5">
+          <nav>
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                  <a routerlink="/dashboard" href="/dashboard">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                  <a href="javascript:void(0)">Agent Mapping</a>
+                  </li>
+                  <li aria-current="page" class="breadcrumb-item active">
+                    Commissions Setting
+                  </li>
+              </ol>
+          </nav>
+          <h3 class="pl-3 mb-3">COMMISSION SETTING</h3>
+         
+          <div class="row flex-column mt-5">
+            <label class="radio">
+              <input type="radio" #radioInput1 value="employee specific" name="gender"  class="mr-3" formControlName="gender" checked>Employee Specific
+            </label>
+            <form class="ml-5 mt-3" [formGroup]="employeeSpecific" (ngSubmit)="submitEmployeeSpecific()" *ngIf="radioInput1.checked">
+              <div class="form-group">
+                  <label for="inputAgent">Select Agent</label>
+                <label for="typeahead-prevent-manual-entry">Search Agent</label>
+                <input id="typeahead-prevent-manual-entry"  type="text" class="form-control"
+                formControlName="selectAgent"
+                [(ngModel)]="model"
+                [ngbTypeahead]="search"
+                (keydown)="detectUser($event)"
+                [editable]='false' />
+                  <div style="margin-left: 10px;" *ngIf="selectAgent.invalid && selectAgent.touched">
+                      <small *ngIf="selectAgent.errors?.['required']" class="text-danger">selectAgent is required</small>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="inputAgent">Existing Commissions Rate</label>
+                  <input [class.is-invalid]="existingCommission.invalid && existingCommission.touched" id="inputState" class="form-control" formControlName="existingCommission">
+                  <div style="margin-left: 10px;" *ngIf="existingCommission.invalid && existingCommission.touched">
+                      <small *ngIf="existingCommission.errors?.['required']" class="text-danger">Commission Type is required</small>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="inputAgent">Commissions Percentage</label>
+                  <input  type="number" [class.is-invalid]="commissionPercentage.invalid && commissionPercentage.touched" id="inputState" class="form-control" formControlName="commissionPercentage" placeholder="Enter New Commission Percentage">
+                    <div style="margin-left: 10px;" *ngIf="commissionPercentage.invalid && commissionPercentage.touched">
+                        <small *ngIf="commissionPercentage.errors?.['required']" class="text-danger">Commission Percentage is required</small>
+                    </div>
+              </div>
+
+              <button class="btn btn-secondary mr-3">CANCEL</button>
+              <button class="btn btn-primary">SUBMIT</button>
+            </form>
+            <label  class="radio mt-3">
+              <input class="mr-3" #radioInput2 type="radio" value="reporting specific" name="gender" formControlName="gender">Reporting Specific
+            </label>
+            <form class="ml-5 mt-3" [formGroup]="reportingSpecificForm" (ngSubmit)="submitReportingSpecificForm()" *ngIf="radioInput2.checked">
+              <div class="form-group">
+                  <label for="inputAgent"> Reporting Person Name</label>
+                  <input [class.is-invalid]="reportingPersonName.invalid && reportingPersonName.touched" type="text" class="form-control" formControlName="reportingPersonName">
+                  <div style="margin-left: 10px;" *ngIf="reportingPersonName.invalid && reportingPersonName.touched">
+                      <small *ngIf="reportingPersonName.errors?.['required']" class="text-danger">reporting person name is required</small>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="inputAgent">Commissions Percentage</label>
+                <input  type="number" [class.is-invalid]="rNewCommissionRate.invalid && rNewCommissionRate.touched" id="inputState" class="form-control" formControlName="newCommissionRate" placeholder="Enter New Commission Percentage">
+                  <div style="margin-left: 10px;" *ngIf="rNewCommissionRate.invalid && rNewCommissionRate.touched">
+                      <small *ngIf="rNewCommissionRate.errors?.['required']" class="text-danger">new commission rate is required</small>
+                  </div>
+            </div>
+              <div class="form-group">
+                  <label for="inputAgent">Start Date</label>
+                  <input type="date" class="form-control" formControlName="startDate" [class.is-invalid]="rStartDate.invalid && rStartDate.touched">
+                  <div style="margin-left: 10px;" *ngIf="rStartDate.invalid && rStartDate.touched">
+                      <small *ngIf="rStartDate.errors?.['required']" class="text-danger">Start Date is required</small>
+                  </div>
+                  <label for="inputAgent">End Date</label>
+                  <input type="date" class="form-control" formControlName="endDate" [class.is-invalid]="rEndDate.invalid && rEndDate.touched">
+                  <div style="margin-left: 10px;" *ngIf="rEndDate.invalid && rEndDate.touched">
+                      <small *ngIf="rEndDate.errors?.['required']" class="text-danger">End Date is required</small>
+                  </div>
+              </div>
+
+              <button class="btn btn-secondary mr-3">CANCEL</button>
+              <button class="btn btn-primary">SUBMIT</button>
+            </form>
+            <label  class="radio mt-3">
+              <input class="mr-3" #radioInput3 type="radio" value="location specific" name="gender" formControlName="gender">Location Specific
+            </label>
+            <form class="ml-5 mt-3" [formGroup]="locationSpecificForm" (ngSubmit)="submitLocationSpecificForm()" *ngIf="radioInput3.checked">
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="inputAgent">Select State</label>
+                    <select id="inputState" class="form-control" formControlName="state" >
+                        <option value="" selected>Select Supervisor</option>
+                        <option *ngFor="let supervisor of supervisors; let i = index" [value]="supervisor">{{supervisor | titlecase}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputAgent">Select State</label>
+                    <select id="inputState" class="form-control" formControlName="district" >
+                        <option value="" selected>Select District</option>
+                        <option *ngFor="let supervisor of supervisors; let i = index" [value]="supervisor">{{supervisor | titlecase}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputAgent">Select City</label>
+                    <select id="inputState" class="form-control" formControlName="city" >
+                        <option value="" selected>Select Supervisor</option>
+                        <option *ngFor="let supervisor of supervisors; let i = index" [value]="supervisor">{{supervisor | titlecase}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputAgent">Pin Code</label>
+                    <input type="number" class="form-control" formControlName="pinCode">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputAgent">New Commissions Rate</label>
+                <input  type="number" [class.is-invalid]="lNewCommissionRate.invalid && lNewCommissionRate.touched" id="inputState" class="form-control" formControlName="newCommissionRate" placeholder="Enter New Commission Rate">
+                  <div style="margin-left: 10px;" *ngIf="lNewCommissionRate.invalid && lNewCommissionRate.touched">
+                      <small *ngIf="lNewCommissionRate.errors?.['required']" class="text-danger">Commission Percentage is required</small>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="inputAgent">Start Date</label>
+                <input type="date" class="form-control" formControlName="startDate" [class.is-invalid]="lStartDate.invalid && lStartDate.touched">
+                <div style="margin-left: 10px;" *ngIf="lStartDate.invalid && lStartDate.touched">
+                    <small *ngIf="lStartDate.errors?.['required']" class="text-danger">Start Date is required</small>
+                </div>
+                <label for="inputAgent">End Date</label>
+                <input type="date" class="form-control" formControlName="endDate" [class.is-invalid]="lEndDate.invalid && lEndDate.touched">
+                <div style="margin-left: 10px;" *ngIf="lEndDate.invalid && lEndDate.touched">
+                    <small *ngIf="lEndDate.errors?.['required']" class="text-danger">End Date is required</small>
+                </div>
+            </div>
+              <button class="btn btn-secondary mr-3">CANCEL</button>
+              <button class="btn btn-primary">SUBMIT</button>
+            </form>
+          </div>
+        </div>
+        </div>
+    </div>   
+</div>
