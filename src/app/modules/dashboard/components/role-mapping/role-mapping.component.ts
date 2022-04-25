@@ -1,6 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
 @Component({
   selector: 'app-role-mapping',
@@ -9,15 +10,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RoleMappingComponent implements OnInit {
 
-  roleMappingForm:FormGroup;
-  Roles:any = ['supervisor', 'client', 'agent'];
+  roleMappingForm: FormGroup;
+  Roles: any = ['supervisor', 'client', 'agent'];
   currentUserId: number;
+  fetchPermissions;
   constructor(
     private formbuilder: FormBuilder,
     private route: ActivatedRoute,
+    private misc: MiscellaneousService,
   ) { }
 
-  submitRoleMapping(){
+  submitRoleMapping() {
     const selectRole = this.roleMappingForm.value.selectRole;
     const dashboard = this.roleMappingForm.value.dashboard;
     const leads = this.roleMappingForm.value.leads;
@@ -38,7 +41,20 @@ export class RoleMappingComponent implements OnInit {
     console.log(formData);
   }
 
+  fetchRoles() {
+    this.misc.fetchPermissions().subscribe(
+      data => {
+        console.log(data['data']['results']);
+        this.fetchPermissions = data['data']['results']
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
   ngOnInit(): void {
+
+    this.fetchRoles();
     this.currentUserId = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log(this.currentUserId);
 

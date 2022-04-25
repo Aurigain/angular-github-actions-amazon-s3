@@ -113,7 +113,7 @@ export class LoginUserComponent implements OnInit {
 
     if(username && password){
       const userObj = {
-        email: username,
+        username: username,
         password: password
       };
 

@@ -35,10 +35,10 @@
                    </select>
                </div> -->
                <div class="menuBox">
-                <div class="row">
+                <div class="row" *ngFor="let perms of fetchPermissions">
                     <div class="col-md-5">
                         <label class="form-check-label" for="dashboard">
-                        Dashboard
+                        {{perms?.permission_name}}
                         </label>
                     </div>
                     <div class="col-md-5">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-5">
                         <label class="form-check-label" for="leads">
                             Leads
@@ -105,7 +105,7 @@
                 </div>
 
 
-                </div>
+                </div> -->
                </div>
 
                <button type="submit" class="btn btn-primary mt-4 ml-5">Submit</button>

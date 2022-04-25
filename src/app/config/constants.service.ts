@@ -20,9 +20,11 @@ export class ConstantsService {
   constructor() { }
 
   // loginApiUrl = `${environment.BASE_URL}/api/users/login/`;
-  loginApiUrl = `${environment.BASE_URL}/api/token/`;
+  loginApiUrl = `${environment.BASE_URL}/api/user/login/`;
   signupApiUrl = `${environment.BASE_URL}/api/users/register/`;
   apiAgent = `${environment.BASE_URL}/api/agent/`;
+  userRoleApi = `${environment.BASE_URL}/api/user/user_role/`;
+  fetchPermissionsApi = `${environment.BASE_URL}/api/user/user_permission/`;
   forgotPasswordUrl = `https://jsonplaceholder.typicode.com/`;
   resetPasswordUrl = `https://jsonplaceholder.typicode.com/`;
   getUpdateProfileUrl = `${environment.BASE_URL}/api/profile/`;

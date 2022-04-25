@@ -6,23 +6,24 @@
           <div class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
             <div>
               <nav class="custom-breadcrum">
-                <ol class="breadcrumb justify-content-center justify-content-sm-start" >
+                <ol class="breadcrumb justify-content-center justify-content-sm-start">
                   <li class="breadcrumb-item">
-                  <a routerlink="/dashboard" href="/dashboard">Home</a>
+                    <a routerlink="/dashboard" href="/dashboard">Home</a>
                   </li>
                   <li aria-current="page" class="breadcrumb-item active">
-                  User Role Master
+                    User Role Master
                   </li>
-              </ol>
+                </ol>
               </nav>
               <h1>User Role Master</h1>
 
             </div>
-            <a routerLink="../add-role"><button class="btn btn-primary"><i class="fa fa-add mr-2"></i>Add Role</button></a>
+            <a routerLink="../add-role"><button class="btn btn-primary"><i class="fa fa-add mr-2"></i>Add
+                Role</button></a>
           </div>
         </div>
 
-        <div class="row position-relative mx-1">
+        <!-- <div class="row position-relative mx-1">
           <div class="col-12 col-md-4 d-flex justify-content-sm-start justify-content-center">
             <div>
               <label class="form-inline my-2 pt-3">Results:
@@ -34,21 +35,14 @@
                 </select></label>
             </div>
           </div>
-          <!-- <div class="col-12 col-md-8 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3">
+          <div class="col-12 col-md-8 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3">
             <form [formGroup]="selectedForm" class="form-inline my-2 pt-3 my-lg-0">
 
               <input #query (keyup)="filter(query.value)" class="form-control mr-sm-2" type="search"
                 placeholder="Search" aria-label="Search">
-              <select id="inputState" class="form-control" formControlName="selectCategory"
-                (change)="searchedCategory()">
-                <option value="" selected>Select Product</option>
-                <option value="approved">Approved</option>
-                <option value="pending">Pending</option>
-                <option value="rejected">Rejected</option>
-              </select>
             </form>
-          </div> -->
-        </div>
+          </div>
+        </div> -->
 
         <div class="m-3">
           <div class="table-responsive table-striped table-shadow">
@@ -64,13 +58,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  *ngFor="let user of filterArray | paginate: { itemsPerPage: rowFilter, currentPage: p }; let i = index ">
+                <tr *ngFor="let role of userRoles | paginate: { itemsPerPage: 10, currentPage: p }; let i = index ">
                   <td>{{(p-1) * rowFilter + i + 1}}</td>
                   <!-- <td>{{user.FullName}}</td> -->
-                  <td>{{user.roleName | titlecase}}</td>
-                  <td>Active</td>
-                  <td><a [routerLink]="['../role-mapping', user.Id]"><i class="fas fa-info-circle pl-3" style="color:#4040fc; font-size:25px"></i></a></td>
+                  <td>{{role?.role_name | titlecase}}</td>
+                  <td>{{role?.is_active ? 'Active' : 'InActive'}}</td>
+                  <td><a [routerLink]="['../role-mapping', role.id]"><i class="fas fa-info-circle pl-3"
+                        style="color:#4040fc; font-size:25px"></i></a></td>
 
                 </tr>
               </tbody>
@@ -82,13 +76,12 @@
     </div>
   </div>
 
-  <div class="modal fade" style="margin-top: 5%;" id="changeStatus" data-backdrop="static" data-keyboard="false"
+  <!-- <div class="modal fade" style="margin-top: 5%;" id="changeStatus" data-backdrop="static" data-keyboard="false"
     tabindex="-1" aria-labelledby="changeStatusLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header text-white">
           <h5 class="modal-title" id="changeStatusLabel">Edit Status</h5>
-          <!-- <span class="text-success ml-5 pt-1" *ngIf="successMsg">{{successMsg}}</span> -->
           <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -128,15 +121,15 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div class="modal fade m-5" style="margin-top: 5%;" id="appointmentBooking" data-backdrop="static" data-keyboard="false"
+  <!-- <div class="modal fade m-5" style="margin-top: 5%;" id="appointmentBooking" data-backdrop="static" data-keyboard="false"
     tabindex="-1" aria-labelledby="appointmentBookingLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title text-white" id="appointmentBookingLabel"><i class="far fa-clock pr-1"></i>Appointment Booking</h5>
-          <!-- <span class="text-success ml-5 pt-1" *ngIf="successMsg">{{successMsg}}</span> -->
+
           <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -207,5 +200,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

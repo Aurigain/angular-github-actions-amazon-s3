@@ -113,6 +113,37 @@ export class MiscellaneousService {
       );
   }
 
+  fetchUserRoles() {
+
+    return this.http.get(this.consts.userRoleApi, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  fetchPermissions() {
+
+    return this.http.get(this.consts.fetchPermissionsApi, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  createRole(data:any) {
+    return this.http.post(this.consts.userRoleApi, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
   fetchAgentsDetail(id) {
     return this.http.get(`${this.consts.apiAgent}${id}/`)
       .pipe(
@@ -139,8 +170,8 @@ export class MiscellaneousService {
 
       this.showLoader('short');
 
-      const verificationData = JSON.stringify({ otp: otp, phone_number: phonenumber });
-      this.networkRequest.postWithHeader(verificationData, '/api/otp/verify/')
+      const verificationData = JSON.stringify({ otp: otp, mobile_number: phonenumber });
+      this.networkRequest.postWithHeader(verificationData, '/api/otp_register/')
         .subscribe(
           data => {
             console.log("verified")
