@@ -23,7 +23,11 @@ export class ConstantsService {
   loginApiUrl = `${environment.BASE_URL}/api/user/login/`;
   signupApiUrl = `${environment.BASE_URL}/api/users/register/`;
   apiAgent = `${environment.BASE_URL}/api/agent/`;
+  selectQueryApi = `${environment.BASE_URL}/api/bank/contact_queries/`;
+  fetchFreshLead = `${environment.BASE_URL}/api/lead/fetch_fresh_leads/`;
   userRoleApi = `${environment.BASE_URL}/api/user/user_role/`;
+  contactUs = `${environment.BASE_URL}/api/bank/contact_us/`;
+  rolePermissionMappingApi = `${environment.BASE_URL}/api/user/user_role_permission_mapping/`;
   fetchPermissionsApi = `${environment.BASE_URL}/api/user/user_permission/`;
   forgotPasswordUrl = `https://jsonplaceholder.typicode.com/`;
   resetPasswordUrl = `https://jsonplaceholder.typicode.com/`;

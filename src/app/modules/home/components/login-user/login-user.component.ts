@@ -123,6 +123,7 @@ export class LoginUserComponent implements OnInit {
       .subscribe(
         user=> {
           console.log("user", user);
+          console.log("token is:", user['data']['token'])
           this.errors = '';
           console.log("login");
           this.successMsg = "Logged in successfully, loading...."

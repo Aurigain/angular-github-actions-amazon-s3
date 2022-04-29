@@ -106,7 +106,7 @@ export class LoginService {
 
   setToken(user) {
     try {
-      this.cookie.set('_l_a_t', user['access'], this.constsvc.LOGIN_EXPIRY_TIME, '/');
+      this.cookie.set('_l_a_t', user['data']['token'], this.constsvc.LOGIN_EXPIRY_TIME, '/');
       console.log("usertoken", this.cookie.get('_l_a_t'));
     } catch (err) {
       this.auth.logout();

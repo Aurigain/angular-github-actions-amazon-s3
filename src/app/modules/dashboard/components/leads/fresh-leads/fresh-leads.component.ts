@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
 @Component({
   selector: 'app-fresh-leads',
@@ -11,9 +12,11 @@ export class FreshLeadsComponent implements OnInit {
   updateStatusForm:FormGroup;
   AppointmentDetailForm:FormGroup;
   suc
+  fetchedUserList;
   successMsg: any;
   constructor(
     private formbuilder: FormBuilder,
+    private misc: MiscellaneousService,
   ) { }
 
   deleteUser(id){
@@ -22,25 +25,25 @@ export class FreshLeadsComponent implements OnInit {
     if (confirm("Do you really want to delete this user?")){
       //Api call to delete user
       for (let i = 0; i < this.originalArray.length; i++) {
-     
+
         if (this.originalArray[i]['Id'] == id){
-          
+
           this.originalArray.splice(i, 1)
         }
-        
+
       }
       console.log(this.originalArray);
     //  this.router.navigateByUrl('/user-list')
     }
-    
+
 
     // for (let i = 0; i < this.originalArray.length; i++) {
-     
+
     //   if (this.originalArray[i]['Id'] == id){
-        
+
     //     this.originalArray.splice(i, 1)
     //   }
-      
+
     // }
     // console.log(this.originalArray);
   }
@@ -48,7 +51,7 @@ export class FreshLeadsComponent implements OnInit {
   get pinCode(){
     return this.AppointmentDetailForm.get('pinCode');
   }
-  
+
   p:number = 1;
 
   selectedForm: FormGroup;
@@ -66,24 +69,24 @@ export class FreshLeadsComponent implements OnInit {
 
   ];
   filterArray = [];
-  
-  
+
+
   itemsFilter(value){
     this.rowFilter = value;
   }
 
   filter(query: string){
     this.filterArray = [];
-    console.log(query);   
-      this.filterArray = (query) ? this.originalArray.filter(p => p.FullName.toLowerCase().includes(query.toLowerCase())) : this.originalArray; 
+    console.log(query);
+      this.filterArray = (query) ? this.originalArray.filter(p => p.FullName.toLowerCase().includes(query.toLowerCase())) : this.originalArray;
       console.log(this.filterArray);
       this.rowFilter = this.filterArray.length;
   }
-    
+
   searchedCategory(){
     this.filterArray = [];
     let category = this.selectedForm.value.selectCategory;
-    this.filterArray = (category) ? this.originalArray.filter(p => p.type.includes(category)) : this.originalArray; 
+    this.filterArray = (category) ? this.originalArray.filter(p => p.type.includes(category)) : this.originalArray;
     console.log(this.filterArray);
   }
 
@@ -105,11 +108,23 @@ export class FreshLeadsComponent implements OnInit {
 
   }
 
+  fetchFreshLead(){
+    this.misc.fetchFreshLead().subscribe(
+      data =>{
+        console.log("fetchedddd",data);
+        this.fetchedUserList = data['data'];
+      },
+      error =>{
+        console.log(error);
+      }
+      )
+  }
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
+    this.fetchFreshLead();
     this.filter('');
     this.selectedForm = this.formbuilder.group({
-      selectCategory: ['']    
+      selectCategory: ['']
      })
      console.log(this.originalArray);
 
@@ -117,7 +132,7 @@ export class FreshLeadsComponent implements OnInit {
       status : ['', Validators.required],
       remark : [''],
     })
-    
+
     this.AppointmentDetailForm = this.formbuilder.group({
       pinCode : ['', Validators.required],
       branch : ['', Validators.required],

@@ -42,7 +42,9 @@
                         </label>
                     </div>
                     <div class="col-md-5">
-                        <input class="form-check-input" type="checkbox" formControlName="dashboard" value="dashboard" id="dashboard">
+                        <!-- <input class="form-check-input" type="checkbox" formControlName="dashboard" value="{{perms?.id}}" id="dashboard"> -->
+
+                        <input class="form-check-input largerCheckBox" type="checkbox" (change)="selectUnselectSinglePermission(perms?.id, $event)" value="" id="{{perms?.id}}" >
                     </div>
                 </div>
 

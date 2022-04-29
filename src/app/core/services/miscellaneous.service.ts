@@ -112,6 +112,29 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+  selectQuery() {
+
+    return this.http.get(this.consts.selectQueryApi, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  fetchFreshLead() {
+
+    return this.http.get(this.consts.fetchFreshLead, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
 
   fetchUserRoles() {
 
@@ -139,6 +162,20 @@ export class MiscellaneousService {
 
   createRole(data:any) {
     return this.http.post(this.consts.userRoleApi, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  contactUs(data:any) {
+    return this.http.post(this.consts.contactUs, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  userRolePermissionsMapping(data:any) {
+    return this.http.post(this.consts.rolePermissionMappingApi, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
