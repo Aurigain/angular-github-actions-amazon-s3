@@ -204,6 +204,15 @@
                         <small *ngIf="gender.errors?.['required']" class="text-danger">Gender is required</small>
                       </div>
                     </div>
+                    <div class="form-group col-md-12">
+                      <label class="control-label">Profile Image</label>
+                      <div class="input-group mb-2">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="profile_image" (change)="onChange($event, 'profile_image')" />
+                          <label class="custom-file-label" for="profile_image">Choose file</label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-12 mt-2">
@@ -240,7 +249,7 @@
                     <div class="form-group col-md-6">
                       <input [class.is-invalid]="pinCode.invalid && pinCode.touched" type="number" class="form-control"
                         id="inputPincode" placeholder="Pincode" formControlName="pinCode" required
-                        (input)="searchDistrict()" />
+                        (input)="searchCity()" />
                       <div style="margin-left: 10px;" *ngIf="pinCode.invalid && pinCode.touched">
                         <small *ngIf="pinCode.errors?.['required']" class="text-danger">PinCode is required</small>
                       </div>
@@ -255,14 +264,10 @@
                         formControlName="district"
                         required
                       /> -->
-                      <select [class.is-invalid]="district.invalid && district.touched" class="form-control"
-                        id="exampleFormControlSelect1" formControlName="district">
-                        <option value="" disabled>Select District</option>
-                        <option *ngFor="let district of pinCodeDetail" [value]="district?.id">{{district?.district}}
-                        </option>
-                      </select>
-                      <div style="margin-left: 10px;" *ngIf="district.invalid && district.touched">
-                        <small *ngIf="district.errors?.['required']" class="text-danger">District is required</small>
+                      <input [class.is-invalid]="city.invalid && city.touched" class="form-control"
+                        id="exampleFormControlSelect1" formControlName="city" >
+                      <div style="margin-left: 10px;" *ngIf="city.invalid && city.touched">
+                        <small *ngIf="city.errors?.['required']" class="text-danger">City is required</small>
                       </div>
                     </div>
                     <!-- <div class="form-group col-md-6">
@@ -280,11 +285,8 @@
                       </div>
                     </div> -->
                     <div class="form-group col-md-6">
-                      <select [class.is-invalid]="state.invalid && state.touched" class="form-control"
+                      <input [class.is-invalid]="state.invalid && state.touched" class="form-control"
                         id="exampleFormControlSelect1" formControlName="state">
-                        <option value="">Select State</option>
-                        <option *ngFor="let state of pinCodeDetail" [value]="state?.id">{{state?.state}}</option>
-                      </select>
                       <div style="margin-left: 10px;" *ngIf="state.invalid && state.touched">
                         <small *ngIf="state.errors?.['required']" class="text-danger">State is required</small>
                       </div>

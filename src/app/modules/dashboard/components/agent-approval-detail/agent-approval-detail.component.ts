@@ -51,9 +51,19 @@ export class AgentApprovalDetailComponent implements OnInit {
     )
   }
 
+  // agentDisApproval(){
+  //   this.misc.agentDisApproval(this.currentUserId).subscribe(
+  //     data => {
+  //       this.toastr.success("Agent DisApproved Successfully", "Sucess", {
+  //         timeOut: 4000,
+  //       });
+  //     }
+  //   )
+  // }   ------------- NOT Working No API for Disapprove
   agentDisApproval(){
 
   }
+
   ngOnInit(): void {
 
     this.currentUserId = parseInt(this.route.snapshot.paramMap.get('id'));

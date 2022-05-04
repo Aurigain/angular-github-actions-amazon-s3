@@ -26,7 +26,10 @@ export class ConstantsService {
   selectQueryApi = `${environment.BASE_URL}/api/bank/contact_queries/`;
   fetchFreshLead = `${environment.BASE_URL}/api/lead/fetch_fresh_leads/`;
   userRoleApi = `${environment.BASE_URL}/api/user/user_role/`;
+  freshLead = `${environment.BASE_URL}/api/lead/create/`;
+  employeeApi = `${environment.BASE_URL}/api/agent/employee/`;
   contactUs = `${environment.BASE_URL}/api/bank/contact_us/`;
+  fetchBranch = `${environment.BASE_URL}/api/bank/fetch_branch/`;
   rolePermissionMappingApi = `${environment.BASE_URL}/api/user/user_role_permission_mapping/`;
   fetchPermissionsApi = `${environment.BASE_URL}/api/user/user_permission/`;
   forgotPasswordUrl = `https://jsonplaceholder.typicode.com/`;

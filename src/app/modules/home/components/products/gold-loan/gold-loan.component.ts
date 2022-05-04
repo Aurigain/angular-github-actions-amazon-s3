@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConstantsService } from 'src/app/config/constants.service';
+import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 @Component({
   selector: 'app-gold-loan',
   templateUrl: './gold-loan.component.html',
@@ -11,20 +12,20 @@ export class GoldLoanComponent implements OnInit {
   newLoanForm: FormGroup;
   detailForm: FormGroup;
   balanceTransferForm: FormGroup;
-  otp:number;
-  isChecked:boolean = false;
+  otp: number;
+  isChecked: boolean = false;
 
-  isLoanForm:boolean = true;
-  isOtpForm:boolean = false;
+  isLoanForm: boolean = true;
+  isOtpForm: boolean = false;
 
-  sendOTP(){
+  sendOTP() {
 
   }
 
-  submitOTP(){
-    console.log (this.otp);
+  submitOTP() {
+    console.log(this.otp);
     this.detailForm = this.formbuilder.group({
-      email: ['',[Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
+      email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
       pinCode: [''],
       loanAmount: [''],
       weightOfGold: [''],
@@ -36,62 +37,82 @@ export class GoldLoanComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder,
     private conts: ConstantsService,
+    private misc: MiscellaneousService,
   ) { }
 
-  submitDetailForm(){
+  submitDetailForm() {
+    const name = this.newLoanForm.value.name;
+    const phone = this.newLoanForm.value.phone;
     const email = this.detailForm.value.email;
     const pinCode = this.detailForm.value.pinCode;
     const loanAmount = this.detailForm.value.loanAmount;
     const weightOfGold = this.detailForm.value.weightOfGold;
     const dateOfLoan = this.detailForm.value.dateOfLoan;
 
+    // "fullname": "uday singh",
+    // "email": "ud@ud.com",
+    // "pincode": "110059",
+    // "loan_amount_needed": 100,
+    // "weight_of_gold_grams": 100,
+    // "how_soon_need_loan_in_days":1,
+    // "source":"web",
+    // "phonenumber":"888888888"
     let detailFormData = {
+      fullname: name,
+      phone: phone,
       email: email,
       pinCode: pinCode,
-      loanAmount: loanAmount,
-      weightOfGold: weightOfGold,
-      dateOfLoan: dateOfLoan,
+      loan_amount_needed: loanAmount,
+      weight_of_gold_grams: weightOfGold,
+      how_soon_need_loan_in_days: dateOfLoan,
+      source: "web"
     }
 
     console.log(detailFormData);
-    
+
+    this.misc.createFreshLeadWeb(detailFormData).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => console.log(error)
+    )
   }
-  get name(){
+  get name() {
     return this.newLoanForm.get('name');
   }
-  
-  get phone(){
+
+  get phone() {
     return this.newLoanForm.get('phone');
   }
 
-  get bName(){
+  get bName() {
     return this.balanceTransferForm.get('name');
   }
-  
-  get bPhone(){
+
+  get bPhone() {
     return this.balanceTransferForm.get('phone');
   }
 
-  get bEmail(){
+  get bEmail() {
     return this.balanceTransferForm.get('email');
   }
-  get bPinCode(){
+  get bPinCode() {
     return this.balanceTransferForm.get('pinCode');
   }
-  get bExistingLoanFrom(){
+  get bExistingLoanFrom() {
     return this.balanceTransferForm.get('existingLoanFrom');
   }
-  get bCurrentOutstandingAmount(){
+  get bCurrentOutstandingAmount() {
     return this.balanceTransferForm.get('currentOutstandingAmount');
   }
 
 
-  submitLoanForm(){
+  submitLoanForm() {
     const name = this.newLoanForm.value.name;
     const phone = this.newLoanForm.value.phone;
     const subscribe = this.isChecked;
-    
-    const formData ={
+
+    const formData = {
       name: name,
       phone: phone,
       subscribe: subscribe,
@@ -101,8 +122,8 @@ export class GoldLoanComponent implements OnInit {
     this.isLoanForm = false;
     this.isOtpForm = true;
   }
-  
-  submitBalanceTransferForm(){
+
+  submitBalanceTransferForm() {
     const name = this.balanceTransferForm.value.name;
     const phone = this.balanceTransferForm.value.phone;
     const email = this.balanceTransferForm.value.email;
@@ -122,37 +143,37 @@ export class GoldLoanComponent implements OnInit {
     }
     console.log(formData);
 
-    if(otp) {
+    if (otp) {
       let otpData = {
         otp: otp,
       }
       console.log(otpData);
     }
-    
+
   }
 
-  onChange(event){
+  onChange(event) {
     console.log(event.target.checked);
     this.isChecked = event.target.checked;
   }
   ngOnInit(): void {
 
     this.newLoanForm = this.formbuilder.group({
-      name: ['',[Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
       phone: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
       subscribe: [],
     })
 
     this.balanceTransferForm = this.formbuilder.group({
-      name: ['',[Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
       phone: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
-      email: ['',[Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
-      pinCode: ['',[Validators.required,]],
+      email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
+      pinCode: ['', [Validators.required,]],
       existingLoanFrom: ['', [Validators.required]],
       currentOutstandingAmount: ['', [Validators.required]],
       subscribe: [],
       otp: [],
-    })    
+    })
 
   }
 

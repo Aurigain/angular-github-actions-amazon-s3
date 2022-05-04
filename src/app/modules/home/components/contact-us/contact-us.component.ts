@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 @Component({
@@ -15,6 +16,7 @@ export class ContactUsComponent implements OnInit {
     private formbuilder: FormBuilder,
     private conts: ConstantsService,
     private misc: MiscellaneousService,
+    private toastr: ToastrService
   ) { }
 
   contactUs(){
@@ -37,9 +39,11 @@ export class ContactUsComponent implements OnInit {
     this.misc.contactUs(formData).subscribe(
       data => {
         console.log(data);
+        this.toastr.success("Query Submitted", "Success");
       },
       error =>{
         console.log(error);
+        this.toastr.error("Error")
       }
     )
   }

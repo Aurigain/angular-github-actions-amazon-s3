@@ -52,6 +52,7 @@ import { AddRoleComponent } from './components/add-role/add-role.component';
 import { BalanceTransferApprovalListComponent } from './components/leads/balance-transfer-approval-list/balance-transfer-approval-list.component';
 import { CompliancePanelComponent } from './components/compliance-panel/compliance-panel.component';
 import { CompliancePanelDetailComponent } from './components/compliance-panel-detail/compliance-panel-detail.component';
+import { AddPermissionsComponent } from './components/add-permissions/add-permissions.component';
 
 const routes: Routes = [
   {
@@ -137,6 +138,9 @@ const routes: Routes = [
       },
       {
         path: 'role-mapping/:id', component: RoleMappingComponent
+      },
+      {
+        path: 'add-permissions', component: AddPermissionsComponent
       },
       {
         path: 'reset-password', component: ResetPasswordComponent
@@ -238,7 +242,8 @@ const routes: Routes = [
     AddRoleComponent,
     BalanceTransferApprovalListComponent,
     CompliancePanelComponent,
-    CompliancePanelDetailComponent
+    CompliancePanelDetailComponent,
+    AddPermissionsComponent
   ],
   imports: [
     CommonModule,

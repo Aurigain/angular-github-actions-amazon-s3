@@ -1,0 +1,88 @@
+<div class="layout-px-spacing h-100">
+  <div class="row h-100" style="min-height: 100vh;">
+    <div class="col-md-12">
+      <div class="widget bg-white h-100">
+        <div class="widget-header">
+          <div class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
+            <div>
+              <nav class="custom-breadcrum">
+                <ol class="breadcrumb justify-content-center justify-content-sm-start">
+                  <li class="breadcrumb-item">
+                    <a routerlink="/dashboard" routerLink="/dashboard">Home</a>
+                  </li>
+                  <!-- <li class="breadcrumb-item">
+                    <a routerLink="/dashboard/user-role-master">Add Permissions</a>
+                  </li> -->
+                  <li aria-current="page" class="breadcrumb-item active">
+                    Add Permissions
+                  </li>
+                </ol>
+              </nav>
+              <h1>Add Permissions</h1>
+            </div>
+          </div>
+        </div>
+        <div class="detail mx-5 my-3" >
+          <div class="row" style="justify-content: space-evenly">
+            <div class="col-md-4 pt-3 text-center">
+              <label for="roleName"><strong>Permission Name</strong></label>
+              <input type="text" [(ngModel)]="permissionName" class="form-control mt-3" placeholder="Enter Role Name">
+            </div>
+
+            <div class="col-md-4 pt-3 text-center">
+              <label for="roleName"><strong>Permission Description</strong></label>
+              <input type="text" [(ngModel)]="permissionDescription" class="form-control mt-3"
+                placeholder="Enter Role Name">
+            </div>
+          </div>
+          <div class="row pt-4">
+            <div class="col-md-5 pt-3 text-center">
+              <label for="permissionIsActive" class="mr-3"><strong>Active</strong></label>
+              <input type="checkbox" ngModel (click)="statusCheck($event)" name="active" value="" checked>
+            </div>
+
+            <a (click)="submitPermission()">
+              <button class="btn btn-primary mr-5">
+                Save
+              </button>
+            </a>
+            <a routerLink="../user-role-master">
+              <button class="btn btn-outline-primary">
+                Cancel
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="m-3">
+          <div class="table-responsive table-striped table-shadow">
+            <table class="table">
+              <thead class="text-white">
+                <tr>
+                  <th>SNo</th>
+                  <th>Permission Name</th>
+                  <!-- <th>Parent Role</th> -->
+                  <th>Status</th>
+                  <!-- <th>Action</th> -->
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let perms of fetchPermissions | paginate: { itemsPerPage: 10, currentPage: p }; let i = index ">
+                  <td>{{(p-1) * rowFilter + i + 1}}</td>
+                  <!-- <td>{{user.FullName}}</td> -->
+                  <td>{{perms?.permission_name | titlecase}}</td>
+                  <td>{{perms?.is_active ? 'Active' : 'InActive'}}</td>
+                  <!-- <td><a [routerLink]="['../role-mapping', role.id]"><i class="fas fa-info-circle pl-3"
+                        style="color:#4040fc; font-size:25px"></i></a></td> -->
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pagination-controls (pageChange)="p =$event" class="float-right mt-5"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

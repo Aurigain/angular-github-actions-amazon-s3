@@ -45,7 +45,8 @@ export class LoginService {
   }
 
   searchBank(ifscCode) {
-    return this.http.get(`https://ifsc.razorpay.com/${ifscCode}/`)
+    // return this.http.get(`https://ifsc.razorpay.com/${ifscCode}/`)
+    return this.http.get(`${this.constsvc.fetchBranch}?ifsc=${ifscCode}`)
       .pipe(
         catchError(this.errorHandler.handleError)
       );

@@ -16,6 +16,7 @@ export class RoleMappingComponent implements OnInit {
   currentRoleId: number;
   fetchPermissions;
   successMsg = ''
+  currentRole;
 
   selectedPermissions = [];
   constructor(
@@ -97,8 +98,19 @@ export class RoleMappingComponent implements OnInit {
     }
   }
 
+  fetchCurrentRole(id){
+   this.misc.fetchUserRoleById(id).subscribe(
+     data =>{
+      this.currentRole = data['data']['role_name'];
+      console.log("current Role is:", this.currentRole)
+     },
+     error =>{
 
-  fetchRoles() {
+     }
+   )
+  }
+
+  fetchAllPermissions() {
     this.misc.fetchPermissions().subscribe(
       data => {
         console.log(data['data']['results']);
@@ -112,10 +124,10 @@ export class RoleMappingComponent implements OnInit {
 
   ngOnInit(): void {
     this.successMsg = null;
-    this.fetchRoles();
+    this.fetchAllPermissions();
     this.currentRoleId = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log(this.currentRoleId);
-
+    this.fetchCurrentRole(this.currentRoleId)
     this.roleMappingForm = this.formbuilder.group({
       selectRole: ['', Validators.required],
       dashboard: [false],

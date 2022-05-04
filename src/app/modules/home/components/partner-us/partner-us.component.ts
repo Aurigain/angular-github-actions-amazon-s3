@@ -44,6 +44,8 @@ export class PartnerUsComponent implements OnInit {
   aadhar_back_image:File;
   pan_image:File;
   cancelled_cheque:File;
+  profile_image:File;
+  fetchBranchDetail;
   constructor(
     private formbuilder: FormBuilder,
     private conts: ConstantsService,
@@ -103,9 +105,9 @@ export class PartnerUsComponent implements OnInit {
   get state() {
     return this.addressDetailForm.get('state');
   }
-  get district() {
-    return this.addressDetailForm.get('district');
-  }
+  // get district() {
+  //   return this.addressDetailForm.get('district');
+  // }
 
   get qualification() {
     return this.kycDetailForm.get('qualification');
@@ -140,12 +142,12 @@ export class PartnerUsComponent implements OnInit {
     if (ifscCode.length == 11) {
       this.loginservice.searchBank(ifscCode)
         .subscribe(
-          user => {
-            console.log("API is: ", user);
-
+          data => {
+            this.fetchBranchDetail= data['results'][0];
+            console.log(this.fetchBranchDetail)
             this.bankDetailForm.patchValue({
-              bankName: user['BANK'],
-              branchName: user['BRANCH']
+              bankName: this.fetchBranchDetail['bank']['name'],
+              branchName: this.fetchBranchDetail['name']
             })
           },
           error => {
@@ -167,12 +169,6 @@ export class PartnerUsComponent implements OnInit {
       });
       return;
     }
-    // this.otpVerified = true;
-    //     this.isOtpForm = false;
-    //     this.isBasicDetailForm = true;
-    //     return;
-
-    // this.otpVerifiedSuccessfully = true;
     const phoneNumber = this.authenticationForm.value.phoneNumber1;
     this.misc.verifyOtp(this.otp, phoneNumber).subscribe(
       data => {
@@ -191,32 +187,26 @@ export class PartnerUsComponent implements OnInit {
     );
   }
 
-  searchDistrict() {
+  searchCity() {
     const pinCode = this.addressDetailForm.value.pinCode;
-    // this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${pinCode}`).subscribe(
-    //   data => {
-    //     this.districts = data;
-    //     console.log("districts", this.districts);
-    //   },
-    //   error => {
-    //     console.log("error", error);
-    //   }
-    // );
-    this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${pinCode}`).subscribe(
-      data => {
-        // console.log("pincode data is: ",data);
-        console.log("internal data is", data['data']);
-        this.pinCodeDetail = data['data'];
-        // this.selectedPinCode = data[0]['id'];
-        // this.addressDetailForm.patchValue({
-        //   state: data[0]['state']
-        // })
-        // console.log("pincode details", data);
-      },
-      error => {
-        console.log("error", error);
-      }
-    );
+
+    console.log(pinCode.toString().length);
+
+    if(pinCode.toString().length == 6) {
+      this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${pinCode}`).subscribe(
+        data => {
+          console.log("internal data is", data['data']);
+          this.pinCodeDetail = data['data'][0];
+          this.addressDetailForm.patchValue({
+            city: this.pinCodeDetail['city'],
+            state: this.pinCodeDetail['state']
+          })
+        },
+        error => {
+          console.log("error", error);
+        }
+      );
+    }
   }
 
   onChange(event, id) {
@@ -243,8 +233,9 @@ export class PartnerUsComponent implements OnInit {
       else if (id==='cancelled_cheque') {
         this.cancelled_cheque = d;
       }
-
-
+      else if (id==='profile_image') {
+        this.profile_image = d;
+      }
     });
   }
 
@@ -276,19 +267,19 @@ export class PartnerUsComponent implements OnInit {
 
     const addressLine1 = this.addressDetailForm.value.addressLine1;
     const addressLine2 = this.addressDetailForm.value.addressLine2;
-    const pinCode = this.pinCodeDetail[0]['id'];
-    const district = this.addressDetailForm.value.district;
-    const state = this.addressDetailForm.value.state;
+    const pinCode = this.pinCodeDetail['id'];
+    const city = this.pinCodeDetail['cityId'];
+    const state = this.pinCodeDetail['stateId'];
 
     const qualification = this.kycDetailForm.value.qualification;
     const adhaarNumber = this.kycDetailForm.value.adhaarNumber;
     const panNumber = this.kycDetailForm.value.panNumber;
     const occupation = this.kycDetailForm.value.occupation;
 
-    const bankName = this.bankDetailForm.value.bankName;
+    const bankName = this.fetchBranchDetail['bank']['id'];
     const accountNumber = this.bankDetailForm.value.accountNumber;
-    const ifscCode = this.bankDetailForm.value.ifscCode;
-    const branchName = this.bankDetailForm.value.branchName;
+    const ifscCode = this.fetchBranchDetail['ifsc_code'];
+    const branchName = this.fetchBranchDetail['id'];
 
     const userObj = {
       basic_details: {
@@ -300,7 +291,8 @@ export class PartnerUsComponent implements OnInit {
         father_name: fatherName,
         dob: dob,
         gender: gender,
-        email: email
+        email: email,
+        profile_image: this.profile_image
       },
       kyc: {
         aadhar_number: adhaarNumber,
@@ -315,14 +307,13 @@ export class PartnerUsComponent implements OnInit {
         address_line1: addressLine1,
         address_line2: addressLine2,
         pincode_id: pinCode,
-        district: district,
+        city: city,
         state: state,
       },
       bank_details: {
-        id: 1,
         account_number: accountNumber,
-        bank_name: bankName,
-        branch_name: branchName,
+        id: bankName,
+        branch: branchName,
         ifsc_code: ifscCode,
         cancelled_cheque: this.cancelled_cheque
       },
@@ -370,7 +361,7 @@ export class PartnerUsComponent implements OnInit {
     }
 
     const pincode = this.selectedPinCode;
-    const district = this.addressDetailForm.value.district;
+    const city = this.addressDetailForm.value.city;
     // const city = this.addressDetailForm.value.city;
     const state = this.addressDetailForm.value.state;
     const addressLine1 = this.addressDetailForm.value.addressLine1;
@@ -387,7 +378,7 @@ export class PartnerUsComponent implements OnInit {
       address_line2: addressLine2 || null,
       pincode: pincode,
       email: email,
-      district: district,
+      city: city,
       state: state,
       father_name: fatherName,
       gender: gender,
@@ -508,8 +499,15 @@ export class PartnerUsComponent implements OnInit {
 
     this.misc.sendOtp(phoneNumber).subscribe(
       data => {
-        this.isAuthenticationForm = false;
-        this.isOtpForm = true;
+        if(data['data']['error'])
+        {
+          this.toastr.error(data['data']['detail'], "Error!")
+        }
+        if(!data['data']['error']){
+          this.isAuthenticationForm = false;
+          this.isOtpForm = true;
+          this.toastr.success("OTP sent successfully", "Success!");
+        }
       });
   }
 
@@ -578,7 +576,7 @@ export class PartnerUsComponent implements OnInit {
       addressLine2: ['', [Validators.required,]],
       city: ['',],
       state: ['', [Validators.required,]],
-      district: ['', [Validators.required,]],
+      // district: ['', [Validators.required,]],
     })
 
     this.kycDetailForm = this.formbuilder.group({

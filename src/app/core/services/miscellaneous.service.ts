@@ -33,8 +33,9 @@ export class MiscellaneousService {
     return {
       headers: new HttpHeaders({
         'Content-Type': 'application/json; charset=utf-8',
+        Authorization: 'Bearer ' + token
       }).set('Access-Control-Allow-Origin', '*')
-      .set("Access-Control-Expose-Headers", "*"),
+      // .set("Access-Control-Expose-Headers", "*"),
       // mode: 'no-cors'
     };
   }
@@ -103,7 +104,7 @@ export class MiscellaneousService {
 
   fetchAgents() {
 
-    return this.http.get(this.consts.apiAgent, {
+    return this.http.get(`${this.consts.apiAgent}agent/`, {
       headers: new HttpHeaders({
         'Authorization': `${this.cookie.get('_l_a_t')}`
       })
@@ -136,9 +137,45 @@ export class MiscellaneousService {
       );
   }
 
+  fetchAllEmployees() {
+
+    return this.http.get(this.consts.employeeApi, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  userRoleMapping() {
+
+    return this.http.get(this.consts.employeeApi, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
   fetchUserRoles() {
 
     return this.http.get(this.consts.userRoleApi, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  fetchUserRoleById(id) {
+
+    return this.http.get(`${this.consts.userRoleApi}${id}/`, {
       headers: new HttpHeaders({
         'Authorization': `${this.cookie.get('_l_a_t')}`
       })
@@ -167,6 +204,27 @@ export class MiscellaneousService {
       );
   }
 
+  createFreshLeadWeb(data:any) {
+    return this.http.post(this.consts.userRoleApi, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  addEmployee(data:any) {
+    return this.http.post(this.consts.employeeApi, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  createPermissions(data:any) {
+    return this.http.post(this.consts.fetchPermissionsApi, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
   contactUs(data:any) {
     return this.http.post(this.consts.contactUs, data)
       .pipe(
@@ -182,14 +240,27 @@ export class MiscellaneousService {
   }
 
   fetchAgentsDetail(id) {
-    return this.http.get(`${this.consts.apiAgent}${id}/`)
+    return this.http.get(`${this.consts.apiAgent}agent/${id}/`)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  fetchEmployeeDetailById(id) {
+    return this.http.get(`${this.consts.employeeApi}${id}/`)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
 
   agentApproval(id) {
-    return this.http.post(`${this.consts.apiAgent}${id}/approve/`, id)
+    return this.http.post(`${this.consts.apiAgent}approve_agent/${id}/`, this.getHeaderOption())
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  agentDisApproval(id) {
+    return this.http.post(`${this.consts.apiAgent}approve_agent/${id}/`, this.getHeaderOption())
       .pipe(
         catchError(this.errorHandler.handleError)
       );
@@ -207,8 +278,8 @@ export class MiscellaneousService {
 
       this.showLoader('short');
 
-      const verificationData = JSON.stringify({ otp: otp, mobile_number: phonenumber });
-      this.networkRequest.postWithHeader(verificationData, '/api/otp_register/')
+      const verificationData = JSON.stringify({ otp: otp, phone_number: phonenumber });
+      this.networkRequest.postWithHeader(verificationData, '/api/otp/verify/')
         .subscribe(
           data => {
             console.log("verified")

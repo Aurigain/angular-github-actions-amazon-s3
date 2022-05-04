@@ -21,10 +21,10 @@
                 <h1>Role Mapping</h1>
 
               </div>
-              <!-- <a routerLink="../fresh-leads/add-update"><button class="btn btn-primary"><i class="fa fa-add mr-2"></i>Add Role</button></a> -->
+              <a routerLink="/dashboard/add-permissions"><button class="btn btn-primary"><i class="fa fa-add mr-2"></i>Add Permissions</button></a>
             </div>
           </div>
-
+          <p class="ml-4 mt-3">Selected Role is: <strong>{{currentRole | titlecase}}</strong></p>
           <div class="m-3">
            <form [formGroup]="roleMappingForm" (ngSubmit)="submitRoleMapping()">
                <!-- <div class="form-group col-md-4">

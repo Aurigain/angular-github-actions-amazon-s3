@@ -66,13 +66,13 @@
               </thead>
               <tbody>
                 <tr
-                  *ngFor="let user of filterArray | paginate: { itemsPerPage: rowFilter, currentPage: p }; let i = index ">
-                  <td>{{(p-1) * rowFilter + i + 1}}</td>
-                  <td>{{user.FullName}}</td>
+                  *ngFor="let employee of employeelist | paginate: { itemsPerPage: rowFilter, currentPage: p }; let i = index ">
+                  <td>{{employee.id}}</td>
+                  <td>{{employee.name}}</td>
                   <td>Delhi</td>
                   <td>DM</td>
                   <td>PM</td>
-                  <td><a [routerLink]="['detail', user.Id]"><button class="btn btn-primary">View/Edit</button></a></td>
+                  <td><a [routerLink]="['detail', employee.id]"><button class="btn btn-primary">View/Edit</button></a></td>
                   <td><select class="form-control">
                     <option value="">Status</option>
                     <option value="approve">Approve</option>

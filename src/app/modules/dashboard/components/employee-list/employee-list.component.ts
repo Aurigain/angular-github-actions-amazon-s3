@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -13,8 +14,10 @@ export class EmployeeListComponent implements OnInit {
   AppointmentDetailForm:FormGroup;
   suc
   successMsg: any;
+  employeelist: any;
   constructor(
     private formbuilder: FormBuilder,
+    private misc: MiscellaneousService
   ) { }
 
   deleteUser(id){
@@ -106,9 +109,22 @@ export class EmployeeListComponent implements OnInit {
 
   }
 
+  fetchAllEmployees(){
+    this.misc.fetchAllEmployees().subscribe(
+      data => {
+        this.employeelist = data['data']
+        console.log(this.employeelist)
+      },
+      error =>{
+
+      }
+    )
+  }
+
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
     this.filter('');
+    this.fetchAllEmployees();
     this.selectedForm = this.formbuilder.group({
       selectCategory: ['']
      })

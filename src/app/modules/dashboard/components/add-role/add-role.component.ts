@@ -18,6 +18,8 @@ export class AddRoleComponent implements OnInit {
   error;
   status: boolean = false;
   roleName;
+  roleDescription;
+  roleIndex;
 
 
   statusCheck(event) {
@@ -28,11 +30,13 @@ export class AddRoleComponent implements OnInit {
   submitRole() {
     const role_name = this.roleName;
     const is_active = this.status;
-
+    const roleDescription = this.roleDescription;
+    const roleIndex = this.roleIndex;
     const formData = {
       role_name: role_name,
       is_active: is_active,
-      role_index: 9
+      role_index: roleIndex,
+      role_description: roleDescription
     }
 
     console.log(formData);
