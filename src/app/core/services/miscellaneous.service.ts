@@ -185,6 +185,12 @@ export class MiscellaneousService {
       );
   }
 
+  uploadAgentImages(images) {
+    return this.http.put(this.consts.agentImageUpload, images)
+    .pipe(
+      catchError(this.errorHandler.handleError)
+    );
+  }
   fetchPermissions() {
 
     return this.http.get(this.consts.fetchPermissionsApi, {
@@ -213,6 +219,12 @@ export class MiscellaneousService {
 
   addEmployee(data:any) {
     return this.http.post(this.consts.employeeApi, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  updateEmployee(data:any) {
+    return this.http.put(this.consts.employeeApi, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
@@ -252,9 +264,33 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+  fetchAgentProfileDetailByUserName(username) {
+    return this.http.get(`${this.consts.agentProfileDetail}?username=${username}`)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  fetchAgentKycByUserName(username) {
+    return this.http.get(`${this.consts.agentKycDetail}?username=${username}`)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  fetchAgentAddressByUserName(username) {
+    return this.http.get(`${this.consts.agentAddressDetail}?username=${username}`)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  fetchAgentBankByUserName(username) {
+    return this.http.get(`${this.consts.agentBankDetail}?username=${username}`)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
 
   agentApproval(id) {
-    return this.http.post(`${this.consts.apiAgent}approve_agent/${id}/`, this.getHeaderOption())
+    return this.http.put(`${this.consts.apiAgent}approve_agent/${id}/`, this.getHeaderOption())
       .pipe(
         catchError(this.errorHandler.handleError)
       );

@@ -62,7 +62,7 @@ export class AuthService {
   }
 
   register(data: any) {
-    return this.http.post(this.consts.apiAgent, data)
+    return this.http.post(`${this.consts.apiAgent}agent/`, data)
       .pipe(
         catchError(this.misc.handleError)
       );

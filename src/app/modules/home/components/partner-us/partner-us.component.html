@@ -83,15 +83,19 @@
 
                 <a *ngIf="otpVerified" class="nav-item nav-link" [ngClass]="{ active: currentStep == 2 }"
                   id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address"
-                  aria-selected="false" (click)="setStep(2)">Address Details</a>
+                  aria-selected="false" (click)="setStep(2)">Other Details</a>
 
                 <a *ngIf="otpVerified" class="nav-item nav-link" [ngClass]="{ active: currentStep == 3 }"
-                  id="nav-kyc-tab" data-toggle="tab" href="#nav-kyc" role="tab" aria-controls="nav-kyc"
-                  aria-selected="false" (click)="setStep(3)">KYC & Qualification Details</a>
+                  id="nav-address-tab" data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address"
+                  aria-selected="false" (click)="setStep(3)">Address Details</a>
 
                 <a *ngIf="otpVerified" class="nav-item nav-link" [ngClass]="{ active: currentStep == 4 }"
+                  id="nav-kyc-tab" data-toggle="tab" href="#nav-kyc" role="tab" aria-controls="nav-kyc"
+                  aria-selected="false" (click)="setStep(4)">KYC & Qualification Details</a>
+
+                <a *ngIf="otpVerified" class="nav-item nav-link" [ngClass]="{ active: currentStep == 5 }"
                   id="nav-bank-tab" data-toggle="tab" href="#nav-bank" role="tab" aria-controls="nav-bank"
-                  aria-selected="false" (click)="setStep(4)">Bank Details</a>
+                  aria-selected="false" (click)="setStep(5)">Bank Details</a>
                 <!--
                 <a
                   class="nav-item nav-link"
@@ -114,12 +118,22 @@
                   (ngSubmit)="submitAuthenticationForm()">
                   <div class="form-row">
                     <div class="form-group col-md-5">
-                      <input [class.is-invalid]="name.invalid && name.touched" type="text" class="form-control"
-                        id="inputName" placeholder="Full Name" formControlName="name" required />
-                      <div style="margin-left: 10px;" *ngIf="name.invalid && name.touched">
-                        <small *ngIf="name.errors?.['required']" class="text-danger">Name is required</small><br>
+                      <input [class.is-invalid]="first_name.invalid && first_name.touched" type="text" class="form-control"
+                        id="first_name" placeholder="First Name" formControlName="first_name" required />
+                      <div style="margin-left: 10px;" *ngIf="first_name.invalid && first_name.touched">
+                        <small *ngIf="first_name.errors?.['required']" class="text-danger">Name is required</small><br>
                         <!-- <small *ngIf="name.errors?.['pattern']" class="text-danger">Name should not contain number or special correctors</small><br> -->
-                        <small *ngIf="name.errors?.['minlength']" class="text-danger">Name should not contain atleast 2
+                        <small *ngIf="first_name.errors?.['minlength']" class="text-danger">first name should not contain atleast 2
+                          characters</small>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-5">
+                      <input [class.is-invalid]="last_name.invalid && last_name.touched" type="text" class="form-control"
+                        id="last_name" placeholder="Last Name" formControlName="last_name" required />
+                      <div style="margin-left: 10px;" *ngIf="last_name.invalid && last_name.touched">
+                        <small *ngIf="last_name.errors?.['required']" class="text-danger">last name is required</small><br>
+                        <!-- <small *ngIf="name.errors?.['pattern']" class="text-danger">Name should not contain number or special correctors</small><br> -->
+                        <small *ngIf="last_name.errors?.['minlength']" class="text-danger">last name should not contain atleast 2
                           characters</small>
                       </div>
                     </div>
@@ -160,9 +174,11 @@
                     OTP</button>
                   <button type="button" (click)="sendOTP(phoneNumber1.value)" [ngStyle]="{'font-family': 'Poppins'}"
                     class="btn btn-primary btn-block">Resend OTP</button>
-
                 </div>
-                <form [formGroup]="basicDetailForm" *ngIf="isBasicDetailForm">
+              </div>
+              <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 2 }" id="nav-address"
+                role="tabpanel" aria-labelledby="nav-address-tab">
+                <form [formGroup]="basicDetailForm">
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <input [class.is-invalid]="fatherName.invalid && fatherName.touched" type="text"
@@ -194,7 +210,7 @@
                     </div>
                     <div class="form-group col-md-6">
                       <select [class.is-invalid]="gender.invalid && gender.touched" class="form-control"
-                        formControlName="gender" id="exampleFormControlSelect1">
+                        formControlName="gender" id="gender">
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -208,7 +224,7 @@
                       <label class="control-label">Profile Image</label>
                       <div class="input-group mb-2">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="profile_image" (change)="onChange($event, 'profile_image')" />
+                          <input type="file" formControlName="profile_image" class="custom-file-input" id="profile_image" (change)="onChange($event)" />
                           <label class="custom-file-label" for="profile_image">Choose file</label>
                         </div>
                       </div>
@@ -225,8 +241,7 @@
                   </div>
                 </form>
               </div>
-
-              <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 2 }" id="nav-address"
+              <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 3 }" id="nav-address"
                 role="tabpanel" aria-labelledby="nav-address-tab">
                 <form [formGroup]="addressDetailForm">
                   <div class="form-row">
@@ -265,7 +280,7 @@
                         required
                       /> -->
                       <input [class.is-invalid]="city.invalid && city.touched" class="form-control"
-                        id="exampleFormControlSelect1" formControlName="city" >
+                        id="city" formControlName="city" >
                       <div style="margin-left: 10px;" *ngIf="city.invalid && city.touched">
                         <small *ngIf="city.errors?.['required']" class="text-danger">City is required</small>
                       </div>
@@ -286,7 +301,7 @@
                     </div> -->
                     <div class="form-group col-md-6">
                       <input [class.is-invalid]="state.invalid && state.touched" class="form-control"
-                        id="exampleFormControlSelect1" formControlName="state">
+                        id="state" formControlName="state">
                       <div style="margin-left: 10px;" *ngIf="state.invalid && state.touched">
                         <small *ngIf="state.errors?.['required']" class="text-danger">State is required</small>
                       </div>
@@ -304,13 +319,13 @@
                 </form>
               </div>
 
-              <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 3 }" id="nav-kyc" role="tabpanel"
+              <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 4 }" id="nav-kyc" role="tabpanel"
                 aria-labelledby="nav-kyc-tab">
                 <form [formGroup]="kycDetailForm">
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <select [class.is-invalid]="qualification.invalid && qualification.touched" class="form-control"
-                        id="exampleFormControlSelect1" formControlName="qualification">
+                        id="qualification" formControlName="qualification">
                         <option value="">Select Qualification</option>
                         <option *ngFor="let qualifications of qualificationList" [value]="qualifications?.id">
                           {{qualifications?.label}}</option>
@@ -365,7 +380,7 @@
                       <label class="control-label"> AAdhar Card (Front)</label>
                       <div class="input-group mb-2">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="aadharfront" (change)="onChange($event, 'aadhar_front_image')" />
+                          <input type="file" class="custom-file-input" id="aadhar_front_image" formControlName="aadhar_front_image" (change)="onChange($event)" />
                           <label class="custom-file-label" for="aadharfront">Choose file</label>
                         </div>
                       </div>
@@ -375,7 +390,7 @@
                       <label class="control-label"> AAdhar Card (Back)</label>
                       <div class="input-group mb-2">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="aadharback" (change)="onChange($event, 'aadhar_back_image')"  />
+                          <input type="file" formControlName="aadhar_back_image" class="custom-file-input" id="aadhar_back_image" (change)="onChange($event)"  />
                           <label class="custom-file-label" for="aadharback">Choose file</label>
                         </div>
                       </div>
@@ -385,7 +400,7 @@
                       <label class="control-label"> Pan Card</label>
                       <div class="input-group mb-2">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="panimg" (change)="onChange($event, 'pan_image')" />
+                          <input type="file" formControlName="pan_image" class="custom-file-input" id="pan_image" (change)="onChange($event)" />
                           <label class="custom-file-label" for="panimg">Choose file</label>
                         </div>
                       </div>
@@ -403,7 +418,7 @@
                 </form>
               </div>
 
-              <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 4 }" id="nav-bank" role="tabpanel"
+              <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 5 }" id="nav-bank" role="tabpanel"
                 aria-labelledby="nav-bank-tab">
                 <form [formGroup]="bankDetailForm">
                   <div class="form-row">
@@ -418,7 +433,7 @@
                     <div class="form-group col-md-6">
 
                       <input [class.is-invalid]="bankName.invalid && bankName.touched" class="form-control"
-                        id="exampleFormControlSelect1" formControlName="bankName">
+                        id="bankName" formControlName="bankName">
 
                       <div style="margin-left: 10px;" *ngIf="bankName.invalid && bankName.touched">
                         <small *ngIf="bankName.errors?.['required']" class="text-danger">Bank Name is required</small>
@@ -449,7 +464,7 @@
                       <label class="control-label"> CANCELLED CHEQUE</label>
                       <div class="input-group mb-2">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="cheque" (change)="onChange($event, 'cancelled_cheque')"/>
+                          <input type="file" formControlName="cancelled_cheque" class="custom-file-input" id="cancelled_cheque" (change)="onChange($event)"/>
                           <label class="custom-file-label" for="cheque">Choose file</label>
                         </div>
                       </div>
@@ -459,7 +474,7 @@
                     <div class="col-12 mt-2">
                       <a (click)="submitAgentForm()">
                         <button [disabled]="bankDetailForm.invalid" type="submit" class="btn btn-primary"
-                          *ngIf="successForm.length === 3">
+                          *ngIf="successForm.length === 4">
                           Submit
                         </button>
                       </a>

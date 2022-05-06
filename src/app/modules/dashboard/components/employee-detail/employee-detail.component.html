@@ -11,7 +11,7 @@
                     <a routerlink="/dashboard" href="/dashboard">Home</a>
                   </li>
                   <li class="breadcrumb-item">
-                    <a routerLink="../employee-list">Employee List</a>
+                    <a routerLink="../../">Employee List</a>
                     >
                   </li>
                   <li aria-current="page" class="breadcrumb-item active">
@@ -167,8 +167,8 @@
                         </div>
                       </div>
                       <div class="form-group col-md-4">
-                        <label for="inputDate">DOB</label>
-                        <input formControlName="profile_image" type="file" class="form-control" >
+                        <label for="inputDate">Profile Photo</label>
+                        <input formControlName="profile_image" (change)="onChange($event)" type="file" id="profile_image" class="form-control" >
                         <div
                           *ngIf="personalDetails.get('phone_number').invalid && personalDetails.get('phone_number').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
@@ -284,7 +284,7 @@
                       <div class="form-group">
                         <label for="inputdateOld">Cancelled Cheque</label>
                         <input formControlName="cancelled_cheque" type="file" class="form-control" id="cancelled_cheque"
-                          placeholder="Upload Cheque" (change)="onChange($event, 'cancelled_cheque')">
+                          placeholder="Upload Cheque" (change)="onChange($event)">
                         <!-- <ng-container *ngIf="bankDetails.get('dateOld').invalid && bankDetails.get('dateOld').touched"
                           class="col-sm-3 col-form-label"></ng-container>
                         <div *ngIf="bankDetails.get('dateOld').invalid && bankDetails.get('dateOld').touched"
@@ -369,7 +369,7 @@
                         <div class="input-group mb-2">
                           <div class="custom-file">
                             <input type="file" id="aadhar_front_image" class="custom-file-input"
-                              formControlName="aadhar_front_image" (change)="onChange($event, 'aadhar_front_image')" />
+                              formControlName="aadhar_front_image" (change)="onChange($event)" />
                             <label class="custom-file-label" for="aadhar_front_image">Choose file</label>
                           </div>
                         </div>
@@ -380,7 +380,7 @@
                         <div class="input-group mb-2">
                           <div class="custom-file">
                             <input type="file" id="aadhar_back_image" class="custom-file-input"
-                              formControlName="aadhar_back_image" (change)="onChange($event, 'aadhar_back_image')" />
+                              formControlName="aadhar_back_image" (change)="onChange($event)" />
                             <label class="custom-file-label" for="aadharback">Choose file</label>
                           </div>
                         </div>
@@ -391,7 +391,7 @@
                         <div class="input-group mb-2">
                           <div class="custom-file">
                             <input type="file" class="custom-file-input" id="pan_image" formControlName="pan_image"
-                              (change)="onChange($event, 'pan_image')" />
+                              (change)="onChange($event)" />
                             <label class="custom-file-label" for="panimg">Choose file</label>
                           </div>
                         </div>

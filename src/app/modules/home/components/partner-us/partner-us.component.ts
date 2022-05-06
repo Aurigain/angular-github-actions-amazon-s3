@@ -66,8 +66,11 @@ export class PartnerUsComponent implements OnInit {
   otpVerified: boolean = false;
   loaderActive = false;
 
-  get name() {
-    return this.authenticationForm.get('name');
+  get first_name() {
+    return this.authenticationForm.get('first_name');
+  }
+  get last_name() {
+    return this.authenticationForm.get('last_name');
   }
   get phoneNumber1() {
     return this.authenticationForm.get('phoneNumber1');
@@ -179,6 +182,7 @@ export class PartnerUsComponent implements OnInit {
         this.otpVerified = true;
         this.isOtpForm = false;
         this.isBasicDetailForm = true;
+        this.stepUp(this.currentStep);
       },
       error => {
         this.errors = error;
@@ -209,53 +213,68 @@ export class PartnerUsComponent implements OnInit {
     }
   }
 
-  onChange(event, id) {
+  onChange(event) {
     const file = (event.target as HTMLInputElement).files[0];
-    console.log(file);
-    this.convertToBase64(id, file);
+    if (event.target.id === 'aadhar_front_image') {
+      this.aadhar_front_image = file;
+    }
+    else if (event.target.id === 'aadhar_back_image') {
+    this.aadhar_back_image = file;
+    }
+    else if (event.target.id === 'pan_image') {
+    this.pan_image = file;
+    }
+    else if (event.target.id === 'cancelled_cheque') {
+    this.cancelled_cheque = file;
+    }
+    else if (event.target.id === 'profile_image') {
+    this.profile_image = file;
+    }
+    // this.convertToBase64(id, file);
   }
 
-  convertToBase64(id, file: File) {
-    const observable = new Observable((subscriber: Subscriber<any>) => {
-      this.readFile(file, subscriber);
-    });
-    observable.subscribe((d) => {
-      console.log("Image Url", d);
-      if (id=== 'aadhar_front_image') {
-        this.aadhar_front_image = d;
-      }
-      else if (id==='aadhar_back_image') {
-        this.aadhar_back_image = d;
-      }
-      else if (id==='pan_image') {
-        this.pan_image = d;
-      }
-      else if (id==='cancelled_cheque') {
-        this.cancelled_cheque = d;
-      }
-      else if (id==='profile_image') {
-        this.profile_image = d;
-      }
-    });
-  }
+  // convertToBase64(id, file: File) {
+  //   const observable = new Observable((subscriber: Subscriber<any>) => {
+  //     this.readFile(file, subscriber);
+  //   });
+  //   observable.subscribe((d) => {
+  //     console.log("Image Url", d);
+  //     if (id=== 'aadhar_front_image') {
+  //       this.aadhar_front_image = d;
+  //     }
+  //     else if (id==='aadhar_back_image') {
+  //       this.aadhar_back_image = d;
+  //     }
+  //     else if (id==='pan_image') {
+  //       this.pan_image = d;
+  //     }
+  //     else if (id==='cancelled_cheque') {
+  //       this.cancelled_cheque = d;
+  //     }
+  //     else if (id==='profile_image') {
+  //       this.profile_image = d;
+  //     }
+  //   });
+  // }
 
-  readFile(file: File, subscriber: Subscriber<any>) {
-    const filereader = new FileReader();
-    filereader.readAsDataURL(file);
+  // readFile(file: File, subscriber: Subscriber<any>) {
+  //   const filereader = new FileReader();
+  //   filereader.readAsDataURL(file);
 
-    filereader.onload = () => {
-      subscriber.next(filereader.result);
-      subscriber.complete();
-    };
-    filereader.onerror = (error) => {
-      subscriber.error(error);
-      subscriber.complete();
-    };
-  }
+  //   filereader.onload = () => {
+  //     subscriber.next(filereader.result);
+  //     subscriber.complete();
+  //   };
+  //   filereader.onerror = (error) => {
+  //     subscriber.error(error);
+  //     subscriber.complete();
+  //   };
+  // }
 
   submitAgentForm() {
 
-    const name = this.authenticationForm.value.name;
+    const first_name = this.authenticationForm.value.first_name;
+    const last_name = this.authenticationForm.value.last_name;
     const phoneNumber1 = this.authenticationForm.value.phoneNumber1;
     const referralCode = this.authenticationForm.value.referralCode;
     const password = this.authenticationForm.value.password;
@@ -281,10 +300,16 @@ export class PartnerUsComponent implements OnInit {
     const ifscCode = this.fetchBranchDetail['ifsc_code'];
     const branchName = this.fetchBranchDetail['id'];
 
+    const profile_image =  this.profile_image;
+    const aadhar_front_image = this.aadhar_front_image;
+    const aadhar_back_image = this.aadhar_back_image;
+    const pan_image = this.pan_image;
+    const cancelled_cheque = this.cancelled_cheque;
+
     const userObj = {
       basic_details: {
-        first_name: name,
-        last_name: name,
+        first_name: first_name,
+        last_name: last_name,
         phonenumber: phoneNumber1,
         referral_code: referralCode,
         password: password,
@@ -292,16 +317,16 @@ export class PartnerUsComponent implements OnInit {
         dob: dob,
         gender: gender,
         email: email,
-        profile_image: this.profile_image
+        profile_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K"
       },
       kyc: {
         aadhar_number: adhaarNumber,
         occupation: occupation,
         pan_number: panNumber,
         qualification_id: qualification,
-        aadhar_front_image: this.aadhar_front_image,
-        aadhar_back_image: this.aadhar_back_image,
-        pan_image: this.pan_image
+        aadhar_front_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K",
+        aadhar_back_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K",
+        pan_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K"
       },
       address: {
         address_line1: addressLine1,
@@ -315,16 +340,33 @@ export class PartnerUsComponent implements OnInit {
         id: bankName,
         branch: branchName,
         ifsc_code: ifscCode,
-        cancelled_cheque: this.cancelled_cheque
+        cancelled_cheque: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K"
       },
     }
 
     console.log(userObj);
 
-    if (name && phoneNumber1) {
+    if (first_name && phoneNumber1) {
       this.auth.register(userObj).subscribe(
-        user => {
-          console.log("user", user);
+        data => {
+          console.log(data);
+          this.toastr.success("Agent Added Successfully")
+          const agentId = data['profileid']
+          let formData = new FormData();
+          formData.append("agent", agentId)
+          formData.append("profile", profile_image)
+          formData.append("aadhar_front",aadhar_front_image)
+          formData.append("aadhar_back",aadhar_back_image)
+          formData.append("pan",pan_image)
+          formData.append("cancelled_cheque",cancelled_cheque)
+          this.misc.uploadAgentImages(formData).subscribe(
+            data => {
+              console.log(data);
+            },
+            error => {
+              console.log("Error", error);
+            }
+          )
         },
         error => {
           const emailError = error.message['email'];
@@ -339,149 +381,149 @@ export class PartnerUsComponent implements OnInit {
     }
   }
 
-  updateProfile() {
-    var firstName = '';
-    var fullname = (this.authenticationForm.value.name).split(' ');
-    var lastName;
-    if (fullname.length > 1) {
-      for (let i = 0; i < fullname.length - 1; i++) {
-        if (i == 0) {
-          firstName = fullname[0];
-        }
-        else {
-          firstName = firstName + ' ' + fullname[i];
-        }
+  // updateProfile() {
+  //   var firstName = '';
+  //   var fullname = (this.authenticationForm.value.name).split(' ');
+  //   var lastName;
+  //   if (fullname.length > 1) {
+  //     for (let i = 0; i < fullname.length - 1; i++) {
+  //       if (i == 0) {
+  //         firstName = fullname[0];
+  //       }
+  //       else {
+  //         firstName = firstName + ' ' + fullname[i];
+  //       }
 
-      }
-      lastName = fullname[fullname.length - 1];
-    }
-    else {
-      firstName = fullname[0];
-      lastName = '';
-    }
+  //     }
+  //     lastName = fullname[fullname.length - 1];
+  //   }
+  //   else {
+  //     firstName = fullname[0];
+  //     lastName = '';
+  //   }
 
-    const pincode = this.selectedPinCode;
-    const city = this.addressDetailForm.value.city;
-    // const city = this.addressDetailForm.value.city;
-    const state = this.addressDetailForm.value.state;
-    const addressLine1 = this.addressDetailForm.value.addressLine1;
-    const addressLine2 = this.addressDetailForm.value.addressLine2;
-    const fatherName = this.basicDetailForm.value.fatherName;
-    const dob = this.basicDetailForm.value.dob;
-    const gender = this.basicDetailForm.value.gender;
-    const email = this.basicDetailForm.value.email;
+  //   const pincode = this.selectedPinCode;
+  //   const city = this.addressDetailForm.value.city;
+  //   // const city = this.addressDetailForm.value.city;
+  //   const state = this.addressDetailForm.value.state;
+  //   const addressLine1 = this.addressDetailForm.value.addressLine1;
+  //   const addressLine2 = this.addressDetailForm.value.addressLine2;
+  //   const fatherName = this.basicDetailForm.value.fatherName;
+  //   const dob = this.basicDetailForm.value.dob;
+  //   const gender = this.basicDetailForm.value.gender;
+  //   const email = this.basicDetailForm.value.email;
 
-    const formData = {
-      first_name: firstName,
-      last_name: lastName || '',
-      address_line1: addressLine1 || null,
-      address_line2: addressLine2 || null,
-      pincode: pincode,
-      email: email,
-      city: city,
-      state: state,
-      father_name: fatherName,
-      gender: gender,
-      dob: dob
-    }
+  //   const formData = {
+  //     first_name: firstName,
+  //     last_name: lastName || '',
+  //     address_line1: addressLine1 || null,
+  //     address_line2: addressLine2 || null,
+  //     pincode: pincode,
+  //     email: email,
+  //     city: city,
+  //     state: state,
+  //     father_name: fatherName,
+  //     gender: gender,
+  //     dob: dob
+  //   }
 
-    this.networkRequest.putWithHeaders(formData, '/api/updateprofile/').subscribe(
-      data => {
-        // Set Profile Status
-        console.log("updated", data);
-        // this.getProfile();
-      },
-      error => {
-      }
-    );
-  }
+  //   this.networkRequest.putWithHeaders(formData, '/api/updateprofile/').subscribe(
+  //     data => {
+  //       // Set Profile Status
+  //       console.log("updated", data);
+  //       // this.getProfile();
+  //     },
+  //     error => {
+  //     }
+  //   );
+  // }
 
-  updateBankDetails(userid) {
-    const bankName = this.bankDetailForm.value.bankName;
-    const accountNumber = this.bankDetailForm.value.accountNumber;
-    const ifscCode = this.bankDetailForm.value.ifscCode;
-    const nameOfNominee = this.bankDetailForm.value.nameOfNominee;
-    const relationshipWithNominee = this.bankDetailForm.value.relationshipWithNominee;
-    let cheque: File;
-    cheque = (<HTMLInputElement>document.getElementById('cheque')).files[0];
+  // updateBankDetails(userid) {
+  //   const bankName = this.bankDetailForm.value.bankName;
+  //   const accountNumber = this.bankDetailForm.value.accountNumber;
+  //   const ifscCode = this.bankDetailForm.value.ifscCode;
+  //   const nameOfNominee = this.bankDetailForm.value.nameOfNominee;
+  //   const relationshipWithNominee = this.bankDetailForm.value.relationshipWithNominee;
+  //   let cheque: File;
+  //   cheque = (<HTMLInputElement>document.getElementById('cheque')).files[0];
 
-    let formData: FormData = new FormData();
-    formData.append("user", userid);
-    formData.append("bank", bankName);
-    formData.append("account_number", accountNumber);
-    formData.append("ifsc_code", ifscCode);
-    formData.append("nominee_name", nameOfNominee);
-    formData.append("nominee_relation", relationshipWithNominee);
-    formData.append("cancelled_cheque_image", cheque);
-    this.networkRequest.postFormData(formData, '/api/createuserbank/').subscribe(
-      user => {
-        console.log("user bank details", user);
-      },
-      error => {
-        this.toastr.error(this.errors, 'Error!', {
-          timeOut: 4000,
-        });
-      }
-    );
-  }
+  //   let formData: FormData = new FormData();
+  //   formData.append("user", userid);
+  //   formData.append("bank", bankName);
+  //   formData.append("account_number", accountNumber);
+  //   formData.append("ifsc_code", ifscCode);
+  //   formData.append("nominee_name", nameOfNominee);
+  //   formData.append("nominee_relation", relationshipWithNominee);
+  //   formData.append("cancelled_cheque_image", cheque);
+  //   this.networkRequest.postFormData(formData, '/api/createuserbank/').subscribe(
+  //     user => {
+  //       console.log("user bank details", user);
+  //     },
+  //     error => {
+  //       this.toastr.error(this.errors, 'Error!', {
+  //         timeOut: 4000,
+  //       });
+  //     }
+  //   );
+  // }
 
-  updateKYCDetails(userid) {
-    const qualification = this.kycDetailForm.value.qualification;
-    const adhaarNumber = this.kycDetailForm.value.adhaarNumber;
-    const panNumber = this.kycDetailForm.value.panNumber;
-    const occupation = this.kycDetailForm.value.occupation;
-    let aadharfront: File;
-    aadharfront = (<HTMLInputElement>document.getElementById('aadharfront')).files[0];
-    let aadharback: File;
-    aadharback = (<HTMLInputElement>document.getElementById('aadharback')).files[0];
-    let panimg: File;
-    panimg = (<HTMLInputElement>document.getElementById('panimg')).files[0];
-    let formData: FormData = new FormData();
-    formData.append("user", userid);
-    formData.append("qualification", qualification);
-    formData.append("aadhar_number", adhaarNumber);
-    formData.append("pan_number", panNumber);
-    formData.append("occupation", occupation);
-    formData.append("aadhar_front_image", aadharfront);
-    formData.append("aadhar_back_image", aadharback);
-    formData.append("pan_image", panimg);
-    this.networkRequest.postFormData(formData, '/api/userkyc/').subscribe(
-      user => {
-        console.log("userkyc", user);
-      },
-      error => {
-        // this.misc.hideLoader()
-        const emailError = error.message['email'];
-        const phoneError = error.message['phonenumber'];
+  // updateKYCDetails(userid) {
+  //   const qualification = this.kycDetailForm.value.qualification;
+  //   const adhaarNumber = this.kycDetailForm.value.adhaarNumber;
+  //   const panNumber = this.kycDetailForm.value.panNumber;
+  //   const occupation = this.kycDetailForm.value.occupation;
+  //   let aadharfront: File;
+  //   aadharfront = (<HTMLInputElement>document.getElementById('aadharfront')).files[0];
+  //   let aadharback: File;
+  //   aadharback = (<HTMLInputElement>document.getElementById('aadharback')).files[0];
+  //   let panimg: File;
+  //   panimg = (<HTMLInputElement>document.getElementById('panimg')).files[0];
+  //   let formData: FormData = new FormData();
+  //   formData.append("user", userid);
+  //   formData.append("qualification", qualification);
+  //   formData.append("aadhar_number", adhaarNumber);
+  //   formData.append("pan_number", panNumber);
+  //   formData.append("occupation", occupation);
+  //   formData.append("aadhar_front_image", aadharfront);
+  //   formData.append("aadhar_back_image", aadharback);
+  //   formData.append("pan_image", panimg);
+  //   this.networkRequest.postFormData(formData, '/api/userkyc/').subscribe(
+  //     user => {
+  //       console.log("userkyc", user);
+  //     },
+  //     error => {
+  //       // this.misc.hideLoader()
+  //       const emailError = error.message['email'];
+  //       const phoneError = error.message['phonenumber'];
 
-        this.errors = emailError ? emailError[0] : (phoneError ? phoneError[0] : '');
-        this.toastr.error(this.errors, 'Error!', {
-          timeOut: 4000,
-        });
-      }
-    );
-  }
+  //       this.errors = emailError ? emailError[0] : (phoneError ? phoneError[0] : '');
+  //       this.toastr.error(this.errors, 'Error!', {
+  //         timeOut: 4000,
+  //       });
+  //     }
+  //   );
+  // }
 
-  upadateProfileImage(userid) {
+  // upadateProfileImage(userid) {
 
-    /**
-     * User Profile Update
-     */
+  //   /**
+  //    * User Profile Update
+  //    */
 
-    let imageFile: File;
-    imageFile = (<HTMLInputElement>document.getElementById('profilepic')).files[0];
+  //   let imageFile: File;
+  //   imageFile = (<HTMLInputElement>document.getElementById('profilepic')).files[0];
 
-    const formData: FormData = new FormData();
-    formData.append('image', imageFile);
-    console.log("aa");
-    // Send User image to server
-    this.networkRequest.putFiles(formData, `/api/profile/image/${userid}/`)
-      .subscribe(
-        data => {
-        },
-        error => {
-        });
-  }
+  //   const formData: FormData = new FormData();
+  //   formData.append('image', imageFile);
+  //   console.log("aa");
+  //   // Send User image to server
+  //   this.networkRequest.putFiles(formData, `/api/profile/image/${userid}/`)
+  //     .subscribe(
+  //       data => {
+  //       },
+  //       error => {
+  //       });
+  // }
 
   setStep(i) {
     this.currentStep = i;
@@ -489,6 +531,7 @@ export class PartnerUsComponent implements OnInit {
 
   stepUp(nextStep) {
     this.successForm.push(nextStep);
+    this.successForm = [...new Set(this.successForm)]
     console.log(this.successForm);
     this.currentStep += 1;
   }
@@ -516,15 +559,15 @@ export class PartnerUsComponent implements OnInit {
   }
 
   getStates() {
-    this.networkRequest.getWithHeaders(`/api/state/`).subscribe(
-      data => {
-        this.states = data['data'];
-        console.log("states", data['data']);
-      },
-      error => {
-        console.log("error", error);
-      }
-    );
+    // this.networkRequest.getWithHeaders(`/api/state/`).subscribe(
+    //   data => {
+    //     this.states = data['data'];
+    //     console.log("states", data['data']);
+    //   },
+    //   error => {
+    //     console.log("error", error);
+    //   }
+    // );
 
     // this.networkRequest.getWithHeaders(`/api/bank/`).subscribe(
     //   data => {
@@ -552,7 +595,10 @@ export class PartnerUsComponent implements OnInit {
   ngOnInit(): void {
 
     this.authenticationForm = this.formbuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2)
+      first_name: ['', [Validators.required, Validators.minLength(2)
+        , Validators.pattern("^[a-zA-Z\-\']+")
+      ]],
+      last_name: ['', [Validators.required, Validators.minLength(2)
         // , Validators.pattern("^[a-zA-Z\-\']+")
       ]],
       phoneNumber1: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
@@ -568,6 +614,7 @@ export class PartnerUsComponent implements OnInit {
       dob: ['', [Validators.required,]],
       gender: ['', [Validators.required,]],
       email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
+      profile_image: [''],
     })
 
     this.addressDetailForm = this.formbuilder.group({
@@ -584,6 +631,9 @@ export class PartnerUsComponent implements OnInit {
       panNumber: ['', [Validators.required,]],
       adhaarNumber: ['', [Validators.required,]],
       occupation: ['', [Validators.required,]],
+      aadhar_front_image: ['', [Validators.required]],
+      aadhar_back_image: ['', [Validators.required]],
+      pan_image: ['', [Validators.required]],
     })
 
     this.bankDetailForm = this.formbuilder.group({
@@ -591,6 +641,7 @@ export class PartnerUsComponent implements OnInit {
       branchName: ['', [Validators.required,]],
       accountNumber: ['', [Validators.required,]],
       ifscCode: ['', [Validators.required,]],
+      cancelled_cheque: ['', [Validators.required]],
       // nameOfNominee: ['', [Validators.required]],
       // relationshipWithNominee: ['', [Validators.required]],
     })

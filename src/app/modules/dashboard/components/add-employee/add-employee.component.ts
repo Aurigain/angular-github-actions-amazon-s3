@@ -210,47 +210,61 @@ export class AddEmployeeComponent implements OnInit {
     }
   }
 
-  onChange(event, id) {
+  onChange(event) {
     const file = (event.target as HTMLInputElement).files[0];
-    console.log(file);
-    this.convertToBase64(id, file);
+    if (event.target.id === 'aadhar_front_image') {
+      this.aadhar_front_image = file;
+    }
+    else if (event.target.id === 'aadhar_back_image') {
+    this.aadhar_back_image = file;
+    }
+    else if (event.target.id === 'pan_image') {
+    this.pan_image = file;
+    }
+    else if (event.target.id === 'cancelled_cheque') {
+    this.cancelled_cheque = file;
+    }
+    else if (event.target.id === 'profile_image') {
+    this.profile_image = file;
+    }
+    // this.convertToBase64(id, file);
   }
-  readFile(file: File, subscriber: Subscriber<any>) {
-    const filereader = new FileReader();
-    filereader.readAsDataURL(file);
+  // readFile(file: File, subscriber: Subscriber<any>) {
+  //   const filereader = new FileReader();
+  //   filereader.readAsDataURL(file);
 
-    filereader.onload = () => {
-      subscriber.next(filereader.result);
-      subscriber.complete();
-    };
-    filereader.onerror = (error) => {
-      subscriber.error(error);
-      subscriber.complete();
-    };
-  }
-  convertToBase64(id, file: File) {
-    const observable = new Observable((subscriber: Subscriber<any>) => {
-      this.readFile(file, subscriber);
-    });
-    observable.subscribe((d) => {
-      console.log("Image Url", d);
-      if (id === 'aadhar_front_image') {
-        this.aadhar_front_image = d;
-      }
-      else if (id === 'aadhar_back_image') {
-        this.aadhar_back_image = d;
-      }
-      else if (id === 'pan_image') {
-        this.pan_image = d;
-      }
-      else if (id === 'cancelled_cheque') {
-        this.cancelled_cheque = d;
-      }
-      else if (id === 'profile_image') {
-        this.profile_image = d;
-      }
-    });
-  }
+  //   filereader.onload = () => {
+  //     subscriber.next(filereader.result);
+  //     subscriber.complete();
+  //   };
+  //   filereader.onerror = (error) => {
+  //     subscriber.error(error);
+  //     subscriber.complete();
+  //   };
+  // }
+  // convertToBase64(id, file: File) {
+  //   const observable = new Observable((subscriber: Subscriber<any>) => {
+  //     this.readFile(file, subscriber);
+  //   });
+  //   observable.subscribe((d) => {
+  //     console.log("Image Url", d);
+  //     if (id === 'aadhar_front_image') {
+  //       this.aadhar_front_image = d;
+  //     }
+  //     else if (id === 'aadhar_back_image') {
+  //       this.aadhar_back_image = d;
+  //     }
+  //     else if (id === 'pan_image') {
+  //       this.pan_image = d;
+  //     }
+  //     else if (id === 'cancelled_cheque') {
+  //       this.cancelled_cheque = d;
+  //     }
+  //     else if (id === 'profile_image') {
+  //       this.profile_image = d;
+  //     }
+  //   });
+  // }
 
   saveForms() {
 
@@ -259,17 +273,21 @@ export class AddEmployeeComponent implements OnInit {
     const phonenumber = this.personalDetails.value.phone_number;
     const role = this.personalDetails.value.role;
     const reporting_person = this.personalDetails.value.reporting_person;
-    const profile_image = this.profile_image;
     const father_name = this.personalDetails.value.father_name;
     const password = this.personalDetails.value.password;
     const gender = this.personalDetails.value.gender;
     const dob = this.personalDetails.value.dob;
     const email = this.personalDetails.value.email;
+    // const profile_image =  (<HTMLInputElement>document.getElementById('profile_image')).files[0];
+    const profile_image =  this.profile_image;
+
 
     const bank = this.fetchBranchDetail['bank']['id'];
     const branch = this.fetchBranchDetail['id'];
     const ifsc_code = this.bankDetails.value.ifsc_code;
-    const cancelled_cheque = this.cancelled_cheque;
+    const cancelled_cheque  = this.cancelled_cheque;
+
+    // (<HTMLInputElement>document.getElementById('pdf')).files[0];
     const account_number = this.bankDetails.value.account_number;
 
     const address_line1 = this.addressDetailForm.value.address_line1;
@@ -282,9 +300,9 @@ export class AddEmployeeComponent implements OnInit {
     const aadhar_number = this.kycDetailForm.value.aadhar_number;
     const occupation = this.kycDetailForm.value.occupation;
     const pan_number = this.kycDetailForm.value.pan_number;
-    const aadhar_front_image = this.aadhar_front_image
+    const aadhar_front_image  = this.aadhar_front_image
     const aadhar_back_image = this.aadhar_back_image
-    const pan_image = this.pan_image;
+    const pan_image  = this.pan_image
 
 
     const userObj = {
@@ -294,7 +312,7 @@ export class AddEmployeeComponent implements OnInit {
         phonenumber: phonenumber,
         role: role,
         reporting_person: reporting_person,
-        profile_image: profile_image,
+        profile_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K",
         password: password,
         gender: gender,
         email: email,
@@ -306,14 +324,14 @@ export class AddEmployeeComponent implements OnInit {
         occupation: occupation,
         pan_number: pan_number,
         qualification_id: qualification,
-        aadhar_front_image: aadhar_front_image,
-        aadhar_back_image: aadhar_back_image,
-        pan_image: pan_image
+        aadhar_front_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K",
+        aadhar_back_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K",
+        pan_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K"
       },
       address: {
         address_line1: address_line1,
         address_line2: address_line2,
-        pincode: pincode,
+        pincode_id: pincode,
         city: city,
         state: state,
       },
@@ -322,7 +340,7 @@ export class AddEmployeeComponent implements OnInit {
         id: bank,
         branch: branch,
         ifsc_code: ifsc_code,
-        cancelled_cheque: cancelled_cheque
+        cancelled_cheque: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K"
       },
     }
 
@@ -330,7 +348,23 @@ export class AddEmployeeComponent implements OnInit {
     this.misc.addEmployee(userObj).subscribe(
       data => {
         console.log(data);
-        this.toastr.success("Employee Edit Successfully")
+        this.toastr.success("Employee Added Successfully")
+        const agentId = data['profileid']
+        let formData = new FormData();
+        formData.append("agent", agentId)
+        formData.append("profile", profile_image)
+        formData.append("aadhar_front",aadhar_front_image)
+        formData.append("aadhar_back",aadhar_back_image)
+        formData.append("pan",pan_image)
+        formData.append("cancelled_cheque",cancelled_cheque)
+        this.misc.uploadAgentImages(formData).subscribe(
+          data => {
+            console.log(data);
+          },
+          error => {
+            console.log("Error", error);
+          }
+        )
       },
       error => {
         console.log(error);

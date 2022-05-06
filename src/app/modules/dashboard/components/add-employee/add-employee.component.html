@@ -167,8 +167,10 @@
                         </div>
                       </div>
                       <div class="form-group col-md-4">
-                        <label for="inputDate">DOB</label>
-                        <input formControlName="profile_image" type="file" class="form-control" >
+                        <label for="inputDate">Profile Image</label>
+                        <input formControlName="profile_image"
+                         id="profile_image" (change)="onChange($event)" type="file" class="form-control">
+
                         <div
                           *ngIf="personalDetails.get('phone_number').invalid && personalDetails.get('phone_number').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
@@ -198,9 +200,9 @@
                         <select id="inputState" class="form-control" formControlName="reporting_person"
                           placeholder="Reporting Person">
                           <option value="" selected>Select Reporting Person</option>
-                          <option value="option1">Option 1</option>
-                          <option value="option2">Option 2</option>
-                          <option value="option3">Option 3</option>
+                          <option value="mohit">Option 1</option>
+                          <option value="mohit">Option 2</option>
+                          <option value="mohit">Option 3</option>
                         </select>
 
                         <div *ngIf="personalDetails.get('role').invalid && personalDetails.get('role').touched"
@@ -283,8 +285,8 @@
                       </div>
                       <div class="form-group">
                         <label for="inputdateOld">Cancelled Cheque</label>
-                        <input formControlName="cancelled_cheque" type="file" class="form-control" id="cancelled_cheque"
-                          placeholder="Upload Cheque" (change)="onChange($event, 'cancelled_cheque')">
+                        <input formControlName="cancelled_cheque" (change)="onChange($event)" type="file" class="form-control" id="cancelled_cheque"
+                          placeholder="Upload Cheque" >
                         <!-- <ng-container *ngIf="bankDetails.get('dateOld').invalid && bankDetails.get('dateOld').touched"
                           class="col-sm-3 col-form-label"></ng-container>
                         <div *ngIf="bankDetails.get('dateOld').invalid && bankDetails.get('dateOld').touched"
@@ -368,8 +370,8 @@
                         <label class="control-label"> AAdhar Card (Front)</label>
                         <div class="input-group mb-2">
                           <div class="custom-file">
-                            <input type="file" id="aadhar_front_image" class="custom-file-input"
-                              formControlName="aadhar_front_image" (change)="onChange($event, 'aadhar_front_image')" />
+                            <input type="file" (change)="onChange($event)" id="aadhar_front_image" class="custom-file-input"
+                              formControlName="aadhar_front_image" />
                             <label class="custom-file-label" for="aadhar_front_image">Choose file</label>
                           </div>
                         </div>
@@ -379,8 +381,8 @@
                         <label class="control-label"> AAdhar Card (Back)</label>
                         <div class="input-group mb-2">
                           <div class="custom-file">
-                            <input type="file" id="aadhar_back_image" class="custom-file-input"
-                              formControlName="aadhar_back_image" (change)="onChange($event, 'aadhar_back_image')" />
+                            <input type="file" (change)="onChange($event)" id="aadhar_back_image" class="custom-file-input"
+                              formControlName="aadhar_back_image"/>
                             <label class="custom-file-label" for="aadharback">Choose file</label>
                           </div>
                         </div>
@@ -390,8 +392,8 @@
                         <label class="control-label"> Pan Card</label>
                         <div class="input-group mb-2">
                           <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="pan_image" formControlName="pan_image"
-                              (change)="onChange($event, 'pan_image')" />
+                            <input type="file" (change)="onChange($event)" class="custom-file-input" id="pan_image" formControlName="pan_image"
+                              />
                             <label class="custom-file-label" for="panimg">Choose file</label>
                           </div>
                         </div>
