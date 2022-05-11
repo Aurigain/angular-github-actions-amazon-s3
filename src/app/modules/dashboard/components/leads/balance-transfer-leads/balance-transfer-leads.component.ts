@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class BalanceTransferLeadsComponent implements OnInit {
   successMsg: any;
   constructor(
     private formbuilder: FormBuilder,
+    private misc : MiscellaneousService
   ) { }
 
   deleteUser(id){
@@ -22,25 +24,25 @@ export class BalanceTransferLeadsComponent implements OnInit {
     if (confirm("Do you really want to delete this user?")){
       //Api call to delete user
       for (let i = 0; i < this.originalArray.length; i++) {
-     
+
         if (this.originalArray[i]['Id'] == id){
-          
+
           this.originalArray.splice(i, 1)
         }
-        
+
       }
       console.log(this.originalArray);
     //  this.router.navigateByUrl('/user-list')
     }
-    
+
 
     // for (let i = 0; i < this.originalArray.length; i++) {
-     
+
     //   if (this.originalArray[i]['Id'] == id){
-        
+
     //     this.originalArray.splice(i, 1)
     //   }
-      
+
     // }
     // console.log(this.originalArray);
   }
@@ -48,9 +50,9 @@ export class BalanceTransferLeadsComponent implements OnInit {
   get pinCode(){
     return this.AppointmentDetailForm.get('pinCode');
   }
-  
-  p:number = 1;
 
+  p:number = 1;
+  btLeadList;
   selectedForm: FormGroup;
   originalArray = [
   {Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: null, type: 'approved', DateOfBirth: '0001-01-01T00:00:00',},
@@ -66,24 +68,24 @@ export class BalanceTransferLeadsComponent implements OnInit {
 
   ];
   filterArray = [];
-  
-  
+
+
   itemsFilter(value){
     this.rowFilter = value;
   }
 
   filter(query: string){
     this.filterArray = [];
-    console.log(query);   
-      this.filterArray = (query) ? this.originalArray.filter(p => p.FullName.toLowerCase().includes(query.toLowerCase())) : this.originalArray; 
+    console.log(query);
+      this.filterArray = (query) ? this.originalArray.filter(p => p.FullName.toLowerCase().includes(query.toLowerCase())) : this.originalArray;
       console.log(this.filterArray);
       this.rowFilter = this.filterArray.length;
   }
-    
+
   searchedCategory(){
     this.filterArray = [];
     let category = this.selectedForm.value.selectCategory;
-    this.filterArray = (category) ? this.originalArray.filter(p => p.type.includes(category)) : this.originalArray; 
+    this.filterArray = (category) ? this.originalArray.filter(p => p.type.includes(category)) : this.originalArray;
     console.log(this.filterArray);
   }
 
@@ -105,11 +107,21 @@ export class BalanceTransferLeadsComponent implements OnInit {
 
   }
 
+  fetchBtLeads(){
+    this.misc.fetchBTLead().subscribe(
+      data => {
+        console.log(data);
+        this.btLeadList = data['results']
+      }
+    )
+  }
+
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
     this.filter('');
+    this.fetchBtLeads();
     this.selectedForm = this.formbuilder.group({
-      selectCategory: ['']    
+      selectCategory: ['']
      })
      console.log(this.originalArray);
 
@@ -117,7 +129,7 @@ export class BalanceTransferLeadsComponent implements OnInit {
       status : ['', Validators.required],
       remark : [''],
     })
-    
+
     this.AppointmentDetailForm = this.formbuilder.group({
       pinCode : ['', Validators.required],
       branch : ['', Validators.required],

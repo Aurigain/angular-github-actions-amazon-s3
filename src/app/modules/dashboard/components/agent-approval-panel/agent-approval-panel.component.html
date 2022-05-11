@@ -42,9 +42,8 @@
               <select id="inputState" class="form-control" formControlName="selectCategory"
                 (change)="searchedCategory()">
                 <option value="" selected>Select Product</option>
-                <option value="approved">Approved</option>
-                <option value="pending">Pending</option>
-                <option value="rejected">Rejected</option>
+                <option value="true">Approved</option>
+                <option value="false">Pending</option>
               </select>
             </form>
           </div>
@@ -58,7 +57,7 @@
                   <th>S.No.</th>
                   <th>Name</th>
                   <th>Pincode</th>
-                  <th>Mode of Application</th>
+                  <th>Status</th>
                   <th>Details</th>
                   <th>Approval</th>
                 </tr>
@@ -68,10 +67,10 @@
                   *ngFor="let user of agentDetails | paginate: { itemsPerPage: rowFilter, currentPage: p }; let i = index ">
                   <td>{{(p-1) * rowFilter + i + 1}}</td>
                   <td>{{user.name | titlecase}}</td>
-                  <td>{{user.pincode}}</td>
-                  <td>{{user.application_mode | titlecase}}</td>
-                  <td><a [routerLink]="['detail', user.id]"><i class="fas fa-info-circle pl-3" style="color:#4040fc; font-size:25px"></i></a></td>
-                  <td><select class="form-control">
+                  <td>{{user?.pincode}}</td>
+                  <td>{{user?.is_approved? "Approved": "Not Approved"}}</td>
+                  <td><a [routerLink]="['detail', user.userid]"><i class="fas fa-info-circle pl-3" style="color:#4040fc; font-size:25px"></i></a></td>
+                  <td><select (change)="changeStatus($event, user.id)" class="form-control">
                     <option value="">Status</option>
                     <option value="approve">Approve</option>
                     <option value="disapprove">DisApprove</option>
@@ -128,7 +127,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-danger" data-dismiss="modal"> <i class="fas fa-times pr-1"></i>Cancel</button>
-          <a (click)="changeStatus()"><button type="button" class="btn btn-look1"><i class="fas fa-check pr-1"></i>Update</button></a>
+          <a ><button type="button" class="btn btn-look1"><i class="fas fa-check pr-1"></i>Update</button></a>
         </div>
       </div>
     </div>

@@ -77,17 +77,17 @@ export class LoginService {
     const decodeToken = this.utils.decodeToken(this.cookie.get('_l_a_t'));
     console.log("decoded token: ", decodeToken);
     return new Observable(observer => {
-      // this.profileservice.refreshProfileData().subscribe(
-      //   data => {
-      //     console.log("profile data", data);
-      //     localStorage.setItem('userProfile', JSON.stringify(data));
-      //     this.profileservice.setUserProfileValue(data);
-      //     observer.complete();
-      //   },
-      //   error => {
-      //     observer.error('failed');
-      //   }
-      // )
+      this.profileservice.refreshProfileData().subscribe(
+        data => {
+          console.log("profile data", data);
+          localStorage.setItem('userProfile', JSON.stringify(data));
+          this.profileservice.setUserProfileValue(data);
+          observer.complete();
+        },
+        error => {
+          observer.error('failed');
+        }
+      )
 
 
       // this.networkRequest.getWithHeaders('/api/profile/').subscribe(

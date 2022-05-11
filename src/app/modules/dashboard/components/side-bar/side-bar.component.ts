@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PermissionsService } from 'src/app/core/authentication/permissions.service';
 import { SideNavBarService } from '../../side-nav.service';
 
 @Component({
@@ -8,8 +9,15 @@ import { SideNavBarService } from '../../side-nav.service';
 })
 export class SideBarComponent implements OnInit {
 
+
+  // isAdmin = this.permissions.isAdmin();
+  // isAgent = this.permissions.isAgent();
+  // isCustomer = this.permissions.isCustomer();
+  // isSalesManager = this.permissions.isSalesManager();
+
   constructor(
-    public sidenavservice: SideNavBarService
+    public sidenavservice: SideNavBarService,
+    private permissions: PermissionsService
   ) { }
   // hideSideNav: boolean = false;
     toggle: boolean = false;

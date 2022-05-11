@@ -91,7 +91,7 @@ export class EmployeeDetailComponent implements OnInit {
         this.personalDetails.patchValue({
           first_name: first_name,
           last_name: last_name,
-          phone_number: profileData['phone_number'],
+          phone_number: profileData['phonenumber'],
           role: profileData['role'],
           reporting_person: profileData['reporting_person'],
           gender: profileData['gender'],
@@ -124,7 +124,7 @@ export class EmployeeDetailComponent implements OnInit {
         console.log("address data is", data);
         const addressData = data['results'][0]
         this.addressDetailForm.patchValue({
-          // pincode: addressData['pincode'],
+          pincode: addressData['pincode']['code'],
           address_line1: addressData['address_line1'],
           address_line2: addressData['address_line2'],
         })

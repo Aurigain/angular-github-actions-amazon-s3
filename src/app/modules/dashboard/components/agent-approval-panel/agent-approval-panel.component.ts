@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class AgentApprovalPanelComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder,
     private misc: MiscellaneousService,
+    private toastr: ToastrService
   ) { }
 
   deleteUser(id) {
@@ -70,6 +72,29 @@ export class AgentApprovalPanelComponent implements OnInit {
   ];
   filterArray = [];
 
+  agentApproval(id){
+
+    this.misc.agentApproval(id).subscribe(
+      data => {
+        this.toastr.success("Agent Approved Successfully", "Sucess", {
+          timeOut: 4000,
+        });
+        this.fetchAgents();
+      }
+    )
+  }
+
+  agentDisApproval(id){
+
+    this.misc.agentDisApproval(id).subscribe(
+      data => {
+        this.toastr.success("Agent DisApproved Successfully", "Sucess", {
+          timeOut: 4000,
+        });
+        this.fetchAgents();
+      }
+    )
+  }
 
   itemsFilter(value) {
     this.rowFilter = value;
@@ -90,15 +115,16 @@ export class AgentApprovalPanelComponent implements OnInit {
     console.log(this.filterArray);
   }
 
-  changeStatus() {
-    const status = this.updateStatusForm.value.status;
-    const remark = this.updateStatusForm.value.remark;
+  changeStatus(event, id) {
+   console.log(event.target.value);
 
-    let formData = {
-      status: status,
-      remark: remark
-    }
-    console.log(formData);
+   if(event.target.value === 'approve'){
+     this.agentApproval(id);
+   }
+   else{
+     this.agentDisApproval(id);
+   }
+
   }
   submitAppointmentDetails() {
     const pinCode = this.AppointmentDetailForm.value.pinCode;

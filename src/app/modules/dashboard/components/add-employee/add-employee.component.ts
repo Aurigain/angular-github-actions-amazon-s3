@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -21,7 +22,8 @@ export class AddEmployeeComponent implements OnInit {
     private misc: MiscellaneousService,
     private networkRequest: NetworkRequestService,
     private loginservice: LoginService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
     this.tabelData = [];
   }
@@ -39,6 +41,7 @@ export class AddEmployeeComponent implements OnInit {
   aadhar_back_image;
   pan_image;
   cancelled_cheque;
+  employeelist;
   profile_image;
   fetchRoles() {
     this.misc.fetchUserRoles().subscribe(
@@ -59,10 +62,25 @@ export class AddEmployeeComponent implements OnInit {
       }
     );
   }
+
+
+  fetchAllEmployees(){
+    this.misc.fetchAllEmployees().subscribe(
+      data => {
+        this.employeelist = data['data']
+        console.log("emp list: ",this.employeelist)
+      },
+      error =>{
+
+      }
+    )
+  }
+
   ngOnInit(): void {
 
     this.fetchRoles();
     this.getQualification();
+    this.fetchAllEmployees();
     this.personalDetails = this.formbuilder.group({
 
       first_name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
@@ -360,6 +378,7 @@ export class AddEmployeeComponent implements OnInit {
         this.misc.uploadAgentImages(formData).subscribe(
           data => {
             console.log(data);
+            this.router.navigateByUrl('/dashboard/employee-list')
           },
           error => {
             console.log("Error", error);

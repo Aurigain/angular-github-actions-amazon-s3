@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 @Component({
@@ -16,13 +17,16 @@ export class GoldLoanComponent implements OnInit {
   isChecked: boolean = false;
 
   isLoanForm: boolean = true;
+  error
   isOtpForm: boolean = false;
 
   sendOTP() {
+    this.submitLoanForm();
 
   }
 
   submitOTP() {
+
     console.log(this.otp);
     this.detailForm = this.formbuilder.group({
       email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
@@ -32,12 +36,34 @@ export class GoldLoanComponent implements OnInit {
       dateOfLoan: [''],
     })
 
-    this.isOtpForm = false;
+    const phoneNumber = this.newLoanForm.value.phone;
+    if (!this.otp) {
+      this.toastr.error("Please enter OTP", 'Error!', {
+        timeOut: 4000,
+      });
+      return;
+    }
+
+    this.misc.verifyOtp(this.otp, phoneNumber).subscribe(
+      data => {
+        console.log("verified data: ", data)
+        this.toastr.success("OTP Verified Successfully", 'Success!', {
+          timeOut: 4000,
+        });
+        this.isOtpForm = false;
+      },
+      error => {
+        // this.errors = error;
+        this.misc.showLoader()
+      }
+    );
+
   }
   constructor(
     private formbuilder: FormBuilder,
     private conts: ConstantsService,
     private misc: MiscellaneousService,
+    private toastr: ToastrService
   ) { }
 
   submitDetailForm() {
@@ -59,20 +85,31 @@ export class GoldLoanComponent implements OnInit {
     // "phonenumber":"888888888"
     let detailFormData = {
       fullname: name,
-      phone: phone,
+      phonenumber: phone,
       email: email,
-      pinCode: pinCode,
+      pincode: pinCode,
       loan_amount_needed: loanAmount,
       weight_of_gold_grams: weightOfGold,
       how_soon_need_loan_in_days: dateOfLoan,
       source: "web"
     }
-
     console.log(detailFormData);
 
     this.misc.createFreshLeadWeb(detailFormData).subscribe(
       data => {
         console.log(data);
+        if(!data['data']['error']){
+          this.toastr.success("Lead Created Successfully", "Sucess", {
+            timeOut: 4000,
+          });
+          this.detailForm.reset();
+        }
+        if(data['data']['error']){
+          this.error = data['data']['detail'];
+          this.toastr.error(this.error, "Error", {
+          timeOut: 4000,
+        })
+        }
       },
       error => console.log(error)
     )
@@ -108,19 +145,24 @@ export class GoldLoanComponent implements OnInit {
 
 
   submitLoanForm() {
-    const name = this.newLoanForm.value.name;
     const phone = this.newLoanForm.value.phone;
-    const subscribe = this.isChecked;
 
-    const formData = {
-      name: name,
-      phone: phone,
-      subscribe: subscribe,
-    }
+    this.misc.sendOtp(phone).subscribe(
+      data => {
+        if(data['data']['error'])
+        {
+          this.toastr.error(data['data']['detail'], "Error!")
+        }
+        if(!data['data']['error']){
+          this.isLoanForm = false;
+          this.isOtpForm = true;
+          this.toastr.success("OTP sent successfully", "Success!");
+        }
+      });
 
-    console.log(formData);
-    this.isLoanForm = false;
-    this.isOtpForm = true;
+
+    // console.log(formData);
+
   }
 
   submitBalanceTransferForm() {
@@ -159,13 +201,13 @@ export class GoldLoanComponent implements OnInit {
   ngOnInit(): void {
 
     this.newLoanForm = this.formbuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
+      name: ['', [Validators.required, Validators.minLength(2)]],
       phone: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
       subscribe: [],
     })
 
     this.balanceTransferForm = this.formbuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
+      name: ['', [Validators.required, Validators.minLength(2)]],
       phone: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
       email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
       pinCode: ['', [Validators.required,]],

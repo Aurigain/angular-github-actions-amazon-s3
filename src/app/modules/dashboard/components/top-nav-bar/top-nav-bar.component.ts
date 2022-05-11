@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Profile } from 'src/app/core/adaptors/profile.model';
 import { AuthService } from 'src/app/core/authentication/auth.service';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
+import { environment } from 'src/environments/environment';
 import { SideNavBarService } from '../../side-nav.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class TopNavBarComponent implements OnInit {
   ) { }
 
   userProfile;
+  // media = environment.media;
 
   toggleVal: boolean = false;
 
@@ -35,6 +37,8 @@ export class TopNavBarComponent implements OnInit {
     this.misc.userProfile().subscribe(
       data => {
         this.userProfile = data;
+        console.log(data);
+        console.log("profile data:",this.userProfile);
       }
     );
   }

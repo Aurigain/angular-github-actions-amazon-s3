@@ -33,7 +33,7 @@ export class MiscellaneousService {
     return {
       headers: new HttpHeaders({
         'Content-Type': 'application/json; charset=utf-8',
-        Authorization: 'Bearer ' + token
+        Authorization: 'Token ' + token
       }).set('Access-Control-Allow-Origin', '*')
       // .set("Access-Control-Expose-Headers", "*"),
       // mode: 'no-cors'
@@ -136,6 +136,17 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+  fetchBTLead() {
+
+    return this.http.get(this.consts.fetchBTLead, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
 
   fetchAllEmployees() {
 
@@ -211,7 +222,7 @@ export class MiscellaneousService {
   }
 
   createFreshLeadWeb(data:any) {
-    return this.http.post(this.consts.userRoleApi, data)
+    return this.http.post(this.consts.freshLead, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
@@ -296,7 +307,7 @@ export class MiscellaneousService {
       );
   }
   agentDisApproval(id) {
-    return this.http.post(`${this.consts.apiAgent}approve_agent/${id}/`, this.getHeaderOption())
+    return this.http.put(`${this.consts.apiAgent}disapprove_agent/${id}/`, this.getHeaderOption())
       .pipe(
         catchError(this.errorHandler.handleError)
       );
@@ -354,15 +365,27 @@ export class MiscellaneousService {
   }
 
 
+  // userProfile() {
+  //   return new Observable(observer => {
+  //     this.networkRequest.getWithHeaders('/api/profile/').subscribe(
+  //       data => {
+  //         this.userProfileData.next(data['profile']);
+  //         observer.next(data['profile']);
+  //       }
+  //     );
+  //   });
+  // }
+
   userProfile() {
-    return new Observable(observer => {
-      this.networkRequest.getWithHeaders('/api/profile/').subscribe(
-        data => {
-          this.userProfileData.next(data['profile']);
-          observer.next(data['profile']);
-        }
+
+    return this.http.get(`${this.consts.agentProfile}`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
       );
-    });
   }
 
   /**

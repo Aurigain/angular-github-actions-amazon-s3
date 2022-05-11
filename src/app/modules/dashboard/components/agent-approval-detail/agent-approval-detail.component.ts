@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AgentApprovalDetailComponent implements OnInit {
 
   image = {
-    url: ['https://www.w3schools.com/css/img_forest.jpg', 'https://www.w3schools.com/css/img_5terre.jpg', 'https://www.w3schools.com/css/img_lights.jpg', 'https://www.w3schools.com/css/img_lights.jpg']
+    url: []
   }
   constructor(
     private route: ActivatedRoute,
@@ -19,10 +19,12 @@ export class AgentApprovalDetailComponent implements OnInit {
   ) { }
   agentDetails;
   currentUserId;
-
+  profileData
   isImagePreview:boolean = false;
   previewImg = null;
-
+  kycData
+  addressData
+  bankData
   previewImage(path){
     this.isImagePreview = true;
     this.previewImg = path;
@@ -36,13 +38,62 @@ export class AgentApprovalDetailComponent implements OnInit {
     this.misc.fetchAgentsDetail(userId).subscribe(
       data => {
         this.agentDetails = data['data'];
+        this.getAllUserDetails(this.agentDetails['username'])
         console.log("agent list", this.agentDetails);
       }
     )
   }
 
+  getAllUserDetails(username) {
+    this.misc.fetchAgentProfileDetailByUserName(username).subscribe(
+      data => {
+        console.log("profiles is:", data)
+        this.profileData = data['results'][0]
+        console.log(this.profileData);
+
+      },
+      error => {
+        console.log("error", error)
+      })
+    this.misc.fetchAgentKycByUserName(username).subscribe(
+      data => {
+        console.log("kyc data is", data);
+        this.kycData = data['results'][0]
+        this.image.url.push(this.kycData['aadhar_front_image'])
+        this.image.url.push(this.kycData['aadhar_back_image'])
+        this.image.url.push(this.kycData['pan_image'])
+        console.log("urls",this.image)
+      },
+      error => {
+        console.log("error", error)
+      }
+    )
+    this.misc.fetchAgentAddressByUserName(username).subscribe(
+      data => {
+        console.log("address data is", data);
+        this.addressData = data['results'][0]
+
+
+      },
+      error => {
+        console.log("error", error)
+      }
+    )
+    this.misc.fetchAgentBankByUserName(username).subscribe(
+      data => {
+        console.log("bank data is", data);
+        this.bankData = data['results'][0];
+        this.image.url.push(this.bankData['cancelled_cheque_image'])
+      },
+      error => {
+        console.log("error", error)
+      }
+    )
+  }
+
   agentApproval(){
-    this.misc.agentApproval(this.currentUserId).subscribe(
+    const id = this.profileData['id'];
+    this.misc.agentApproval(id).subscribe(
       data => {
         this.toastr.success("Agent Approved Successfully", "Sucess", {
           timeOut: 4000,
@@ -51,26 +102,25 @@ export class AgentApprovalDetailComponent implements OnInit {
     )
   }
 
-  // agentDisApproval(){
-  //   this.misc.agentDisApproval(this.currentUserId).subscribe(
-  //     data => {
-  //       this.toastr.success("Agent DisApproved Successfully", "Sucess", {
-  //         timeOut: 4000,
-  //       });
-  //     }
-  //   )
-  // }   ------------- NOT Working No API for Disapprove
   agentDisApproval(){
-
+    const id = this.profileData['id']
+    this.misc.agentDisApproval(id).subscribe(
+      data => {
+        this.toastr.success("Agent DisApproved Successfully", "Sucess", {
+          timeOut: 4000,
+        });
+      }
+    )
   }
+
+  // agentDisApproval(){
+
+  // }
 
   ngOnInit(): void {
 
     this.currentUserId = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log(this.currentUserId);
-
-
-
     this.fetchUserDetail(this.currentUserId);
   }
 

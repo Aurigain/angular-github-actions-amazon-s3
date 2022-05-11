@@ -53,6 +53,7 @@ import { BalanceTransferApprovalListComponent } from './components/leads/balance
 import { CompliancePanelComponent } from './components/compliance-panel/compliance-panel.component';
 import { CompliancePanelDetailComponent } from './components/compliance-panel-detail/compliance-panel-detail.component';
 import { AddPermissionsComponent } from './components/add-permissions/add-permissions.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -190,6 +191,9 @@ const routes: Routes = [
       {
         path: 'compliance-panel/detail/:id', component: CompliancePanelDetailComponent
       },
+      {
+        path: 'change-password', component: ChangePasswordComponent
+      },
     ]
   }
 ]
@@ -243,7 +247,8 @@ const routes: Routes = [
     BalanceTransferApprovalListComponent,
     CompliancePanelComponent,
     CompliancePanelDetailComponent,
-    AddPermissionsComponent
+    AddPermissionsComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,

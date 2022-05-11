@@ -10,7 +10,7 @@ export class PermissionsService {
   constructor(
     private cookie: CookieService,
     private utils: UtilsService,
-    private auth: AuthService 
+    private auth: AuthService
   ) { }
 
   isauthenticated(): boolean {
@@ -30,5 +30,90 @@ export class PermissionsService {
       this.auth.logout();
       return false;
     }
+  }
+
+  isAdmin() {
+    const token = this.cookie.get('_l_a_t');
+    const decodeToken = this.utils.decodeToken(token);
+
+    if (this.isauthenticated()) {
+      try {
+        const userType = decodeToken['user_group'];
+        if (userType.includes('admin') || userType.includes('superadmin')) {
+          console.log("superadminabab");
+          return true;
+        }
+      } catch (e) {
+        this.auth.logout();
+        return false;
+      }
+    } else {
+      return false;
+    }
+
+  }
+
+  isAgent() {
+    // console.log("aabbbbvv");
+    const token = this.cookie.get('_l_a_t');
+    const decodeToken = this.utils.decodeToken(token);
+    // Check user type only if authenticated
+    if (this.isauthenticated()) {
+      try {
+        const userType = decodeToken['user_group'];
+        if (userType.includes('agent')) {
+          console.log("superadminabab");
+          return true;
+        }
+      } catch (e) {
+        this.auth.logout();
+        return false;
+      }
+    } else {
+      return false;
+    }
+
+  }
+  isCustomer(): boolean {
+    // console.log("aabbbbvv");
+    const token = this.cookie.get('_l_a_t');
+    const decodeToken = this.utils.decodeToken(token);
+    // Check user type only if authenticated
+    if (this.isauthenticated()) {
+      try {
+        const userType = decodeToken['user_group'];
+        if (userType.includes('customer')) {
+          console.log("superadminabab");
+          return true;
+        }
+      } catch (e) {
+        this.auth.logout();
+        return false;
+      }
+    } else {
+      return false;
+    }
+
+  }
+  isSalesManager(): boolean {
+    // console.log("aabbbbvv");
+    const token = this.cookie.get('_l_a_t');
+    const decodeToken = this.utils.decodeToken(token);
+    // Check user type only if authenticated
+    if (this.isauthenticated()) {
+      try {
+        const userType = decodeToken['user_group'];
+        if (userType.includes('salesManager')) {
+          console.log("superadminabab");
+          return true;
+        }
+      } catch (e) {
+        this.auth.logout();
+        return false;
+      }
+    } else {
+      return false;
+    }
+
   }
 }

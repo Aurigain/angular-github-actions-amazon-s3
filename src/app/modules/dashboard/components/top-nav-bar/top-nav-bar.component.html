@@ -22,7 +22,7 @@
             <li class="nav-item dropdown user-profile-dropdown">
                 <a href="" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false" class="nav-link dropdown-toggle user">
-                    <img src="http://allaboutitdemo.co.in/assets/img/user-default.jpg" width="28" alt="user-image">
+                    <img [src]="userProfile?.image" width="28" alt="user-image">
                 </a>
                 <div aria-labelledby="userProfileDropdown" class="dropdown-menu dropdown-menu-right">
                     <div>
@@ -31,7 +31,7 @@
                                 <img src="http://allaboutitdemo.co.in/assets/img/user-default.jpg" alt="">
                             </div>
                             <div class="dropdown-item-name text-center">
-                                <div>{{userProfile?.first_name}}</div>
+                                <div>{{userProfile?.full_name}}</div>
                                 <strong>(admin(web))</strong>
                             </div>
                             <div class="top-text">
@@ -42,7 +42,7 @@
                                     <i class="fas fa-sign-out-alt pr-1"></i>Sign Out
                                 </a>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
