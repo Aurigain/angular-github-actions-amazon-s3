@@ -45,10 +45,11 @@ export class EmployeeDetailComponent implements OnInit {
   pan_image;
   cancelled_cheque;
   profile_image;
+  employeelist
   fetchRoles() {
     this.misc.fetchUserRoles().subscribe(
       data => {
-        this.Roles = data['data']['results']
+        this.Roles = data['data']
         console.log(this.Roles)
       }
     )
@@ -79,12 +80,24 @@ export class EmployeeDetailComponent implements OnInit {
     )
   }
 
+  fetchAllEmployees(){
+    this.misc.fetchAllEmployees().subscribe(
+      data => {
+        this.employeelist = data['data']
+        console.log("emp list: ",this.employeelist)
+      },
+      error =>{
+
+      }
+    )
+  }
+
   getAllUserDetails(username) {
     // this.networkRequest.getWithHeaders(`/api/agent/fetch_employee_profile_details?username=${username}`).subscribe(
     this.misc.fetchAgentProfileDetailByUserName(username).subscribe(
       data => {
         console.log("profiles is:", data)
-        const profileData = data['results'][0]
+        const profileData = data[0]
         console.log(profileData);
         const [first_name, last_name] = profileData['full_name'].split(' ');
         const role = this.misc.fetchUserRoleById(profileData['role'])
@@ -92,7 +105,7 @@ export class EmployeeDetailComponent implements OnInit {
           first_name: first_name,
           last_name: last_name,
           phone_number: profileData['phonenumber'],
-          role: profileData['role'],
+          role: profileData['user_group'],
           reporting_person: profileData['reporting_person'],
           gender: profileData['gender'],
           email: profileData['email'],
@@ -107,9 +120,9 @@ export class EmployeeDetailComponent implements OnInit {
     this.misc.fetchAgentKycByUserName(username).subscribe(
       data => {
         console.log("kyc data is", data);
-        const kycData = data['results'][0]
+        const kycData = data[0]
         this.kycDetailForm.patchValue({
-          qualification: kycData['qualification'],
+          qualification: kycData['qualification']['id'],
           aadhar_number: kycData['aadhar_number'],
           pan_number: kycData['pan_number'],
           occupation: kycData['occupation']
@@ -122,7 +135,7 @@ export class EmployeeDetailComponent implements OnInit {
     this.misc.fetchAgentAddressByUserName(username).subscribe(
       data => {
         console.log("address data is", data);
-        const addressData = data['results'][0]
+        const addressData = data[0]
         this.addressDetailForm.patchValue({
           pincode: addressData['pincode']['code'],
           address_line1: addressData['address_line1'],
@@ -138,7 +151,7 @@ export class EmployeeDetailComponent implements OnInit {
     this.misc.fetchAgentBankByUserName(username).subscribe(
       data => {
         console.log("bank data is", data);
-        const bankData = data['results'][0];
+        const bankData = data[0];
         this.bankDetails.patchValue({
           // bank: bankData['bank'],
           account_number: bankData['account_number'],
@@ -157,6 +170,7 @@ export class EmployeeDetailComponent implements OnInit {
     console.log(this.currentUserId);
     this.fetchRoles();
     this.getQualification();
+    this.fetchAllEmployees();
     this.fetchUserDetail(this.currentUserId);
     this.personalDetails = this.formbuilder.group({
 
@@ -292,7 +306,7 @@ export class EmployeeDetailComponent implements OnInit {
       this.loginservice.searchBank(ifscCode)
         .subscribe(
           data => {
-            this.fetchBranchDetail = data['results'][0];
+            this.fetchBranchDetail = data[0];
             console.log(this.fetchBranchDetail)
             this.bankDetails.patchValue({
               bank: this.fetchBranchDetail['bank']['name'],

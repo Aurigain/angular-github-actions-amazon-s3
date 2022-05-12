@@ -146,7 +146,7 @@ export class PartnerUsComponent implements OnInit {
       this.loginservice.searchBank(ifscCode)
         .subscribe(
           data => {
-            this.fetchBranchDetail= data['results'][0];
+            this.fetchBranchDetail= data[0];
             console.log(this.fetchBranchDetail)
             this.bankDetailForm.patchValue({
               bankName: this.fetchBranchDetail['bank']['name'],

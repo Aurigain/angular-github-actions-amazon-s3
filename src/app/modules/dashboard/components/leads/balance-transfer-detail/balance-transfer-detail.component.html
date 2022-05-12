@@ -36,8 +36,8 @@
                             <table class="table table-borderless">
                                 <tbody>
                                     <tr>
-                                        <td style="width: 25%;"><strong>Loan Case Number:</strong></td>
-                                        <td style="width: 25%;"> AUR/1/22/92158</td>
+                                        <td style="width: 25%;"><strong>Loan Case Date:</strong></td>
+                                        <td style="width: 25%;"> {{leadDetails?.created_at | date: "mediumDate"}}</td>
                                         <td style="width: 25%;"></td>
                                         <td style="width: 25%;"></td>
                                     </tr>
@@ -49,21 +49,14 @@
                                     </tr>
                                     <tr>
                                         <td style="width: 25%;"><strong>Full Name:</strong></td>
-                                        <td style="width: 25%;">gccghchchchc</td>
-                                        <td style="width: 25%;"><strong>Father's Name:</strong></td>
-                                        <td style="width: 25%;">hchchchc</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Date of Birth:</strong></td>
-                                        <td style="width: 25%;">12:00 AM</td>
-                                        <td style="width: 25%;"><strong>Gender:</strong></td>
-                                        <td style="width: 25%;">Male</td>
-                                    </tr>
-                                    <tr>
+                                        <td style="width: 25%;">{{profileData?.fullname}}</td>
                                         <td style="width: 25%;"><strong>Mobile Number:</strong></td>
-                                        <td style="width: 25%;">1234568888</td>
-                                        <td style="width: 25%;"><strong>Alternative Mobile number:</strong></td>
-                                        <td style="width: 25%;">1234568885</td>
+                                        <td style="width: 25%;">{{profileData?.phonenumber}}</td>
+                                    </tr>
+                                    <tr>
+
+                                        <td style="width: 25%;"><strong>Gender:</strong></td>
+                                        <td style="width: 25%;">{{profileData?.gender | titlecase}}</td>
                                     </tr>
                                     <tr>
                                         <td style="width: 25%;"><strong>Amount Loan:</strong></td>
@@ -71,17 +64,12 @@
                                         <td style="width: 25%;"><strong>Purpose of Loan:</strong></td>
                                         <td style="width: 25%;">Holidays</td>
                                     </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Customer Name:</strong></td>
-                                        <td style="width: 25%;"></td>
-                                        <td style="width: 25%;"><strong>Email Id:</strong></td>
-                                        <td style="width: 25%;">ghh@gg.com</td>
-                                    </tr>
+
                                     <tr>
                                         <td style="width: 25%;"><strong>Lead Source By:</strong></td>
-                                        <td style="width: 25%;">pokk</td>
+                                        <td style="width: 25%;">{{leadDetails?.lead?.source |titlecase}}</td>
                                         <td style="width: 25%;"><strong>Lead Type:</strong></td>
-                                        <td style="width: 25%;">External</td>
+                                        <td style="width: 25%;">{{leadDetails?.loan_type?.loan_type | titlecase}}</td>
                                     </tr>
                                 </tbody>
                             </table>

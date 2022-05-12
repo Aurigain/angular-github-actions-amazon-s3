@@ -57,10 +57,10 @@
                       <tr>
                         <th>Lead Id</th>
                         <th>Name</th>
-                        <th>Amount</th>
+                        <th>Phone Number</th>
                         <th>Type</th>
                         <th>RM Name</th>
-                        <th>Customer Occupation</th>
+                        <th>Source</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
@@ -68,17 +68,17 @@
                     <tbody>
                       <tr
                         *ngFor="let user of btLeadList | paginate: { itemsPerPage: rowFilter, currentPage: p }; let i = index ">
-                        <td>{{(p-1) * rowFilter + i + 1}}</td>
+                        <td>{{user?.id}}</td>
                         <td>{{user?.lead?.fullname}}</td>
-                        <td>{{user?.loan_amount_needed}}</td>
-                        <td>{{user?.loan_type}}</td>
+                        <td>{{user?.lead?.phonenumber}}</td>
+                        <td>{{user?.loan_type?.loan_type | titlecase}}</td>
                         <td>RM 1</td>
-                        <td>Professor</td>
+                        <td>{{user?.lead?.source}}</td>
                         <td>{{user?.current_status?.status}}</td>
                         <td>
                           <a
                           class="booking"
-                          [routerLink]="['detail', user.Id,]">
+                          [routerLink]="['detail', user.id,]">
                             <button class="btn btn-primary">
                               View
                             </button>

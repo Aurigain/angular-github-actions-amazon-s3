@@ -198,9 +198,7 @@
                         <select id="inputState" class="form-control" formControlName="reporting_person"
                           placeholder="Reporting Person">
                           <option value="" selected>Select Reporting Person</option>
-                          <option value="option1">Option 1</option>
-                          <option value="option2">Option 2</option>
-                          <option value="option3">Option 3</option>
+                          <option *ngFor="let emp of employeelist" [value]="emp?.name">{{emp?.name}}</option>
                         </select>
 
                         <div *ngIf="personalDetails.get('role').invalid && personalDetails.get('role').touched"

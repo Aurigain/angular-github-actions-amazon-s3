@@ -66,7 +66,7 @@ export class ContactUsComponent implements OnInit {
     this.misc.selectQuery().subscribe(
       data => {
         console.log("queryList",data);
-        this.queryList = data['results'];
+        this.queryList = data;
       },
       error=>{
         console.log(error);

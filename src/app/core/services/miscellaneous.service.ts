@@ -113,6 +113,30 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+
+  leadLoanDetailById(id) {
+
+    return this.http.get(`${this.consts.fetchLeadDetail}${id}/`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  fetchLeadProfileById(id) {
+
+    return this.http.get(`${this.consts.fetchLeadProfile}?lead=${id}`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
   selectQuery() {
 
     return this.http.get(this.consts.selectQueryApi, {
@@ -306,8 +330,8 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
-  agentDisApproval(id) {
-    return this.http.put(`${this.consts.apiAgent}disapprove_agent/${id}/`, this.getHeaderOption())
+  agentDisApproval(data, id) {
+    return this.http.put(`${this.consts.apiAgent}disapprove_agent/${id}/`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );

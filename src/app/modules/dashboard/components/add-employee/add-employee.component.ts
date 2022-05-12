@@ -46,7 +46,7 @@ export class AddEmployeeComponent implements OnInit {
   fetchRoles() {
     this.misc.fetchUserRoles().subscribe(
       data => {
-        this.Roles = data['data']['results']
+        this.Roles = data['data']
         console.log(this.Roles)
       }
     )
@@ -214,7 +214,7 @@ export class AddEmployeeComponent implements OnInit {
       this.loginservice.searchBank(ifscCode)
         .subscribe(
           data => {
-            this.fetchBranchDetail = data['results'][0];
+            this.fetchBranchDetail = data[0];
             console.log(this.fetchBranchDetail)
             this.bankDetails.patchValue({
               bank: this.fetchBranchDetail['bank']['name'],

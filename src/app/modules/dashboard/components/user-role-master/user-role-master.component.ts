@@ -109,7 +109,7 @@ export class UserRoleMasterComponent implements OnInit {
     this.misc.fetchUserRoles().subscribe(
       data => {
         console.log(data['data']);
-        this.userRoles = data['data']['results'];
+        this.userRoles = data['data'];
         console.log(this.userRoles);
       }
     )

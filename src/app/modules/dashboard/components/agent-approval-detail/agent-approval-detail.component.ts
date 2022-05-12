@@ -48,7 +48,7 @@ export class AgentApprovalDetailComponent implements OnInit {
     this.misc.fetchAgentProfileDetailByUserName(username).subscribe(
       data => {
         console.log("profiles is:", data)
-        this.profileData = data['results'][0]
+        this.profileData = data[0]
         console.log(this.profileData);
 
       },
@@ -58,7 +58,7 @@ export class AgentApprovalDetailComponent implements OnInit {
     this.misc.fetchAgentKycByUserName(username).subscribe(
       data => {
         console.log("kyc data is", data);
-        this.kycData = data['results'][0]
+        this.kycData = data[0]
         this.image.url.push(this.kycData['aadhar_front_image'])
         this.image.url.push(this.kycData['aadhar_back_image'])
         this.image.url.push(this.kycData['pan_image'])
@@ -71,7 +71,7 @@ export class AgentApprovalDetailComponent implements OnInit {
     this.misc.fetchAgentAddressByUserName(username).subscribe(
       data => {
         console.log("address data is", data);
-        this.addressData = data['results'][0]
+        this.addressData = data[0]
 
 
       },
@@ -82,7 +82,7 @@ export class AgentApprovalDetailComponent implements OnInit {
     this.misc.fetchAgentBankByUserName(username).subscribe(
       data => {
         console.log("bank data is", data);
-        this.bankData = data['results'][0];
+        this.bankData = data[0];
         this.image.url.push(this.bankData['cancelled_cheque_image'])
       },
       error => {
@@ -103,8 +103,11 @@ export class AgentApprovalDetailComponent implements OnInit {
   }
 
   agentDisApproval(){
-    const id = this.profileData['id']
-    this.misc.agentDisApproval(id).subscribe(
+    const id = this.profileData['id'];
+    let formData ={
+      remarks: '',
+    }
+    this.misc.agentDisApproval(formData, id).subscribe(
       data => {
         this.toastr.success("Agent DisApproved Successfully", "Sucess", {
           timeOut: 4000,

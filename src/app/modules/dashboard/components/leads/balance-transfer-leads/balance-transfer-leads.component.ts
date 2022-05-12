@@ -111,7 +111,7 @@ export class BalanceTransferLeadsComponent implements OnInit {
     this.misc.fetchBTLead().subscribe(
       data => {
         console.log(data);
-        this.btLeadList = data['results']
+        this.btLeadList = data
       }
     )
   }

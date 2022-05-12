@@ -44,8 +44,8 @@
                     </tr>
                     <tr>
                       <td><strong>Address</strong></td>
-                      <td>{{addressData?.address_line1}} {{addressData?.address_line2}} {{addressData?.city}}
-                        {{addressData?.state}}</td>
+                      <td>{{addressData?.address_line1}} {{addressData?.address_line2}} {{addressData?.city?.name}}
+                        {{addressData?.state?.name}}</td>
                     </tr>
                     <!-- <tr>
                                       <td><strong>Qualification</strong></td>
@@ -53,7 +53,7 @@
                                   </tr> -->
                     <tr>
                       <td><strong>Date of Birth:</strong></td>
-                      <td>{{profileData?.date_of_birth | date: 'medium'}}</td>
+                      <td>{{profileData?.date_of_birth | date: 'mediumDate'}}</td>
                     </tr>
                     <tr>
                       <td><strong>Current Occupation</strong></td>

@@ -85,8 +85,10 @@ export class AgentApprovalPanelComponent implements OnInit {
   }
 
   agentDisApproval(id){
-
-    this.misc.agentDisApproval(id).subscribe(
+    let formData = {
+      remarks: " ",
+    }
+    this.misc.agentDisApproval(formData, id).subscribe(
       data => {
         this.toastr.success("Agent DisApproved Successfully", "Sucess", {
           timeOut: 4000,

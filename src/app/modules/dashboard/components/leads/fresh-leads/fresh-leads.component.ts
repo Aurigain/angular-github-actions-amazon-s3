@@ -112,7 +112,7 @@ export class FreshLeadsComponent implements OnInit {
     this.misc.fetchFreshLead().subscribe(
       data =>{
         console.log("fetchedddd",data);
-        this.fetchedUserList = data['results'];
+        this.fetchedUserList = data;
       },
       error =>{
         console.log(error);

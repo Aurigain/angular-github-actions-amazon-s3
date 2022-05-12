@@ -72,8 +72,8 @@ export class AddPermissionsComponent implements OnInit {
 
     this.misc.fetchPermissions().subscribe(
       data => {
-        console.log(data['data']['results']);
-        this.fetchPermissions = data['data']['results']
+        console.log(data['data']);
+        this.fetchPermissions = data['data']
       },
       error => {
         console.log(error);
