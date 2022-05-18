@@ -200,12 +200,12 @@
                         <select id="inputState" class="form-control" formControlName="reporting_person"
                           placeholder="Reporting Person">
                           <option value="" selected>Select Reporting Person</option>
-                          <option *ngFor="let emp of employeelist" [value]="emp?.name">{{emp?.name}}</option>
+                          <option *ngFor="let emp of employeelist" [value]="emp?.username">{{emp?.name}}</option>
                         </select>
 
-                        <div *ngIf="personalDetails.get('role').invalid && personalDetails.get('role').touched"
+                        <div *ngIf="personalDetails.get('reporting_person').invalid && personalDetails.get('reporting_person').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger" *ngIf="personalDetails.get('role').errors?.['required']">role is
+                          <small class="text-danger" *ngIf="personalDetails.get('reporting_person').errors?.['required']">Reporting person is
                             required</small>
                         </div>
                       </div>

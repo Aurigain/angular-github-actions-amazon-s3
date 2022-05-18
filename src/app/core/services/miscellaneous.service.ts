@@ -137,6 +137,29 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+
+  fetchLeadDocumentById(id) {
+
+    return this.http.get(`${this.consts.fetchLeadDocument}?lead=${id}`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  fetchLeadAppointmentById(id) {
+
+    return this.http.get(`${this.consts.fetchLeadAppointment}?lead=${id}`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
   selectQuery() {
 
     return this.http.get(this.consts.selectQueryApi, {

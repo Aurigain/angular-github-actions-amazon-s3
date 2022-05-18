@@ -29,6 +29,10 @@ export class ConstantsService {
   fetchBTLead = `${environment.BASE_URL}/api/lead/bt_loan_requests/`;
   fetchLeadDetail = `${environment.BASE_URL}/api/lead/loan_request_by_id/`;
   fetchLeadProfile = `${environment.BASE_URL}/api/lead/fetch_lead_profile/`;
+  fetchLeadDocument = `${environment.BASE_URL}/api/lead/fetch_lead_documents/`;
+  fetchLeadBtAccountTransfer = `${environment.BASE_URL}/api/lead/fetch_lead_btaccount_transfer/`;
+  fetchLeadAppointment = `${environment.BASE_URL}/api/lead/fetch_lead_appointment/`;
+  fetchLeadAddressDetail = `${environment.BASE_URL}/api/lead/fetch_lead_address/`;
   userRoleApi = `${environment.BASE_URL}/api/user/user_role/`;
   freshLead = `${environment.BASE_URL}/api/lead/create/`;
   employeeApi = `${environment.BASE_URL}/api/agent/employee/`;

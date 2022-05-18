@@ -91,7 +91,8 @@ export class GoldLoanComponent implements OnInit {
       loan_amount_needed: loanAmount,
       weight_of_gold_grams: weightOfGold,
       how_soon_need_loan_in_days: dateOfLoan,
-      source: "web"
+      source: "web",
+      loan_id: 1
     }
     console.log(detailFormData);
 
