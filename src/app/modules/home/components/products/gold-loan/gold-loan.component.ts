@@ -20,6 +20,10 @@ export class GoldLoanComponent implements OnInit {
   error
   isOtpForm: boolean = false;
 
+  kyc_document_poa_img
+loan_document_img
+security_cheque_1_img
+
   sendOTP() {
     this.submitLoanForm();
 
@@ -99,17 +103,17 @@ export class GoldLoanComponent implements OnInit {
     this.misc.createFreshLeadWeb(detailFormData).subscribe(
       data => {
         console.log(data);
-        if(!data['data']['error']){
+        if (!data['data']['error']) {
           this.toastr.success("Lead Created Successfully", "Sucess", {
             timeOut: 4000,
           });
           this.detailForm.reset();
         }
-        if(data['data']['error']){
+        if (data['data']['error']) {
           this.error = data['data']['detail'];
           this.toastr.error(this.error, "Error", {
-          timeOut: 4000,
-        })
+            timeOut: 4000,
+          })
         }
       },
       error => console.log(error)
@@ -124,16 +128,54 @@ export class GoldLoanComponent implements OnInit {
   }
 
   get bName() {
-    return this.balanceTransferForm.get('name');
+    return this.balanceTransferForm.get('fullname');
   }
 
   get bPhone() {
-    return this.balanceTransferForm.get('phone');
+    return this.balanceTransferForm.get('mobile_number');
   }
 
-  get bEmail() {
-    return this.balanceTransferForm.get('email');
+  get gender() {
+    return this.balanceTransferForm.get('gender');
   }
+  get gross_weight_gold() {
+    return this.balanceTransferForm.get('gross_weight_gold');
+  }
+  get net_weight_gold() {
+    return this.balanceTransferForm.get('net_weight_gold');
+  }
+  get bank_ifsc_code() {
+    return this.balanceTransferForm.get('bank_ifsc_code');
+  }
+  get appointment_date() {
+    return this.balanceTransferForm.get('appointment_date');
+  }
+  get appointment_time() {
+    return this.balanceTransferForm.get('appointment_time');
+  }
+  get karat() {
+    return this.balanceTransferForm.get('karat');
+  }
+  get current_loan_account_number() {
+    return this.balanceTransferForm.get('current_loan_account_number');
+  }
+  get outstanding_loan_amount() {
+    return this.balanceTransferForm.get('outstanding_loan_amount');
+  }
+  get balance_transfer_amount() {
+    return this.balanceTransferForm.get('balance_transfer_amount');
+  }
+  get security_cheque_1() {
+    return this.balanceTransferForm.get('security_cheque_1');
+  }
+  get kyc_document_poa() {
+    return this.balanceTransferForm.get('kyc_document_poa');
+  }
+  get loan_document() {
+    return this.balanceTransferForm.get('loan_document');
+  }
+
+
   get bPinCode() {
     return this.balanceTransferForm.get('pinCode');
   }
@@ -150,11 +192,10 @@ export class GoldLoanComponent implements OnInit {
 
     this.misc.sendOtp(phone).subscribe(
       data => {
-        if(data['data']['error'])
-        {
+        if (data['data']['error']) {
           this.toastr.error(data['data']['detail'], "Error!")
         }
-        if(!data['data']['error']){
+        if (!data['data']['error']) {
           this.isLoanForm = false;
           this.isOtpForm = true;
           this.toastr.success("OTP sent successfully", "Success!");
@@ -167,32 +208,70 @@ export class GoldLoanComponent implements OnInit {
   }
 
   submitBalanceTransferForm() {
-    const name = this.balanceTransferForm.value.name;
-    const phone = this.balanceTransferForm.value.phone;
-    const email = this.balanceTransferForm.value.email;
-    const pinCode = this.balanceTransferForm.value.pinCode;
-    const existingLoanFrom = this.balanceTransferForm.value.existingLoanFrom;
-    const currentOutstandingAmount = this.balanceTransferForm.value.currentOutstandingAmount;
-    const subscribe = this.isChecked;
-    const otp = this.balanceTransferForm.value.otp;
-    let formData = {
-      name: name,
-      email: email,
-      phone: phone,
-      pinCode: pinCode,
-      existingLoanFrom: existingLoanFrom,
-      currentOutstandingAmount: currentOutstandingAmount,
-      subscribe: subscribe,
-    }
+    const fullname = this.balanceTransferForm.value.fullname;
+    const mobile_number = this.balanceTransferForm.value.mobile_number;
+    const gender = this.balanceTransferForm.value.gender;
+    const gross_weight_gold = this.balanceTransferForm.value.gross_weight_gold
+    const net_weight_gold = this.balanceTransferForm.value.net_weight_gold
+    const karat = this.balanceTransferForm.value.karat
+    const current_loan_account_number = this.balanceTransferForm.value.current_loan_account_number
+    const outstanding_loan_amount = this.balanceTransferForm.value.outstanding_loan_amount
+    const bank_ifsc_code = this.balanceTransferForm.value.bank_ifsc_code
+    const appointment_date = this.balanceTransferForm.value.appointment_date
+    const appointment_time = this.balanceTransferForm.value.appointment_time
+    const balance_transfer_amount = this.balanceTransferForm.value.balance_transfer_amount;
+
+    const security_cheque_1 = this.security_cheque_1_img;
+    const kyc_document_poa =this.kyc_document_poa_img;
+    const loan_document = this.loan_document_img;
+
+
+
+    let formData = new FormData();
+      formData.append("fullname", fullname)
+      formData.append("mobile_number", mobile_number)
+      formData.append("gender", gender)
+      formData.append("gross_weight_gold", gross_weight_gold)
+      formData.append("net_weight_gold", net_weight_gold)
+      formData.append("karat", karat)
+      formData.append("current_loan_account_number",current_loan_account_number),
+      formData.append("outstanding_loan_amount", outstanding_loan_amount)
+      formData.append("bank_ifsc_code", bank_ifsc_code)
+      formData.append("appointment_date", appointment_date)
+      formData.append("appointment_time", appointment_time)
+      formData.append("balance_transfer_amount", balance_transfer_amount)
+      formData.append("loan_id", "1")
+      formData.append("security_cheque_1", security_cheque_1)
+      formData.append("kyc_document_poa", kyc_document_poa)
+      formData.append("loan_document", loan_document)
+
     console.log(formData);
+    this.misc.createBTLeadWeb(formData).subscribe(
+      data =>{
+        console.log(data);
 
-    if (otp) {
-      let otpData = {
-        otp: otp,
+      },
+      error =>{
+        console.log(error)
       }
-      console.log(otpData);
-    }
+    )
+  }
 
+  onFileChange(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    if (event.target.id === 'kyc_document_poa') {
+      this.kyc_document_poa_img = file;
+      console.log(this.kyc_document_poa_img)
+    }
+    else if (event.target.id === 'loan_document') {
+    this.loan_document_img = file;
+    console.log(this.loan_document_img)
+    }
+    else if (event.target.id === 'security_cheque_1') {
+    this.security_cheque_1_img = file;
+    console.log(this.security_cheque_1_img)
+    }
+    console.log("filee",file)
   }
 
   onChange(event) {
@@ -208,12 +287,28 @@ export class GoldLoanComponent implements OnInit {
     })
 
     this.balanceTransferForm = this.formbuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      phone: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
-      email: ['', [Validators.required, Validators.pattern(this.conts.EMAIL_REGEXP)]],
-      pinCode: ['', [Validators.required,]],
-      existingLoanFrom: ['', [Validators.required]],
-      currentOutstandingAmount: ['', [Validators.required]],
+      fullname: ['', [Validators.required, Validators.minLength(2)]],
+      mobile_number: ['', [Validators.required, Validators.pattern(this.conts.PHONE.pattern)]],
+      gender: ['', [Validators.required]],
+
+      gross_weight_gold: ['', [Validators.required,]],
+      net_weight_gold: ['', [Validators.required]],
+      karat: ['', [Validators.required]],
+
+      current_loan_account_number: ['', [Validators.required]],
+      outstanding_loan_amount: ['', [Validators.required]],
+
+      bank_ifsc_code: ['', [Validators.required]],
+      appointment_date: ['', [Validators.required]],
+      appointment_time: ['', [Validators.required]],
+
+      balance_transfer_amount: ['', [Validators.required]],
+
+      kyc_document_poa: ['', [Validators.required]],
+      loan_document: ['', [Validators.required]],
+
+      security_cheque_1: ['', [Validators.required]],
+
       subscribe: [],
       otp: [],
     })

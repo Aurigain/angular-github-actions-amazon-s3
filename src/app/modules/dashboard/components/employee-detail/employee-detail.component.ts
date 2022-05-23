@@ -19,6 +19,10 @@ export class EmployeeDetailComponent implements OnInit {
   currentUserId;
   userDetail;
   username;
+  profileData;
+  addressData;
+  kycData;
+  bankData;
   constructor(
     private formbuilder: FormBuilder,
     private conts: ConstantsService,
@@ -45,7 +49,8 @@ export class EmployeeDetailComponent implements OnInit {
   pan_image;
   cancelled_cheque;
   profile_image;
-  employeelist
+  employeelist;
+  currentUserPk;
   fetchRoles() {
     this.misc.fetchUserRoles().subscribe(
       data => {
@@ -97,20 +102,21 @@ export class EmployeeDetailComponent implements OnInit {
     this.misc.fetchAgentProfileDetailByUserName(username).subscribe(
       data => {
         console.log("profiles is:", data)
-        const profileData = data[0]
-        console.log(profileData);
-        const [first_name, last_name] = profileData['full_name'].split(' ');
-        const role = this.misc.fetchUserRoleById(profileData['role'])
+        this.profileData = data[0]
+        console.log(this.profileData);
+        this.currentUserPk = this.profileData['id']
+        const [first_name, last_name] = this.profileData['full_name'].split(' ');
+        const role = this.misc.fetchUserRoleById(this.profileData['role'])
         this.personalDetails.patchValue({
           first_name: first_name,
           last_name: last_name,
-          phone_number: profileData['phonenumber'],
-          role: profileData['user_group'],
-          reporting_person: profileData['reporting_person'],
-          gender: profileData['gender'],
-          email: profileData['email'],
-          dob: profileData['date_of_birth'],
-          father_name: profileData['father_name'],
+          phone_number: this.profileData['phonenumber'],
+          role: this.profileData['user_group'],
+          reporting_person: this.profileData['reporting_person'],
+          gender: this.profileData['gender'],
+          email: this.profileData['email'],
+          dob: this.profileData['date_of_birth'],
+          father_name: this.profileData['father_name'],
 
         })
       },
@@ -120,12 +126,12 @@ export class EmployeeDetailComponent implements OnInit {
     this.misc.fetchAgentKycByUserName(username).subscribe(
       data => {
         console.log("kyc data is", data);
-        const kycData = data[0]
+        this.kycData = data[0]
         this.kycDetailForm.patchValue({
-          qualification: kycData['qualification']['id'],
-          aadhar_number: kycData['aadhar_number'],
-          pan_number: kycData['pan_number'],
-          occupation: kycData['occupation']
+          qualification: this.kycData['qualification']['id'],
+          aadhar_number: this.kycData['aadhar_number'],
+          pan_number: this.kycData['pan_number'],
+          occupation: this.kycData['occupation']
         })
       },
       error => {
@@ -135,11 +141,11 @@ export class EmployeeDetailComponent implements OnInit {
     this.misc.fetchAgentAddressByUserName(username).subscribe(
       data => {
         console.log("address data is", data);
-        const addressData = data[0]
+        this.addressData = data[0]
         this.addressDetailForm.patchValue({
-          pincode: addressData['pincode']['code'],
-          address_line1: addressData['address_line1'],
-          address_line2: addressData['address_line2'],
+          pincode: this.addressData['pincode']['code'],
+          address_line1: this.addressData['address_line1'],
+          address_line2: this.addressData['address_line2'],
         })
         this.searchPinCode();
 
@@ -151,12 +157,12 @@ export class EmployeeDetailComponent implements OnInit {
     this.misc.fetchAgentBankByUserName(username).subscribe(
       data => {
         console.log("bank data is", data);
-        const bankData = data[0];
+        this.bankData = data[0];
         this.bankDetails.patchValue({
           // bank: bankData['bank'],
-          account_number: bankData['account_number'],
+          account_number: this.bankData['account_number'],
           // branch: bankData['branch'],
-          ifsc_code: bankData['ifsc_code']
+          ifsc_code: this.bankData['ifsc_code']
         })
         this.searchIFSC();
       },
@@ -230,11 +236,6 @@ export class EmployeeDetailComponent implements OnInit {
     return this.kycDetailForm.get('occupation');
   }
 
-  saveBankDetails() {
-    this.stepUp();
-  }
-
-
   stepUp() {
     console.log("clicked")
     this.currentStep += 1;
@@ -254,28 +255,168 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
   savePersonalDetails() {
-    this.stepUp();
-    console.log("inside save personal details")
+
+    const first_name = this.personalDetails.value.first_name;
+    const last_name = this.personalDetails.value.last_name;
+    const phonenumber = this.personalDetails.value.phone_number;
+    const role = this.personalDetails.value.role;
+    const reporting_person = this.personalDetails.value.reporting_person;
+    const father_name = this.personalDetails.value.father_name;
+    const gender = this.personalDetails.value.gender;
+    const dob = this.personalDetails.value.dob;
+    const email = this.personalDetails.value.email;
+    const profile_image = this.profile_image;
     let personalDetailData: any;
 
-    const name = this.personalDetails.value.name;
-    const employeeCode = this.personalDetails.value.employeeCode;
-    const location = this.personalDetails.value.location;
-    const designation = this.personalDetails.value.designation;
-    const reportingPerson = this.personalDetails.value.reportingPerson;
-
-
+    const full_name = first_name.concat(" ", last_name);
     personalDetailData = {
-
-      name: name,
-      email: employeeCode,
-      phone: location,
-      address: designation,
-      role: reportingPerson
+        full_name: full_name,
+        phonenumber: phonenumber,
+        user_group: role,
+        reporting_person: reporting_person,
+        gender: gender,
+        email: email,
+        dob: dob,
+        father_name: father_name,
     }
+
+    let imageObj = new FormData();
+        imageObj.append("agent", this.currentUserPk)
+        imageObj.append("profile", profile_image)
 
     console.log(personalDetailData);
 
+    this.misc.updateEmployeeProfile(personalDetailData, this.currentUserPk).subscribe(
+      data =>{
+        console.log(data);
+        this.toastr.success("Basic Details Updated", "Success")
+        this.misc.uploadAgentImages(imageObj).subscribe(
+          data => {
+            console.log(data);
+            // this.router.navigateByUrl('/dashboard/employee-list')
+          },
+          error => {
+            console.log("Error", error);
+          }
+        )
+      },
+      error => {
+        console.log("error",error);
+        this.toastr.error(error, "Error")
+      }
+
+    )
+  }
+
+  saveAddressDetails() {
+
+    const address_line1 = this.addressDetailForm.value.address_line1;
+    const address_line2 = this.addressDetailForm.value.address_line2;
+    const city = this.pinCodeDetail['cityId'];
+    const state = this.pinCodeDetail['stateId'];
+    const pincode = this.pinCodeDetail['id'];
+
+    let addressDetailData: any;
+
+    addressDetailData = {
+      address_line1: address_line1,
+      address_line2: address_line2,
+      pincode: pincode,
+      city: city,
+      state: state,
+    }
+
+    console.log(addressDetailData);
+
+    this.misc.updateEmployeeAddress(addressDetailData, this.addressData['id']).subscribe(
+      data =>{
+        console.log(data);
+        this.toastr.success("Basic Details Updated", "Success")
+      },
+      error => console.log("error",error)
+    )
+  }
+
+  saveKYCDetails() {
+    const qualification = this.kycDetailForm.value.qualification;
+    const occupation = this.kycDetailForm.value.occupation;
+    // const aadhar_number = this.kycDetailForm.value.aadhar_number;
+    // const pan_number = this.kycDetailForm.value.pan_number;
+    const aadhar_front_image  = this.aadhar_front_image
+    const aadhar_back_image = this.aadhar_back_image
+    const pan_image  = this.pan_image
+    let kycDetailData: any;
+
+    kycDetailData = {
+        occupation: occupation,
+        // qualification: qualification,
+    }
+
+    console.log(kycDetailData);
+
+    let imageObj = new FormData();
+        imageObj.append("agent", this.currentUserPk)
+        // imageObj.append("profile", profile_image)
+        imageObj.append("aadhar_front",aadhar_front_image)
+        imageObj.append("aadhar_back",aadhar_back_image)
+        imageObj.append("pan",pan_image)
+        // imageObj.append("cancelled_cheque",cancelled_cheque)
+
+
+    this.misc.updateEmployeeKYC(kycDetailData, this.kycData['id']).subscribe(
+      data =>{
+        console.log(data);
+        this.misc.uploadAgentImages(imageObj).subscribe(
+          data => {
+            console.log(data);
+            // this.router.navigateByUrl('/dashboard/employee-list')
+          },
+          error => {
+            console.log("Error", error);
+          }
+        )
+      },
+      error => console.log("error",error)
+    )
+  }
+
+  saveBankDetail() {
+
+    const bank = this.fetchBranchDetail['bank']['id'];
+    const branch = this.fetchBranchDetail['id'];
+    const ifsc_code = this.bankDetails.value.ifsc_code;
+    const cancelled_cheque  = this.cancelled_cheque;
+    const account_number = this.bankDetails.value.account_number;
+    let bankDetailData: any;
+
+    bankDetailData = {
+        account_number: account_number,
+        id: bank,
+        branch: branch,
+        ifsc_code: ifsc_code,
+    }
+
+    let imageObj = new FormData();
+        imageObj.append("agent", this.currentUserPk)
+        imageObj.append("cancelled_cheque", cancelled_cheque)
+
+    console.log(bankDetailData);
+
+    this.misc.updateEmployeeBank(bankDetailData, this.bankData['id']).subscribe(
+      data =>{
+        console.log(data);
+        this.misc.uploadAgentImages(imageObj).subscribe(
+          data => {
+            console.log(data);
+            // this.router.navigateByUrl('/dashboard/employee-list')
+          },
+          error => {
+            console.log("Error", error);
+          }
+        )
+      },
+      error => console.log("error",error)
+    )
   }
 
   searchPinCode() {
@@ -451,7 +592,7 @@ export class EmployeeDetailComponent implements OnInit {
     }
 
     console.log(userObj);
-     this.misc.updateEmployee(userObj).subscribe(
+     this.misc.updateEmployeeProfile(userObj, this.currentUserId).subscribe(
       data => {
         console.log(data);
         this.toastr.success("Employee Added Successfully")

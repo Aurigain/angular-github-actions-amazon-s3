@@ -168,12 +168,12 @@
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputDate">Profile Photo</label>
-                        <input formControlName="profile_image" (change)="onChange($event)" type="file" id="profile_image" class="form-control" >
+                        <input formControlName="profile_image" (change)="onChange($event)" type="file" id="profile_image" class="form-control" readonly>
                         <div
-                          *ngIf="personalDetails.get('phone_number').invalid && personalDetails.get('phone_number').touched"
+                          *ngIf="personalDetails.get('profile_image').invalid && personalDetails.get('profile_image').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
                           <small class="text-danger"
-                            *ngIf="personalDetails.get('phone_number').errors?.['required']">Address
+                            *ngIf="personalDetails.get('profile_image').errors?.['required']">Profile Image
                             is required</small>
                         </div>
                       </div>
@@ -198,7 +198,7 @@
                         <select id="inputState" class="form-control" formControlName="reporting_person"
                           placeholder="Reporting Person">
                           <option value="" selected>Select Reporting Person</option>
-                          <option *ngFor="let emp of employeelist" [value]="emp?.name">{{emp?.name}}</option>
+                          <option *ngFor="let emp of employeelist" [value]="emp?.username">{{emp?.name}}</option>
                         </select>
 
                         <div *ngIf="personalDetails.get('role').invalid && personalDetails.get('role').touched"
@@ -217,8 +217,13 @@
 
                   <div class="form-btn">
 
-                    <a (click)="savePersonalDetails()"><button type="submit" class="btn btn-primary"><i
+                    <a (click)="stepUp()"><button type="submit" class="btn btn-primary"><i
                           class="fa fa-check"></i> Next</button></a>
+                  </div>
+
+                  <div class="form-btn">
+                    <a (click)="savePersonalDetails()"><button type="submit" class="btn btn-primary"><i
+                          class="fa fa-check"></i> Update</button></a>
                   </div>
                 </div>
               </div>
@@ -302,8 +307,13 @@
                   </div>
                   <div class="form-btn">
 
-                    <a (click)="saveBankDetails()"><button type="submit" class="btn btn-primary"><i
+                    <a (click)="stepUp()"><button type="submit" class="btn btn-primary"><i
                           class="fa fa-arrow-right"></i> Next</button></a>
+                  </div>
+                  <div class="form-btn">
+
+                    <a (click)="saveBankDetail()"><button type="submit" class="btn btn-primary"><i
+                          class="fa fa-arrow-right"></i> Update & Next</button></a>
                   </div>
                 </div>
               </div>
@@ -328,7 +338,7 @@
                       </div>
                       <div class="form-group col-md-6">
                         <input type="number" class="form-control" id="inputAadhar" placeholder="AADHAR Number Name"
-                          formControlName="aadhar_number" required />
+                          formControlName="aadhar_number" required  readonly/>
                         <!-- <div style="margin-left: 10px;" *ngIf="adhaarNumber.invalid && adhaarNumber.touched">
                           <small *ngIf="adhaarNumber.errors?.['required']" class="text-danger">Adhaar Number is
                             required</small>
@@ -336,7 +346,7 @@
                       </div>
                       <div class="form-group col-md-6">
                         <input type="text" class="form-control" id="inputPan" placeholder="PAN Number"
-                          formControlName="pan_number" required />
+                          formControlName="pan_number" required readonly />
                         <!-- <div style="margin-left: 10px;" *ngIf="panNumber.invalid && panNumber.touched">
                           <small *ngIf="panNumber.errors?.['required']" class="text-danger">PAN number is
                             required</small>
@@ -404,8 +414,13 @@
                   </div>
                   <div class="form-btn">
 
-                    <a (click)="saveBankDetails()"><button type="submit" class="btn btn-primary"><i
+                    <a (click)="stepUp()"><button type="submit" class="btn btn-primary"><i
                           class="fa fa-arrow-right"></i> Next</button></a>
+                  </div>
+                  <div class="form-btn">
+
+                    <a (click)="saveKYCDetails()"><button type="submit" class="btn btn-primary"><i
+                          class="fa fa-arrow-right"></i>Update & Next</button></a>
                   </div>
                 </div>
               </div>
@@ -465,9 +480,14 @@
                     <a (click)="stepDown()"><button type="submit" class="btn btn-dark"><i class="fa fa-arrow-left"></i>
                         Back</button></a>
                   </div>
+                  <!-- <div class="form-btn">
+
+                    <a (click)="stepUp()"><button type="submit" class="btn btn-success"><i class="fa fa-check"></i>
+                        Submit</button></a>
+                  </div> -->
                   <div class="form-btn">
 
-                    <a (click)="saveForms()"><button type="submit" class="btn btn-success"><i class="fa fa-check"></i>
+                    <a (click)="saveAddressDetails()"><button type="submit" class="btn btn-success"><i class="fa fa-check"></i>
                         Submit</button></a>
                   </div>
                 </div>

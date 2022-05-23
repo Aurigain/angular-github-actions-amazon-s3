@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { LoginService } from 'src/app/core/authentication/login.service';
+import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
 @Component({
   selector: 'app-balance-transfer-approval',
@@ -24,7 +25,7 @@ export class BalanceTransferApprovalComponent implements OnInit {
 
   nameRe = "";
   image = {
-    url: ['https://www.w3schools.com/css/img_forest.jpg', 'https://www.w3schools.com/css/img_5terre.jpg', 'https://www.w3schools.com/css/img_lights.jpg', 'https://www.w3schools.com/css/img_lights.jpg']
+    url: ['']
   }
 
 
@@ -34,22 +35,26 @@ export class BalanceTransferApprovalComponent implements OnInit {
     private conts: ConstantsService,
     private route: ActivatedRoute,
     private router: Router,
+    private misc: MiscellaneousService
 
   ) {
     this.tabelData = [];
    }
   currentStep: number = 1;
-  personalDetails: FormGroup;
-  documentDetails: FormGroup;
-  jewelleryDetails: FormGroup;
-  appointmentDetails: FormGroup;
-  addressDetails: FormGroup;
-  existingLoanDetails: FormGroup;
-  documentUploadDetails: FormGroup;
+  personalDetails;
+  jewelleryDetails;
+  appointmentDetails;
+  addressDetails;
+  existingLoanDetails;
+  documentUploadDetails;
   loanDetails: FormGroup;
   tabelData:any;
-
-
+  leadDetails
+  profileData
+  documentDetails;
+  dataVerify;
+  imageVerify;
+  accountTransferDetails;
   originalArray = [
     {Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: 'yishu@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'active'},
     {Id: 10017, FullName: 'Yishu Arora', FatherName: 'heeheh', Email: 'YishuArora@gmail.com', type: 'rejected',DateOfBirth: '0001-01-01T00:00:00', status: 'inactive'},
@@ -64,8 +69,9 @@ export class BalanceTransferApprovalComponent implements OnInit {
 
     ];
 
-  loadImage(dynamicImage){
-
+  loadImage(data, dynamicImage){
+    this.dataVerify = data;
+    this.imageVerify = dynamicImage;
   }
   get loanAccountNumber(){
     return this.loanDetails.get('loanAccountNumber')
@@ -80,6 +86,7 @@ export class BalanceTransferApprovalComponent implements OnInit {
   ngOnInit(): void {
     this.currentUserId = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log(this.currentUserId);
+    this.fetchBTLeadDetail(this.currentUserId)
     this.route.queryParams
       .subscribe(params => {
         console.log(params); // { orderby: "price" }
@@ -89,86 +96,141 @@ export class BalanceTransferApprovalComponent implements OnInit {
         // console.log(this.orderby); // price
       }
     );
-    this.personalDetails = this.formbuilder.group({
+    // this.personalDetails = this.formbuilder.group({
 
-      name: [''],
-      address: [''],
-      customerPhoto: [''],
-      phone: [''],
-      gender: [''],
-      alternateContact: [''],
-      fatherName: [''],
-    })
+    //   name: [''],
+    //   address: [''],
+    //   customerPhoto: [''],
+    //   phone: [''],
+    //   gender: [''],
+    //   alternateContact: [''],
+    //   fatherName: [''],
+    // })
 
-    this.loanDetails = this.formbuilder.group({
-      loanAccountNumber: ['', [Validators.required,]],
-      loanAmount: ['', [Validators.required,]],
-      loanDate: ['', [Validators.required,]],
-    })
+    // this.loanDetails = this.formbuilder.group({
+    //   loanAccountNumber: ['', [Validators.required,]],
+    //   loanAmount: ['', [Validators.required,]],
+    //   loanDate: ['', [Validators.required,]],
+    // })
 
-    this.addressDetails = this.formbuilder.group({
-      pinCode: ['', [Validators.required,]],
-      area: ['', [Validators.required]],
-      addressLine1: ['', [Validators.required,]],
-      addressLine2: ['', [Validators.required]],
-    })
+    // this.addressDetails = this.formbuilder.group({
+    //   pinCode: ['', [Validators.required,]],
+    //   area: ['', [Validators.required]],
+    //   addressLine1: ['', [Validators.required,]],
+    //   addressLine2: ['', [Validators.required]],
+    // })
 
-    this.jewelleryDetails = this.formbuilder.group({
-      jewelleryType: ['', [Validators.required,]],
-      quantity: ['', [Validators.required]],
-      weight: ['', [Validators.required,]],
-      karats: ['', [Validators.required,]],
-    })
+    // this.jewelleryDetails = this.formbuilder.group({
+    //   jewelleryType: ['', [Validators.required,]],
+    //   quantity: ['', [Validators.required]],
+    //   weight: ['', [Validators.required,]],
+    //   karats: ['', [Validators.required,]],
+    // })
 
-    this.existingLoanDetails = this.formbuilder.group({
-      bankName: ['', [Validators.required,]],
-      amountOld: ['', [Validators.required]],
-      dateOld: ['', [Validators.required,]],
-      valuation: ['', [Validators.required,]],
-      outstandingAmount: ['', [Validators.required,]],
-      balanceTransferAmount: ['', [Validators.required,]],
-      requiredAmount: ['', [Validators.required,]],
-      tenure: ['', [Validators.required,]],
-    })
+    // this.existingLoanDetails = this.formbuilder.group({
+    //   bankName: ['', [Validators.required,]],
+    //   amountOld: ['', [Validators.required]],
+    //   dateOld: ['', [Validators.required,]],
+    //   valuation: ['', [Validators.required,]],
+    //   outstandingAmount: ['', [Validators.required,]],
+    //   balanceTransferAmount: ['', [Validators.required,]],
+    //   requiredAmount: ['', [Validators.required,]],
+    //   tenure: ['', [Validators.required,]],
+    // })
 
-    this.appointmentDetails = this.formbuilder.group({
-      bank: ['', [Validators.required,]],
-      branch: ['', [Validators.required,]],
-      dateOfAppointment: ['', [Validators.required]],
-      timeOfAppointment: ['', [Validators.required,]],
-    })
-    this.documentDetails = this.formbuilder.group({
-      documentType: ['', [Validators.required,]],
-      documentNumber: ['', [Validators.required]],
-      documentTypePOA: ['', [Validators.required,]],
-      documentNumberPOA: ['', [Validators.required]],
-      panNumber: ['', [Validators.required,]],
-    })
+    // this.appointmentDetails = this.formbuilder.group({
+    //   bank: ['', [Validators.required,]],
+    //   branch: ['', [Validators.required,]],
+    //   dateOfAppointment: ['', [Validators.required]],
+    //   timeOfAppointment: ['', [Validators.required,]],
+    // })
+    // this.documentDetails = this.formbuilder.group({
+    //   documentType: ['', [Validators.required,]],
+    //   documentNumber: ['', [Validators.required]],
+    //   documentTypePOA: ['', [Validators.required,]],
+    //   documentNumberPOA: ['', [Validators.required]],
+    //   panNumber: ['', [Validators.required,]],
+    // })
 
-    this.documentUploadDetails = this.formbuilder.group({
-      customerPhoto: ['', [Validators.required,]],
-      blankCheck1: ['', [Validators.required]],
-      blankCheck2: ['', [Validators.required]],
-      kycPOI: ['', [Validators.required,]],
-      kycPOA: ['', [Validators.required,]],
-      loanDocument: ['', [Validators.required]],
-      foreclosureLetter: ['', [Validators.required,]],
-      atmWithdrawlSlip: ['', [Validators.required,]],
-      promissoryNote: ['', [Validators.required,]],
-      lastPageOfAgreement: ['', [Validators.required,]],
-    })
+    // this.documentUploadDetails = this.formbuilder.group({
+    //   customerPhoto: ['', [Validators.required,]],
+    //   blankCheck1: ['', [Validators.required]],
+    //   blankCheck2: ['', [Validators.required]],
+    //   kycPOI: ['', [Validators.required,]],
+    //   kycPOA: ['', [Validators.required,]],
+    //   loanDocument: ['', [Validators.required]],
+    //   foreclosureLetter: ['', [Validators.required,]],
+    //   atmWithdrawlSlip: ['', [Validators.required,]],
+    //   promissoryNote: ['', [Validators.required,]],
+    //   lastPageOfAgreement: ['', [Validators.required,]],
+    // })
 
-    if (this.currentUserId !== 0){
+    // if (this.currentUserId !== 0){
 
-      for (let i = 0; i < this.originalArray.length; i++) {
-        if (this.originalArray[i]['Id'] == this.currentUserId){
-          this.personalDetails.patchValue({
-            name: this.originalArray[i]['FullName'],
-          })
-        }
-      }
-    }
+    //   for (let i = 0; i < this.originalArray.length; i++) {
+    //     if (this.originalArray[i]['Id'] == this.currentUserId){
+    //       this.personalDetails.patchValue({
+    //         name: this.originalArray[i]['FullName'],
+    //       })
+    //     }
+    //   }
+    // }
   }
+
+
+  fetchBTLeadDetail(id) {
+    this.misc.leadLoanDetailById(id).subscribe(
+      data => {
+        console.log("bt lead detail:", data);
+        this.leadDetails = data;
+        const id = data['lead']['id'];
+        this.misc.fetchLeadProfileById(id).subscribe(
+          data => {
+            this.profileData = data[0]
+            console.log("lead profile detail: ", this.profileData);
+          },
+          error => {
+            console.log(error);
+          }
+        )
+        this.fetchBTLeadDocumentDetails(id);
+        this.fetchBTLeadAppointmentDetails(id);
+        this.fetchBTLeadAccountTransferDetails(id);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  fetchBTLeadDocumentDetails(id) {
+    this.misc.fetchLeadDocumentById(id).subscribe(data => {
+      console.log("document details:", data[0]);
+      this.documentDetails = data[0];
+      this.image.url.push(this.documentDetails['kyc_document_poa'])
+      this.image.url.push(this.documentDetails['kyc_document_poi'])
+      this.image.url.push(this.documentDetails['loan_document'])
+      this.image.url.push(this.documentDetails['security_cheque_1'])
+      this.image.url.push(this.documentDetails['security_cheque_2'])
+      console.log(this.image.url)
+    })
+  }
+
+  fetchBTLeadAppointmentDetails(id) {
+    this.misc.fetchLeadAppointmentById(id).subscribe(data => {
+      console.log("appointment details:", data[0]);
+      this.appointmentDetails = data[0];
+    })
+  }
+
+
+  fetchBTLeadAccountTransferDetails(id) {
+    this.misc.fetchLeadAccountTransferDetailById(id).subscribe(data => {
+      console.log("account transfer details:", data[0]);
+      this.accountTransferDetails = data[0];
+    })
+  }
+
 
   stepUp(){
     console.log("name remark is:", this.nameRe);

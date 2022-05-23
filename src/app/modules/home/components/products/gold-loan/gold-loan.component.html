@@ -292,72 +292,152 @@
                             aria-labelledby="pills-profile-tab">
                             <form [formGroup]="balanceTransferForm" (ngSubmit)="submitBalanceTransferForm()">
                               <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                   <input [class.is-invalid]="bName.invalid && bName.touched" type="text"
                                     class="form-control" id="inputName" placeholder="Enter Your Full Name"
-                                    formControlName="name" required />
+                                    formControlName="fullname" required />
                                   <div style="margin-left: 10px;" *ngIf="bName.invalid && bName.touched">
                                     <small *ngIf="bName.errors?.['required']" class="text-danger">Full Name is
                                       required</small>
                                   </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                  <input [class.is-invalid]="bEmail.invalid && bEmail.touched" type="text"
-                                    class="form-control" id="inputMail" placeholder="Your Email" formControlName="email"
-                                    required />
-                                  <div style="margin-left: 10px;" *ngIf="bEmail.invalid && bEmail.touched">
-                                    <small *ngIf="bEmail.errors?.['required']" class="text-danger">Email is
-                                      required</small>
-                                  </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                  <input [class.is-invalid]="bPinCode.invalid && bPinCode.touched" type="text"
-                                    class="form-control" id="inputResidence" placeholder="Place of residence (PINCODE)"
-                                    formControlName="pinCode" required />
-                                  <div style="margin-left: 10px;" *ngIf="bPinCode.invalid && bPinCode.touched">
-                                    <small *ngIf="bPinCode.errors?.['required']" class="text-danger">Please provide pin
-                                      code</small>
-                                  </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                  <input [class.is-invalid]="bExistingLoanFrom.invalid && bExistingLoanFrom.touched"
-                                    type="text" class="form-control" id="inputAmount-need"
-                                    placeholder="Existing Loan from" formControlName="existingLoanFrom" required />
-                                  <div style="margin-left: 10px;"
-                                    *ngIf="bExistingLoanFrom.invalid && bExistingLoanFrom.touched">
-                                    <small *ngIf="bExistingLoanFrom.errors?.['required']" class="text-danger">Please
-                                      provide existing loan from</small>
-                                  </div>
-                                </div>
-                                <div class="form-group col-md-6">
-                                  <input
-                                    [class.is-invalid]="bCurrentOutstandingAmount.invalid && bCurrentOutstandingAmount.touched"
-                                    type="text" class="form-control" id="inputWeight"
-                                    placeholder="Current Outstanding Amount" formControlName="currentOutstandingAmount"
-                                    required />
-                                  <div style="margin-left: 10px;"
-                                    *ngIf="bCurrentOutstandingAmount.invalid && bCurrentOutstandingAmount.touched">
-                                    <small *ngIf="bCurrentOutstandingAmount.errors?.['required']"
-                                      class="text-danger">Existing Loan Amount is Required</small>
-                                  </div>
-                                </div>
 
-                                <div class="form-row">
-                                  <div class="form-group col-md-8">
+                                <div class="form-group col-md-4">
+                                  <!-- <div class="form-group col-md-8"> -->
                                     <input [class.is-invalid]="bPhone.invalid && bPhone.touched" type="number"
                                       class="form-control" id="inputMobile" placeholder="Mobile Number"
-                                      formControlName="phone" required />
-                                    <button class="ml-5 btn-sm btn-primary">Send OTP</button>
+                                      formControlName="mobile_number" required />
+                                    <!-- <button class="ml-5 btn-sm btn-primary">Send OTP</button> -->
                                     <div style="margin-left: 10px;" *ngIf="bPhone.invalid && bPhone.touched">
                                       <small *ngIf="bPhone.errors?.['required']" class="text-danger">Phone number is
                                         required</small>
                                     </div>
-                                  </div>
-                                  <div class="form-group col-md-4">
+                                  <!-- </div> -->
+                                  <!-- <div class="form-group col-md-4">
                                     <input type="email" class="form-control" id="inputMobile" placeholder="OTP"
                                       formControlName="otp" required />
+                                  </div> -->
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <select [class.is-invalid]="gender.invalid && gender.touched" id="inputGender" class="form-control" formControlName="gender">
+                                    <option value="" selected>Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                  </select>
+
+                                  <div style="margin-left: 10px;" *ngIf="gender.invalid && gender.touched">
+                                    <small *ngIf="gender.errors?.['required']" class="text-danger">Gender is
+                                      required</small>
                                   </div>
                                 </div>
+
+                                <div class="form-group col-md-4">
+                                  <input [class.is-invalid]="gross_weight_gold.invalid && gross_weight_gold.touched" type="text"
+                                    class="form-control" id="inputName" placeholder="Gross Weight Gold"
+                                    formControlName="gross_weight_gold" required />
+                                  <div style="margin-left: 10px;" *ngIf="gross_weight_gold.invalid && gross_weight_gold.touched">
+                                    <small *ngIf="gross_weight_gold.errors?.['required']" class="text-danger">Gross Gold Weight is
+                                      required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <input [class.is-invalid]="net_weight_gold.invalid && net_weight_gold.touched" type="text"
+                                    class="form-control" id="inputName" placeholder="Net Weight Gold"
+                                    formControlName="net_weight_gold" required />
+                                  <div style="margin-left: 10px;" *ngIf="net_weight_gold.invalid && net_weight_gold.touched">
+                                    <small *ngIf="net_weight_gold.errors?.['required']" class="text-danger">Net Gold Weight is required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <input [class.is-invalid]="bName.invalid && bName.touched" type="text"
+                                    class="form-control" id="inputName" placeholder="Karat"
+                                    formControlName="karat" required />
+                                  <div style="margin-left: 10px;" *ngIf="bName.invalid && bName.touched">
+                                    <small *ngIf="bName.errors?.['required']" class="text-danger">Karat is
+                                      required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input [class.is-invalid]="current_loan_account_number.invalid && current_loan_account_number.touched" type="text"
+                                    class="form-control" id="inputName" placeholder="Current Loan Account Number"
+                                    formControlName="current_loan_account_number" required />
+                                  <div style="margin-left: 10px;" *ngIf="current_loan_account_number.invalid && current_loan_account_number.touched">
+                                    <small *ngIf="current_loan_account_number.errors?.['required']" class="text-danger">Current Loan Account Number is
+                                      required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <input [class.is-invalid]="outstanding_loan_amount.invalid && outstanding_loan_amount.touched" type="text"
+                                    class="form-control" id="inputName" placeholder="Outstanding Loan Amount"
+                                    formControlName="outstanding_loan_amount" required />
+                                  <div style="margin-left: 10px;" *ngIf="outstanding_loan_amount.invalid && outstanding_loan_amount.touched">
+                                    <small *ngIf="outstanding_loan_amount.errors?.['required']" class="text-danger">Outstanding Loan Amount is
+                                      required</small>
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                  <input [class.is-invalid]="bName.invalid && bName.touched" type="text"
+                                    class="form-control" id="inputName" placeholder="Bank IFSC"
+                                    formControlName="bank_ifsc_code" required />
+                                  <div style="margin-left: 10px;" *ngIf="bName.invalid && bName.touched">
+                                    <small *ngIf="bName.errors?.['required']" class="text-danger">Bank IFSC Code is
+                                      required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <input [class.is-invalid]="bName.invalid && bName.touched" type="date"
+                                    class="form-control" id="inputName" placeholder="Appointment Date"
+                                    formControlName="appointment_date" required />
+                                  <div style="margin-left: 10px;" *ngIf="bName.invalid && bName.touched">
+                                    <small *ngIf="bName.errors?.['required']" class="text-danger">Appointment Date is
+                                      required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <input [class.is-invalid]="bName.invalid && bName.touched" type="time"
+                                    class="form-control" id="inputName" placeholder="Appointment Time"
+                                    formControlName="appointment_time" required />
+                                  <div style="margin-left: 10px;" *ngIf="bName.invalid && bName.touched">
+                                    <small *ngIf="bName.errors?.['required']" class="text-danger">Appointment Time is
+                                      required</small>
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                  <input [class.is-invalid]="balance_transfer_amount.invalid && balance_transfer_amount.touched" type="text"
+                                    class="form-control" placeholder="Balance Transfer Amount"
+                                    formControlName="balance_transfer_amount" required />
+                                  <div style="margin-left: 10px;" *ngIf="balance_transfer_amount.invalid && balance_transfer_amount.touched">
+                                    <small *ngIf="balance_transfer_amount.errors?.['required']" class="text-danger">Balance Transfer Amount is required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <input [class.is-invalid]="security_cheque_1.invalid && security_cheque_1.touched" type="file" id="security_cheque_1" (change)="onFileChange($event)"
+                                    class="form-control"
+                                    formControlName="security_cheque_1" required />
+                                  <div style="margin-left: 10px;" *ngIf="security_cheque_1.invalid && security_cheque_1.touched">
+                                    <small *ngIf="security_cheque_1.errors?.['required']" class="text-danger">Balance Transfer Amount is required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <input [class.is-invalid]="kyc_document_poa.invalid && kyc_document_poa.touched" type="file" id= "kyc_document_poa" (change)="onFileChange($event)"
+                                    class="form-control"
+                                    formControlName="kyc_document_poa" required />
+                                  <div style="margin-left: 10px;" *ngIf="kyc_document_poa.invalid && kyc_document_poa.touched">
+                                    <small *ngIf="kyc_document_poa.errors?.['required']" class="text-danger">KYC Document POA is required</small>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <input [class.is-invalid]="loan_document.invalid && loan_document.touched" type="file" (change)="onFileChange($event)"
+                                    class="form-control" id="loan_document"
+                                    formControlName="loan_document" required />
+                                  <div style="margin-left: 10px;" *ngIf="loan_document.invalid && loan_document.touched">
+                                    <small *ngIf="loan_document.errors?.['required']" class="text-danger">Loan Document is required</small>
+                                  </div>
+                                </div>
+
 
                                 <div class="form-group col-md-12">
                                   <p>

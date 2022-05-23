@@ -14,7 +14,7 @@
                     <li ngbDropdown class="nav-item dropdown">
                         <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="navbarFeatures" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Products 
+                            Products
                         </a>
                         <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarFeatures">
 
@@ -31,12 +31,13 @@
                     <li class="nav-item"><a class="nav-link " routerLink="/faq">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link " routerLink="/partner-us">Partner Us</a></li>
                     <li class="nav-item"><a class="nav-link " routerLink="/contact-us">Contact us</a></li>
-                    <li class="nav-item"><a class="nav-link " routerLink="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link " routerLink="/login" *ngIf="!isAuthenticated">Login</a></li>
+                    <li class="nav-item"><a class="nav-link " routerLink="/dashboard" *ngIf="isAuthenticated">Dashboard</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-</div> 
+</div>
 <!-- navbar end -->
 
 
@@ -50,11 +51,11 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link " routerLink="">Home</a></li>
-                
+
                 <li ngbDropdown class="nav-item dropdown">
                     <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbarFeatures" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Products 
+                        Products
                     </a>
                     <ul ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarFeatures">
                         <li ngbDropdownItem><a class="dropdown-item" href="https://aurigain.com/gold-loan"> Gold Loan</a></li>

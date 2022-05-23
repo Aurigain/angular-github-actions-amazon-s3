@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { ErrorHandlerService } from '../http/error-handler.service';
+import { MiscellaneousService } from '../services/miscellaneous.service';
 import { NetworkRequestService } from '../services/network-request.service';
 import { UtilsService } from '../services/utils.service';
 import { AuthService } from './auth.service';
 import { ProfileService } from './user-profile.service';
-
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,9 +27,11 @@ export class LoginService {
     private profileservice: ProfileService,
     private networkRequest: NetworkRequestService,
     private utils: UtilsService,
+    private misc: MiscellaneousService,
   ) { }
 
   userProfileObj;
+  userPermissions = [];
 
   forgotPassword(data: any) {
     return this.http.post(this.constsvc.forgotPasswordUrl, data)
@@ -60,10 +63,12 @@ export class LoginService {
         console.log("Token set successfully");
         this.extraSteps().subscribe({
           error: err => {
-            console.log(err);
+            console.log("error",err);
+            this.auth.clearStorages();
           },
           complete: () => {
-            // this.loginRedirect();
+            console.log("inside compelete step")
+            this.loginRedirect();
           }
         })
       } catch(err){
@@ -73,37 +78,50 @@ export class LoginService {
   }
 
   extraSteps(): Observable<any> {
-    // console.log("extra steps", this.cookie.get('_l_a_t'));
     const decodeToken = this.utils.decodeToken(this.cookie.get('_l_a_t'));
     console.log("decoded token: ", decodeToken);
     return new Observable(observer => {
-      this.profileservice.refreshProfileData().subscribe(
+      this.misc.userProfile().subscribe(
         data => {
-          console.log("profile data", data);
+          console.log("profile data:",data);
           localStorage.setItem('userProfile', JSON.stringify(data));
-          this.profileservice.setUserProfileValue(data);
-          observer.complete();
-        },
-        error => {
-          observer.error('failed');
+          this.misc.fetchPermissionsById(data['user_group']).subscribe(
+            data => {
+              console.log("permissions data:",data);
+              //@ts-ignore
+              data.map((res) => {
+                this.userPermissions.push(res['permission']['permission_name']);
+              })
+              console.log("usppppppppppppppp", this.userPermissions)
+              localStorage.setItem('userPermissions', JSON.stringify(this.userPermissions));
+              observer.complete();
+            },
+            error => {
+              console.log("error:",error);
+              observer.error("failed");
+            }
+          )
         }
-      )
-
-
-      // this.networkRequest.getWithHeaders('/api/profile/').subscribe(
-      //   data => {
-      //     this.userProfileObj = data['profile'];
-
-      //     observer.complete();
-      //   },
-      //   error => {
-      //     observer.error('failed');
-      //   }
-      // );
-
+      );
     });
-
   }
+  // extraSteps(): Observable<any> {
+  //   const decodeToken = this.utils.decodeToken(this.cookie.get('_l_a_t'));
+  //   console.log("decoded token: ", decodeToken);
+  //   return new Observable(observer => {
+  //     this.profileservice.refreshProfileData().subscribe(
+  //       data => {
+  //         console.log("profile data", data);
+  //         localStorage.setItem('userProfile', JSON.stringify(data));
+  //         this.profileservice.setUserProfileValue(data);
+  //         observer.complete();
+  //       },
+  //       error => {
+  //         observer.error('failed');
+  //       }
+  //     )
+  //   });
+  // }
 
   setToken(user) {
     try {
@@ -115,6 +133,6 @@ export class LoginService {
   }
 
   loginRedirect(){
-    // this.router.navigateByUrl('/dashboard');
+    this.router.navigate(['/dashboard']);
   }
 }

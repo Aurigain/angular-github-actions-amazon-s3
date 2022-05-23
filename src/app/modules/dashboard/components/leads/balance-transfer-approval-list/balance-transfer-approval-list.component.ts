@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
 @Component({
   selector: 'app-balance-transfer-approval-list',
@@ -11,9 +12,11 @@ export class BalanceTransferApprovalListComponent implements OnInit {
   rowFilter: number = 1;
   updateStatusForm:FormGroup;
   AppointmentDetailForm:FormGroup;
+  btLeadList;
   successMsg: any;
   constructor(
     private formbuilder: FormBuilder,
+    private misc: MiscellaneousService
   ) { }
 
   deleteUser(id){
@@ -105,9 +108,19 @@ export class BalanceTransferApprovalListComponent implements OnInit {
 
   }
 
+  fetchBtLeads(){
+    this.misc.fetchBTLead().subscribe(
+      data => {
+        console.log(data);
+        this.btLeadList = data
+      }
+    )
+  }
+
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
     this.filter('');
+    this.fetchBtLeads();
     this.selectedForm = this.formbuilder.group({
       selectCategory: ['']
      })

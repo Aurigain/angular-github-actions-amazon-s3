@@ -56,29 +56,29 @@
                   <thead class="text-white">
                     <tr>
                       <th>Lead Id</th>
-                      <th>Name</th>
-                      <th>Amount</th>
-                      <th>Type</th>
-                      <th>RM Name</th>
-                      <th>Customer Occupation</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Type</th>
+                        <th>RM Name</th>
+                        <th>Source</th>
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr
-                      *ngFor="let user of filterArray | paginate: { itemsPerPage: rowFilter, currentPage: p }; let i = index ">
-                      <td>{{(p-1) * rowFilter + i + 1}}</td>
-                      <td>{{user.FullName}}</td>
-                      <td>110059</td>
-                      <td>Int</td>
+                      *ngFor="let user of btLeadList | paginate: { itemsPerPage: rowFilter, currentPage: p }; let i = index ">
+                      <td>{{user?.id}}</td>
+                      <td>{{user?.lead?.fullname}}</td>
+                      <td>{{user?.lead?.phonenumber}}</td>
+                      <td>{{user?.loan_type?.loan_type | titlecase}}</td>
                       <td>RM 1</td>
-                      <td>Professor</td>
-                      <td>Pending / MisMatch / Completed</td>
+                      <td>{{user?.lead?.source}}</td>
+                      <td>{{user?.current_status?.status}}</td>
                       <td>
                         <a
                         class="booking"
-                        [routerLink]="['approval', user.Id,]">
+                        [routerLink]="['approval', user.id,]">
                           <button class="btn btn-primary">
                             View
                           </button>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PermissionsService } from 'src/app/core/authentication/permissions.service';
 
 @Component({
   selector: 'app-top-navbar-bottom',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopNavbarBottomComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private permissions: PermissionsService
+  ) { }
+
+  isAuthenticated = this.permissions.isauthenticated();
 
   ngOnInit(): void {
   }

@@ -16,6 +16,7 @@ export class DashboardHomeComponent implements OnInit {
   rowFilter: number = 1;
   updateStatusForm:FormGroup;
   AppointmentDetailForm:FormGroup;
+  userData
   constructor(
     private formbuilder: FormBuilder,
     public sidenavservice: SideNavBarService
@@ -24,7 +25,7 @@ export class DashboardHomeComponent implements OnInit {
   get pinCode(){
     return this.AppointmentDetailForm.get('pinCode');
   }
-  
+
   p:number = 1;
 
   selectedForm: FormGroup;
@@ -42,24 +43,24 @@ export class DashboardHomeComponent implements OnInit {
 
   ];
   filterArray = [];
-  
-  
+
+
   itemsFilter(value){
     this.rowFilter = value;
   }
 
   filter(query: string){
     this.filterArray = [];
-    console.log(query);   
-      this.filterArray = (query) ? this.originalArray.filter(p => p.FullName.toLowerCase().includes(query.toLowerCase())) : this.originalArray; 
+    console.log(query);
+      this.filterArray = (query) ? this.originalArray.filter(p => p.FullName.toLowerCase().includes(query.toLowerCase())) : this.originalArray;
       console.log(this.filterArray);
       this.rowFilter = this.filterArray.length;
   }
-    
+
   searchedCategory(){
     this.filterArray = [];
     let category = this.selectedForm.value.selectCategory;
-    this.filterArray = (category) ? this.originalArray.filter(p => p.type.includes(category)) : this.originalArray; 
+    this.filterArray = (category) ? this.originalArray.filter(p => p.type.includes(category)) : this.originalArray;
     console.log(this.filterArray);
   }
 
@@ -83,9 +84,12 @@ export class DashboardHomeComponent implements OnInit {
 
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
+
+    this.userData = localStorage.getItem('userProfile');
+    console.log("fetched user data from local", JSON.parse(this.userData))
     this.filter('');
     this.selectedForm = this.formbuilder.group({
-      selectCategory: ['']    
+      selectCategory: ['']
      })
      console.log(this.originalArray);
 
@@ -93,7 +97,7 @@ export class DashboardHomeComponent implements OnInit {
       status : ['', Validators.required],
       remark : [''],
     })
-    
+
     this.AppointmentDetailForm = this.formbuilder.group({
       pinCode : ['', Validators.required],
       branch : ['', Validators.required],

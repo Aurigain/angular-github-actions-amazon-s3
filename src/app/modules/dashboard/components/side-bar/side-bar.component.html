@@ -1,12 +1,12 @@
 <nav id="sidebar" [ngClass]="{ hidden: toggle }">
   <ul class="list-unstyled components mt-4">
-    <li>
+    <li *ngIf="checkPermission('Dashboard')">
       <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         <span class="title"><i class="fa fa-home" style="margin-left: -5px"></i> Dashboard</span>
       </a>
     </li>
 
-    <li>
+    <li *ngIf="checkPermission('Leads')">
       <a routerLinkActive="active" href="#course" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span><i class="fa fa-book" style="margin-left: -5px"></i></span>
         Lead</a>
@@ -73,7 +73,7 @@
         </li> -->
       </ul>
     </li>
-    <li>
+    <li *ngIf="checkPermission('Master')">
       <a routerLinkActive="active" href="#master" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span><i class="fa fa-book" style="margin-left: -5px"></i></span>
         Master</a>
@@ -83,7 +83,7 @@
         </li>
       </ul>
     </li>
-    <li>
+    <li *ngIf="checkPermission('Commissions')">
       <a routerLinkActive="active" href="#commissions" data-toggle="collapse" aria-expanded="false"
         class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>
@@ -109,7 +109,7 @@
         </li>
       </ul>
     </li>
-    <li>
+    <li *ngIf="checkPermission('Employee Management')">
       <a routerLinkActive="active" href="#agent" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Employee Management</a>
       <ul class="collapse list-unstyled" id="agent">
@@ -148,7 +148,7 @@
         </li>
       </ul>
     </li> -->
-    <li>
+    <li *ngIf="checkPermission('Accounts Checker Panel')">
       <a routerLinkActive="active" href="#checkers" data-toggle="collapse" aria-expanded="false"
         class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Accounts Panels</a>
@@ -165,7 +165,7 @@
         </li>
       </ul>
     </li>
-    <li>
+    <li *ngIf="checkPermission('Agent Approval')">
       <a routerLinkActive="active" href="#approval" data-toggle="collapse" aria-expanded="false"
         class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Approvals</a>

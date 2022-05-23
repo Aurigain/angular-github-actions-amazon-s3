@@ -84,9 +84,13 @@ export class AuthService {
       );
   }
   logout() {
+    this.clearStorages();
+    location.replace('/');
+  }
+
+  clearStorages() {
     this.cookie.deleteAll('/');
     this.cookie.deleteAll();
     sessionStorage.clear();
-    location.replace('/');
   }
 }

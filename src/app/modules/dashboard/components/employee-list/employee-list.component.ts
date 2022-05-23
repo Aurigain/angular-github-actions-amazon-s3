@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
 @Component({
@@ -14,10 +15,12 @@ export class EmployeeListComponent implements OnInit {
   AppointmentDetailForm:FormGroup;
   suc
   successMsg: any;
+  userPermissions
   employeelist: any;
   constructor(
     private formbuilder: FormBuilder,
-    private misc: MiscellaneousService
+    private misc: MiscellaneousService,
+    private router: Router
   ) { }
 
   deleteUser(id){
@@ -123,6 +126,12 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
+
+    // const tempPermissions = localStorage.getItem('userPermissions');
+    // this.userPermissions= JSON.parse(tempPermissions)
+    // if(!this.userPermissions.includes('Employee Management')){
+    //   this.router.navigateByUrl('/dashboard')
+    // }
     this.filter('');
     this.fetchAllEmployees();
     this.selectedForm = this.formbuilder.group({

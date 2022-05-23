@@ -43,9 +43,9 @@
                                     </tr>
                                     <tr>
                                         <td style="width: 25%;"><strong>Product Category:</strong></td>
-                                        <td style="width: 25%;">Gold Loan</td>
+                                        <td style="width: 25%;">{{leadDetails?.loan_type?.loan_type | titlecase}}</td>
                                         <td style="width: 25%;"><strong>Product Name:</strong></td>
-                                        <td style="width: 25%;">Basic Gold Loan</td>
+                                        <td style="width: 25%;">{{leadDetails?.loan_type?.loan_type | titlecase}}</td>
                                     </tr>
                                     <tr>
                                         <td style="width: 25%;"><strong>Full Name:</strong></td>
@@ -54,15 +54,14 @@
                                         <td style="width: 25%;">{{profileData?.phonenumber}}</td>
                                     </tr>
                                     <tr>
-
+                                        <!-- <td style="width: 25%;"><strong>Amount Loan:</strong></td>
+                                        <td style="width: 25%;">{{leadDetails?.loan_amount_needed}}</td> -->
                                         <td style="width: 25%;"><strong>Gender:</strong></td>
                                         <td style="width: 25%;">{{profileData?.gender | titlecase}}</td>
                                     </tr>
                                     <tr>
-                                        <td style="width: 25%;"><strong>Amount Loan:</strong></td>
-                                        <td style="width: 25%;">12588</td>
-                                        <td style="width: 25%;"><strong>Purpose of Loan:</strong></td>
-                                        <td style="width: 25%;">Holidays</td>
+
+
                                     </tr>
 
                                     <tr>
@@ -89,28 +88,35 @@
                                 <tbody>
                                     <tr>
                                         <td style="width: 25%;"><strong>Bank Name:</strong></td>
-                                        <td style="width: 25%;">HDFC</td>
-                                        <td style="width: 25%;"><strong>Amount:</strong></td>
-                                        <td style="width: 25%;">68868</td>
+                                        <td style="width: 25%;">{{appointmentDetails?.branch?.bank?.name}}</td>
+                                        <td style="width: 25%;"><strong>Bank IFSC:</strong></td>
+                                        <td style="width: 25%;">{{appointmentDetails?.branch?.ifsc_code}}</td>
                                     </tr>
                                     <tr>
                                         <td style="width: 25%;"><strong>Date:</strong></td>
-                                        <td style="width: 25%;">Jan 4, 2022</td>
-                                        <td style="width: 25%;"><strong>Tenure:</strong></td>
-                                        <td style="width: 25%;">12</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Jewellery Valuation:</strong></td>
-                                        <td style="width: 25%;">1234</td>
+                                        <td style="width: 25%;">{{accountTransferDetails?.created_at | date: 'short'}}</td>
                                         <td style="width: 25%;"><strong>Outstanding Amount:</strong></td>
-                                        <td style="width: 25%;">5282</td>
+                                        <td style="width: 25%;"> {{accountTransferDetails?.existing_loan_account?.outstanding_loan_amount}}</td>
                                     </tr>
+
                                     <tr>
                                         <td style="width: 25%;"><strong>Balance Transfer Amount:</strong></td>
-                                        <td style="width: 25%;">8888</td>
-                                        <td style="width: 25%;"><strong>Required Amount:</strong></td>
-                                        <td style="width: 25%;">12345</td>
-                                    </tr>
+                                        <td style="width: 25%;">
+                                          {{accountTransferDetails?.balance_transfer_amount}}
+                                         </td>
+                                        <td style="width: 25%;"><strong>Existing Loan Account Number:</strong></td>
+                                        <td style="width: 25%;">
+                                          {{accountTransferDetails?.existing_loan_account?.existing_loan_account_number}}</td>
+                                      </tr>
+                                    <tr>
+                                        <td style="width: 25%;"><strong>Loan Account Number:</strong></td>
+                                        <td style="width: 25%;">
+                                          {{accountTransferDetails?.loan_account_number}}
+                                         </td>
+                                        <td style="width: 25%;"><strong>Existing Loan Account Number:</strong></td>
+                                        <td style="width: 25%;">
+                                          {{accountTransferDetails?.existing_loan_account?.existing_loan_account_number}}</td>
+                                      </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -128,28 +134,22 @@
                             <table class="table table-borderless">
                                 <tbody>
                                     <tr>
-                                        <td style="width: 25%;"><strong>Type of Jewellery:</strong></td>
-                                        <td style="width: 25%;">Ring</td>
-                                        <td style="width: 25%;"><strong>Quantity:</strong></td>
-                                        <td style="width: 25%;">3</td>
+                                        <td style="width: 25%;"><strong>Loan Amount</strong></td>
+                                        <td style="width: 25%;">{{leadDetails?.loan_amount_needed}}</td>
+                                        <td style="width: 25%;"><strong>How Soon Need Loan (in days):</strong></td>
+                                        <td style="width: 25%;">{{leadDetails?.how_soon_need_loan_in_days}}</td>
                                     </tr>
                                     <tr>
                                         <td style="width: 25%;"><strong>Weight (in grams):</strong></td>
-                                        <td style="width: 25%;">12</td>
-                                        <td style="width: 25%;"><strong>Karats:</strong></td>
-                                        <td style="width: 25%;">24</td>
+                                        <td style="width: 25%;">{{leadDetails?.weight_of_gold_grams}}</td>
+                                        <td style="width: 25%;"><strong>Gross Gold Weight (in grams):</strong></td>
+                                        <td style="width: 25%;">{{leadDetails?.gross_weight_gold}}</td>
                                     </tr>
                                     <tr>
-                                        <td style="width: 25%;"><strong>Type of Jewellery:</strong></td>
-                                        <td style="width: 25%;">Gold Biscuit</td>
-                                        <td style="width: 25%;"><strong>Quantity:</strong></td>
-                                        <td style="width: 25%;">3</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Weight (in grams):</strong></td>
-                                        <td style="width: 25%;">12</td>
-                                        <td style="width: 25%;"><strong>Karats:</strong></td>
-                                        <td style="width: 25%;">14</td>
+                                        <td style="width: 25%;"><strong>Karat</strong></td>
+                                        <td style="width: 25%;">{{leadDetails?.karat}}</td>
+                                        <!-- <td style="width: 25%;"><strong>Quantity:</strong></td>
+                                        <td style="width: 25%;">3</td> -->
                                     </tr>
                                 </tbody>
                             </table>
@@ -167,23 +167,23 @@
                         <div class="table-responsive">
                             <table class="table table-borderless">
                                 <tbody>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Bank Name:</strong></td>
-                                        <td style="width: 25%;">HDFC</td>
-                                        <td style="width: 25%;"><strong>IFSC Code:</strong></td>
-                                        <td style="width: 25%;">hdfc302025</td>
-                                    </tr>
+
                                     <tr>
                                         <td style="width: 25%;"><strong>Date of Appointment:</strong></td>
-                                        <td style="width: 25%;">Jan 7, 2022</td>
+                                        <td style="width: 25%;">{{appointmentDetails?.appointment_date | date: 'mediumDate'}}</td>
                                         <td style="width: 25%;"><strong>Time of Appointment:</strong></td>
-                                        <td style="width: 25%;">12:27:00</td>
+                                        <td style="width: 25%;">{{appointmentDetails?.appointment_time}}</td>
                                     </tr>
                                     <tr>
-                                        <td style="width: 25%;"><strong>Branch name:</strong></td>
-                                        <td style="width: 25%;">RajaPark_Jaipur</td>
+                                        <td style="width: 25%;"><strong>Bank Name:</strong></td>
+                                        <td style="width: 25%;">{{appointmentDetails?.branch?.bank?.name}}</td>
+                                        <td style="width: 25%;"><strong>Bank Address</strong></td>
+                                        <td style="width: 25%;">{{appointmentDetails?.branch?.address}}</td>
+                                    </tr>
+                                    <tr>
                                         <td style="width: 25%;"><strong>Pincode:</strong></td>
-                                        <td style="width: 25%;">302025</td>
+                                        <td style="width: 25%;">{{appointmentDetails?.branch?.pincode?.code}}</td>
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -194,8 +194,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="box2">
                             <h5>
-                                <!-- <img src="" alt="personal"> -->
-                                 Details
+                                 Address Details
                             </h5>
                         </div>
                         <div class="mb3">
@@ -205,22 +204,28 @@
                             <table class="table table-borderless">
                                 <tbody>
                                     <tr>
-                                        <td style="width: 25%;"><strong>Address line:</strong></td>
-                                        <td style="width: 25%;">cvhh</td>
-                                        <td style="width: 25%;"><strong></strong></td>
-                                        <td style="width: 25%;"></td>
+                                        <td style="width: 25%;"><strong>Address line 1:</strong></td>
+                                        <td style="width: 25%;">{{addressDetails?.permanent_address_line1}}</td>
+                                        <td style="width: 25%;"><strong>Address line 2</strong></td>
+                                        <td style="width: 25%;">{{addressDetails?.permanent_address_line2}}</td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td style="width: 25%;"><strong>Area name:</strong></td>
                                         <td style="width: 25%;">Mansarover</td>
                                         <td style="width: 25%;"><strong>District:</strong></td>
                                         <td style="width: 25%;">Jaipur</td>
+                                    </tr>-->
+                                    <tr>
+                                        <td style="width: 25%;"><strong>City:</strong></td>
+                                        <td style="width: 25%;">{{pincodeDetail?.city}}</td>
+                                        <td style="width: 25%;"><strong>Pincode:</strong></td>
+                                        <td style="width: 25%;">{{addressDetails?.pincode?.code}}</td>
                                     </tr>
                                     <tr>
                                         <td style="width: 25%;"><strong>State:</strong></td>
-                                        <td style="width: 25%;">Rajasthan</td>
-                                        <td style="width: 25%;"><strong>Pincode:</strong></td>
-                                        <td style="width: 25%;">302018</td>
+                                        <td style="width: 25%;">{{pincodeDetail?.state}}</td>
+                                        <!-- <td style="width: 25%;"><strong>Pincode:</strong></td>
+                                        <td style="width: 25%;">{{addressDetails?.pincode?.code}}</td> -->
                                     </tr>
                                 </tbody>
                             </table>
@@ -232,12 +237,12 @@
                             <table class="table table-borderless">
                                 <tbody>
                                     <tr>
-                                        <td style="width: 25%;"><strong>Address line:</strong></td>
-                                        <td style="width: 25%;">cvhh</td>
-                                        <td style="width: 25%;"><strong></strong></td>
-                                        <td style="width: 25%;"></td>
+                                        <td style="width: 25%;"><strong>Address line 1:</strong></td>
+                                        <td style="width: 25%;">{{addressDetails?.address_line1}}</td>
+                                        <td style="width: 25%;"><strong>Address line 2</strong></td>
+                                        <td style="width: 25%;">{{addressDetails?.address_line2}}</td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td style="width: 25%;"><strong>Area name:</strong></td>
                                         <td style="width: 25%;">Mansarover</td>
                                         <td style="width: 25%;"><strong>District:</strong></td>
@@ -248,17 +253,17 @@
                                         <td style="width: 25%;">Rajasthan</td>
                                         <td style="width: 25%;"><strong>Pincode:</strong></td>
                                         <td style="width: 25%;">302018</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="mt-5 box">
+                <!-- <div class="mt-5 box">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="box2">
                             <h5>
-                                <!-- <img src="" alt="personal"> -->
+
                                 KYC Document Details
                             </h5>
                         </div>
@@ -293,7 +298,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="mt-5 box">
                   <div class="col-lg-12 col-md-12 col-sm-12">
                       <div class="box2">

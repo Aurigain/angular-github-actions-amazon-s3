@@ -114,6 +114,7 @@ export class MiscellaneousService {
       );
   }
 
+
   leadLoanDetailById(id) {
 
     return this.http.get(`${this.consts.fetchLeadDetail}${id}/`, {
@@ -152,6 +153,29 @@ export class MiscellaneousService {
   fetchLeadAppointmentById(id) {
 
     return this.http.get(`${this.consts.fetchLeadAppointment}?lead=${id}`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  fetchLeadAccountTransferDetailById(id) {
+
+    return this.http.get(`${this.consts.fetchLeadBtAccountTransfer}?lead=${id}`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  fetchLeadAdressDetailById(id) {
+
+    return this.http.get(`${this.consts.fetchLeadAddressDetail}?lead=${id}`, {
       headers: new HttpHeaders({
         'Authorization': `${this.cookie.get('_l_a_t')}`
       })
@@ -261,6 +285,18 @@ export class MiscellaneousService {
       );
   }
 
+  fetchPermissionsById(user_group_id) {
+
+    return this.http.get(`${this.consts.rolesPermissionsApi}?role=${user_group_id}`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
   createRole(data:any) {
     return this.http.post(this.consts.userRoleApi, data)
       .pipe(
@@ -274,6 +310,12 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+  createBTLeadWeb(data:any) {
+    return this.http.post(this.consts.create_internal_bt_lead, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
 
   addEmployee(data:any) {
     return this.http.post(this.consts.employeeApi, data)
@@ -281,8 +323,26 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
-  updateEmployee(data:any) {
-    return this.http.put(this.consts.employeeApi, data)
+  updateEmployeeProfile(data,id) {
+    return this.http.put(`${this.consts.updateAgentProfile}${id}/`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  updateEmployeeAddress(data,id) {
+    return this.http.put(`${this.consts.updateAgentAddress}${id}/`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  updateEmployeeKYC(data,id) {
+    return this.http.put(`${this.consts.updateAgentKYC}${id}/`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  updateEmployeeBank(data,id) {
+    return this.http.put(`${this.consts.updateAgentBank}${id}/`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );

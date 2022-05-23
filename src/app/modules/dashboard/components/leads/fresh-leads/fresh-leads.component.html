@@ -75,8 +75,8 @@
                   <!-- <td>{{user.FatherName}}</td> -->
                   <td>{{user?.loan_type?.loan_type |titlecase}}</td>
                   <td>110059</td>
-                  <td>95400558622</td>
-                  <td>98622</td>
+                  <td>{{user?.lead?.phonenumber}}</td>
+                  <td>{{user?.loan_amount_needed}}</td>
                   <td>{{user?.current_status?.status | titlecase}}</td>
                   <!-- <td> <button type="button" class="btn btn-primary btn-sm">New</button> -->
                   <td>{{user?.lead?.source}}</td>

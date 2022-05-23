@@ -71,7 +71,7 @@
                   <td>{{employee?.name}}</td>
                   <td>{{employee.pincode}}</td>
                   <td>DM</td>
-                  <td>PM</td>
+                  <td>{{employee?.is_agent ? "Agent": "Employee"}}</td>
                   <td><a [routerLink]="['detail', employee?.userid]"><button class="btn btn-primary">View/Edit</button></a></td>
                   <!-- <td><select class="form-control">
                     <option value="">Status</option>

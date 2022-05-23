@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { PermissionsService } from 'src/app/core/authentication/permissions.service';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
 
@@ -15,7 +17,9 @@ export class BalanceTransferLeadsComponent implements OnInit {
   successMsg: any;
   constructor(
     private formbuilder: FormBuilder,
-    private misc : MiscellaneousService
+    private misc : MiscellaneousService,
+    private permissions: PermissionsService,
+    private router: Router,
   ) { }
 
   deleteUser(id){
@@ -118,6 +122,14 @@ export class BalanceTransferLeadsComponent implements OnInit {
 
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
+      if (this.permissions.isauthenticated()) {
+      // const userData = localStorage.getItem('userProfile');
+      const tempPermissions = localStorage.getItem('userPermissions');
+      const userPermissions = JSON.parse(tempPermissions)
+        if(!userPermissions.includes('Leads')){
+          this.router.navigate(['/dashboard'])
+        }
+      }
     this.filter('');
     this.fetchBtLeads();
     this.selectedForm = this.formbuilder.group({
