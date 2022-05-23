@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PermissionsService } from 'src/app/core/authentication/permissions.service';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
+import { SsrHandlerService } from 'src/app/core/services/ssr-handler.service';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class BalanceTransferLeadsComponent implements OnInit {
     private misc : MiscellaneousService,
     private permissions: PermissionsService,
     private router: Router,
+    private ssrService: SsrHandlerService,
   ) { }
 
   deleteUser(id){
@@ -124,7 +126,7 @@ export class BalanceTransferLeadsComponent implements OnInit {
     // this.filterArray = this.originalArray;
       if (this.permissions.isauthenticated()) {
       // const userData = localStorage.getItem('userProfile');
-      const tempPermissions = localStorage.getItem('userPermissions');
+      const tempPermissions = this.ssrService.getItem('userPermissions');
       const userPermissions = JSON.parse(tempPermissions)
         if(!userPermissions.includes('Leads')){
           this.router.navigate(['/dashboard'])

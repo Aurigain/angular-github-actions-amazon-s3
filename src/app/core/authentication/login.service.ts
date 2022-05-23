@@ -12,6 +12,7 @@ import { UtilsService } from '../services/utils.service';
 import { AuthService } from './auth.service';
 import { ProfileService } from './user-profile.service';
 import { map } from 'rxjs/operators';
+import { SsrHandlerService } from '../services/ssr-handler.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +20,7 @@ export class LoginService {
 
   constructor(
     private errorHandler: ErrorHandlerService,
+    private ssrService: SsrHandlerService,
     private constsvc: ConstantsService,
     private http: HttpClient,
     private cookie: CookieService,
@@ -84,7 +86,8 @@ export class LoginService {
       this.misc.userProfile().subscribe(
         data => {
           console.log("profile data:",data);
-          localStorage.setItem('userProfile', JSON.stringify(data));
+
+          this.ssrService.setItem('userProfile', JSON.stringify(data));
           this.misc.fetchPermissionsById(data['user_group']).subscribe(
             data => {
               console.log("permissions data:",data);
@@ -93,7 +96,7 @@ export class LoginService {
                 this.userPermissions.push(res['permission']['permission_name']);
               })
               console.log("usppppppppppppppp", this.userPermissions)
-              localStorage.setItem('userPermissions', JSON.stringify(this.userPermissions));
+              this.ssrService.setItem('userPermissions', JSON.stringify(this.userPermissions));
               observer.complete();
             },
             error => {

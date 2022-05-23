@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { Profile, ProfileAdapter } from '../adaptors/profile.model';
 import { ErrorHandlerService } from '../http/error-handler.service';
+import { SsrHandlerService } from '../services/ssr-handler.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,10 @@ export class ProfileService {
     private http: HttpClient,
     private errorHandler: ErrorHandlerService,
     private adapter: ProfileAdapter,
-    private consts: ConstantsService
-  ) { 
-    this._userProfile$ = new BehaviorSubject<Profile>(JSON.parse(localStorage.getItem('userProfile')));
+    private consts: ConstantsService,
+    private ssrService: SsrHandlerService,
+  ) {
+    // this._userProfile$ = new BehaviorSubject<Profile>(JSON.parse(this.ssrService.getItem('userProfile')));
   }
 
   setUserProfileValue(data) {

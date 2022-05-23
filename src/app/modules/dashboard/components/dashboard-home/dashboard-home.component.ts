@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SideNavBarService } from '../../side-nav.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SsrHandlerService } from 'src/app/core/services/ssr-handler.service';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -19,7 +20,8 @@ export class DashboardHomeComponent implements OnInit {
   userData
   constructor(
     private formbuilder: FormBuilder,
-    public sidenavservice: SideNavBarService
+    public sidenavservice: SideNavBarService,
+    private ssrService: SsrHandlerService,
   ) { }
 
   get pinCode(){
@@ -85,7 +87,7 @@ export class DashboardHomeComponent implements OnInit {
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
 
-    this.userData = localStorage.getItem('userProfile');
+    this.userData = this.ssrService.getItem('userProfile');
     console.log("fetched user data from local", JSON.parse(this.userData))
     this.filter('');
     this.selectedForm = this.formbuilder.group({

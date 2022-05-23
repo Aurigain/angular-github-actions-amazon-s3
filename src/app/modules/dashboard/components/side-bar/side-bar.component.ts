@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PermissionsService } from 'src/app/core/authentication/permissions.service';
 import { SideNavBarService } from '../../side-nav.service';
 import { map } from 'rxjs/operators';
+import { SsrHandlerService } from 'src/app/core/services/ssr-handler.service';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
@@ -18,7 +19,8 @@ export class SideBarComponent implements OnInit {
 
   constructor(
     public sidenavservice: SideNavBarService,
-    private permissions: PermissionsService
+    private permissions: PermissionsService,
+    private ssrService: SsrHandlerService,
   ) { }
   // hideSideNav: boolean = false;
   toggle: boolean = false;
@@ -39,8 +41,8 @@ export class SideBarComponent implements OnInit {
   ngOnInit(): void {
 
     if (this.permissions.isauthenticated()) {
-      this.userData = localStorage.getItem('userProfile');
-      const tempPermissions = localStorage.getItem('userPermissions');
+      this.userData = this.ssrService.getItem('userProfile');
+      const tempPermissions = this.ssrService.getItem('userPermissions');
       this.userPermissions = JSON.parse(tempPermissions)
       console.log("resppppp", this.userPermissions)
       this.sidenavservice.hideStatus.subscribe(

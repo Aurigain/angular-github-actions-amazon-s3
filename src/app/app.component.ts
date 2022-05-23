@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { PermissionsService } from './core/authentication/permissions.service';
 import { ProfileService } from './core/authentication/user-profile.service';
 import { MiscellaneousService } from './core/services/miscellaneous.service';
+import { SsrHandlerService } from './core/services/ssr-handler.service';
 import { UtilsService } from './core/services/utils.service';
 import { RoleSwitchModeService } from './modules/dashboard/service/role-switch-mode.service';
 
@@ -25,7 +26,8 @@ export class AppComponent {
     private roleswitchmodesvc: RoleSwitchModeService,
     private cookie: CookieService,
     private utils: UtilsService,
-    private misc: MiscellaneousService
+    private misc: MiscellaneousService,
+    private ssrService: SsrHandlerService,
   )
   {
     this.subscription = router.events.subscribe((event) => {
@@ -50,7 +52,7 @@ export class AppComponent {
           this.misc.userProfile().subscribe(
             data => {
               console.log("profile data:",data);
-              localStorage.setItem('userProfile', JSON.stringify(data));
+              this.ssrService.setItem('userProfile', JSON.stringify(data));
               this.misc.fetchPermissionsById(data['user_group']).subscribe(
                 data => {
                   console.log("permissions data:",data);
@@ -59,7 +61,7 @@ export class AppComponent {
                     this.userPermissions.push(res['permission']['permission_name']);
                   })
                   console.log("uspp", this.userPermissions)
-                  localStorage.setItem('userPermissions', JSON.stringify(this.userPermissions));
+                  this.ssrService.setItem('userPermissions', JSON.stringify(this.userPermissions));
                 },
                 error => {
                   console.log("error:",error);

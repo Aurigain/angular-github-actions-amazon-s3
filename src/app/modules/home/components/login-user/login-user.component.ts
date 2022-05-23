@@ -7,6 +7,7 @@ import { ConstantsService } from 'src/app/config/constants.service';
 import { ConditionalExpr } from '@angular/compiler';
 import { ToastrService } from 'ngx-toastr';
 import { PermissionsService } from 'src/app/core/authentication/permissions.service';
+import { SsrHandlerService } from 'src/app/core/services/ssr-handler.service';
 @Component({
   selector: 'app-login-user',
   templateUrl: './login-user.component.html',
@@ -22,7 +23,8 @@ export class LoginUserComponent implements OnInit {
     private authservice: AuthService,
     private loginservice: LoginService,
     private toastr: ToastrService,
-    private permissions: PermissionsService
+    private permissions: PermissionsService,
+    private ssrService: SsrHandlerService,
   ) { }
 
   isLoginForm: boolean = true;
@@ -75,7 +77,7 @@ export class LoginUserComponent implements OnInit {
       .subscribe(
         user => {
           console.log(user, "student add")
-          localStorage.setItem('token', user['token']);
+          this.ssrService.setItem('token', user['token']);
           this.toastr.success("SignUp Successfully", "Success", {
             timeOut: 4000,
           });
