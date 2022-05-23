@@ -17,7 +17,7 @@ export class SsrHandlerService {
 
   getItem(key) {
     if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
-      return sessionStorage.getItem(key);
+      return localStorage.getItem(key);
     } else {
       return undefined;
     }
@@ -25,19 +25,19 @@ export class SsrHandlerService {
 
   setItem(key, data) {
     if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
-      sessionStorage.setItem(key, data);
+      localStorage.setItem(key, data);
     }
   }
 
   clear() {
     if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
-      sessionStorage.clear();
+      localStorage.clear();
     }
   }
 
   removeItem(key) {
     if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
-      sessionStorage.removeItem(key);
+      localStorage.removeItem(key);
     }
   }
 }

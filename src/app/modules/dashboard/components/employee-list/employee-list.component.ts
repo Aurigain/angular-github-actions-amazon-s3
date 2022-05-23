@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { PermissionsService } from 'src/app/core/authentication/permissions.service';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
+import { SsrHandlerService } from 'src/app/core/services/ssr-handler.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -20,7 +23,10 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder,
     private misc: MiscellaneousService,
-    private router: Router
+    private router: Router,
+    private permissions: PermissionsService,
+    private ssrService: SsrHandlerService,
+    private toastr: ToastrService
   ) { }
 
   deleteUser(id){
@@ -127,11 +133,15 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
 
-    // const tempPermissions = localStorage.getItem('userPermissions');
-    // this.userPermissions= JSON.parse(tempPermissions)
-    // if(!this.userPermissions.includes('Employee Management')){
-    //   this.router.navigateByUrl('/dashboard')
-    // }
+    if (this.permissions.isauthenticated()) {
+      // const userData = localStorage.getItem('userProfile');
+      const tempPermissions = this.ssrService.getItem('userPermissions');
+      const userPermissions = JSON.parse(tempPermissions)
+        if(!userPermissions.includes('Employee Management')){
+          this.router.navigate(['/dashboard'])
+          this.toastr.error("You are not allowed to access this page", "Error")
+        }
+      }
     this.filter('');
     this.fetchAllEmployees();
     this.selectedForm = this.formbuilder.group({

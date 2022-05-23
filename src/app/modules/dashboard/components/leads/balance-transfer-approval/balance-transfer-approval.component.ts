@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { LoginService } from 'src/app/core/authentication/login.service';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
+import { NetworkRequestService } from 'src/app/core/services/network-request.service';
 
 @Component({
   selector: 'app-balance-transfer-approval',
@@ -35,7 +36,8 @@ export class BalanceTransferApprovalComponent implements OnInit {
     private conts: ConstantsService,
     private route: ActivatedRoute,
     private router: Router,
-    private misc: MiscellaneousService
+    private misc: MiscellaneousService,
+    private networkRequest: NetworkRequestService
 
   ) {
     this.tabelData = [];
@@ -196,6 +198,9 @@ export class BalanceTransferApprovalComponent implements OnInit {
         this.fetchBTLeadDocumentDetails(id);
         this.fetchBTLeadAppointmentDetails(id);
         this.fetchBTLeadAccountTransferDetails(id);
+        if(this.leadDetails['loan_type']['loan_type'] === 'bt_external'){
+          this.fetchBTLeadAdressDetails(id)
+        }
       },
       error => {
         console.log(error);
@@ -223,6 +228,27 @@ export class BalanceTransferApprovalComponent implements OnInit {
     })
   }
 
+  fetchBTLeadAdressDetails(id) {
+    this.misc.fetchLeadAdressDetailById(id).subscribe(
+      data => {
+      console.log("address details:", data[0]);
+      this.addressDetails = data[0];
+      // this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${this.addressDetails['pincode']['code']}`).subscribe(
+      //   data => {
+      //     console.log("internal data is", data['data']);
+      //     // this.pincodeDetail = data['data'][0];
+      //     // console.log("pincode Details", this.pincodeDetail)
+      //   },
+      //   error => {
+      //     console.log("error", error);
+      //   }
+      // );
+    },
+    error => {
+      console.log("error", error);
+    }
+    )
+  }
 
   fetchBTLeadAccountTransferDetails(id) {
     this.misc.fetchLeadAccountTransferDetailById(id).subscribe(data => {

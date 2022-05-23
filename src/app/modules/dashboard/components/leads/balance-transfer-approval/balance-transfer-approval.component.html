@@ -66,6 +66,41 @@
                       </div>
                     </div>
                   </div>
+                  <div class="row" *ngIf="leadDetails?.loan_type?.loan_type === 'bt_external'">
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Address</div>
+                    </div>
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">{{addressDetails?.address_line1}} {{addressDetails?.address_line2}}</div>
+                    </div>
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a (click)="loadImage(profileData?.fullname, documentDetails?.kyc_document_poa)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                          <img [src]="documentDetails?.kyc_document_poa" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                    <div class="col-md-4 box">
+                      <div class="m-3">
+                        <div class="form-group">
+                          <div class="row gender-row">
+                            <label  class="radio-inline">
+                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
+                            </label>
+                            <label  class="radio-inline">
+                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
+                            </label>
+
+                          </div>
+                        </div>
+                        <div class="text-center">
+                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
                   <!-- <div class="row">
                     <div class="col-md-2 box">

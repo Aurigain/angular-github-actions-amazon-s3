@@ -17,6 +17,7 @@ export class RoleMappingComponent implements OnInit {
   fetchPermissions;
   successMsg = ''
   currentRole;
+  permissionsList;
 
   selectedPermissions = [];
   constructor(
@@ -108,6 +109,14 @@ export class RoleMappingComponent implements OnInit {
 
      }
    )
+   this.misc.fetchPermissionsById(id).subscribe(
+     data =>{
+       console.log("Permissions", data)
+       this.permissionsList = data;
+       if(this.permissionsList.length){
+
+       }
+     })
   }
 
   fetchAllPermissions() {

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { PermissionsService } from 'src/app/core/authentication/permissions.service';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
+import { SsrHandlerService } from 'src/app/core/services/ssr-handler.service';
 
 @Component({
   selector: 'app-fresh-leads',
@@ -17,6 +20,9 @@ export class FreshLeadsComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder,
     private misc: MiscellaneousService,
+    private permissions: PermissionsService,
+    private ssrService: SsrHandlerService,
+    private router: Router,
   ) { }
 
   deleteUser(id){
@@ -121,6 +127,16 @@ export class FreshLeadsComponent implements OnInit {
   }
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
+
+    if (this.permissions.isauthenticated()) {
+      // const userData = localStorage.getItem('userProfile');
+      const tempPermissions = this.ssrService.getItem('userPermissions');
+      const userPermissions = JSON.parse(tempPermissions)
+        if(!userPermissions.includes('Leads')){
+          this.router.navigate(['/dashboard'])
+        }
+      }
+
     this.fetchFreshLead();
     this.filter('');
     this.selectedForm = this.formbuilder.group({
