@@ -27,6 +27,7 @@ export class RoleMappingComponent implements OnInit {
     private toastr: ToastrService,
   ) { }
 
+
   submitRoleMapping() {
     console.log(this.selectedPermissions);
     const permissionArray = [];
@@ -44,7 +45,8 @@ export class RoleMappingComponent implements OnInit {
         if(data['data']['error']){
           this.toastr.error(data['data']['detail'], "Error", {
             timeOut: 4000,
-          })
+          });
+          this.fetchCurrentRole(this.currentRoleId);
         }
         else{
           this.successMsg = data['data']['detail'];
@@ -100,6 +102,8 @@ export class RoleMappingComponent implements OnInit {
   }
 
   fetchCurrentRole(id){
+    this.selectedPermissions = [];
+    let count = 0;
    this.misc.fetchUserRoleById(id).subscribe(
      data =>{
       this.currentRole = data['data']['role_name'];
@@ -111,11 +115,42 @@ export class RoleMappingComponent implements OnInit {
    )
    this.misc.fetchPermissionsById(id).subscribe(
      data =>{
-       console.log("Permissions", data)
        this.permissionsList = data;
+       console.log("Permissions", this.permissionsList)
        if(this.permissionsList.length){
+        for (let i = 0; i < this.fetchPermissions.length; i++) {
+          for(let j = 0; j< this.permissionsList.length; j++){
+            if (this.fetchPermissions[i]['id'] == this.permissionsList[j]['permission']['id']) {
+              var element = <HTMLInputElement> document.getElementById(this.fetchPermissions[i]['id']);
+              element.checked = true;
+              this.selectedPermissions.push(this.fetchPermissions[i]);
+            }
 
+            // if (this.fetchPermissions[i]['id'] == this.permissionsList[j]['permission']['id']) {
+            //   this.selectedPermissions = this.permissionsList[j]['permission']['id'];
+            //   setTimeout(() => {
+            //     let count = 0;
+            //     for (let i = 0; i < this.selectedPermissions.length; i++) {
+            //       for (let j = 0; j < this.fetchPermissions.length; j++) {
+            //         if (this.selectedPermissions[i] == this.fetchPermissions[j]['id']) {
+            //           count = count + 1;
+            //           var element = <HTMLInputElement> document.getElementById(this.fetchPermissions[i]['id']);
+            //           element.checked = true;
+            //         }
+            //       }
+            //     }
+            //     if (count == this.fetchPermissions.length) {
+            //       var element = <HTMLInputElement> document.getElementById("flexCheckCheckedAll");
+            //       element.checked = true;
+            //     }
+            //   }, 200);
+            // }
+          }
+        }
+        this.selectedPermissions = [...new Set(this.selectedPermissions.map(m => m))];
+          console.log("ssssssper", this.selectedPermissions)
        }
+
      })
   }
 
@@ -136,7 +171,7 @@ export class RoleMappingComponent implements OnInit {
     this.fetchAllPermissions();
     this.currentRoleId = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log(this.currentRoleId);
-    this.fetchCurrentRole(this.currentRoleId)
+    this.fetchCurrentRole(this.currentRoleId);
     this.roleMappingForm = this.formbuilder.group({
       selectRole: ['', Validators.required],
       dashboard: [false],
