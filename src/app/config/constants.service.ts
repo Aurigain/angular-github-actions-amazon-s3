@@ -48,6 +48,7 @@ export class ConstantsService {
   contactUs = `${environment.BASE_URL}/api/bank/contact_us/`;
   fetchBranch = `${environment.BASE_URL}/api/bank/fetch_branch/`;
   rolePermissionMappingApi = `${environment.BASE_URL}/api/user/user_role_permission_mapping/`;
+  updatePassword = `${environment.BASE_URL}/api/user/updatepassword/`;
   agentImageUpload = `${environment.BASE_URL}/api/agent/update_employee_images/`;
   fetchPermissionsApi = `${environment.BASE_URL}/api/user/user_permission/`;
   rolesPermissionsApi = `${environment.BASE_URL}/api/user/rolepermissions/`;

@@ -46,13 +46,13 @@ export class RoleMappingComponent implements OnInit {
           this.toastr.error(data['data']['detail'], "Error", {
             timeOut: 4000,
           });
-          this.fetchCurrentRole(this.currentRoleId);
         }
         else{
           this.successMsg = data['data']['detail'];
         this.toastr.success( this.successMsg, "Sucess", {
           timeOut: 3000,
         });
+        this.fetchCurrentRole(this.currentRoleId);
         }
       },
       err => console.log(err)
@@ -110,7 +110,7 @@ export class RoleMappingComponent implements OnInit {
       console.log("current Role is:", this.currentRole)
      },
      error =>{
-
+      console.log("errrr", error)
      }
    )
    this.misc.fetchPermissionsById(id).subscribe(
@@ -118,7 +118,9 @@ export class RoleMappingComponent implements OnInit {
        this.permissionsList = data;
        console.log("Permissions", this.permissionsList)
        if(this.permissionsList.length){
+         //@ts-ignore
         for (let i = 0; i < this.fetchPermissions.length; i++) {
+
           for(let j = 0; j< this.permissionsList.length; j++){
             if (this.fetchPermissions[i]['id'] == this.permissionsList[j]['permission']['id']) {
               var element = <HTMLInputElement> document.getElementById(this.fetchPermissions[i]['id']);

@@ -49,6 +49,13 @@ export class LoginService {
       );
   }
 
+  updatePassword(data: any) {
+    return this.http.put(`${this.constsvc.updatePassword}`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
   searchBank(ifscCode) {
     // return this.http.get(`https://ifsc.razorpay.com/${ifscCode}/`)
     return this.http.get(`${this.constsvc.fetchBranch}?ifsc=${ifscCode}`)

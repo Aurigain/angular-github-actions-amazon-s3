@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { LoginService } from 'src/app/core/authentication/login.service';
 
 @Component({
   selector: 'app-change-password',
@@ -8,14 +10,24 @@ import { FormGroup } from '@angular/forms';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private loginservice: LoginService,
+    private toastrService: ToastrService
+  ) { }
   changePasswordForm: FormGroup;
+  password
   ngOnInit(): void {
   }
 
   changePassword(){
 
+    this.loginservice.updatePassword(this.password).subscribe(
+      data =>{
+        console.log(data);
+        this.toastrService.success("Password Updated Successfully", "Success")
+      }
+    )
+    }
 
-  }
 
 }
