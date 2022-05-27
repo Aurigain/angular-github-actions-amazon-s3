@@ -133,15 +133,15 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
 
-    if (this.permissions.isauthenticated()) {
-      // const userData = localStorage.getItem('userProfile');
-      const tempPermissions = this.ssrService.getItem('userPermissions');
-      const userPermissions = JSON.parse(tempPermissions)
-        if(!userPermissions.includes('Employee Management')){
-          this.router.navigate(['/dashboard'])
-          this.toastr.error("You are not allowed to access this page", "Error")
-        }
-      }
+    // if (this.permissions.isauthenticated()) {
+    //   // const userData = localStorage.getItem('userProfile');
+    //   const tempPermissions = this.ssrService.getItem('userPermissions');
+    //   const userPermissions = JSON.parse(tempPermissions)
+    //     if(!userPermissions.includes('Employee Management')){
+    //       this.router.navigate(['/dashboard'])
+    //       this.toastr.error("You are not allowed to access this page", "Error")
+    //     }
+    //   }
     this.filter('');
     this.fetchAllEmployees();
     this.selectedForm = this.formbuilder.group({

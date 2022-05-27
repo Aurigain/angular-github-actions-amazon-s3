@@ -117,7 +117,7 @@ export class MiscellaneousService {
 
   leadLoanDetailById(id) {
 
-    return this.http.get(`${this.consts.fetchLeadDetail}${id}/`, {
+    return this.http.get(`${this.consts.fetchLeadDetail}?lead=${id}`, {
       headers: new HttpHeaders({
         'Authorization': `${this.cookie.get('_l_a_t')}`
       })
@@ -323,12 +323,45 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+
+  updateLeadProfile(data,id) {
+    return this.http.put(`${this.consts.updateLeadProfile}${id}/`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  updateLeadAddress(data,id) {
+    return this.http.put(`${this.consts.updateLeadAddress}${id}/`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  updateLeadJewellery(data,id) {
+    return this.http.put(`${this.consts.updateLeadJewellery}${id}/`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  updateLeadLoanDetails(data,id) {
+    return this.http.put(`${this.consts.updateLeadLoanDetails}${id}/`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  updateLeadAppointmentDetails(data) {
+    return this.http.put(`${this.consts.updateLeadAppointmentDetails}`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
   updateEmployeeProfile(data,id) {
     return this.http.put(`${this.consts.updateAgentProfile}${id}/`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
+
   updateEmployeeAddress(data,id) {
     return this.http.put(`${this.consts.updateAgentAddress}${id}/`, data)
       .pipe(
@@ -348,6 +381,12 @@ export class MiscellaneousService {
       );
   }
 
+  balanceTransferPreFinalApproval(data:any) {
+    return this.http.post(this.consts.balanceTransferPreFinalApproval, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
   createPermissions(data:any) {
     return this.http.post(this.consts.fetchPermissionsApi, data)
       .pipe(

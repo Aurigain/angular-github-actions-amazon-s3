@@ -51,17 +51,19 @@
                 <tr>
                   <th>SNo</th>
                   <th>Name</th>
-                  <!-- <th>Parent Role</th> -->
+                  <th>Role Index</th>
                   <th>Status</th>
                   <th>Action</th>
 
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let role of userRoles | paginate: { itemsPerPage: 10, currentPage: p }; let i = index ">
+                <tr *ngFor="let role of userRoles | orderBy: 'role_index' | paginate: { itemsPerPage: 10, currentPage: p }; let i = index ;" >
+                <!-- <tr *ngFor="let role of userRoles | paginate: { itemsPerPage: 10, currentPage: p }; let i = index " > -->
                   <td>{{(p-1) * rowFilter + i + 1}}</td>
                   <!-- <td>{{user.FullName}}</td> -->
                   <td>{{role?.role_name | titlecase}}</td>
+                  <td>{{role?.role_index}}</td>
                   <td>{{role?.is_active ? 'Active' : 'InActive'}}</td>
                   <td><a [routerLink]="['../role-mapping', role.id]"><i class="fas fa-info-circle pl-3"
                         style="color:#4040fc; font-size:25px"></i></a></td>

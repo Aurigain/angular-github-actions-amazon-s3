@@ -112,7 +112,7 @@ export class EmployeeDetailComponent implements OnInit {
           last_name: last_name,
           phone_number: this.profileData['phonenumber'],
           role: this.profileData['user_group'],
-          reporting_person: this.profileData['shareReferralCode'],
+          reporting_person: this.profileData['reporting_person']['shareReferralCode'],
           gender: this.profileData['gender'],
           email: this.profileData['email'],
           dob: this.profileData['date_of_birth'],

@@ -54,6 +54,8 @@ import { CompliancePanelComponent } from './components/compliance-panel/complian
 import { CompliancePanelDetailComponent } from './components/compliance-panel-detail/compliance-panel-detail.component';
 import { AddPermissionsComponent } from './components/add-permissions/add-permissions.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { NgPipesModule } from 'ngx-pipes';
+import { AddExternalBalanceTransferLeadsComponent } from './components/leads/add-external-balance-transfer-leads/add-external-balance-transfer-leads.component';
 
 const routes: Routes = [
   {
@@ -85,6 +87,9 @@ const routes: Routes = [
       },
       {
         path: 'balance-transfer-leads/add-update/:id', component: AddBalanceTransferLeadsComponent
+      },
+      {
+        path: 'balance-transfer-leads/add-update-external/:id', component: AddExternalBalanceTransferLeadsComponent
       },
       {
         path: 'balance-transfer-approval-list', component: BalanceTransferApprovalListComponent
@@ -249,6 +254,7 @@ const routes: Routes = [
     CompliancePanelDetailComponent,
     AddPermissionsComponent,
     ChangePasswordComponent,
+    AddExternalBalanceTransferLeadsComponent,
   ],
   imports: [
     CommonModule,
@@ -257,6 +263,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     NgxPaginationModule,
     HttpClientModule,
+    NgPipesModule,
     RouterModule.forChild(routes),
   ],
   exports: [RouterModule]

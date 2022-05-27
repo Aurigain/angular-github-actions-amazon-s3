@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
 import { NetworkRequestInterceptor } from './intercepters/network-request.interceptor';
 import { environment } from 'src/environments/environment';
+import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { environment } from 'src/environments/environment';
     HttpClientModule,
     NgxPaginationModule,
     NgbModule,
+    NgPipesModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
   ],

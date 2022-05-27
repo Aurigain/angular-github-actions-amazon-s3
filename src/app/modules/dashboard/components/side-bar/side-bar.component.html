@@ -6,7 +6,7 @@
       </a>
     </li>
 
-    <li *ngIf="checkPermission('Leads')">
+    <li *ngIf="checkPermission('Fresh Lead')">
       <a routerLinkActive="active" href="#course" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span><i class="fa fa-book" style="margin-left: -5px"></i></span>
         Lead</a>
@@ -15,10 +15,10 @@
           <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
               class="fa fa-diamond" aria-hidden="true"></i>Gold Loan</a>
           <ul class="collapse list-unstyled" id="submenu1">
-            <li>
+            <li *ngIf="checkPermission('Fresh Lead')">
               <a routerLink="fresh-leads">Fresh Lead</a>
             </li>
-            <li>
+            <li *ngIf="checkPermission('BT Lead')">
               <a routerLink="balance-transfer-leads">BT Lead</a>
             </li>
           </ul>
@@ -83,18 +83,18 @@
         </li>
       </ul>
     </li>
-    <li *ngIf="checkPermission('Commissions')">
+    <li *ngIf="checkPermission('Commissions Setting')">
       <a routerLinkActive="active" href="#commissions" data-toggle="collapse" aria-expanded="false"
         class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>
         Commissions</a>
       <ul class="collapse list-unstyled" id="commissions">
-        <li>
+        <li *ngIf="checkPermission('Commissions Setting')">
           <a routerLink="commissions-setting" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
               aria-hidden="true"></i>Commissions
             Settings</a>
         </li>
-        <li>
+        <li *ngIf="checkPermission('Commissions Reversal')">
           <a routerLink="commissions-reversal" data-toggle="collapse" aria-expanded="false"><i
               class="fas fa-address-card" aria-hidden="true"></i>Commissions
             Reversal</a>
@@ -109,15 +109,15 @@
         </li>
       </ul>
     </li>
-    <li *ngIf="checkPermission('Employee Management')">
+    <li *ngIf="checkPermission('Employee List')">
       <a routerLinkActive="active" href="#agent" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Employee Management</a>
       <ul class="collapse list-unstyled" id="agent">
-        <li>
+        <li *ngIf="checkPermission('Employee List')">
           <a routerLink="employee-list" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
               aria-hidden="true"></i>Employee List</a>
         </li>
-        <li>
+        <li *ngIf="checkPermission('Role Master')">
           <a routerLink="user-role-master" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
               aria-hidden="true"></i>Role Master</a>
         </li>
@@ -153,37 +153,37 @@
         class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Accounts Panels</a>
       <ul class="collapse list-unstyled" id="checkers">
-        <li>
+        <li *ngIf="checkPermission('Accounts Checker Panel')">
           <a routerLink="accounts-checker-panel" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
               aria-hidden="true"></i>Account Checker
             Panel</a>
         </li>
-        <li>
+        <li *ngIf="checkPermission('Accounts Maker Panel')">
           <a routerLink="accounts-maker-panel" data-toggle="collapse" aria-expanded="false"><i
               class="fas fa-address-card" aria-hidden="true"></i>Account Maker
             Panel</a>
         </li>
       </ul>
     </li>
-    <li *ngIf="checkPermission('Agent Approval')">
+    <li *ngIf="checkPermission('BT Approval')">
       <a routerLinkActive="active" href="#approval" data-toggle="collapse" aria-expanded="false"
         class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Approvals</a>
       <ul class="collapse list-unstyled" id="approval">
-        <li>
+        <li *ngIf="checkPermission('BT Approval')">
           <a routerLink="balance-transfer-approval-list" data-toggle="collapse" aria-expanded="false"><i
               class="fa fa-diamond" aria-hidden="true"></i>BT Approval</a>
         </li>
-        <li>
+        <li *ngIf="checkPermission('Compliance Panel')">
           <a routerLink="compliance-panel" data-toggle="collapse" aria-expanded="false"><i
               class="fa fa-diamond" aria-hidden="true"></i>Compliance Panel</a>
         </li>
-        <li>
+        <li *ngIf="checkPermission('Final BT Approval')">
           <a routerLink="final-approval" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
               aria-hidden="true"></i>Final BT
             Approval</a>
         </li>
-        <li>
+        <li *ngIf="checkPermission('Agent Approval')">
           <a routerLink="agent-approval-panel" data-toggle="collapse" aria-expanded="false"><i
               class="fas fa-address-card" aria-hidden="true"></i>Agent
             Approval Panel</a>

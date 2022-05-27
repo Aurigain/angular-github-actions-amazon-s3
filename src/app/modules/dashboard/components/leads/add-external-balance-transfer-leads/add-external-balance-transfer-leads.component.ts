@@ -8,11 +8,11 @@ import { MiscellaneousService } from 'src/app/core/services/miscellaneous.servic
 import { NetworkRequestService } from 'src/app/core/services/network-request.service';
 
 @Component({
-  selector: 'app-add-balance-transfer-leads',
-  templateUrl: './add-balance-transfer-leads.component.html',
-  styleUrls: ['./add-balance-transfer-leads.component.scss']
+  selector: 'app-add-external-balance-transfer-leads',
+  templateUrl: './add-external-balance-transfer-leads.component.html',
+  styleUrls: ['./add-external-balance-transfer-leads.component.scss']
 })
-export class AddBalanceTransferLeadsComponent implements OnInit {
+export class AddExternalBalanceTransferLeadsComponent implements OnInit {
   currentUserId: number;
   permanentPinCodeDetail
   pinCodeDetail;
@@ -145,6 +145,26 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
     })
 
 
+  }
+
+  searchIFSC() {
+    const ifscCode = this.appointmentDetailsForm.value.ifsc;
+    if (ifscCode.length == 11) {
+      this.loginservice.searchBank(ifscCode)
+        .subscribe(
+          data => {
+            this.fetchBranchDetail = data[0];
+            console.log(this.fetchBranchDetail)
+            this.appointmentDetailsForm.patchValue({
+              bank: this.fetchBranchDetail['bank']['name'],
+              branch: this.fetchBranchDetail['name']
+            })
+          },
+          error => {
+            console.log("Cannot Find Bank")
+          }
+        )
+    }
   }
 
   fetchBTLeadDetail(id) {
@@ -395,10 +415,7 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
   savedocumentDetailsForm() {
     this.stepUp();
 
-  }
 
-  savebankDetailsForm() {
-    this.stepUp();
 
   }
 
@@ -470,25 +487,6 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
 
   }
 
-  searchIFSC() {
-    const ifscCode = this.appointmentDetailsForm.value.ifsc;
-    if (ifscCode.length == 11) {
-      this.loginservice.searchBank(ifscCode)
-        .subscribe(
-          data => {
-            this.fetchBranchDetail = data[0];
-            console.log(this.fetchBranchDetail)
-            this.appointmentDetailsForm.patchValue({
-              bank: this.fetchBranchDetail['bank']['name'],
-              branch: this.fetchBranchDetail['name']
-            })
-          },
-          error => {
-            console.log("Cannot Find Bank")
-          }
-        )
-    }
-  }
   saveForms() {
 
     const product = this.personalDetailsForm.value.product;
@@ -667,4 +665,5 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
     // console.log("image form data", imageData);
     console.log("final form data", finalData);
   }
+
 }

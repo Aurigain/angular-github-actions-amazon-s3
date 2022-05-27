@@ -12,7 +12,7 @@
                             <a routerlink="/dashboard" routerLink="/dashboard">Home</a>
                           </li>
                           <li class="breadcrumb-item">
-                              <a routerLink="/dashboard/final-approval"> Final Approval Detail </a
+                              <a routerLink="../../"> BT Approval List </a
                                   >
                               </li>
                               <li aria-current="page" class="breadcrumb-item active">
@@ -87,16 +87,16 @@
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
+                              <input type="radio" value="ok" name="addressChecker" [(ngModel)]="addressChecker"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
+                              <input [(ngModel)]="addressChecker" type="radio" value="not ok" name="addressChecker">Not Ok
                             </label>
 
                           </div>
                         </div>
                         <div class="text-center">
-                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
+                          <input [(ngModel)]="addressRemark" name="addressRemark" value="" type="text" class="form-control mb-2">
                         </div>
                       </div>
                     </div>
@@ -221,7 +221,7 @@
 
                 <div class="text-center mt-2">
                   <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button>
-<button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
+                  <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
                 </div>
               </div>
 
@@ -354,16 +354,16 @@
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
+                              <input type="radio" value="ok" name="existing_loan_status" [(ngModel)]="existing_loan_status"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
+                              <input [(ngModel)]="existing_loan_status" type="radio" value="not ok" name="existing_loan_status">Not Ok
                             </label>
 
                           </div>
                         </div>
                         <div class="text-center">
-                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
+                          <input [(ngModel)]="existing_loan_remark" name="nameRemark" value="" type="text" class="form-control mb-2">
                         </div>
                       </div>
                     </div>
@@ -417,7 +417,7 @@
 
                 <div class="text-center mt-2">
                   <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button>
-<button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
+                  <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
                 </div>
               </div>
               <div class="my-4" ><h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 3, 'fa-plus': currentStep !==3}"></i> Fund Transfer Detail</h5></div>
@@ -484,16 +484,16 @@
                         <div class="form-group">
                           <div class="row gender-row">
                             <label  class="radio-inline">
-                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
+                              <input type="radio" value="ok" name="fund_transfer_status" [(ngModel)]="fund_transfer_status"> OK
                             </label>
                             <label  class="radio-inline">
-                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
+                              <input [(ngModel)]="fund_transfer_status" type="radio" value="not ok" name="fund_transfer_status">Not Ok
                             </label>
 
                           </div>
                         </div>
                         <div class="text-center">
-                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
+                          <input [(ngModel)]="fund_transfer_remark" name="fund_transfer_remark" value="" type="text" class="form-control mb-2">
                         </div>
                       </div>
                     </div>
@@ -511,7 +511,7 @@
 
                       </div>
                     </div>
-                    <div class="col-md-4 box">
+                    <!-- <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
                           <div class="row gender-row">
@@ -528,7 +528,7 @@
                           <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
 
                 </div>
@@ -647,7 +647,21 @@
                 </div>
                 <div class="text-center mt-2">
                   <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button>
-<button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
+                  <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
+                  <div class="form-group">
+                    <div class="row gender-row">
+                      <label  class="radio-inline">
+                        <input type="radio" value="ok" name="appointment_status" [(ngModel)]="appointment_status"> OK
+                      </label>
+                      <label  class="radio-inline">
+                        <input [(ngModel)]="appointment_status" type="radio" value="not ok" name="appointment_status">Not Ok
+                      </label>
+
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <input [(ngModel)]="appointment_remark" name="appointment_remark" value="" type="text" class="form-control mb-2">
+                  </div>
                 </div>
               </div>
             </div>
@@ -740,7 +754,7 @@
         </table>
         <div class="text-center">
           <a routerLink="../../../compliance-panel"> <!--Change the ID with dynamic Id-->
-            <button class="btn btn-primary mr-3" data-dismiss="modal">
+            <button (click)="savePersonalDetails()" class="btn btn-primary mr-3" data-dismiss="modal">
               Save & Submit
             </button>
           </a>

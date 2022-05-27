@@ -75,28 +75,24 @@
                         <td>RM 1</td>
                         <td>{{user?.lead?.source}}</td>
                         <td>{{user?.current_status?.status}}</td>
-                        <td>
+                        <!-- <td>
                           <a
                           class="booking"
-                          [routerLink]="['detail', user.id,]">
+                          [routerLink]="['detail', user?.lead?.id,]">
                             <button class="btn btn-primary">
                               View
                             </button>
                           </a>
-                          <!-- <div ngbDropdown class="menu">
-                            <button ngbDropdownToggle>
-                              <i class="fa fa-ellipsis-v" aria-hidden="true"></i
-                                >
-                              View
-                              </button>
+                        </td> -->
+                        <td>
+                          <div ngbDropdown class="menu">
+                            <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
                             <div ngbDropdownMenu class="sub-menu">
-                              <a ngbDropdownItem [routerLink]="['add-update', user.Id]" class="edit"><i class="fas fa-edit pr-1"></i>Edit User</a>
-                              <a ngbDropdownItem class="delete"><i class="fas fa-eye pr-1"></i>Delete User</a>
-                              <a ngbDropdownItem class="booking" [routerLink]="['detail', user.Id,]"><i class="fas fa-eye pr-1"></i>Details</a>
-                              <a ngbDropdownItem data-toggle="modal" data-target="#changeStatus" class="change"><i class="fas fa-book-reader pr-1"></i>Change Status</a>
-                              <a ngbDropdownItem data-toggle="modal" data-target="#appointmentBooking" class="booking"><i class="fas fa-calendar-check pr-1"></i>Appointment Booking</a>
+                              <a ngbDropdownItem [routerLink]="['detail', user?.lead?.id]" class="edit"><i class="fas fa-edit pr-1"></i>View Lead</a>
+                              <a ngbDropdownItem [routerLink]="['add-update', user?.lead?.id]" class="delete" *ngIf="user?.loan_type?.loan_type === 'bt_internal'"><i class="fas fa-edit pr-1"></i>Update Lead</a>
+                              <a ngbDropdownItem [routerLink]="['add-update-external', user?.lead?.id]" class="delete" *ngIf="user?.loan_type?.loan_type === 'bt_external'"><i class="fas fa-edit pr-1"></i>Update Lead</a>
                             </div>
-                          </div> -->
+                          </div>
                         </td>
                       </tr>
                     </tbody>

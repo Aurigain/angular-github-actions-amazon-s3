@@ -37,6 +37,11 @@ export class ConstantsService {
   freshLead = `${environment.BASE_URL}/api/lead/create/`;
   create_internal_bt_lead = `${environment.BASE_URL}/api/lead/create_internal_bt_lead/`;
   employeeApi = `${environment.BASE_URL}/api/agent/employee/`;
+  updateLeadProfile = `${environment.BASE_URL}/api/lead/edit_lead_profile/`;
+  updateLeadAddress = `${environment.BASE_URL}/api/lead/edit_lead_address/`;
+  updateLeadJewellery = `${environment.BASE_URL}/api/lead/edit_lead_loan_request/`;
+  updateLeadLoanDetails = `${environment.BASE_URL}/api/lead/edit_lead_loan_account_details/`;
+  updateLeadAppointmentDetails = `${environment.BASE_URL}/api/lead/update_lead_appointment/`;
   updateAgentProfile = `${environment.BASE_URL}/api/agent/update_agent_profile/`;
   updateAgentAddress = `${environment.BASE_URL}/api/agent/update_agent_address/`;
   updateAgentKYC = `${environment.BASE_URL}/api/agent/update_agent_kyc/`;
@@ -51,6 +56,7 @@ export class ConstantsService {
   updatePassword = `${environment.BASE_URL}/api/user/updatepassword/`;
   agentImageUpload = `${environment.BASE_URL}/api/agent/update_employee_images/`;
   fetchPermissionsApi = `${environment.BASE_URL}/api/user/user_permission/`;
+  balanceTransferPreFinalApproval = `${environment.BASE_URL}/api/user/bt_prefinal_approval/`;
   rolesPermissionsApi = `${environment.BASE_URL}/api/user/rolepermissions/`;
   forgotPasswordUrl = `https://jsonplaceholder.typicode.com/`;
   resetPasswordUrl = `https://jsonplaceholder.typicode.com/`;

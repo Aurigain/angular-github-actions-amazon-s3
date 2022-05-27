@@ -28,17 +28,19 @@
             <ul id="progressbar">
               <li class="active StepProgress-item" [ngClass]="{'active': currentStep >= 1}"><span class="span1">Personal
                   Details</span></li>
-              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 2}"><span class="span1">Jewellery
+              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 2}"><span class="span1">Address
                   Details</span></li>
-              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 3}"><span class="span1">Appointment
+              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 3}"><span class="span1">Jewellery
                   Details</span></li>
-              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 4}"><span class="span1">Loan
+              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 4}"><span class="span1">Appointment
+                  Details</span></li>
+              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 5}"><span class="span1">Loan
                   Detail</span></li>
-              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 5}"><span class="span1">Document
+              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 6}"><span class="span1">Document
                   Details</span></li>
-              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 6}"><span class="span1">Bank
+              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 7}"><span class="span1">Bank
                   Details</span></li>
-              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 7}"><span class="span1">Document
+              <li class="StepProgress-item" [ngClass]="{'active': currentStep >= 8}"><span class="span1">Document
                   Upload</span></li>
 
             </ul>
@@ -189,7 +191,7 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="detail-div">
+            <div class="detail-div">
               <div class="vertical-line personal-form" *ngIf="currentStep == 2">
                 <div class="form-content">
                   <form [formGroup]="addressDetailsForm">
@@ -259,11 +261,11 @@
                 </div>
 
               </div>
-            </div> -->
+            </div>
 
             <div class="detail-div">
 
-              <div class="vertical-line personal-form" *ngIf="currentStep == 2">
+              <div class="vertical-line personal-form" *ngIf="currentStep == 3">
                 <div class="form-content">
                   <form [formGroup]="jewelleryDetailsForm">
                     <div class="form-row">
@@ -362,7 +364,7 @@
             </div>
             <div class="detail-div">
 
-              <div class="vertical-line personal-form" *ngIf="currentStep == 3">
+              <div class="vertical-line personal-form" *ngIf="currentStep == 4">
                 <div class="form-content">
                   <form [formGroup]="appointmentDetailsForm">
                     <div class="form-row">
@@ -424,7 +426,7 @@
 
             <div class="detail-div">
 
-              <div class="vertical-line personal-form" *ngIf="currentStep == 4">
+              <div class="vertical-line personal-form" *ngIf="currentStep == 5">
                 <div class="form-content">
                   <form [formGroup]="loanDetails">
                     <div class="form-row">
@@ -460,7 +462,7 @@
 
             <div class="detail-div">
 
-              <div class="vertical-line personal-form" *ngIf="currentStep == 5">
+              <div class="vertical-line personal-form" *ngIf="currentStep == 6">
                 <div class="form-content">
                   <form [formGroup]="documentDetailsForm">
                     <div class="form-row">
@@ -568,7 +570,7 @@
 
             <div class="detail-div">
 
-              <div class="vertical-line personal-form" *ngIf="currentStep == 6">
+              <div class="vertical-line personal-form" *ngIf="currentStep == 7">
                 <div class="form-content">
                   <form [formGroup]="existingLoanDetailsForm">
                     <div class="form-row">
@@ -709,7 +711,7 @@
                   </div>
                   <div class="form-btn">
 
-                    <a (click)="savebankDetailsForm()"><button type="submit" class="btn btn-primary"><i
+                    <a (click)="saveexistingLoanDetailsForm()"><button type="submit" class="btn btn-primary"><i
                           class="fa fa-arrow-right"></i> Next</button></a>
                   </div>
                 </div>
@@ -717,7 +719,7 @@
             </div>
             <div class="detail-div">
 
-              <div class="vertical-line personal-form" *ngIf="currentStep == 7">
+              <div class="vertical-line personal-form" *ngIf="currentStep == 8">
                 <div class="form-content">
                   <form [formGroup]="documentUploadDetailsForm">
                     <div class="form-row">

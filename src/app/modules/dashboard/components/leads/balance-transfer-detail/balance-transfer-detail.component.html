@@ -217,13 +217,13 @@
                                     </tr>-->
                                     <tr>
                                         <td style="width: 25%;"><strong>City:</strong></td>
-                                        <td style="width: 25%;">{{pincodeDetail?.city}}</td>
+                                        <td style="width: 25%;">{{addressDetails?.permanent_city?.name}}</td>
                                         <td style="width: 25%;"><strong>Pincode:</strong></td>
-                                        <td style="width: 25%;">{{addressDetails?.pincode?.code}}</td>
+                                        <td style="width: 25%;">{{addressDetails?.permanent_pincode?.code}}</td>
                                     </tr>
                                     <tr>
                                         <td style="width: 25%;"><strong>State:</strong></td>
-                                        <td style="width: 25%;">{{pincodeDetail?.state}}</td>
+                                        <td style="width: 25%;">{{addressDetails?.permanent_state?.name}}</td>
                                         <!-- <td style="width: 25%;"><strong>Pincode:</strong></td>
                                         <td style="width: 25%;">{{addressDetails?.pincode?.code}}</td> -->
                                     </tr>
@@ -242,18 +242,16 @@
                                         <td style="width: 25%;"><strong>Address line 2</strong></td>
                                         <td style="width: 25%;">{{addressDetails?.address_line2}}</td>
                                     </tr>
-                                    <!-- <tr>
-                                        <td style="width: 25%;"><strong>Area name:</strong></td>
-                                        <td style="width: 25%;">Mansarover</td>
-                                        <td style="width: 25%;"><strong>District:</strong></td>
-                                        <td style="width: 25%;">Jaipur</td>
-                                    </tr>
                                     <tr>
-                                        <td style="width: 25%;"><strong>State:</strong></td>
-                                        <td style="width: 25%;">Rajasthan</td>
-                                        <td style="width: 25%;"><strong>Pincode:</strong></td>
-                                        <td style="width: 25%;">302018</td>
-                                    </tr> -->
+                                      <td style="width: 25%;"><strong>City:</strong></td>
+                                      <td style="width: 25%;">{{addressDetails?.city?.name}}</td>
+                                      <td style="width: 25%;"><strong>Pincode:</strong></td>
+                                      <td style="width: 25%;">{{addressDetails?.pincode?.code}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td style="width: 25%;"><strong>State:</strong></td>
+                                      <td style="width: 25%;">{{addressDetails?.state?.name}}</td>
+                                  </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -57,6 +57,16 @@ export class BalanceTransferApprovalComponent implements OnInit {
   dataVerify;
   imageVerify;
   accountTransferDetails;
+
+  existing_loan_status
+existing_loan_remark
+fund_transfer_status
+fund_transfer_remark
+appointment_status
+appointment_remark
+agreement_status
+agreement_remark
+
   originalArray = [
     {Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: 'yishu@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'active'},
     {Id: 10017, FullName: 'Yishu Arora', FatherName: 'heeheh', Email: 'YishuArora@gmail.com', type: 'rejected',DateOfBirth: '0001-01-01T00:00:00', status: 'inactive'},
@@ -183,9 +193,9 @@ export class BalanceTransferApprovalComponent implements OnInit {
   fetchBTLeadDetail(id) {
     this.misc.leadLoanDetailById(id).subscribe(
       data => {
-        console.log("bt lead detail:", data);
-        this.leadDetails = data;
-        const id = data['lead']['id'];
+        console.log("bt lead detail:", data[0]);
+        this.leadDetails = data[0];
+        // const id = data['lead']['id'];
         this.misc.fetchLeadProfileById(id).subscribe(
           data => {
             this.profileData = data[0]
@@ -233,16 +243,7 @@ export class BalanceTransferApprovalComponent implements OnInit {
       data => {
       console.log("address details:", data[0]);
       this.addressDetails = data[0];
-      // this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${this.addressDetails['pincode']['code']}`).subscribe(
-      //   data => {
-      //     console.log("internal data is", data['data']);
-      //     // this.pincodeDetail = data['data'][0];
-      //     // console.log("pincode Details", this.pincodeDetail)
-      //   },
-      //   error => {
-      //     console.log("error", error);
-      //   }
-      // );
+
     },
     error => {
       console.log("error", error);
@@ -289,36 +290,49 @@ export class BalanceTransferApprovalComponent implements OnInit {
   }
 
   savePersonalDetails(){
-    this.stepUp();
-    console.log("inside save personal details")
-    let personalDetailData:any;
-    const product = this.personalDetails.value.product;
-    const name = this.personalDetails.value.name;
-    const fatherName = this.personalDetails.value.fatherName;
-    const dob = this.personalDetails.value.dob;
-    const gender = this.personalDetails.value.gender;
-    const email = this.personalDetails.value.email;
-    const phoneNumber1 = this.personalDetails.value.phoneNumber1;
-    const phoneNumber2 = this.personalDetails.value.phoneNumber2;
-    const loanAmount = this.personalDetails.value.loanAmount;
-    const loanNumber = this.personalDetails.value.loanNumber;
-    const loanPurpose = this.personalDetails.value.loanPurpose;
+    const nameChecker = this.nameChecker;
+    const addressChecker = this.addressChecker;
+    const photoChecker = this.photoChecker;
+    const nameRemark = this.nameRemark;
+    const addressRemark = this.addressRemark;
+    const photoRemark = this.photoRemark;
+    const existing_loan_status = this.existing_loan_status;
+    const existing_loan_remark = this.existing_loan_remark;
+    const fund_transfer_status = this.fund_transfer_status;
+    const fund_transfer_remark = this.fund_transfer_remark;
+    const appointment_status = this.appointment_status;
+    const appointment_remark = this.appointment_remark;
+    const agreement_status = this.agreement_status;
+    const agreement_remark = this.agreement_remark;
 
-    personalDetailData = {
-      product: product,
-      name: name,
-      fatherName: fatherName,
-      dob: dob,
-      gender: gender,
-      email: email,
-      phoneNumber1: phoneNumber1,
-      phoneNumber2: phoneNumber2,
-      loanAmount: loanAmount,
-      loanNumber: loanNumber,
-      loanPurpose: loanPurpose,
+    let personalData = {
+      lead: this.currentUserId,
+      personal_status: nameChecker,
+      personal_remark: nameRemark,
+      address_status: addressChecker,
+      address_remark: addressRemark,
+      customer_image_status: photoChecker,
+      customer_image_status_remark: photoRemark,
+      existing_loan_status: existing_loan_status,
+      existing_loan_remark: existing_loan_remark,
+      fund_transfer_status: fund_transfer_status,
+      fund_transfer_remark: fund_transfer_remark,
+      appointment_status: appointment_status,
+      appointment_remark: appointment_remark,
+      agreement_status: agreement_status,
+      agreement_remark: agreement_remark,
     }
-    console.log(personalDetailData);
 
+    console.log(personalData);
+
+    this.misc.balanceTransferPreFinalApproval(personalData).subscribe(
+      data => {
+        console.log(data);
+      },
+      error =>{
+        console.log(error);
+      }
+    )
 
   }
 

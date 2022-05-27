@@ -128,7 +128,7 @@ export class BalanceTransferLeadsComponent implements OnInit {
       // const userData = localStorage.getItem('userProfile');
       const tempPermissions = this.ssrService.getItem('userPermissions');
       const userPermissions = JSON.parse(tempPermissions)
-        if(!userPermissions.includes('Leads')){
+        if(!userPermissions.includes('BT Lead')){
           this.router.navigate(['/dashboard'])
         }
       }

@@ -41,9 +41,9 @@ export class BalanceTransferDetailComponent implements OnInit {
   fetchBTLeadDetail(id) {
     this.misc.leadLoanDetailById(id).subscribe(
       data => {
-        console.log("bt lead detail:", data);
-        this.leadDetails = data;
-        const id = data['lead']['id'];
+        console.log("bt lead detail:", data[0]);
+        this.leadDetails = data[0];
+        // const id = data['lead']['id'];
         this.misc.fetchLeadProfileById(id).subscribe(
           data => {
             this.profileData = data[0]
@@ -115,16 +115,16 @@ export class BalanceTransferDetailComponent implements OnInit {
     this.misc.fetchLeadAdressDetailById(id).subscribe(data => {
       console.log("address details:", data[0]);
       this.addressDetails = data[0];
-      this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${this.addressDetails['pincode']['code']}`).subscribe(
-        data => {
-          console.log("internal data is", data['data']);
-          this.pincodeDetail = data['data'][0];
-          console.log("pincode Details", this.pincodeDetail)
-        },
-        error => {
-          console.log("error", error);
-        }
-      );
+      // this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${this.addressDetails['pincode']['code']}`).subscribe(
+      //   data => {
+      //     console.log("internal data is", data['data']);
+      //     this.pincodeDetail = data['data'][0];
+      //     console.log("pincode Details", this.pincodeDetail)
+      //   },
+      //   error => {
+      //     console.log("error", error);
+      //   }
+      // );
     })
   }
 
