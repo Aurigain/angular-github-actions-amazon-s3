@@ -59,7 +59,7 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Type</th>
-                        <th>RM Name</th>
+                        <th>Created At</th>
                         <th>Source</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -72,7 +72,7 @@
                       <td>{{user?.lead?.fullname}}</td>
                       <td>{{user?.lead?.phonenumber}}</td>
                       <td>{{user?.loan_type?.loan_type | titlecase}}</td>
-                      <td>RM 1</td>
+                      <td>{{user?.created_at | date: 'mediumDate'}}</td>
                       <td>{{user?.lead?.source}}</td>
                       <td>{{user?.current_status?.status}}</td>
                       <td>

@@ -1,263 +1,262 @@
 <div class="layout-px-spacing">
-    <div class="row h-100" style="min-height: 100vh;">
-        <div class="col-xl-12 col-lg-12 col-md-12">
-            <div class="widget bg-white pb-4">
-                <div class="widget-header">
-                    <div
-                        class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
-                        <div>
-                            <h3>Balance Transfer Lead Deatils</h3>
-                            <nav class="custom-breadcrum">
-                                <ol class="breadcrumb justify-content-center justify-content-sm-start" >
-                                    <li class="breadcrumb-item">
-                                    <a routerlink="../dashboard">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item">
-                                    <a routerLink="/dashboard/balance-transfer-leads"> Balance Transfer</a
-                                    >
-                                    </li>
-                                    <li aria-current="page" class="breadcrumb-item active">
-                                    Details
-                                    </li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-5 box">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="box2">
-                            <h5>
-                                <!-- <img src="" alt="personal"> -->
-                                Personal Details
-                            </h5>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Loan Case Date:</strong></td>
-                                        <td style="width: 25%;"> {{leadDetails?.created_at | date: "mediumDate"}}</td>
-                                        <td style="width: 25%;"></td>
-                                        <td style="width: 25%;"></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Product Category:</strong></td>
-                                        <td style="width: 25%;">{{leadDetails?.loan_type?.loan_type | titlecase}}</td>
-                                        <td style="width: 25%;"><strong>Product Name:</strong></td>
-                                        <td style="width: 25%;">{{leadDetails?.loan_type?.loan_type | titlecase}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Full Name:</strong></td>
-                                        <td style="width: 25%;">{{profileData?.fullname}}</td>
-                                        <td style="width: 25%;"><strong>Mobile Number:</strong></td>
-                                        <td style="width: 25%;">{{profileData?.phonenumber}}</td>
-                                    </tr>
-                                    <tr>
-                                        <!-- <td style="width: 25%;"><strong>Amount Loan:</strong></td>
+  <div class="row h-100" style="min-height: 100vh;">
+    <div class="col-xl-12 col-lg-12 col-md-12">
+      <div class="widget bg-white pb-4">
+        <div class="widget-header">
+          <div class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
+            <div>
+              <h3>Balance Transfer Lead Deatils</h3>
+              <nav class="custom-breadcrum">
+                <ol class="breadcrumb justify-content-center justify-content-sm-start">
+                  <li class="breadcrumb-item">
+                    <a routerlink="../dashboard">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a routerLink="/dashboard/balance-transfer-leads"> Balance Transfer</a>
+                  </li>
+                  <li aria-current="page" class="breadcrumb-item active">
+                    Details
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 box">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="box2">
+              <h5>
+                <!-- <img src="" alt="personal"> -->
+                Personal Details
+              </h5>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td style="width: 25%;"><strong>Loan Case Date:</strong></td>
+                    <td style="width: 25%;"> {{leadDetails?.created_at | date: "mediumDate"}}</td>
+                    <td style="width: 25%;"></td>
+                    <td style="width: 25%;"></td>
+                  </tr>
+                  <tr>
+                    <td style="width: 25%;"><strong>Product Category:</strong></td>
+                    <td style="width: 25%;">{{leadDetails?.loan_type?.loan_type | titlecase}}</td>
+                    <td style="width: 25%;"><strong>Product Name:</strong></td>
+                    <td style="width: 25%;">{{leadDetails?.loan_type?.loan_type | titlecase}}</td>
+                  </tr>
+                  <tr>
+                    <td style="width: 25%;"><strong>Full Name:</strong></td>
+                    <td style="width: 25%;">{{profileData?.fullname}}</td>
+                    <td style="width: 25%;"><strong>Mobile Number:</strong></td>
+                    <td style="width: 25%;">{{profileData?.phonenumber}}</td>
+                  </tr>
+                  <tr>
+                    <!-- <td style="width: 25%;"><strong>Amount Loan:</strong></td>
                                         <td style="width: 25%;">{{leadDetails?.loan_amount_needed}}</td> -->
-                                        <td style="width: 25%;"><strong>Gender:</strong></td>
-                                        <td style="width: 25%;">{{profileData?.gender | titlecase}}</td>
-                                    </tr>
-                                    <tr>
+                    <td style="width: 25%;"><strong>Gender:</strong></td>
+                    <td style="width: 25%;">{{profileData?.gender | titlecase}}</td>
+                  </tr>
+                  <tr>
 
 
-                                    </tr>
+                  </tr>
 
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Lead Source By:</strong></td>
-                                        <td style="width: 25%;">{{leadDetails?.lead?.source |titlecase}}</td>
-                                        <td style="width: 25%;"><strong>Lead Type:</strong></td>
-                                        <td style="width: 25%;">{{leadDetails?.loan_type?.loan_type | titlecase}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-5 box">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="box2">
-                            <h5>
-                                <!-- <img src="" alt="personal"> -->
-                                Existing Loan Detail
-                            </h5>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Bank Name:</strong></td>
-                                        <td style="width: 25%;">{{appointmentDetails?.branch?.bank?.name}}</td>
-                                        <td style="width: 25%;"><strong>Bank IFSC:</strong></td>
-                                        <td style="width: 25%;">{{appointmentDetails?.branch?.ifsc_code}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Date:</strong></td>
-                                        <td style="width: 25%;">{{accountTransferDetails?.created_at | date: 'short'}}</td>
-                                        <td style="width: 25%;"><strong>Outstanding Amount:</strong></td>
-                                        <td style="width: 25%;"> {{accountTransferDetails?.existing_loan_account?.outstanding_loan_amount}}</td>
-                                    </tr>
+                  <tr>
+                    <td style="width: 25%;"><strong>Lead Source By:</strong></td>
+                    <td style="width: 25%;">{{leadDetails?.lead?.source |titlecase}}</td>
+                    <td style="width: 25%;"><strong>Lead Type:</strong></td>
+                    <td style="width: 25%;">{{leadDetails?.loan_type?.loan_type | titlecase}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 box">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="box2">
+              <h5>
+                <!-- <img src="" alt="personal"> -->
+                Existing Loan Detail
+              </h5>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td style="width: 25%;"><strong>Bank Name:</strong></td>
+                    <td style="width: 25%;">{{appointmentDetails?.branch?.bank?.name}}</td>
+                    <td style="width: 25%;"><strong>Bank IFSC:</strong></td>
+                    <td style="width: 25%;">{{appointmentDetails?.branch?.ifsc_code}}</td>
+                  </tr>
+                  <tr>
+                    <td style="width: 25%;"><strong>Date:</strong></td>
+                    <td style="width: 25%;">{{accountTransferDetails?.created_at | date: 'short'}}</td>
+                    <td style="width: 25%;"><strong>Outstanding Amount:</strong></td>
+                    <td style="width: 25%;"> {{accountTransferDetails?.existing_loan_account?.outstanding_loan_amount}}
+                    </td>
+                  </tr>
 
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Balance Transfer Amount:</strong></td>
-                                        <td style="width: 25%;">
-                                          {{accountTransferDetails?.balance_transfer_amount}}
-                                         </td>
-                                        <td style="width: 25%;"><strong>Existing Loan Account Number:</strong></td>
-                                        <td style="width: 25%;">
-                                          {{accountTransferDetails?.existing_loan_account?.existing_loan_account_number}}</td>
-                                      </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Loan Account Number:</strong></td>
-                                        <td style="width: 25%;">
-                                          {{accountTransferDetails?.loan_account_number}}
-                                         </td>
-                                        <td style="width: 25%;"><strong>Existing Loan Account Number:</strong></td>
-                                        <td style="width: 25%;">
-                                          {{accountTransferDetails?.existing_loan_account?.existing_loan_account_number}}</td>
-                                      </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-5 box">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="box2">
-                            <h5>
-                                <!-- <img src="" alt="personal"> -->
-                                Jewellery Details
-                            </h5>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Loan Amount</strong></td>
-                                        <td style="width: 25%;">{{leadDetails?.loan_amount_needed}}</td>
-                                        <td style="width: 25%;"><strong>How Soon Need Loan (in days):</strong></td>
-                                        <td style="width: 25%;">{{leadDetails?.how_soon_need_loan_in_days}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Weight (in grams):</strong></td>
-                                        <td style="width: 25%;">{{leadDetails?.weight_of_gold_grams}}</td>
-                                        <td style="width: 25%;"><strong>Gross Gold Weight (in grams):</strong></td>
-                                        <td style="width: 25%;">{{leadDetails?.gross_weight_gold}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Karat</strong></td>
-                                        <td style="width: 25%;">{{leadDetails?.karat}}</td>
-                                        <!-- <td style="width: 25%;"><strong>Quantity:</strong></td>
+                  <tr>
+                    <td style="width: 25%;"><strong>Balance Transfer Amount:</strong></td>
+                    <td style="width: 25%;">
+                      {{accountTransferDetails?.balance_transfer_amount}}
+                    </td>
+                    <td style="width: 25%;"><strong>Existing Loan Account Number:</strong></td>
+                    <td style="width: 25%;">
+                      {{accountTransferDetails?.existing_loan_account?.existing_loan_account_number}}</td>
+                  </tr>
+                  <tr>
+                    <td style="width: 25%;"><strong>Loan Account Number:</strong></td>
+                    <td style="width: 25%;">
+                      {{accountTransferDetails?.loan_account_number}}
+                    </td>
+                    <td style="width: 25%;"><strong>Existing Loan Account Number:</strong></td>
+                    <td style="width: 25%;">
+                      {{accountTransferDetails?.existing_loan_account?.existing_loan_account_number}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 box">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="box2">
+              <h5>
+                <!-- <img src="" alt="personal"> -->
+                Jewellery Details
+              </h5>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td style="width: 25%;"><strong>Loan Amount</strong></td>
+                    <td style="width: 25%;">{{leadDetails?.loan_amount_needed}}</td>
+                    <td style="width: 25%;"><strong>How Soon Need Loan (in days):</strong></td>
+                    <td style="width: 25%;">{{leadDetails?.how_soon_need_loan_in_days}}</td>
+                  </tr>
+                  <tr>
+                    <td style="width: 25%;"><strong>Weight (in grams):</strong></td>
+                    <td style="width: 25%;">{{leadDetails?.weight_of_gold_grams}}</td>
+                    <td style="width: 25%;"><strong>Gross Gold Weight (in grams):</strong></td>
+                    <td style="width: 25%;">{{leadDetails?.gross_weight_gold}}</td>
+                  </tr>
+                  <tr>
+                    <td style="width: 25%;"><strong>Karat</strong></td>
+                    <td style="width: 25%;">{{leadDetails?.karat}}</td>
+                    <!-- <td style="width: 25%;"><strong>Quantity:</strong></td>
                                         <td style="width: 25%;">3</td> -->
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-5 box">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="box2">
-                            <h5>
-                                <!-- <img src="" alt="personal"> -->
-                                Appointment Details
-                            </h5>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-borderless">
-                                <tbody>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 box">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="box2">
+              <h5>
+                <!-- <img src="" alt="personal"> -->
+                Appointment Details
+              </h5>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-borderless">
+                <tbody>
 
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Date of Appointment:</strong></td>
-                                        <td style="width: 25%;">{{appointmentDetails?.appointment_date | date: 'mediumDate'}}</td>
-                                        <td style="width: 25%;"><strong>Time of Appointment:</strong></td>
-                                        <td style="width: 25%;">{{appointmentDetails?.appointment_time}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Bank Name:</strong></td>
-                                        <td style="width: 25%;">{{appointmentDetails?.branch?.bank?.name}}</td>
-                                        <td style="width: 25%;"><strong>Bank Address</strong></td>
-                                        <td style="width: 25%;">{{appointmentDetails?.branch?.address}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Pincode:</strong></td>
-                                        <td style="width: 25%;">{{appointmentDetails?.branch?.pincode?.code}}</td>
+                  <tr>
+                    <td style="width: 25%;"><strong>Date of Appointment:</strong></td>
+                    <td style="width: 25%;">{{appointmentDetails?.appointment_date | date: 'mediumDate'}}</td>
+                    <td style="width: 25%;"><strong>Time of Appointment:</strong></td>
+                    <td style="width: 25%;">{{appointmentDetails?.appointment_time}}</td>
+                  </tr>
+                  <tr>
+                    <td style="width: 25%;"><strong>Bank Name:</strong></td>
+                    <td style="width: 25%;">{{appointmentDetails?.branch?.bank?.name}}</td>
+                    <td style="width: 25%;"><strong>Bank Address</strong></td>
+                    <td style="width: 25%;">{{appointmentDetails?.branch?.address}}</td>
+                  </tr>
+                  <tr>
+                    <td style="width: 25%;"><strong>Pincode:</strong></td>
+                    <td style="width: 25%;">{{appointmentDetails?.branch?.pincode?.code}}</td>
 
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-5 box">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="box2">
-                            <h5>
-                                 Address Details
-                            </h5>
-                        </div>
-                        <div class="mb3">
-                            <h5 class="text-danger">Permanent Address</h5>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Address line 1:</strong></td>
-                                        <td style="width: 25%;">{{addressDetails?.permanent_address_line1}}</td>
-                                        <td style="width: 25%;"><strong>Address line 2</strong></td>
-                                        <td style="width: 25%;">{{addressDetails?.permanent_address_line2}}</td>
-                                    </tr>
-                                    <!-- <tr>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 box">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="box2">
+              <h5>
+                Address Details
+              </h5>
+            </div>
+            <div class="mb3">
+              <h5 class="text-danger">Permanent Address</h5>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td style="width: 25%;"><strong>Address line 1:</strong></td>
+                    <td style="width: 25%;">{{addressDetails?.permanent_address_line1}}</td>
+                    <td style="width: 25%;"><strong>Address line 2</strong></td>
+                    <td style="width: 25%;">{{addressDetails?.permanent_address_line2}}</td>
+                  </tr>
+                  <!-- <tr>
                                         <td style="width: 25%;"><strong>Area name:</strong></td>
                                         <td style="width: 25%;">Mansarover</td>
                                         <td style="width: 25%;"><strong>District:</strong></td>
                                         <td style="width: 25%;">Jaipur</td>
                                     </tr>-->
-                                    <tr>
-                                        <td style="width: 25%;"><strong>City:</strong></td>
-                                        <td style="width: 25%;">{{addressDetails?.permanent_city?.name}}</td>
-                                        <td style="width: 25%;"><strong>Pincode:</strong></td>
-                                        <td style="width: 25%;">{{addressDetails?.permanent_pincode?.code}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>State:</strong></td>
-                                        <td style="width: 25%;">{{addressDetails?.permanent_state?.name}}</td>
-                                        <!-- <td style="width: 25%;"><strong>Pincode:</strong></td>
+                  <tr>
+                    <td style="width: 25%;"><strong>City:</strong></td>
+                    <td style="width: 25%;">{{addressDetails?.permanent_city?.name}}</td>
+                    <td style="width: 25%;"><strong>Pincode:</strong></td>
+                    <td style="width: 25%;">{{addressDetails?.permanent_pincode?.code}}</td>
+                  </tr>
+                  <tr>
+                    <td style="width: 25%;"><strong>State:</strong></td>
+                    <td style="width: 25%;">{{addressDetails?.permanent_state?.name}}</td>
+                    <!-- <td style="width: 25%;"><strong>Pincode:</strong></td>
                                         <td style="width: 25%;">{{addressDetails?.pincode?.code}}</td> -->
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="mb3">
-                            <h5 class="text-danger">Correspondence Address</h5>
-                        </div>
-                        <div class="table-responsive-sm">
-                            <table class="table table-borderless">
-                                <tbody>
-                                    <tr>
-                                        <td style="width: 25%;"><strong>Address line 1:</strong></td>
-                                        <td style="width: 25%;">{{addressDetails?.address_line1}}</td>
-                                        <td style="width: 25%;"><strong>Address line 2</strong></td>
-                                        <td style="width: 25%;">{{addressDetails?.address_line2}}</td>
-                                    </tr>
-                                    <tr>
-                                      <td style="width: 25%;"><strong>City:</strong></td>
-                                      <td style="width: 25%;">{{addressDetails?.city?.name}}</td>
-                                      <td style="width: 25%;"><strong>Pincode:</strong></td>
-                                      <td style="width: 25%;">{{addressDetails?.pincode?.code}}</td>
-                                  </tr>
-                                  <tr>
-                                      <td style="width: 25%;"><strong>State:</strong></td>
-                                      <td style="width: 25%;">{{addressDetails?.state?.name}}</td>
-                                  </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="mt-5 box">
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mb3">
+              <h5 class="text-danger">Correspondence Address</h5>
+            </div>
+            <div class="table-responsive-sm">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td style="width: 25%;"><strong>Address line 1:</strong></td>
+                    <td style="width: 25%;">{{addressDetails?.address_line1}}</td>
+                    <td style="width: 25%;"><strong>Address line 2</strong></td>
+                    <td style="width: 25%;">{{addressDetails?.address_line2}}</td>
+                  </tr>
+                  <tr>
+                    <td style="width: 25%;"><strong>City:</strong></td>
+                    <td style="width: 25%;">{{addressDetails?.city?.name}}</td>
+                    <td style="width: 25%;"><strong>Pincode:</strong></td>
+                    <td style="width: 25%;">{{addressDetails?.pincode?.code}}</td>
+                  </tr>
+                  <tr>
+                    <td style="width: 25%;"><strong>State:</strong></td>
+                    <td style="width: 25%;">{{addressDetails?.state?.name}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="mt-5 box">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="box2">
                             <h5>
@@ -297,49 +296,49 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="mt-5 box">
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                      <div class="box2">
-                          <h5>
-                              <!-- <img src="" alt="personal"> -->
-                              Document Details
-                          </h5>
-                      </div>
+        <div class="mt-5 box">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="box2">
+              <h5>
+                <!-- <img src="" alt="personal"> -->
+                Document Details
+              </h5>
+            </div>
 
-                      <div class="bottom-box">
-                          <div class="row">
-                              <div class="form-group col-md-2" *ngFor="let img of image?.url">
-                                  <!-- <label for="">Customer Photo</label> -->
-                                  <a href="javascript:void(0);">
-                                      <div class="small-media-items-img">
-                                          <a (click)="previewImage(img)">
-                                            <img [src]="img" alt="" title="img"/>
-                                          </a>
-                                      </div>
-                                      <i class="fas fa-link bottom-icon"></i>
-                                  </a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+            <div class="bottom-box">
+              <div class="row">
+                <div class="form-group col-md-2" *ngFor="let img of image?.url">
+                  <!-- <label for="">Customer Photo</label> -->
+                  <a href="javascript:void(0);">
+                    <div class="small-media-items-img">
+                      <a (click)="previewImage(img)">
+                        <img [src]="img" alt="" title="img" />
+                      </a>
+                    </div>
+                    <i class="fas fa-link bottom-icon"></i>
+                  </a>
                 </div>
-              <div class="mt-5 box" *ngIf="isImagePreview">
-                  <div class="col-lg-12 col-md-12 col-sm-12">
-                      <div class="box2">
-                          <h5>
-                              <!-- <img src="" alt="personal"> -->
-                              Document Preview
-                          </h5>
-                      </div>
-                      <div class="float-right"><a (click)="closePreview()"><button class="btn btn-danger">Close</button></a></div>
-                      <div class="bottom-box">
-                          <div class="row">
-                              <img [src]="previewImg" width="500" height="500">
-                          </div>
-                      </div>
-                  </div>
               </div>
             </div>
+          </div>
         </div>
+        <div class="mt-5 box" *ngIf="isImagePreview">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="box2">
+              <h5>
+                <!-- <img src="" alt="personal"> -->
+                Document Preview
+              </h5>
+            </div>
+            <div class="float-right"><a (click)="closePreview()"><button class="btn btn-danger">Close</button></a></div>
+            <div class="bottom-box">
+              <div class="row">
+                <img [src]="previewImg" width="500" height="500">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

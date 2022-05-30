@@ -218,6 +218,17 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+  FetchAllLoanRequests() {
+
+    return this.http.get(`${this.consts.all_loan_requests}?lead_loan_type=bt&lead__fully_approved=True`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
 
   fetchAllEmployees() {
 
@@ -234,6 +245,18 @@ export class MiscellaneousService {
   userRoleMapping() {
 
     return this.http.get(this.consts.employeeApi, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  fetchReportingPersonbyRole(id) {
+
+    return this.http.get(`${this.consts.fetch_employees_by_role}?role=${id}`, {
       headers: new HttpHeaders({
         'Authorization': `${this.cookie.get('_l_a_t')}`
       })
@@ -382,7 +405,13 @@ export class MiscellaneousService {
   }
 
   balanceTransferPreFinalApproval(data:any) {
-    return this.http.post(this.consts.balanceTransferPreFinalApproval, data)
+    return this.http.put(this.consts.balanceTransferPreFinalApproval, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  balanceTransferFinalApproval(data:any) {
+    return this.http.put(this.consts.balanceTransferFinalApproval, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );

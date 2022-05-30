@@ -56,22 +56,24 @@
                     <tr>
                       <th>Lead Id</th>
                       <th>Name</th>
-                      <th>Amount</th>
+                      <th>Phone Number</th>
                       <th>Type</th>
-                      <th>RM Name</th>
-                      <th>Customer Occupation</th>
+                      <th>Approved By</th>
+                      <th>Source</th>
+                      <th>Status</th>
                       <th>Detail</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr
-                      *ngFor="let user of filterArray | paginate: { itemsPerPage: rowFilter, currentPage: p }; let i = index ">
+                      *ngFor="let user of allBTLeadsList | paginate: { itemsPerPage: rowFilter, currentPage: p }; let i = index ">
                       <td>{{(p-1) * rowFilter + i + 1}}</td>
-                      <td>{{user.FullName}}</td>
-                      <td>110059</td>
-                      <td>Int</td>
-                      <td>RM 1</td>
-                      <td>Professor</td>
+                      <td>{{user?.lead?.fullname | titlecase}}</td>
+                      <td>{{user?.lead?.phonenumber}}</td>
+                      <td>{{user?.loan_type?.loan_type | titlecase}}</td>
+                      <td>{{user?.lead?.approved_by?.full_name}}</td>
+                      <td>{{user?.lead?.source | titlecase}}</td>
+                      <td>{{user?.lead?.fully_approved? 'Fully Approved': 'Not Approved'}}</td>
                       <td>
                         <a
                         class="booking"

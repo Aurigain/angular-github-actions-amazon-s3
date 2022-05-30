@@ -15,7 +15,8 @@ import { NetworkRequestService } from 'src/app/core/services/network-request.ser
 })
 export class AddEmployeeComponent implements OnInit {
   Roles;
-
+  isReportingPerson = false;
+  reportingPersonByRole;
   constructor(
     private formbuilder: FormBuilder,
     private conts: ConstantsService,
@@ -205,6 +206,22 @@ export class AddEmployeeComponent implements OnInit {
         }
       );
     }
+  }
+
+
+  fetchReportingPersonbyRole(event){
+    const id = event.target.value;
+    console.log("iddd", id)
+    this.misc.fetchReportingPersonbyRole(id).subscribe(
+      data =>{
+        this.isReportingPerson = true;
+        console.log("data", data);
+        this.reportingPersonByRole = data
+      },
+      error => {
+        console.log("error", error);
+      }
+    )
   }
 
 

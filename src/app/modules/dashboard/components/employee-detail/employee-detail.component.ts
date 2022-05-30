@@ -14,7 +14,8 @@ import { NetworkRequestService } from 'src/app/core/services/network-request.ser
   styleUrls: ['./employee-detail.component.scss']
 })
 export class EmployeeDetailComponent implements OnInit {
-
+  isReportingPerson = false;
+  reportingPersonByRole;
   Roles;
   currentUserId;
   userDetail;
@@ -112,13 +113,18 @@ export class EmployeeDetailComponent implements OnInit {
           last_name: last_name,
           phone_number: this.profileData['phonenumber'],
           role: this.profileData['user_group'],
-          reporting_person: this.profileData['reporting_person']['shareReferralCode'],
+
           gender: this.profileData['gender'],
           email: this.profileData['email'],
           dob: this.profileData['date_of_birth'],
           father_name: this.profileData['father_name'],
 
         })
+        if(this.profileData['reporting_person']){
+          this.personalDetails.patchValue({
+            reporting_person: this.profileData['reporting_person']['shareReferralCode'],
+          })
+        }
       },
       error => {
         console.log("error", error)
@@ -252,6 +258,21 @@ export class EmployeeDetailComponent implements OnInit {
         this.tabelData.splice(index, 1)
       }
     })
+  }
+
+  fetchReportingPersonbyRole(event){
+    const id = event.target.value;
+    console.log("iddd", id)
+    this.misc.fetchReportingPersonbyRole(id).subscribe(
+      data =>{
+        this.isReportingPerson = true;
+        console.log("data", data);
+        this.reportingPersonByRole = data
+      },
+      error => {
+        console.log("error", error);
+      }
+    )
   }
 
   savePersonalDetails() {

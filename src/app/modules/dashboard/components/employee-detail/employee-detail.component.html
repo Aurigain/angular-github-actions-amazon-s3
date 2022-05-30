@@ -193,12 +193,19 @@
                         </div>
                       </div>
                       <div class="form-group col-md-4">
+                        <label for="inputDate">Reporting Person Role Group</label>
+                        <select id="inputRole" class="form-control" (change)="fetchReportingPersonbyRole($event)">
+                          <option value="" selected>Select Role</option>
+                          <option *ngFor="let role of Roles" [value]="role?.id">{{role.role_name |titlecase}}</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-4" *ngIf="isReportingPerson">
                         <label for="inputDate">Reporting Person</label>
 
                         <select id="inputState" class="form-control" formControlName="reporting_person"
                           placeholder="Reporting Person">
                           <option value="" selected>Select Reporting Person</option>
-                          <option *ngFor="let emp of employeelist" [value]="emp?.username">{{emp?.name}}</option>
+                          <option *ngFor="let emp of reportingPersonByRole" [value]="emp?.shareReferralCode">{{emp?.full_name}}</option>
                         </select>
 
                         <div *ngIf="personalDetails.get('role').invalid && personalDetails.get('role').touched"

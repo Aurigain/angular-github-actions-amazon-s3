@@ -1,34 +1,35 @@
 <div class="layout-px-spacing h-100">
   <div class="row h-100" style="min-height: 100vh;">
     <div class="col-md-12">
-        <div class="widget bg-white h-100">
-            <div class="widget-header">
-            <div
-            class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
+      <div class="widget bg-white h-100">
+        <div class="widget-header">
+          <div class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
             <div>
-                <nav class="custom-breadcrum">
-                    <ol class="breadcrumb justify-content-center justify-content-sm-start" >
-                        <li class="breadcrumb-item">
-                            <a routerlink="/dashboard" routerLink="/dashboard">Home</a>
-                          </li>
-                          <li class="breadcrumb-item">
-                              <a routerLink="../../"> BT Approval List </a
-                                  >
-                              </li>
-                              <li aria-current="page" class="breadcrumb-item active">
-                                  Approval
-                              </li>
-                          </ol>
-                      </nav>
-                      <h1>Balance Transfer Approval Loan Details</h1>
+              <nav class="custom-breadcrum">
+                <ol class="breadcrumb justify-content-center justify-content-sm-start">
+                  <li class="breadcrumb-item">
+                    <a routerlink="/dashboard" routerLink="/dashboard">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a routerLink="../../"> BT Approval List </a>
+                  </li>
+                  <li aria-current="page" class="breadcrumb-item active">
+                    Approval
+                  </li>
+                </ol>
+              </nav>
+              <h1>Balance Transfer Approval Loan Details</h1>
             </div>
-            </div>
-            </div>
+          </div>
+        </div>
 
-            <div class="mx-5 my-3">
-            <form>
-              <div class="container pl-3">
-              <div class="mb-4" ><h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 1, 'fa-plus': currentStep !==1}"></i> Personal Detail</h5></div>
+        <div class="mx-5 my-3">
+          <form>
+            <div class="container pl-3">
+              <div class="mb-4">
+                <h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 1, 'fa-plus': currentStep !==1}"></i>
+                  Personal Detail</h5>
+              </div>
               <div class="form-div p-4" *ngIf="currentStep === 1">
                 <div class="container inner-form-div">
                   <div class="row">
@@ -41,27 +42,31 @@
                     <div class="col-md-3 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a (click)="loadImage(profileData?.fullname, documentDetails?.kyc_document_poi)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                          <img [src]="documentDetails?.kyc_document_poi" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+                        <p class="text-center py-3"><a
+                            (click)="loadImage(profileData?.fullname, documentDetails?.kyc_document_poi)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.kyc_document_poi" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
 
                       </div>
                     </div>
                     <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
+                          <div class="row gender-row justify-content-center">
+                            <label class="radio-inline">
+                              <input type="radio" value="True" name="nameChecker" [(ngModel)]="nameChecker"> OK
                             </label>
-                            <label  class="radio-inline">
-                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
+                            <label class="radio-inline">
+                              <input [(ngModel)]="nameChecker" type="radio" value="False" name="nameChecker">Not Ok
                             </label>
 
                           </div>
                         </div>
                         <div class="text-center">
-                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
+                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text"
+                            class="form-control mb-2">
                         </div>
                       </div>
                     </div>
@@ -71,32 +76,38 @@
                       <div class="mt-4 text-center">Address</div>
                     </div>
                     <div class="col-md-3 box">
-                      <div class="mt-4 text-center">{{addressDetails?.address_line1}} {{addressDetails?.address_line2}}</div>
+                      <div class="mt-4 text-center">{{addressDetails?.address_line1}} {{addressDetails?.address_line2}}
+                      </div>
                     </div>
                     <div class="col-md-3 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a (click)="loadImage(profileData?.fullname, documentDetails?.kyc_document_poa)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                          <img [src]="documentDetails?.kyc_document_poa" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+                        <p class="text-center py-3"><a
+                            (click)="loadImage(profileData?.fullname, documentDetails?.kyc_document_poa)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.kyc_document_poa" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
 
                       </div>
                     </div>
                     <div class="col-md-4 box">
                       <div class="m-3">
                         <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="addressChecker" [(ngModel)]="addressChecker"> OK
+                          <div class="row gender-row justify-content-center">
+                            <label class="radio-inline">
+                              <input type="radio" value="True" name="addressChecker" [(ngModel)]="addressChecker"> OK
                             </label>
-                            <label  class="radio-inline">
-                              <input [(ngModel)]="addressChecker" type="radio" value="not ok" name="addressChecker">Not Ok
+                            <label class="radio-inline">
+                              <input [(ngModel)]="addressChecker" type="radio" value="False" name="addressChecker">Not
+                              Ok
                             </label>
 
                           </div>
                         </div>
                         <div class="text-center">
-                          <input [(ngModel)]="addressRemark" name="addressRemark" value="" type="text" class="form-control mb-2">
+                          <input [(ngModel)]="addressRemark" name="addressRemark" value="" type="text"
+                            class="form-control mb-2">
                         </div>
                       </div>
                     </div>
@@ -145,27 +156,31 @@
                       <div class="my-3 text-center">
 
                         <p class="text-center py-3">
-                          <a (click)="loadImage('User Photo', documentDetails?.customer_photo)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                          <img [src]="documentDetails?.customer_photo" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+                          <a (click)="loadImage('User Photo', documentDetails?.customer_photo)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.customer_photo" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a>
+                        </p>
 
                       </div>
                     </div>
                     <div class="col-md-7 box">
                       <div class="m-3">
                         <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="photoChecker" [(ngModel)]="photoChecker"> OK
+                          <div class="row gender-row justify-content-center">
+                            <label class="radio-inline">
+                              <input type="radio" value="True" name="photoChecker" [(ngModel)]="photoChecker"> OK
                             </label>
-                            <label  class="radio-inline">
-                              <input [(ngModel)]="photoChecker" type="radio" value="not ok" name="photoChecker">Not Ok
+                            <label class="radio-inline">
+                              <input [(ngModel)]="photoChecker" type="radio" value="False" name="photoChecker">Not Ok
                             </label>
 
                           </div>
                         </div>
                         <div class="text-center">
-                          <input [(ngModel)]="photoRemark" name="photoRemark" value="" type="text" class="form-control mb-2">
+                          <input [(ngModel)]="photoRemark" name="photoRemark" value="" type="text"
+                            class="form-control mb-2">
 
                         </div>
                       </div>
@@ -183,23 +198,23 @@
                     </div>
                   </div> -->
                   <div class="row">
-                    <div class="col-md-2 box">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Mobile Number</div>
                     </div>
 
 
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
                         {{profileData?.phonenumber}}
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-2 box">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Gender</div>
                     </div>
 
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
                         {{profileData?.gender |titlecase}}
                       </div>
@@ -220,12 +235,15 @@
                 </div>
 
                 <div class="text-center mt-2">
-                  <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button>
+                  <!-- <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button> -->
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
                 </div>
               </div>
 
-              <div class="my-4"><h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 2, 'fa-plus': currentStep !==2}"></i> Existing LoanDetail</h5></div>
+              <div class="my-4">
+                <h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 2, 'fa-plus': currentStep !==2}"></i>
+                  Jewellery Details</h5>
+              </div>
               <div class="form-div p-4" *ngIf="currentStep === 2">
                 <div class="container inner-form-div">
                   <!-- <div class="row">
@@ -334,13 +352,13 @@
                     </div>
                   </div> -->
                   <div class="row">
-                    <div class="col-md-2 box">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Gross Gold Weight (in grams)</div>
                     </div>
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">{{leadDetails?.gross_weight_gold}}</div>
                     </div>
-                    <div class="col-md-3 box">
+                    <!-- <div class="col-md-3 box">
                       <div class="my-3 text-center">
 
                         <p class="text-center py-3"><a (click)="loadImage(profileData?.fullname, documentDetails?.loan_document)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
@@ -348,65 +366,47 @@
                           <img [src]="documentDetails?.kyc_document_poi" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
 
                       </div>
-                    </div>
-                    <div class="col-md-4 box">
-                      <div class="m-3">
-                        <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="existing_loan_status" [(ngModel)]="existing_loan_status"> OK
-                            </label>
-                            <label  class="radio-inline">
-                              <input [(ngModel)]="existing_loan_status" type="radio" value="not ok" name="existing_loan_status">Not Ok
-                            </label>
-
-                          </div>
-                        </div>
-                        <div class="text-center">
-                          <input [(ngModel)]="existing_loan_remark" name="nameRemark" value="" type="text" class="form-control mb-2">
-                        </div>
-                      </div>
-                    </div>
+                    </div> -->
                   </div>
                   <div class="row">
-                    <div class="col-md-2 box">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Karat</div>
                     </div>
 
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
                         {{leadDetails?.karat}}
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-2 box">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Weight of Gold (in grams)</div>
                     </div>
 
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
                         {{leadDetails?.weight_of_gold_grams}}
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-2 box">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Loan Type</div>
                     </div>
 
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
                         {{leadDetails?.loan_type?.loan_type}}
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-2 box">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">How Soon Need Loan</div>
                     </div>
 
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
                         {{leadDetails?.how_soon_need_loan_in_days}}
                       </div>
@@ -414,87 +414,96 @@
                   </div>
 
                 </div>
-
                 <div class="text-center mt-2">
                   <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button>
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
                 </div>
               </div>
-              <div class="my-4" ><h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 3, 'fa-plus': currentStep !==3}"></i> Fund Transfer Detail</h5></div>
+              <div class="my-4">
+                <h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 3, 'fa-plus': currentStep !==3}"></i>
+                  Existing Loan Detail</h5>
+              </div>
               <div class="form-div p-4" *ngIf="currentStep === 3">
                 <div class="container inner-form-div">
-                  <div class="row">
-                    <div class="col-md-2 box">
-                      <div class="mt-4 text-center">Balance Transfer Amount</div>
+                  <!-- <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Account Number Amount</div>
                     </div>
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
-                        {{accountTransferDetails?.balance_transfer_amount}}
+                        {{leadDetails?.loan_account_number}}
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-2 box">
+                  </div> -->
+                  <div class="row" *ngIf="accountTransferDetails?.account_type === 'existing'">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Outstanding Amount</div>
                     </div>
 
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
                         {{accountTransferDetails?.existing_loan_account?.outstanding_loan_amount}}
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-2 box">
+                  <div class="row" *ngIf="accountTransferDetails?.account_type === 'existing'">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Existing Loan Account Number</div>
                     </div>
 
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
                         {{accountTransferDetails?.existing_loan_account?.existing_loan_account_number}}
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-2 box">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Bank Name</div>
                     </div>
 
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+                        {{appointmentDetails?.branch?.bank?.name}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Bank Branch</div>
+                    </div>
+
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
                         {{appointmentDetails?.branch?.name}}
                       </div>
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row" *ngIf="accountTransferDetails?.account_type == 'multiple'">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Age Of Lastest Loan (in Months)</div>
+                    </div>
+
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+                        {{accountTransferDetails?.age_of_last_loan_in_months}}
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="row">
                     <div class="col-md-2 box">
                       <div class="mt-4 text-center">Security Cheque 1</div>
                     </div>
                     <div class="col-md-3 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a (click)="loadImage('Security Cheque 1', documentDetails?.security_cheque_1)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                          <img [src]="documentDetails?.security_cheque_1" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+                        <p class="text-center py-3"><a
+                            (click)="loadImage('Security Cheque 1', documentDetails?.security_cheque_1)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.security_cheque_1" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
 
-                      </div>
-                    </div>
-                    <div class="col-md-4 box">
-                      <div class="m-3">
-                        <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="fund_transfer_status" [(ngModel)]="fund_transfer_status"> OK
-                            </label>
-                            <label  class="radio-inline">
-                              <input [(ngModel)]="fund_transfer_status" type="radio" value="not ok" name="fund_transfer_status">Not Ok
-                            </label>
-
-                          </div>
-                        </div>
-                        <div class="text-center">
-                          <input [(ngModel)]="fund_transfer_remark" name="fund_transfer_remark" value="" type="text" class="form-control mb-2">
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -505,32 +514,153 @@
                     <div class="col-md-3 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a (click)="loadImage('Security Cheque 1', documentDetails?.security_cheque_2)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                          <img [src]="documentDetails?.security_cheque_2" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+                        <p class="text-center py-3"><a
+                            (click)="loadImage('Security Cheque 1', documentDetails?.security_cheque_2)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.security_cheque_2" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
 
                       </div>
                     </div>
-                    <!-- <div class="col-md-4 box">
-                      <div class="m-3">
-                        <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="nameChecker" [(ngModel)]="nameChecker"> OK
-                            </label>
-                            <label  class="radio-inline">
-                              <input [(ngModel)]="nameChecker" type="radio" value="not ok" name="nameChecker">Not Ok
-                            </label>
+                  </div> -->
 
-                          </div>
-                        </div>
-                        <div class="text-center">
-                          <input [(ngModel)]="nameRemark" name="nameRemark" value="" type="text" class="form-control mb-2">
-                        </div>
+                </div>
+
+                <div class="m-3">
+                  <div class="form-group">
+                    <div class="row gender-row justify-content-center">
+                      <label class="radio-inline">
+                        <input type="radio" value="True" name="existing_loan_status" [(ngModel)]="existing_loan_status">
+                        OK
+                      </label>
+                      <label class="radio-inline">
+
+                        <input [(ngModel)]="existing_loan_status" type="radio" value="False"
+                          name="existing_loan_status">Not Ok
+                      </label>
+
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <strong>Exisitng Loan Remark:</strong>
+                    <input [(ngModel)]="existing_loan_remark" name="nameRemark" value="" type="text"
+                      class="form-control mb-2">
+                  </div>
+                </div>
+                <div class="text-center mt-2">
+                  <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button>
+                  <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
+                </div>
+              </div>
+              <div class="my-4">
+                <h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 4, 'fa-plus': currentStep !==4}"></i> Fund
+                  Transfer Details</h5>
+              </div>
+              <div class="form-div p-4" *ngIf="currentStep === 4">
+                <div class="container inner-form-div">
+                  <!-- <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Transfer To</div>
+                    </div>
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">{{leadDetails?.gross_weight_gold}}</div>
+                    </div>
+                  </div> -->
+                  <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Loan Account Number</div>
+                    </div>
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">{{accountTransferDetails?.loan_account_number}}</div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Balance Transfer Amount</div>
+                    </div>
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">{{accountTransferDetails?.balance_transfer_amount}}</div>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="accountTransferDetails?.account_type === 'bank'">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Security Cheque Transfer</div>
+                    </div>
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a
+                            (click)="loadImage('Security Cheque Transfer', documentDetails?.security_cheque_transfer)"
+                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.security_cheque_transfer" width="50" height="50"
+                              alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row"
+                    *ngIf="accountTransferDetails?.account_type === 'bank' || accountTransferDetails?.account_type === 'security' || accountTransferDetails?.account_type === 'other'">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">IFSC Code</div>
+                    </div>
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">{{accountTransferDetails?.branch?.code}}</div>
+                    </div>
+                    <!-- <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a (click)="loadImage('ssad',dynamicImage)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img src="https://thispersondoesnotexist.com/image" width="50" height="50"
+                              alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div> -->
                   </div>
+                  <div class="row"
+                    *ngIf="accountTransferDetails?.account_type === 'security'">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Security Cheque Transfer</div>
+                    </div>
+                    <!-- <div class="col-md-6 box">
+                      <div class="mt-4 text-center">{{accountTransferDetails?.branch?.code}}</div>
+                    </div> -->
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
 
+                        <p class="text-center py-3"><a (click)="loadImage('ssad', documentDetails?.security_cheque_1)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.security_cheque_1" width="50" height="50"
+                              alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="m-3">
+                  <div class="form-group">
+                    <div class="row gender-row justify-content-center">
+                      <label class="radio-inline">
+                        <input type="radio" value="True" name="fund_transfer_status" [(ngModel)]="fund_transfer_status">
+                        OK
+                      </label>
+                      <label class="radio-inline">
+                        <input [(ngModel)]="fund_transfer_status" type="radio" value="False"
+                          name="fund_transfer_status">Not Ok
+                      </label>
+
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <strong>Fund Transfer Remark:</strong>
+                    <input [(ngModel)]="fund_transfer_remark" name="fund_transfer_remark" value="" type="text"
+                      class="form-control mb-2">
+                  </div>
                 </div>
 
                 <div class="text-center mt-2">
@@ -538,107 +668,194 @@
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
                 </div>
               </div>
-              <!-- <div class="my-4" ><h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 4, 'fa-plus': currentStep !==4}"></i> Jewellery Details</h5></div> -->
-              <!-- <div class="form-div p-4" *ngIf="currentStep === 4">
+              <div class="my-4">
+                <h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 5, 'fa-plus': currentStep !== 5}"></i>
+                  Document Details </h5>
+              </div>
+              <div class="form-div p-4" *ngIf="currentStep === 5">
                 <div class="container inner-form-div">
                   <div class="row">
-                    <div class="col-md-2 box">
-                      <div class="mt-4 text-center">Gross Gold Weight</div>
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Security Cheque 1</div>
                     </div>
-                    <div class="col-md-3 box">
-                      <div class="mt-4 text-center">{{leadDetails?.gross_weight_gold}}</div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-2 box">
-                      <div class="mt-4 text-center">How Soon Loan Required</div>
-                    </div>
-                    <div class="col-md-3 box">
-                      <div class="mt-4 text-center">{{leadDetails?.how_soon_need_loan_in_days}}</div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-2 box">
-                      <div class="mt-4 text-center">Karat</div>
-                    </div>
-                    <div class="col-md-3 box">
-                      <div class="mt-4 text-center">{{leadDetails?.karat}}</div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-2 box">
-                      <div class="mt-4 text-center">Bank branch name </div>
-                    </div>
-                    <div class="col-md-3 box">
-                      <div class="mt-4 text-center">Bank branch name </div>
-                    </div>
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a (click)="loadImage('ssad',dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+                        <p class="text-center py-3"><a
+                            (click)="loadImage('Security Cheque 1', documentDetails?.security_cheque_1)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.security_cheque_1" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
 
                       </div>
                     </div>
-                    <div class="col-md-4 box">
-                      <div class="m-3">
-                        <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="addressChecker" [(ngModel)]="addressChecker"> OK
-                            </label>
-                            <label  class="radio-inline">
-                              <input [(ngModel)]="addressChecker" type="radio" value="not ok" name="addressChecker">Not Ok
-                            </label>
-                          </div>
-                        </div>
-                        <div class="text-center">
-                          <input [(ngModel)]="addressRemark" name="addressRemark" value="" type="text" class="form-control mb-2">
-                        </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Security Cheque 2</div>
+                    </div>
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a
+                            (click)="loadImage('Security Cheque 2', documentDetails?.security_cheque_2)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.security_cheque_2" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
+
                       </div>
                     </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Loan Document</div>
+                    </div>
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a
+                            (click)="loadImage('Loan Document', documentDetails?.loan_document)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.loan_document" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Promissory Note</div>
+                    </div>
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a
+                            (click)="loadImage('Promissory Note', documentDetails?.promissory_note)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.promissory_note" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Agreement Last Page</div>
+                    </div>
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a
+                            (click)="loadImage('Agreement Last Page', documentDetails?.agreement_last_page)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.agreement_last_page" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Foreclousre Letter</div>
+                    </div>
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a
+                            (click)="loadImage('Foreclousre Letter', documentDetails?.foreclousre_letter)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.foreclousre_letter" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Atm Withdrawl</div>
+                    </div>
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a
+                            (click)="loadImage('Atm Withdrawl', documentDetails?.atm_withdrawl)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.atm_withdrawl" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="m-3">
+                  <div class="form-group">
+                    <div class="row gender-row justify-content-center">
+                      <label class="radio-inline">
+                        <input type="radio" value="True" name="agreement_status" [(ngModel)]="agreement_status"> OK
+                      </label>
+                      <label class="radio-inline">
+                        <input [(ngModel)]="agreement_status" type="radio" value="False" name="agreement_status">Not Ok
+                      </label>
+
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <strong>Remarks For Invalid Documents</strong>
+                    <input [(ngModel)]="agreement_remark" name="agreement_remark" value="" type="text"
+                      class="form-control mb-2">
                   </div>
                 </div>
 
                 <div class="text-center mt-2">
                   <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button>
-                <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
+                  <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
                 </div>
-              </div> -->
-              <div class="my-4" ><h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 4, 'fa-plus': currentStep !==4}"></i> Appointment</h5></div>
-              <div class="form-div p-4" *ngIf="currentStep === 4">
+              </div>
+              <div class="my-4">
+                <h5> <i class="fa" [ngClass]="{'fa-minus': currentStep === 6, 'fa-plus': currentStep !==6}"></i>
+                  Appointment</h5>
+              </div>
+              <div class="form-div p-4" *ngIf="currentStep === 6">
                 <div class="container inner-form-div">
                   <div class="row">
-                    <div class="col-md-2 box">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">IFSC Code</div>
                     </div>
 
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
                         {{appointmentDetails?.branch?.ifsc_code}}
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-2 box">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Appointment time
-                        </div>
+                      </div>
                     </div>
 
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
                         {{appointmentDetails?.appointment_time}}
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Appointment date</div>
                     </div>
 
-                    <div class="col-md-3 box">
+                    <div class="col-md-6 box">
                       <div class="my-3 text-center">
                         {{appointmentDetails?.appointment_date | date: 'mediumDate'}}
                       </div>
@@ -649,38 +866,40 @@
                   <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button>
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
                   <div class="form-group">
-                    <div class="row gender-row">
-                      <label  class="radio-inline">
-                        <input type="radio" value="ok" name="appointment_status" [(ngModel)]="appointment_status"> OK
+                    <div class="row gender-row  justify-content-center">
+                      <label class="radio-inline">
+                        <input type="radio" value="True" name="appointment_status" [(ngModel)]="appointment_status"> OK
                       </label>
-                      <label  class="radio-inline">
-                        <input [(ngModel)]="appointment_status" type="radio" value="not ok" name="appointment_status">Not Ok
+                      <label class="radio-inline">
+                        <input [(ngModel)]="appointment_status" type="radio" value="False" name="appointment_status">Not
+                        Ok
                       </label>
-
                     </div>
                   </div>
                   <div class="text-center">
-                    <input [(ngModel)]="appointment_remark" name="appointment_remark" value="" type="text" class="form-control mb-2">
+                    <strong>Appointment Details Remark</strong>
+                    <input [(ngModel)]="appointment_remark" name="appointment_remark" value="" type="text"
+                      class="form-control mb-2">
                   </div>
                 </div>
               </div>
             </div>
-            </form>
-              <div class="text-center">
-                <a  href="javascript:void(0)" data-toggle="modal" aria-label="screens" data-target="#review">
-                  <button class="btn btn-primary mr-3">
-                    Review & Submit
-                  </button>
-                </a>
-                <a routerLink="../../">
-                  <button class="btn btn-outline-primary">
-                    Cancel
-                  </button>
-
-                </a>
-              </div>
-            </div>
+          </form>
+          <div class="text-center">
+            <a (click)="checkFinalStatus()" href="javascript:void(0)" data-toggle="modal" aria-label="screens"
+              data-target="#review">
+              <button class="btn btn-primary mr-3">
+                Review & Submit
+              </button>
+            </a>
+            <a routerLink="../../">
+              <button class="btn btn-outline-primary">
+                Cancel
+              </button>
+            </a>
+          </div>
         </div>
+      </div>
     </div>
   </div>
   <!-- <div class="modal fade" id="mScreenshot">
@@ -703,68 +922,70 @@
   </div> -->
   <div class="modal fade" id="mScreenshot">
     <div class="modal-dialog modal-lg">
-    <div class="modal-content" style="top:50px;">
-      <div class="modal-header">
-        <p>{{dataVerify}}</p>
-        <button style="z-index: 10;" type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="modal-content" style="top:50px;">
+        <div class="modal-header">
+          <p>{{dataVerify}}</p>
+          <button style="z-index: 10;" type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <img [src]="imageVerify" alt="{{dataVerify}}" width="500" height="500" class="img-fluid">
+        </div>
       </div>
-      <div class="modal-body">
-        <img [src]="imageVerify" alt="{{dataVerify}}" width ="500" height="500" class="img-fluid">
-      </div>
-    </div>
     </div>
   </div>
 
 
   <div class="modal fade" id="review">
     <div class="modal-dialog modal-lg">
-    <div class="modal-content" style="top:50px;">
-      <div class="modal-header">
-        Something will come here...
-      </div>
-      <div class="modal-body">
-        <table class="table">
-          <tbody>
-            <tr>
-              <td>Personal Detail</td>
-              <td>Ok</td>
-            </tr>
-            <tr>
-
-              <td>Existing Loan Detail</td>
-              <td>Ok</td>
-            </tr>
-            <tr>
-
-              <td>Fund Transfer Detail</td>
-              <td>Ok</td>
-            </tr>
-            <tr>
-
-              <td>Agreement</td>
-              <td>Ok</td>
-            </tr>
-            <tr>
-
-              <td>Appointment</td>
-              <td>Ok</td>
-            </tr>
-          </tbody>
-
-        </table>
-        <div class="text-center">
-          <a routerLink="../../../compliance-panel"> <!--Change the ID with dynamic Id-->
-            <button (click)="savePersonalDetails()" class="btn btn-primary mr-3" data-dismiss="modal">
-              Save & Submit
-            </button>
-          </a>
-          <button class="btn btn-outline-primary" data-dismiss="modal">
-            Cancel
-          </button>
+      <div class="modal-content" style="top:50px;">
+        <div class="modal-header">
+          Final Status
         </div>
-      </div>
+        <div class="modal-body">
+          <table class="table">
+            <tbody>
+              <tr>
 
-    </div>
+                <td>Personal Detail</td>
+                <td>{{isPersonalDetailCorrect? 'Ok': 'Not Ok'}}</td>
+              </tr>
+              <tr>
+
+                <td>Existing Loan Detail</td>
+                <td>{{isAccountTransferDetailCorrect? 'Ok': 'Not Ok'}}</td>
+              </tr>
+              <tr>
+
+                <td>Fund Transfer Detail</td>
+                <td>{{isFundingDetailCorrect? 'Ok': 'Not Ok'}}</td>
+              </tr>
+              <tr>
+
+                <td>Document Details</td>
+                <td>{{isDocumentDetailCorrect? 'Ok': 'Not Ok'}}</td>
+              </tr>
+              <tr>
+
+                <td>Appointment Details</td>
+                <td>{{isAppointmentDetailCorrect? 'Ok': 'Not Ok'}}</td>
+              </tr>
+            </tbody>
+
+          </table>
+          <div class="text-center">
+            <a routerLink="../../../compliance-panel">
+              <!--Change the ID with dynamic Id-->
+              <button (click)="savePersonalDetails()" class="btn btn-primary mr-3" data-dismiss="modal">
+                Save & Submit
+              </button>
+            </a>
+            <button class="btn btn-outline-primary" data-dismiss="modal">
+              Cancel
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
   <!-- <div class="modal fade" id="mScreenshot">

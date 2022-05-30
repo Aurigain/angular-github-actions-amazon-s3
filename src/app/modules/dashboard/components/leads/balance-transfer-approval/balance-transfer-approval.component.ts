@@ -13,7 +13,11 @@ import { NetworkRequestService } from 'src/app/core/services/network-request.ser
   styleUrls: ['./balance-transfer-approval.component.scss']
 })
 export class BalanceTransferApprovalComponent implements OnInit {
-
+  isPersonalDetailCorrect: boolean = false;
+  isAccountTransferDetailCorrect: boolean = false;
+  isFundingDetailCorrect: boolean = false;
+  isDocumentDetailCorrect: boolean = false;
+  isAppointmentDetailCorrect: boolean = false;
   currentUserId: number;
   nameChecker;
   nameRemark = "";
@@ -41,7 +45,7 @@ export class BalanceTransferApprovalComponent implements OnInit {
 
   ) {
     this.tabelData = [];
-   }
+  }
   currentStep: number = 1;
   personalDetails;
   jewelleryDetails;
@@ -50,7 +54,7 @@ export class BalanceTransferApprovalComponent implements OnInit {
   existingLoanDetails;
   documentUploadDetails;
   loanDetails: FormGroup;
-  tabelData:any;
+  tabelData: any;
   leadDetails
   profileData
   documentDetails;
@@ -59,39 +63,39 @@ export class BalanceTransferApprovalComponent implements OnInit {
   accountTransferDetails;
 
   existing_loan_status
-existing_loan_remark
-fund_transfer_status
-fund_transfer_remark
-appointment_status
-appointment_remark
-agreement_status
-agreement_remark
+  existing_loan_remark
+  fund_transfer_status
+  fund_transfer_remark
+  appointment_status
+  appointment_remark
+  agreement_status
+  agreement_remark
 
   originalArray = [
-    {Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: 'yishu@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'active'},
-    {Id: 10017, FullName: 'Yishu Arora', FatherName: 'heeheh', Email: 'YishuArora@gmail.com', type: 'rejected',DateOfBirth: '0001-01-01T00:00:00', status: 'inactive'},
-    {Id: 10016, FullName: 'Mohit', FatherName: 'bzbzjz', Email: 'mohit@gmail.com', type: 'pending',DateOfBirth: '0001-01-01T00:00:00', status: 'Active'},
-    {Id: 10015, FullName: 'gg', FatherName: 'yhg', Email: 'gg@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'Active'},
-    {Id: 10014, FullName: 'pinkj', FatherName: 'mohan', Email: 'pinkj@gmail.com',type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', status: 'InActive'},
-    {Id: 10013, FullName: 'shhddh', FatherName: 'bsbdbdb', Email: null, type: 'approved',DateOfBirth: '0001-01-01T00:00:00', status: 'Active'},
-    {Id: 10012, FullName: 'JR Sachin', FatherName: 'SR Sachin', Email: 'sachin123@yopmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'Active'},
-    {Id: 10011, FullName: 'testui', FatherName:  'gh', Email: null, type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', status: 'InActive'},
-    {Id: 10010, FullName: 'vasb', FatherName: 'bbbb', Email: null, type: 'pending', DateOfBirth: '0001-01-01T00:00:00', status: 'Active'},
-    {Id: 10009, FullName: 'Aashish Jain', FatherName: 'Ashok Kumar',  Email: 'aashish@gmail.com', type: 'rejected', DateOfBirth: '0001-01-01T00:00:00',status: 'Active' },
+    { Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: 'yishu@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'active' },
+    { Id: 10017, FullName: 'Yishu Arora', FatherName: 'heeheh', Email: 'YishuArora@gmail.com', type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', status: 'inactive' },
+    { Id: 10016, FullName: 'Mohit', FatherName: 'bzbzjz', Email: 'mohit@gmail.com', type: 'pending', DateOfBirth: '0001-01-01T00:00:00', status: 'Active' },
+    { Id: 10015, FullName: 'gg', FatherName: 'yhg', Email: 'gg@gmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'Active' },
+    { Id: 10014, FullName: 'pinkj', FatherName: 'mohan', Email: 'pinkj@gmail.com', type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', status: 'InActive' },
+    { Id: 10013, FullName: 'shhddh', FatherName: 'bsbdbdb', Email: null, type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'Active' },
+    { Id: 10012, FullName: 'JR Sachin', FatherName: 'SR Sachin', Email: 'sachin123@yopmail.com', type: 'approved', DateOfBirth: '0001-01-01T00:00:00', status: 'Active' },
+    { Id: 10011, FullName: 'testui', FatherName: 'gh', Email: null, type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', status: 'InActive' },
+    { Id: 10010, FullName: 'vasb', FatherName: 'bbbb', Email: null, type: 'pending', DateOfBirth: '0001-01-01T00:00:00', status: 'Active' },
+    { Id: 10009, FullName: 'Aashish Jain', FatherName: 'Ashok Kumar', Email: 'aashish@gmail.com', type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', status: 'Active' },
 
-    ];
+  ];
 
-  loadImage(data, dynamicImage){
+  loadImage(data, dynamicImage) {
     this.dataVerify = data;
     this.imageVerify = dynamicImage;
   }
-  get loanAccountNumber(){
+  get loanAccountNumber() {
     return this.loanDetails.get('loanAccountNumber')
   }
-  get loanAmount(){
+  get loanAmount() {
     return this.loanDetails.get('loanAmount')
   }
-  get loanDate(){
+  get loanDate() {
     return this.loanDetails.get('loanDate')
   }
 
@@ -102,12 +106,12 @@ agreement_remark
     this.route.queryParams
       .subscribe(params => {
         console.log(params); // { orderby: "price" }
-        if(params['step']){
+        if (params['step']) {
           this.currentStep = parseInt(params['step']);
         }
         // console.log(this.orderby); // price
       }
-    );
+      );
     // this.personalDetails = this.formbuilder.group({
 
     //   name: [''],
@@ -190,12 +194,24 @@ agreement_remark
   }
 
 
+
   fetchBTLeadDetail(id) {
     this.misc.leadLoanDetailById(id).subscribe(
       data => {
         console.log("bt lead detail:", data[0]);
         this.leadDetails = data[0];
         // const id = data['lead']['id'];
+        if (this.leadDetails['lead']['is_approved']) {
+          this.nameChecker = "True";
+          this.nameRemark = this.leadDetails['lead']['remarks']
+          console.log("checker and remark are:", this.nameChecker, this.nameRemark)
+        }
+        else {
+          this.nameChecker = "False";
+          this.nameRemark = this.leadDetails['lead']['remarks']
+          console.log("checker and remark are:", this.nameChecker, this.nameRemark)
+        }
+
         this.misc.fetchLeadProfileById(id).subscribe(
           data => {
             this.profileData = data[0]
@@ -208,7 +224,7 @@ agreement_remark
         this.fetchBTLeadDocumentDetails(id);
         this.fetchBTLeadAppointmentDetails(id);
         this.fetchBTLeadAccountTransferDetails(id);
-        if(this.leadDetails['loan_type']['loan_type'] === 'bt_external'){
+        if (this.leadDetails['loan_type']['loan_type'] === 'bt_external') {
           this.fetchBTLeadAdressDetails(id)
         }
       },
@@ -228,6 +244,22 @@ agreement_remark
       this.image.url.push(this.documentDetails['security_cheque_1'])
       this.image.url.push(this.documentDetails['security_cheque_2'])
       console.log(this.image.url)
+      if (this.documentDetails['is_image_approved']) {
+        this.photoChecker = "True";
+        this.photoRemark = this.documentDetails['image_remarks']
+      }
+      else {
+        this.photoChecker = "False";
+        this.photoRemark = this.documentDetails['image_remarks']
+      }
+      if (this.documentDetails['is_docs_approved']) {
+        this.agreement_status = "True";
+        this.agreement_remark = this.documentDetails['docs_remarks']
+      }
+      else {
+        this.agreement_status = "False";
+        this.agreement_remark = this.documentDetails['docs_remarks']
+      }
     })
   }
 
@@ -235,19 +267,34 @@ agreement_remark
     this.misc.fetchLeadAppointmentById(id).subscribe(data => {
       console.log("appointment details:", data[0]);
       this.appointmentDetails = data[0];
+      if (this.appointmentDetails['is_approved']) {
+        this.appointment_status = "True";
+        this.appointment_remark = this.appointmentDetails['remarks']
+      }
+      else {
+        this.appointment_status = "False";
+        this.appointment_remark = this.appointmentDetails['remarks']
+      }
     })
   }
 
   fetchBTLeadAdressDetails(id) {
     this.misc.fetchLeadAdressDetailById(id).subscribe(
       data => {
-      console.log("address details:", data[0]);
-      this.addressDetails = data[0];
-
-    },
-    error => {
-      console.log("error", error);
-    }
+        console.log("address details:", data[0]);
+        this.addressDetails = data[0];
+        if (this.addressDetails['is_approved']) {
+          this.addressChecker = "True";
+          this.addressRemark = this.addressDetails['remarks']
+        }
+        else {
+          this.addressChecker = "False";
+          this.addressRemark = this.addressDetails['remarks']
+        }
+      },
+      error => {
+        console.log("error", error);
+      }
     )
   }
 
@@ -255,22 +302,56 @@ agreement_remark
     this.misc.fetchLeadAccountTransferDetailById(id).subscribe(data => {
       console.log("account transfer details:", data[0]);
       this.accountTransferDetails = data[0];
+      if (this.accountTransferDetails['is_approved']) {
+        this.fund_transfer_status = "True";
+        this.fund_transfer_remark = this.accountTransferDetails['remarks']
+      }
+      else {
+        this.fund_transfer_status = "False";
+        this.fund_transfer_remark = this.accountTransferDetails['remarks']
+      }
+      if (this.accountTransferDetails['existing_loan_account']['is_approved']) {
+        this.existing_loan_status = "True";
+        this.existing_loan_remark = this.accountTransferDetails['existing_loan_account']['remarks']
+      }
+      else {
+        this.existing_loan_status = "False";
+        this.existing_loan_remark = this.accountTransferDetails['existing_loan_account']['remarks']
+      }
     })
   }
 
 
-  stepUp(){
+  stepUp() {
     console.log("name remark is:", this.nameRe);
     console.log("clicked")
-    this.currentStep +=1;
+    this.currentStep += 1;
     console.log(this.currentStep);
   }
-  stepDown(){
-    this.currentStep-=1;
+  stepDown() {
+    this.currentStep -= 1;
     console.log(this.currentStep);
   }
 
-  addJewellery(){
+  checkFinalStatus() {
+    if (this.nameChecker==='True' && this.addressChecker==='True' && this.photoChecker==='True') {
+      this.isPersonalDetailCorrect = true;
+      console.log(this.nameChecker, this.addressChecker, this.photoChecker);
+    }
+    if (this.existing_loan_status==='True') {
+      this.isAccountTransferDetailCorrect = true;
+    }
+    if (this.fund_transfer_status==='True') {
+      this.isFundingDetailCorrect = true;
+    }
+    if (this.appointment_status==='True') {
+      this.isDocumentDetailCorrect = true;
+    }
+    if (this.agreement_status==='True') {
+      this.isAppointmentDetailCorrect = true;
+    }
+  }
+  addJewellery() {
     // const jewelleryType = this.jewelleryDetails.value.jewelleryType;
     // const quantity = this.jewelleryDetails.value.quantity;
     // const weight = this.jewelleryDetails.value.weight;
@@ -281,15 +362,15 @@ agreement_remark
 
   }
 
-  removeItem(item){
+  removeItem(item) {
     this.tabelData.forEach((value, index) => {
-      if(value == item){
-        this.tabelData.splice(index,1)
+      if (value == item) {
+        this.tabelData.splice(index, 1)
       }
     })
   }
 
-  savePersonalDetails(){
+  savePersonalDetails() {
     const nameChecker = this.nameChecker;
     const addressChecker = this.addressChecker;
     const photoChecker = this.photoChecker;
@@ -305,22 +386,42 @@ agreement_remark
     const agreement_status = this.agreement_status;
     const agreement_remark = this.agreement_remark;
 
-    let personalData = {
-      lead: this.currentUserId,
-      personal_status: nameChecker,
-      personal_remark: nameRemark,
-      address_status: addressChecker,
-      address_remark: addressRemark,
-      customer_image_status: photoChecker,
-      customer_image_status_remark: photoRemark,
-      existing_loan_status: existing_loan_status,
-      existing_loan_remark: existing_loan_remark,
-      fund_transfer_status: fund_transfer_status,
-      fund_transfer_remark: fund_transfer_remark,
-      appointment_status: appointment_status,
-      appointment_remark: appointment_remark,
-      agreement_status: agreement_status,
-      agreement_remark: agreement_remark,
+    let personalData;
+    if(this.leadDetails['loan_type']['loan_type'] === 'bt_internal'){
+      personalData = {
+        lead: this.currentUserId,
+        personal_status: nameChecker,
+        personal_details_remark: nameRemark,
+        customer_image_status: photoChecker,
+        customer_image_status_remark: photoRemark,
+        existing_loan_status: existing_loan_status,
+        existing_loan_remark: existing_loan_remark,
+        fund_transfer_status: fund_transfer_status,
+        fund_transfer_remark: fund_transfer_remark,
+        appointment_status: appointment_status,
+        appointment_remark: appointment_remark,
+        agreement_status: agreement_status,
+        agreement_remark: agreement_remark,
+      }
+    }
+    else {
+      personalData = {
+        lead: this.currentUserId,
+        personal_status: nameChecker,
+        personal_details_remark: nameRemark,
+        address_status: addressChecker,
+        address_remark: addressRemark,
+        customer_image_status: photoChecker,
+        customer_image_status_remark: photoRemark,
+        existing_loan_status: existing_loan_status,
+        existing_loan_remark: existing_loan_remark,
+        fund_transfer_status: fund_transfer_status,
+        fund_transfer_remark: fund_transfer_remark,
+        appointment_status: appointment_status,
+        appointment_remark: appointment_remark,
+        agreement_status: agreement_status,
+        agreement_remark: agreement_remark,
+      }
     }
 
     console.log(personalData);
@@ -329,174 +430,174 @@ agreement_remark
       data => {
         console.log(data);
       },
-      error =>{
+      error => {
         console.log(error);
       }
     )
 
   }
 
-  saveAddressDetails(){
+  saveAddressDetails() {
     this.stepUp();
 
 
   }
 
-  saveDocumentDetails(){
+  saveDocumentDetails() {
     this.stepUp();
 
 
 
   }
 
-  saveJewelleryDetails(){
+  saveJewelleryDetails() {
     this.stepUp();
     console.log(this.tabelData);
 
 
   }
 
-  saveAppointmentDetails(){
+  saveAppointmentDetails() {
     this.stepUp();
 
 
   }
 
-  saveExistingLoanDetails(){
+  saveExistingLoanDetails() {
     this.stepUp();
 
   }
 
-  saveForms(){
+  saveForms() {
 
-  const product = this.personalDetails.value.product;
-  const name = this.personalDetails.value.name;
-  const fatherName = this.personalDetails.value.fatherName;
-  const dob = this.personalDetails.value.dob;
-  const gender = this.personalDetails.value.gender;
-  const email = this.personalDetails.value.email;
-  const phoneNumber1 = this.personalDetails.value.phoneNumber1;
-  const phoneNumber2 = this.personalDetails.value.phoneNumber2;
-  const loanAmount = this.personalDetails.value.loanAmount;
-  const loanNumber = this.personalDetails.value.loanNumber;
-  const loanPurpose = this.personalDetails.value.loanPurpose;
+    const product = this.personalDetails.value.product;
+    const name = this.personalDetails.value.name;
+    const fatherName = this.personalDetails.value.fatherName;
+    const dob = this.personalDetails.value.dob;
+    const gender = this.personalDetails.value.gender;
+    const email = this.personalDetails.value.email;
+    const phoneNumber1 = this.personalDetails.value.phoneNumber1;
+    const phoneNumber2 = this.personalDetails.value.phoneNumber2;
+    const loanAmount = this.personalDetails.value.loanAmount;
+    const loanNumber = this.personalDetails.value.loanNumber;
+    const loanPurpose = this.personalDetails.value.loanPurpose;
 
-  const pinCode = this.addressDetails.value.pinCode;
-  const area = this.addressDetails.value.area;
-  const addressLine1 = this.addressDetails.value.addressLine1;
-  const addressLine2 = this.addressDetails.value.addressLine2;
+    const pinCode = this.addressDetails.value.pinCode;
+    const area = this.addressDetails.value.area;
+    const addressLine1 = this.addressDetails.value.addressLine1;
+    const addressLine2 = this.addressDetails.value.addressLine2;
 
-  const documentType = this.documentDetails.value.documentType;
-  const documentNumber = this.documentDetails.value.documentNumber;
-  const documentTypePOA = this.documentDetails.value.documentTypePOA;
-  const documentNumberPOA = this.documentDetails.value.documentNumberPOA;
-  const panNumber = this.documentDetails.value.panNumber;
-
-
-  const bank = this.appointmentDetails.value.bank;
-  const branch = this.appointmentDetails.value.branch;
-  const dateOfAppointment= this.appointmentDetails.value.dateOfAppointment;
-  const timeOfAppointment = this.appointmentDetails.value.timeofAppointment;
-
-  const bankName = this.existingLoanDetails.value.bankName;
-  const amountOld = this.existingLoanDetails.value.amountOld;
-  const dateOld= this.existingLoanDetails.value.dateOld;
-  const valuation = this.existingLoanDetails.value.valuation;
-  const outstandingAmount = this.existingLoanDetails.value.outstandingAmount;
-  const balanceTransferAmount = this.existingLoanDetails.value.balanceTransferAmount;
-  const requiredAmount = this.existingLoanDetails.value.requiredAmount;
-  const tenure = this.existingLoanDetails.value.tenure;
-
-  // const customerPhoto = this.documentUploadDetails.value.customerPhoto;
-  // const blankCheck1 = this.documentUploadDetails.value.blankCheck1;
-  // const blankCheck2= this.documentUploadDetails.value.blankCheck2;
-  // const kycPOA = this.documentUploadDetails.value.kycPOA;
-  // const kyc = this.documentUploadDetails.value.kyc;
-  // const loanDocument = this.documentUploadDetails.value.loanDocument;
-  // const foreclosureLetter = this.documentUploadDetails.value.foreclosureLetter;
-  // const atmWithdrawlSlip = this.documentUploadDetails.value.atmWithdrawlSlip;
-  // const promissoryNote = this.documentUploadDetails.value.promissoryNote;
-  // const lastPageOfAgreement = this.documentUploadDetails.value.lastPageOfAgreement;
-
-  let finalData: FormData = new FormData();
-  finalData.append("product", product);
-  finalData.append("name", name);
-  finalData.append("fatherName", fatherName);
-  finalData.append("dob", dob);
-  finalData.append("gender", gender);
-  finalData.append("email", email);
-  finalData.append("phoneNumber1", phoneNumber1);
-  finalData.append("phoneNumber2", phoneNumber2);
-  finalData.append("loanAmount", loanAmount);
-  finalData.append("loanNumber", loanNumber);
-  finalData.append("loanPurpose", loanPurpose);
-  finalData.append("pinCode", pinCode);
-  finalData.append("area", area);
-  finalData.append("addressLine1", addressLine1);
-  finalData.append("addressLine2", addressLine2);
-  finalData.append("documentType", documentType);
-  finalData.append("documentNumber", documentNumber);
-  finalData.append("documentTypePOA", documentTypePOA);
-  finalData.append("documentNumberPOA", documentNumberPOA);
-  finalData.append("jewelleryDetails", this.tabelData);
-  finalData.append("bank", bank);
-  finalData.append("branch", branch);
-  finalData.append("dateOfAppointment", dateOfAppointment);
-  finalData.append("timeOfAppointment", timeOfAppointment);
-  finalData.append("bankName", bankName);
-  finalData.append("amountOld", amountOld);
-  finalData.append("dateOld", dateOld);
-  finalData.append("valuation", valuation);
-  finalData.append("outstandingAmount", outstandingAmount);
-  finalData.append("balanceTransferAmount", balanceTransferAmount);
-  finalData.append("requiredAmount", requiredAmount);
-  finalData.append("tenure", tenure);
-
-  let customerPhoto: File;
-  let blankCheck1: File;
-  let blankCheck2: File;
-  let kycPOI: File;
-  let kycPOA: File;
-  let loanDocument: File;
-  let foreclosureLetter: File;
-  let atmWithdrawlSlip: File;
-  let promissoryNote: File;
-  let lastPageOfAgreement: File;
+    const documentType = this.documentDetails.value.documentType;
+    const documentNumber = this.documentDetails.value.documentNumber;
+    const documentTypePOA = this.documentDetails.value.documentTypePOA;
+    const documentNumberPOA = this.documentDetails.value.documentNumberPOA;
+    const panNumber = this.documentDetails.value.panNumber;
 
 
-  customerPhoto = (<HTMLInputElement>document.getElementById('customerPhoto')).files[0];
-  finalData.append("cusomerPhoto", customerPhoto);
+    const bank = this.appointmentDetails.value.bank;
+    const branch = this.appointmentDetails.value.branch;
+    const dateOfAppointment = this.appointmentDetails.value.dateOfAppointment;
+    const timeOfAppointment = this.appointmentDetails.value.timeofAppointment;
 
-  blankCheck1 = (<HTMLInputElement>document.getElementById('blankCheck1')).files[0];
-  finalData.append("blankCheck1", blankCheck1);
+    const bankName = this.existingLoanDetails.value.bankName;
+    const amountOld = this.existingLoanDetails.value.amountOld;
+    const dateOld = this.existingLoanDetails.value.dateOld;
+    const valuation = this.existingLoanDetails.value.valuation;
+    const outstandingAmount = this.existingLoanDetails.value.outstandingAmount;
+    const balanceTransferAmount = this.existingLoanDetails.value.balanceTransferAmount;
+    const requiredAmount = this.existingLoanDetails.value.requiredAmount;
+    const tenure = this.existingLoanDetails.value.tenure;
 
-  blankCheck2 = (<HTMLInputElement>document.getElementById('blankCheck2')).files[0];
-  finalData.append("blankCheck2", blankCheck2);
+    // const customerPhoto = this.documentUploadDetails.value.customerPhoto;
+    // const blankCheck1 = this.documentUploadDetails.value.blankCheck1;
+    // const blankCheck2= this.documentUploadDetails.value.blankCheck2;
+    // const kycPOA = this.documentUploadDetails.value.kycPOA;
+    // const kyc = this.documentUploadDetails.value.kyc;
+    // const loanDocument = this.documentUploadDetails.value.loanDocument;
+    // const foreclosureLetter = this.documentUploadDetails.value.foreclosureLetter;
+    // const atmWithdrawlSlip = this.documentUploadDetails.value.atmWithdrawlSlip;
+    // const promissoryNote = this.documentUploadDetails.value.promissoryNote;
+    // const lastPageOfAgreement = this.documentUploadDetails.value.lastPageOfAgreement;
 
-  kycPOI = (<HTMLInputElement>document.getElementById('kycPOI')).files[0];
-  finalData.append("kycPOI", kycPOI);
+    let finalData: FormData = new FormData();
+    finalData.append("product", product);
+    finalData.append("name", name);
+    finalData.append("fatherName", fatherName);
+    finalData.append("dob", dob);
+    finalData.append("gender", gender);
+    finalData.append("email", email);
+    finalData.append("phoneNumber1", phoneNumber1);
+    finalData.append("phoneNumber2", phoneNumber2);
+    finalData.append("loanAmount", loanAmount);
+    finalData.append("loanNumber", loanNumber);
+    finalData.append("loanPurpose", loanPurpose);
+    finalData.append("pinCode", pinCode);
+    finalData.append("area", area);
+    finalData.append("addressLine1", addressLine1);
+    finalData.append("addressLine2", addressLine2);
+    finalData.append("documentType", documentType);
+    finalData.append("documentNumber", documentNumber);
+    finalData.append("documentTypePOA", documentTypePOA);
+    finalData.append("documentNumberPOA", documentNumberPOA);
+    finalData.append("jewelleryDetails", this.tabelData);
+    finalData.append("bank", bank);
+    finalData.append("branch", branch);
+    finalData.append("dateOfAppointment", dateOfAppointment);
+    finalData.append("timeOfAppointment", timeOfAppointment);
+    finalData.append("bankName", bankName);
+    finalData.append("amountOld", amountOld);
+    finalData.append("dateOld", dateOld);
+    finalData.append("valuation", valuation);
+    finalData.append("outstandingAmount", outstandingAmount);
+    finalData.append("balanceTransferAmount", balanceTransferAmount);
+    finalData.append("requiredAmount", requiredAmount);
+    finalData.append("tenure", tenure);
 
-  kycPOA = (<HTMLInputElement>document.getElementById('kycPOA')).files[0];
-  finalData.append("kycPOA", kycPOA);
-
-  loanDocument = (<HTMLInputElement>document.getElementById('loanDocument')).files[0];
-  finalData.append("loanDocument", loanDocument);
-
-  foreclosureLetter = (<HTMLInputElement>document.getElementById('foreclosureLetter')).files[0];
-  finalData.append("foreclosureLetter", foreclosureLetter);
-
-  atmWithdrawlSlip = (<HTMLInputElement>document.getElementById('atmWithdrawlSlip')).files[0];
-  finalData.append("atmWithdrawlSlip", atmWithdrawlSlip);
-
-  promissoryNote = (<HTMLInputElement>document.getElementById('promissoryNote')).files[0];
-  finalData.append("promissoryNote", promissoryNote);
-
-  lastPageOfAgreement = (<HTMLInputElement>document.getElementById('lastPageOfAgreement')).files[0];
-  finalData.append("lastPageOfAgreement", lastPageOfAgreement);
+    let customerPhoto: File;
+    let blankCheck1: File;
+    let blankCheck2: File;
+    let kycPOI: File;
+    let kycPOA: File;
+    let loanDocument: File;
+    let foreclosureLetter: File;
+    let atmWithdrawlSlip: File;
+    let promissoryNote: File;
+    let lastPageOfAgreement: File;
 
 
+    customerPhoto = (<HTMLInputElement>document.getElementById('customerPhoto')).files[0];
+    finalData.append("cusomerPhoto", customerPhoto);
 
-  // let finalData= {
+    blankCheck1 = (<HTMLInputElement>document.getElementById('blankCheck1')).files[0];
+    finalData.append("blankCheck1", blankCheck1);
+
+    blankCheck2 = (<HTMLInputElement>document.getElementById('blankCheck2')).files[0];
+    finalData.append("blankCheck2", blankCheck2);
+
+    kycPOI = (<HTMLInputElement>document.getElementById('kycPOI')).files[0];
+    finalData.append("kycPOI", kycPOI);
+
+    kycPOA = (<HTMLInputElement>document.getElementById('kycPOA')).files[0];
+    finalData.append("kycPOA", kycPOA);
+
+    loanDocument = (<HTMLInputElement>document.getElementById('loanDocument')).files[0];
+    finalData.append("loanDocument", loanDocument);
+
+    foreclosureLetter = (<HTMLInputElement>document.getElementById('foreclosureLetter')).files[0];
+    finalData.append("foreclosureLetter", foreclosureLetter);
+
+    atmWithdrawlSlip = (<HTMLInputElement>document.getElementById('atmWithdrawlSlip')).files[0];
+    finalData.append("atmWithdrawlSlip", atmWithdrawlSlip);
+
+    promissoryNote = (<HTMLInputElement>document.getElementById('promissoryNote')).files[0];
+    finalData.append("promissoryNote", promissoryNote);
+
+    lastPageOfAgreement = (<HTMLInputElement>document.getElementById('lastPageOfAgreement')).files[0];
+    finalData.append("lastPageOfAgreement", lastPageOfAgreement);
+
+
+
+    // let finalData= {
     // product: product,
     // name: name,
     // fatherName: fatherName,
@@ -542,7 +643,7 @@ agreement_remark
 
 
 
-  // console.log("image form data", imageData);
-  console.log("final form data", finalData);
+    // console.log("image form data", imageData);
+    console.log("final form data", finalData);
   }
 }

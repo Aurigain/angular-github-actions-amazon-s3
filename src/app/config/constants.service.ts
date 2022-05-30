@@ -27,6 +27,7 @@ export class ConstantsService {
   selectQueryApi = `${environment.BASE_URL}/api/bank/contact_queries/`;
   fetchFreshLead = `${environment.BASE_URL}/api/lead/fresh_loan_requests/`;
   fetchBTLead = `${environment.BASE_URL}/api/lead/bt_loan_requests/`;
+  all_loan_requests = `${environment.BASE_URL}/api/lead/all_loan_requests/`;
   fetchLeadDetail = `${environment.BASE_URL}/api/lead/loan_request_by_id/`;
   fetchLeadProfile = `${environment.BASE_URL}/api/lead/fetch_lead_profile/`;
   fetchLeadDocument = `${environment.BASE_URL}/api/lead/fetch_lead_documents/`;
@@ -37,6 +38,7 @@ export class ConstantsService {
   freshLead = `${environment.BASE_URL}/api/lead/create/`;
   create_internal_bt_lead = `${environment.BASE_URL}/api/lead/create_internal_bt_lead/`;
   employeeApi = `${environment.BASE_URL}/api/agent/employee/`;
+  fetch_employees_by_role = `${environment.BASE_URL}/api/agent/fetch_employees_by_role/`;
   updateLeadProfile = `${environment.BASE_URL}/api/lead/edit_lead_profile/`;
   updateLeadAddress = `${environment.BASE_URL}/api/lead/edit_lead_address/`;
   updateLeadJewellery = `${environment.BASE_URL}/api/lead/edit_lead_loan_request/`;
@@ -56,7 +58,8 @@ export class ConstantsService {
   updatePassword = `${environment.BASE_URL}/api/user/updatepassword/`;
   agentImageUpload = `${environment.BASE_URL}/api/agent/update_employee_images/`;
   fetchPermissionsApi = `${environment.BASE_URL}/api/user/user_permission/`;
-  balanceTransferPreFinalApproval = `${environment.BASE_URL}/api/user/bt_prefinal_approval/`;
+  balanceTransferPreFinalApproval = `${environment.BASE_URL}/api/lead/bt_prefinal_approval/`;
+  balanceTransferFinalApproval = `${environment.BASE_URL}/api/lead/bt_final_approval/`;
   rolesPermissionsApi = `${environment.BASE_URL}/api/user/rolepermissions/`;
   forgotPasswordUrl = `https://jsonplaceholder.typicode.com/`;
   resetPasswordUrl = `https://jsonplaceholder.typicode.com/`;
