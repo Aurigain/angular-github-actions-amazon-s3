@@ -199,15 +199,18 @@
 
                       <div class="form-group col-md-4">
                         <label for="inputState">Permanent Address Line 1</label>
-                        <input formControlName="permanent_address_line1" type="text" class="form-control" placeholder="Address Line 1">
+                        <input formControlName="permanent_address_line1" type="text" class="form-control"
+                          placeholder="Address Line 1">
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputState">Permanent Address Line 2</label>
-                        <input formControlName="permanent_address_line2" type="text" class="form-control" placeholder="Address Line 2">
+                        <input formControlName="permanent_address_line2" type="text" class="form-control"
+                          placeholder="Address Line 2">
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputState">Permanent Pincode</label>
-                        <input formControlName="permanent_pincode" type="number" class="form-control" placeholder="Pincode" (input)="searchPermanentPinCode()">
+                        <input formControlName="permanent_pincode" type="number" class="form-control"
+                          placeholder="Pincode" (input)="searchPermanentPinCode()">
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputState">Permanent City</label>
@@ -223,15 +226,18 @@
 
                       <div class="form-group col-md-4">
                         <label for="inputState">Address Line 1</label>
-                        <input formControlName="addressLine1" type="text" class="form-control" placeholder="Address Line 1">
+                        <input formControlName="addressLine1" type="text" class="form-control"
+                          placeholder="Address Line 1">
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputState">Address Line 2</label>
-                        <input formControlName="addressLine2" type="text" class="form-control" placeholder="Address Line 2">
+                        <input formControlName="addressLine2" type="text" class="form-control"
+                          placeholder="Address Line 2">
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputState">Pincode</label>
-                        <input formControlName="pinCode" type="number" class="form-control" placeholder="Pincode" (input)="searchPinCode()">
+                        <input formControlName="pinCode" type="number" class="form-control" placeholder="Pincode"
+                          (input)="searchPinCode()">
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputState">City</label>
@@ -271,11 +277,13 @@
                     <div class="form-row">
                       <div class="form-group col-md-4">
                         <label for="inputWeight">Weight (in grams)</label>
-                        <input formControlName="weight_of_gold_grams" type="number" class="form-control" placeholder="Weight">
+                        <input formControlName="weight_of_gold_grams" type="number" class="form-control"
+                          placeholder="Weight">
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputWeight">Gross Weight Gold (in grams)</label>
-                        <input formControlName="gross_weight_gold" type="number" class="form-control" placeholder="Weight">
+                        <input formControlName="gross_weight_gold" type="number" class="form-control"
+                          placeholder="Weight">
                       </div>
                     </div>
                     <div class="form-row">
@@ -382,7 +390,8 @@
                                       </div> -->
                       <div class="form-group col-md-4">
                         <label for="inputbranch">IFSC</label>
-                        <input type="text" class="form-control" placeholder="IFSC Code" formControlName="ifsc" (input)="searchIFSC()">
+                        <input type="text" class="form-control" placeholder="IFSC Code" formControlName="ifsc"
+                          (input)="searchIFSC()">
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputAmountOld">Bank Name</label>
@@ -390,7 +399,8 @@
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputAmountOld">Branch Name</label>
-                        <input formControlName="branch" type="text" class="form-control" placeholder="Branch Name" readonly>
+                        <input formControlName="branch" type="text" class="form-control" placeholder="Branch Name"
+                          readonly>
                       </div>
                     </div>
                     <div class="form-row">
@@ -432,13 +442,13 @@
                     <div class="form-row">
                       <div class="form-group col-md-4">
                         <label for="inputState">Existing Loan Account Number </label>
-                        <input type="number"
-                          class="form-control" placeholder="Loan Account Number" formControlName="existing_loan_account_number">
+                        <input type="number" class="form-control" placeholder="Loan Account Number"
+                          formControlName="existing_loan_account_number">
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputState">Outstanding Loan Amount</label>
-                        <input type="number"
-                          class="form-control" placeholder="Loan Amount" formControlName="outstanding_loan_amount">
+                        <input type="number" class="form-control" placeholder="Loan Amount"
+                          formControlName="outstanding_loan_amount">
                       </div>
                     </div>
                   </form>
@@ -572,7 +582,7 @@
 
               <div class="vertical-line personal-form" *ngIf="currentStep == 7">
                 <div class="form-content">
-                  <form [formGroup]="existingLoanDetailsForm">
+                  <!-- <form [formGroup]="existingLoanDetailsForm">
                     <div class="form-row">
 
                       <div class="form-group col-md-4">
@@ -702,7 +712,7 @@
                         </div>
                       </div>
                     </div>
-                  </form>
+                  </form> -->
                 </div>
                 <div class="row">
                   <div class="form-btn">
@@ -711,8 +721,10 @@
                   </div>
                   <div class="form-btn">
 
-                    <a (click)="saveexistingLoanDetailsForm()"><button type="submit" class="btn btn-primary"><i
+                    <a (click)="stepUp()"><button type="submit" class="btn btn-primary"><i
                           class="fa fa-arrow-right"></i> Next</button></a>
+                    <a (click)="saveexistingLoanDetailsForm()"><button type="submit" class="btn btn-primary"><i
+                          class="fa fa-arrow-right"></i>Update & Next</button></a>
                   </div>
                 </div>
               </div>
@@ -726,11 +738,12 @@
                       <div class="form-group col-md-6">
                         <label for="inputBankName">Customer Photo</label>
                         <div class="upload-btn">
-                          <label for="upload" class="file-upload__label"><i
-                              class="fa fa-plus ml-2"></i>Upload</label><input id="customerPhoto" type="file"
-                            name="file-upload">
+                          <label for="upload" class="file-upload__label"><i class="fa fa-plus ml-2"></i>Upload</label>
+                          <input id="customer_photo" type="file" name="file-upload" (change)="onChange($event)">
                         </div>
-                        <ng-container
+
+
+                        <!-- <ng-container
                           *ngIf="documentUploadDetailsForm.get('customerPhoto').invalid && documentUploadDetailsForm.get('customerPhoto').touched"
                           class="col-sm-3 col-form-label"></ng-container>
                         <div
@@ -739,36 +752,38 @@
                           <small class="text-danger"
                             *ngIf="documentUploadDetailsForm.get('customerPhoto').errors?.['required']">Bank Name is
                             required</small>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="form-group col-md-6">
-                        <label for="inputBankName">Blank Check 1</label>
+                        <label for="inputBankName">Security Check 1</label>
                         <div class="upload-btn">
                           <label for="upload" class="file-upload__label"><i
-                              class="fa fa-plus ml-2"></i>Upload</label><input id="blankCheck1" type="file"
-                            name="file-upload">
+                              class="fa fa-plus ml-2"></i>Upload</label>
+                              <input id="security_cheque_1" type="file"
+                            name="file-upload" (change)="onChange($event)">
                         </div>
-                        <ng-container
+                        <!-- <ng-container
                           *ngIf="documentUploadDetailsForm.get('blankCheck1').invalid && documentUploadDetailsForm.get('blankCheck1').touched"
-                          class="col-sm-3 col-form-label"></ng-container>
-                        <div
+                          class="col-sm-3 col-form-label"></ng-container> -->
+                        <!-- <div
                           *ngIf="documentUploadDetailsForm.get('blankCheck1').invalid && documentUploadDetailsForm.get('blankCheck1').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
                           <small class="text-danger"
                             *ngIf="documentUploadDetailsForm.get('blankCheck1').errors?.['required']">Bank Name is
                             required</small>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="form-group col-md-6">
-                        <label for="inputBankName">Blank Check 2</label>
+                        <label for="inputBankName">Security Check 2</label>
                         <div class="upload-btn">
                           <label for="upload" class="file-upload__label"><i
-                              class="fa fa-plus ml-2"></i>Upload</label><input formControlName="blankCheck2"
-                            id="blankCheck2" type="file" name="file-upload">
+                              class="fa fa-plus ml-2"></i>Upload</label>
+                              <input formControlName="blankCheck2"
+                            id="security_cheque_2" type="file" name="file-upload" (change)="onChange($event)">
                         </div>
-                        <ng-container
+                        <!-- <ng-container
                           *ngIf="documentUploadDetailsForm.get('blankCheck2').invalid && documentUploadDetailsForm.get('blankCheck2').touched"
                           class="col-sm-3 col-form-label"></ng-container>
                         <div
@@ -777,16 +792,17 @@
                           <small class="text-danger"
                             *ngIf="documentUploadDetailsForm.get('blankCheck2').errors?.['required']">Blank Check 2 is
                             required</small>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="form-group col-md-6">
                         <label for="inputBankName">KYC Document (POI)</label>
                         <div class="upload-btn">
                           <label for="upload" class="file-upload__label"><i
-                              class="fa fa-plus ml-2"></i>Upload</label><input id="kycPOI" type="file"
-                            name="file-upload">
+                              class="fa fa-plus ml-2"></i>Upload</label>
+                              <input id="kyc_document_poi" type="file"
+                            name="file-upload" (change)="onChange($event)">
                         </div>
-                        <ng-container
+                        <!-- <ng-container
                           *ngIf="documentUploadDetailsForm.get('kycPOI').invalid && documentUploadDetailsForm.get('kycPOI').touched"
                           class="col-sm-3 col-form-label"></ng-container>
                         <div
@@ -795,7 +811,7 @@
                           <small class="text-danger"
                             *ngIf="documentUploadDetailsForm.get('kycPOI').errors?.['required']">KYC (POI) is
                             required</small>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                     <div class="form-row">
@@ -804,10 +820,10 @@
                         <label for="inputBankName">KYC Document (POA)</label>
                         <div class="upload-btn">
                           <label for="upload" class="file-upload__label"><i
-                              class="fa fa-plus ml-2"></i>Upload</label><input id="kycPOA" type="file"
-                            name="file-upload">
+                              class="fa fa-plus ml-2"></i>Upload</label><input id="kyc_document_poa" type="file"
+                            name="file-upload" (change)="onChange($event)">
                         </div>
-                        <ng-container
+                        <!-- <ng-container
                           *ngIf="documentUploadDetailsForm.get('kycPOA').invalid && documentUploadDetailsForm.get('kycPOA').touched"
                           class="col-sm-3 col-form-label"></ng-container>
                         <div
@@ -816,16 +832,16 @@
                           <small class="text-danger"
                             *ngIf="documentUploadDetailsForm.get('kycPOA').errors?.['required']">KYC (POA) is
                             required</small>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="form-group col-md-6">
                         <label for="inputBankName">Loan Document</label>
                         <div class="upload-btn">
                           <label for="upload" class="file-upload__label"><i
-                              class="fa fa-plus ml-2"></i>Upload</label><input id="loanDocument" type="file"
-                            name="file-upload">
+                              class="fa fa-plus ml-2"></i>Upload</label><input id="loan_document" type="file"
+                            name="file-upload" (change)="onChange($event)">
                         </div>
-                        <ng-container
+                        <!-- <ng-container
                           *ngIf="documentUploadDetailsForm.get('loanDocument').invalid && documentUploadDetailsForm.get('loanDocument').touched"
                           class="col-sm-3 col-form-label"></ng-container>
                         <div
@@ -834,19 +850,18 @@
                           <small class="text-danger"
                             *ngIf="documentUploadDetailsForm.get('loanDocument').errors?.['required']">Loan Document is
                             required</small>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                     <div class="form-row">
-
                       <div class="form-group col-md-6">
                         <label for="inputBankName">Foreclosure Letter</label>
                         <div class="upload-btn">
                           <label for="upload" class="file-upload__label"><i
-                              class="fa fa-plus ml-2"></i>Upload</label><input id="foreclosureLetter" type="file"
-                            name="file-upload">
+                              class="fa fa-plus ml-2"></i>Upload</label><input id="foreclousre_letter" type="file"
+                            name="file-upload" (change)="onChange($event)">
                         </div>
-                        <ng-container
+                        <!-- <ng-container
                           *ngIf="documentUploadDetailsForm.get('foreclosureLetter').invalid && documentUploadDetailsForm.get('foreclosureLetter').touched"
                           class="col-sm-3 col-form-label"></ng-container>
                         <div
@@ -855,16 +870,16 @@
                           <small class="text-danger"
                             *ngIf="documentUploadDetailsForm.get('foreclosureLetter').errors?.['required']">Foreclosure
                             Letter is required</small>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="form-group col-md-6">
                         <label for="inputBankName">ATM Withdrawl Slip</label>
                         <div class="upload-btn">
                           <label for="upload" class="file-upload__label"><i
-                              class="fa fa-plus ml-2"></i>Upload</label><input id="atmWithdrawlSlip" type="file"
-                            name="file-upload">
+                              class="fa fa-plus ml-2"></i>Upload</label><input id="atm_withdrawl" type="file"
+                            name="file-upload" (change)="onChange($event)">
                         </div>
-                        <ng-container
+                        <!-- <ng-container
                           *ngIf="documentUploadDetailsForm.get('atmWithdrawlSlip').invalid && documentUploadDetailsForm.get('atmWithdrawlSlip').touched"
                           class="col-sm-3 col-form-label"></ng-container>
                         <div
@@ -873,7 +888,7 @@
                           <small class="text-danger"
                             *ngIf="documentUploadDetailsForm.get('atmWithdrawlSlip').errors?.['required']">ATM Withdrawl
                             Slip is required</small>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                     <div class="form-row">
@@ -882,10 +897,10 @@
                         <label for="inputBankName">Promissory Note</label>
                         <div class="upload-btn">
                           <label for="upload" class="file-upload__label"><i
-                              class="fa fa-plus ml-2"></i>Upload</label><input id="promissoryNote" type="file"
-                            name="file-upload">
+                              class="fa fa-plus ml-2"></i>Upload</label><input id="promissory_note" type="file"
+                            name="file-upload" (change)="onChange($event)">
                         </div>
-                        <ng-container
+                        <!-- <ng-container
                           *ngIf="documentUploadDetailsForm.get('promissoryNote').invalid && documentUploadDetailsForm.get('promissoryNote').touched"
                           class="col-sm-3 col-form-label"></ng-container>
                         <div
@@ -894,16 +909,16 @@
                           <small class="text-danger"
                             *ngIf="documentUploadDetailsForm.get('promissoryNote').errors?.['required']">Promissory Note
                             is required</small>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="form-group col-md-6">
                         <label for="inputBankName">Last Page of the Agreement</label>
                         <div class="upload-btn">
                           <label for="upload" class="file-upload__label"><i
-                              class="fa fa-plus ml-2"></i>Upload</label><input id="lastPageOfAgreement" type="file"
-                            name="file-upload">
+                              class="fa fa-plus ml-2"></i>Upload</label><input id="agreement_last_page" type="file"
+                            name="file-upload" (change)="onChange($event)">
                         </div>
-                        <ng-container
+                        <!-- <ng-container
                           *ngIf="documentUploadDetailsForm.get('lastPageOfAgreement').invalid && documentUploadDetailsForm.get('lastPageOfAgreement').touched"
                           class="col-sm-3 col-form-label"></ng-container>
                         <div
@@ -912,7 +927,7 @@
                           <small class="text-danger"
                             *ngIf="documentUploadDetailsForm.get('lastPageOfAgreement').errors?.['required']">Last Page
                             of the agreement is required</small>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
 
@@ -925,7 +940,7 @@
                   </div>
                   <div class="form-btn">
 
-                    <a (click)="saveForms()"><button type="submit" class="btn btn-success"><i
+                    <a (click)="saveDocumentsDetails()"><button type="submit" class="btn btn-success"><i
                           class="fa fa-arrow-right"></i> Submit</button></a>
                   </div>
                 </div>

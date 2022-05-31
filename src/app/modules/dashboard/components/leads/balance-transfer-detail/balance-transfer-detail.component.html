@@ -93,15 +93,15 @@
                   <tr>
                     <td style="width: 25%;"><strong>Date:</strong></td>
                     <td style="width: 25%;">{{accountTransferDetails?.created_at | date: 'short'}}</td>
-                    <td style="width: 25%;"><strong>Outstanding Amount:</strong></td>
-                    <td style="width: 25%;"> {{accountTransferDetails?.existing_loan_account?.outstanding_loan_amount}}
-                    </td>
-                  </tr>
-
-                  <tr>
                     <td style="width: 25%;"><strong>Balance Transfer Amount:</strong></td>
                     <td style="width: 25%;">
                       {{accountTransferDetails?.balance_transfer_amount}}
+                    </td>
+                  </tr>
+
+                  <tr *ngIf="accountTransferDetails?.account_type === 'existing'">
+                    <td style="width: 25%;"><strong>Outstanding Amount:</strong></td>
+                    <td style="width: 25%;"> {{accountTransferDetails?.existing_loan_account?.outstanding_loan_amount}}
                     </td>
                     <td style="width: 25%;"><strong>Existing Loan Account Number:</strong></td>
                     <td style="width: 25%;">
@@ -112,9 +112,9 @@
                     <td style="width: 25%;">
                       {{accountTransferDetails?.loan_account_number}}
                     </td>
-                    <td style="width: 25%;"><strong>Existing Loan Account Number:</strong></td>
+                    <!-- <td style="width: 25%;"><strong>Existing Loan Account Number:</strong></td>
                     <td style="width: 25%;">
-                      {{accountTransferDetails?.existing_loan_account?.existing_loan_account_number}}</td>
+                      {{accountTransferDetails?.existing_loan_account?.existing_loan_account_number}}</td> -->
                   </tr>
                 </tbody>
               </table>

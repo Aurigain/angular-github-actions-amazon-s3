@@ -152,33 +152,35 @@
             </div>
             <div class="container pt-3">
               <div class="form-group">
-                <div class="row gender-row">
+                <div class="row gender-row my-3">
                   <div class="col-md-6 text-center">
                     <strong class="mr-5">Status</strong>
                     <label  class="radio-inline mr-5">
-                      <input type="radio" value="ok" name="status" [(ngModel)]="status" checked>Ok
+                      <input type="radio" value="True" name="final_approval_status" [(ngModel)]="final_approval_status" checked>Ok
                     </label>
                     <label  class="radio-inline">
-                      <input type="radio" value="not ok" name="status" [(ngModel)]="status">Not Ok
+                      <input type="radio" value="False" name="final_approval_status" [(ngModel)]="final_approval_status">Not Ok
                     </label>
                   </div>
                   <div class="col-md-6 text-center">
                     <div class="row">
                       <div class="col-md-5">
-                        <input type="text" [(ngModel)]="remark" name="remark" class="form-control pb-2" placeholder="Add Remark">
+                        <input type="text" [(ngModel)]="final_approval_remark" name="final_approval_remark" class="form-control pb-2" placeholder="Add Remark">
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="text-center mt-5">
-                  <a routerLink="../../"> <!--Change the ID with dynamic Id-->
+                <div class="text-center">
+                  <a (click)="saveFinalStatus()">
                     <button class="btn btn-primary mr-3">
-                      Save & Submit
+                      Review & Submit
                     </button>
                   </a>
-                  <button class="btn btn-outline-primary" data-dismiss="modal">
-                    Cancel
-                  </button>
+                  <a routerLink="../../">
+                    <button class="btn btn-outline-primary">
+                      Cancel
+                    </button>
+                  </a>
                 </div>
 
               </div>

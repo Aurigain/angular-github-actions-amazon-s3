@@ -43,6 +43,7 @@ export class ConstantsService {
   updateLeadAddress = `${environment.BASE_URL}/api/lead/edit_lead_address/`;
   updateLeadJewellery = `${environment.BASE_URL}/api/lead/edit_lead_loan_request/`;
   updateLeadLoanDetails = `${environment.BASE_URL}/api/lead/edit_lead_loan_account_details/`;
+  updateLeadLoanDocuments = `${environment.BASE_URL}/api/lead/update_lead_loan_request_documents/`;
   updateLeadAppointmentDetails = `${environment.BASE_URL}/api/lead/update_lead_appointment/`;
   updateAgentProfile = `${environment.BASE_URL}/api/agent/update_agent_profile/`;
   updateAgentAddress = `${environment.BASE_URL}/api/agent/update_agent_address/`;

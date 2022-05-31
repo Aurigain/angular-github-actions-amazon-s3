@@ -108,10 +108,10 @@ export class FinalApprovalListComponent implements OnInit {
   }
 
   fetchAllBTLeads() {
-    this.misc.FetchAllLoanRequests().subscribe(
+    this.misc.fetchBTLead().subscribe(
       data => {
-        this.allBTLeadsList = data['results'];
-        console.log("list ", this.allBTLeadsList)
+        this.allBTLeadsList = data;
+        console.log("list ", data)
       }
     )
   }

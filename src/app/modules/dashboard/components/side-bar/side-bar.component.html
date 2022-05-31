@@ -6,7 +6,7 @@
       </a>
     </li>
 
-    <li *ngIf="checkPermission('Fresh Lead')">
+    <li *ngIf="checkUpperPermission('Fresh Lead', 'BT Lead')">
       <a routerLinkActive="active" href="#course" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span><i class="fa fa-book" style="margin-left: -5px"></i></span>
         Lead</a>
@@ -73,7 +73,7 @@
         </li> -->
       </ul>
     </li>
-    <li *ngIf="checkPermission('Master')">
+    <li *ngIf="checkUpperPermission('Master')">
       <a routerLinkActive="active" href="#master" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span><i class="fa fa-book" style="margin-left: -5px"></i></span>
         Master</a>
@@ -83,7 +83,7 @@
         </li>
       </ul>
     </li>
-    <li *ngIf="checkPermission('Commissions Setting')">
+    <li *ngIf="checkUpperPermission('Commissions Setting', 'Commissions Reversal')">
       <a routerLinkActive="active" href="#commissions" data-toggle="collapse" aria-expanded="false"
         class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>
@@ -109,7 +109,7 @@
         </li>
       </ul>
     </li>
-    <li *ngIf="checkPermission('Employee List')">
+    <li *ngIf="checkUpperPermission('Employee List','Role Master')">
       <a routerLinkActive="active" href="#agent" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Employee Management</a>
       <ul class="collapse list-unstyled" id="agent">
@@ -148,7 +148,7 @@
         </li>
       </ul>
     </li> -->
-    <li *ngIf="checkPermission('Accounts Checker Panel')">
+    <li *ngIf="checkUpperPermission('Accounts Checker Panel', 'Accounts Maker Panel')">
       <a routerLinkActive="active" href="#checkers" data-toggle="collapse" aria-expanded="false"
         class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Accounts Panels</a>
@@ -165,7 +165,7 @@
         </li>
       </ul>
     </li>
-    <li *ngIf="checkPermission('BT Approval')">
+    <li *ngIf="checkUpperPermission('BT Approval', 'Compliance Panel', 'Final BT Approval', 'Agent Approval')">
       <a routerLinkActive="active" href="#approval" data-toggle="collapse" aria-expanded="false"
         class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Approvals</a>

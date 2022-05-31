@@ -20,9 +20,6 @@ export class CompliancePanelDetailComponent implements OnInit {
   isAppointmentDetailCorrect: boolean = false;
   currentUserId: number;
   nameChecker;
-  compliance_status
-  compliance_remark
-  remarkIs;
   nameRemark = "";
   addressChecker;
   addressRemark = "";
@@ -44,8 +41,7 @@ export class CompliancePanelDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private misc: MiscellaneousService,
-    private networkRequest: NetworkRequestService,
-    private toastr: ToastrService
+    private networkRequest: NetworkRequestService
 
   ) {
     this.tabelData = [];
@@ -198,10 +194,6 @@ export class CompliancePanelDetailComponent implements OnInit {
   }
 
 
-  viewComment(msg) {
-    this.remarkIs = msg;
-  }
-
 
   fetchBTLeadDetail(id) {
     this.misc.leadLoanDetailById(id).subscribe(
@@ -341,29 +333,24 @@ export class CompliancePanelDetailComponent implements OnInit {
     console.log(this.currentStep);
   }
 
-  saveComplianceStatus() {
-
-    const final_status = this.compliance_status;
-    const final_remark = this.compliance_remark
-
-    let finalData = {
-      final_status: final_status,
-      final_remark: final_remark,
-      lead: this.currentUserId
+  checkFinalStatus() {
+    if (this.nameChecker==='True' && this.addressChecker==='True' && this.photoChecker==='True') {
+      this.isPersonalDetailCorrect = true;
+      console.log(this.nameChecker, this.addressChecker, this.photoChecker);
     }
-
-    console.log(finalData)
-    this.misc.balanceTransferFinalApproval(finalData).subscribe(
-      data => {
-        console.log(data);
-        this.toastr.success("Status Updated Sucessfully", "Success")
-      },
-      error => {
-        console.log(error);
-      }
-    )
+    if (this.existing_loan_status==='True') {
+      this.isAccountTransferDetailCorrect = true;
+    }
+    if (this.fund_transfer_status==='True') {
+      this.isFundingDetailCorrect = true;
+    }
+    if (this.appointment_status==='True') {
+      this.isDocumentDetailCorrect = true;
+    }
+    if (this.agreement_status==='True') {
+      this.isAppointmentDetailCorrect = true;
+    }
   }
-
   addJewellery() {
     // const jewelleryType = this.jewelleryDetails.value.jewelleryType;
     // const quantity = this.jewelleryDetails.value.quantity;
@@ -399,22 +386,42 @@ export class CompliancePanelDetailComponent implements OnInit {
     const agreement_status = this.agreement_status;
     const agreement_remark = this.agreement_remark;
 
-    let personalData = {
-      lead: this.currentUserId,
-      personal_status: nameChecker,
-      personal_details_remark: nameRemark,
-      address_status: addressChecker,
-      address_remark: addressRemark,
-      customer_image_status: photoChecker,
-      customer_image_status_remark: photoRemark,
-      existing_loan_status: existing_loan_status,
-      existing_loan_remark: existing_loan_remark,
-      fund_transfer_status: fund_transfer_status,
-      fund_transfer_remark: fund_transfer_remark,
-      appointment_status: appointment_status,
-      appointment_remark: appointment_remark,
-      agreement_status: agreement_status,
-      agreement_remark: agreement_remark,
+    let personalData;
+    if(this.leadDetails['loan_type']['loan_type'] === 'bt_internal'){
+      personalData = {
+        lead: this.currentUserId,
+        personal_status: nameChecker,
+        personal_details_remark: nameRemark,
+        customer_image_status: photoChecker,
+        customer_image_status_remark: photoRemark,
+        existing_loan_status: existing_loan_status,
+        existing_loan_remark: existing_loan_remark,
+        fund_transfer_status: fund_transfer_status,
+        fund_transfer_remark: fund_transfer_remark,
+        appointment_status: appointment_status,
+        appointment_remark: appointment_remark,
+        agreement_status: agreement_status,
+        agreement_remark: agreement_remark,
+      }
+    }
+    else {
+      personalData = {
+        lead: this.currentUserId,
+        personal_status: nameChecker,
+        personal_details_remark: nameRemark,
+        address_status: addressChecker,
+        address_remark: addressRemark,
+        customer_image_status: photoChecker,
+        customer_image_status_remark: photoRemark,
+        existing_loan_status: existing_loan_status,
+        existing_loan_remark: existing_loan_remark,
+        fund_transfer_status: fund_transfer_status,
+        fund_transfer_remark: fund_transfer_remark,
+        appointment_status: appointment_status,
+        appointment_remark: appointment_remark,
+        agreement_status: agreement_status,
+        agreement_remark: agreement_remark,
+      }
     }
 
     console.log(personalData);

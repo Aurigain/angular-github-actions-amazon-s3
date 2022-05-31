@@ -220,7 +220,7 @@ export class MiscellaneousService {
   }
   FetchAllLoanRequests() {
 
-    return this.http.get(`${this.consts.all_loan_requests}?lead_loan_type=bt&lead__fully_approved=True`, {
+    return this.http.get(`${this.consts.all_loan_requests}?lead_loan_type=bt`, {
       headers: new HttpHeaders({
         'Authorization': `${this.cookie.get('_l_a_t')}`
       })
@@ -371,6 +371,13 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+  updateLeadLoanDocuments(data) {
+    return this.http.put(`${this.consts.updateLeadLoanDocuments}`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
   updateLeadAppointmentDetails(data) {
     return this.http.put(`${this.consts.updateLeadAppointmentDetails}`, data)
       .pipe(

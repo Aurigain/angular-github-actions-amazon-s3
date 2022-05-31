@@ -527,7 +527,7 @@
 
                 </div>
 
-                <div class="m-3">
+                <div class="m-3" *ngIf="accountTransferDetails?.account_type === 'existing'">
                   <div class="form-group">
                     <div class="row gender-row justify-content-center">
                       <label class="radio-inline">
@@ -606,7 +606,7 @@
                       <div class="mt-4 text-center">IFSC Code</div>
                     </div>
                     <div class="col-md-6 box">
-                      <div class="mt-4 text-center">{{accountTransferDetails?.branch?.code}}</div>
+                      <div class="mt-4 text-center">{{accountTransferDetails?.branch?.ifsc_code}}</div>
                     </div>
                     <!-- <div class="col-md-3 box">
                       <div class="my-3 text-center">

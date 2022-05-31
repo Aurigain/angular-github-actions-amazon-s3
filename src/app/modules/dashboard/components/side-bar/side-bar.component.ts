@@ -38,6 +38,19 @@ export class SideBarComponent implements OnInit {
     }
   }
 
+  checkUpperPermission(...args){
+    let permissions=[];
+
+    args.forEach(perms => {
+      permissions.push(perms)
+    })
+
+    for(let i = 0; i < permissions.length; i++){
+      if(this.userPermissions.includes(permissions[i])){
+        return true;
+      }
+    }
+  }
   ngOnInit(): void {
 
     if (this.permissions.isauthenticated()) {

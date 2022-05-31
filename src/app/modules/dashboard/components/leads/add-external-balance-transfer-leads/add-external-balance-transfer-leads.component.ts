@@ -13,6 +13,18 @@ import { NetworkRequestService } from 'src/app/core/services/network-request.ser
   styleUrls: ['./add-external-balance-transfer-leads.component.scss']
 })
 export class AddExternalBalanceTransferLeadsComponent implements OnInit {
+
+  security_cheque_1 = null;
+  security_cheque_2 = null;
+  kyc_document_poi = null;
+  kyc_document_poa = null;
+  loan_document = null;
+  promissory_note = null;
+  agreement_last_page = null;
+  customer_photo = null;
+  foreclousre_letter = null;
+  atm_withdrawl = null;
+
   currentUserId: number;
   permanentPinCodeDetail
   pinCodeDetail;
@@ -447,7 +459,7 @@ export class AddExternalBalanceTransferLeadsComponent implements OnInit {
     const appointment_time = this.appointmentDetailsForm.value.appointment_time;
     const ifsc = this.appointmentDetailsForm.value.ifsc;
 
-    let appointmentDetailData ={
+    let appointmentDetailData = {
       appointment_date: appointment_date,
       appointment_time: appointment_time,
       ifsc: ifsc,
@@ -487,6 +499,99 @@ export class AddExternalBalanceTransferLeadsComponent implements OnInit {
 
   }
 
+  onChange(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+
+    if (event.target.id === 'security_cheque_1') {
+      this.security_cheque_1 = file;
+    }
+    else if (event.target.id === 'security_cheque_2') {
+      this.security_cheque_2 = file;
+    }
+    else if (event.target.id === 'kyc_document_poi') {
+      this.kyc_document_poi = file;
+    }
+    else if (event.target.id === 'kyc_document_poa') {
+      this.kyc_document_poa = file;
+    }
+    else if (event.target.id === 'loan_document') {
+      this.loan_document = file;
+    }
+    else if (event.target.id === 'promissory_note') {
+      this.promissory_note = file;
+    }
+    else if (event.target.id === 'agreement_last_page') {
+      this.agreement_last_page = file;
+    }
+    else if (event.target.id === 'customer_photo') {
+      this.customer_photo = file;
+    }
+    else if (event.target.id === 'foreclousre_letter') {
+      this.foreclousre_letter = file;
+    }
+    else if (event.target.id === 'atm_withdrawl') {
+      this.atm_withdrawl = file;
+    }
+    // this.convertToBase64(id, file);
+  }
+
+  saveDocumentsDetails() {
+
+    const security_cheque_1 = this.security_cheque_1
+    const security_cheque_2 = this.security_cheque_2
+    const kyc_document_poi = this.kyc_document_poi
+    const kyc_document_poa = this.kyc_document_poa
+    const loan_document = this.loan_document
+    const promissory_note = this.promissory_note
+    const agreement_last_page = this.agreement_last_page
+    const customer_photo = this.customer_photo
+    const foreclousre_letter = this.foreclousre_letter
+    const atm_withdrawl = this.atm_withdrawl
+    // const lead = this.currentUserId
+    let formData = new FormData();
+    formData.append("lead", String(this.currentUserId));
+
+    if (security_cheque_1) {
+      formData.append("security_cheque_1", security_cheque_1)
+    }
+    if (security_cheque_2) {
+      formData.append("security_cheque_2", security_cheque_2)
+    }
+    if (kyc_document_poi) {
+      formData.append("kyc_document_poi", kyc_document_poi)
+    }
+
+    if (kyc_document_poa) { formData.append("kyc_document_poa", kyc_document_poa) }
+    if (loan_document) { formData.append("loan_document", loan_document) }
+    if (promissory_note) { formData.append("promissory_note", promissory_note) }
+    if (agreement_last_page) { formData.append("agreement_last_page", agreement_last_page) }
+    if (customer_photo) { formData.append("customer_photo", customer_photo) }
+    if (foreclousre_letter) { formData.append("foreclousre_letter", foreclousre_letter) }
+    if (atm_withdrawl) { formData.append("atm_withdrawl", atm_withdrawl) }
+
+    this.misc.updateLeadLoanDocuments(formData).subscribe(
+      data => {
+        console.log(data)
+        this.toastr.success("Document Updated Successfully", "Success")
+      },
+      error => {
+        console.log(error)
+        this.toastr.error("Error updating Document", "Error")
+      }
+    )
+
+    // security_cheque_1
+    // security_cheque_2
+    // kyc_document_poi
+    // kyc_document_poa
+    // loan_document
+    // promissory_note
+    // agreement_last_page
+    // customer_photo
+    // foreclousre_letter
+    // atm_withdrawl
+
+  }
   saveForms() {
 
     const product = this.personalDetailsForm.value.product;
