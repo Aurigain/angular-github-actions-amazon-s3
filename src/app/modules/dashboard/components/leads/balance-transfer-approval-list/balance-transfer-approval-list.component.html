@@ -62,6 +62,7 @@
                         <th>Created At</th>
                         <th>Source</th>
                         <th>Status</th>
+                        <th>Approved By</th>
                         <th>Action</th>
                     </tr>
                   </thead>
@@ -74,7 +75,11 @@
                       <td>{{user?.loan_type?.loan_type | titlecase}}</td>
                       <td>{{user?.created_at | date: 'mediumDate'}}</td>
                       <td>{{user?.lead?.source}}</td>
-                      <td>{{user?.current_status?.status}}</td>
+                      <td *ngIf="!user?.lead?.is_approved">New</td>
+                      <td *ngIf="user?.lead?.is_approved && !user?.lead?.fully_approved">Pending</td>
+                      <td *ngIf="user?.lead?.is_approved && user?.lead?.fully_approved">Approved</td>
+                      <td *ngIf="user?.lead?.approved_by">{{user?.lead?.approved_by?.full_name}}</td>
+                      <td></td>
                       <td>
                         <a
                         class="booking"

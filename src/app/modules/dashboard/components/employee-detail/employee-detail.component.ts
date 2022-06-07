@@ -86,13 +86,13 @@ export class EmployeeDetailComponent implements OnInit {
     )
   }
 
-  fetchAllEmployees(){
+  fetchAllEmployees() {
     this.misc.fetchAllEmployees().subscribe(
       data => {
         this.employeelist = data['data']
-        console.log("emp list: ",this.employeelist)
+        console.log("emp list: ", this.employeelist)
       },
-      error =>{
+      error => {
 
       }
     )
@@ -120,7 +120,7 @@ export class EmployeeDetailComponent implements OnInit {
           father_name: this.profileData['father_name'],
 
         })
-        if(this.profileData['reporting_person']){
+        if (this.profileData['reporting_person']) {
           this.personalDetails.patchValue({
             reporting_person: this.profileData['reporting_person']['shareReferralCode'],
           })
@@ -260,11 +260,11 @@ export class EmployeeDetailComponent implements OnInit {
     })
   }
 
-  fetchReportingPersonbyRole(event){
+  fetchReportingPersonbyRole(event) {
     const id = event.target.value;
     console.log("iddd", id)
     this.misc.fetchReportingPersonbyRole(id).subscribe(
-      data =>{
+      data => {
         this.isReportingPerson = true;
         console.log("data", data);
         this.reportingPersonByRole = data
@@ -291,38 +291,42 @@ export class EmployeeDetailComponent implements OnInit {
 
     const full_name = first_name.concat(" ", last_name);
     personalDetailData = {
-        full_name: full_name,
-        phonenumber: phonenumber,
-        user_group: role,
-        reporting_person: reporting_person,
-        gender: gender,
-        email: email,
-        dob: dob,
-        father_name: father_name,
+      full_name: full_name,
+      phonenumber: phonenumber,
+      user_group: role,
+      reporting_person: reporting_person,
+      gender: gender,
+      email: email,
+      dob: dob,
+      father_name: father_name,
     }
 
+
     let imageObj = new FormData();
-        imageObj.append("agent", this.currentUserPk)
-        imageObj.append("profile", profile_image)
+    imageObj.append("agent", this.currentUserPk)
+    imageObj.append("profile", profile_image)
 
     console.log(personalDetailData);
 
     this.misc.updateEmployeeProfile(personalDetailData, this.currentUserPk).subscribe(
-      data =>{
+      data => {
         console.log(data);
         this.toastr.success("Basic Details Updated", "Success")
-        this.misc.uploadAgentImages(imageObj).subscribe(
-          data => {
-            console.log(data);
-            // this.router.navigateByUrl('/dashboard/employee-list')
-          },
-          error => {
-            console.log("Error", error);
-          }
-        )
+        if (profile_image) {
+          this.misc.uploadAgentImages(imageObj).subscribe(
+            data => {
+              console.log(data);
+              // this.router.navigateByUrl('/dashboard/employee-list')
+            },
+            error => {
+              console.log("Error", error);
+            }
+          )
+        }
+
       },
       error => {
-        console.log("error",error);
+        console.log("error", error);
         this.toastr.error(error, "Error")
       }
 
@@ -350,11 +354,11 @@ export class EmployeeDetailComponent implements OnInit {
     console.log(addressDetailData);
 
     this.misc.updateEmployeeAddress(addressDetailData, this.addressData['id']).subscribe(
-      data =>{
+      data => {
         console.log(data);
         this.toastr.success("Basic Details Updated", "Success")
       },
-      error => console.log("error",error)
+      error => console.log("error", error)
     )
   }
 
@@ -363,41 +367,49 @@ export class EmployeeDetailComponent implements OnInit {
     const occupation = this.kycDetailForm.value.occupation;
     // const aadhar_number = this.kycDetailForm.value.aadhar_number;
     // const pan_number = this.kycDetailForm.value.pan_number;
-    const aadhar_front_image  = this.aadhar_front_image
+    const aadhar_front_image = this.aadhar_front_image
     const aadhar_back_image = this.aadhar_back_image
-    const pan_image  = this.pan_image
+    const pan_image = this.pan_image
     let kycDetailData: any;
 
     kycDetailData = {
-        occupation: occupation,
-        // qualification: qualification,
+      occupation: occupation,
+      // qualification: qualification,
     }
 
     console.log(kycDetailData);
 
     let imageObj = new FormData();
-        imageObj.append("agent", this.currentUserPk)
-        // imageObj.append("profile", profile_image)
-        imageObj.append("aadhar_front",aadhar_front_image)
-        imageObj.append("aadhar_back",aadhar_back_image)
-        imageObj.append("pan",pan_image)
-        // imageObj.append("cancelled_cheque",cancelled_cheque)
+    imageObj.append("agent", this.currentUserPk)
 
+    if(aadhar_front_image){
+      imageObj.append("aadhar_front", aadhar_front_image)
+    }
+    if(aadhar_back_image){
+      imageObj.append("aadhar_back", aadhar_back_image)
+    }
+    if(pan_image){
+      imageObj.append("pan", pan_image)
+    }
 
     this.misc.updateEmployeeKYC(kycDetailData, this.kycData['id']).subscribe(
-      data =>{
+      data => {
         console.log(data);
-        this.misc.uploadAgentImages(imageObj).subscribe(
-          data => {
-            console.log(data);
-            // this.router.navigateByUrl('/dashboard/employee-list')
-          },
-          error => {
-            console.log("Error", error);
-          }
-        )
+
+        if(aadhar_front_image || aadhar_back_image || pan_image){
+          this.misc.uploadAgentImages(imageObj).subscribe(
+            data => {
+              console.log(data);
+              // this.router.navigateByUrl('/dashboard/employee-list')
+            },
+            error => {
+              console.log("Error", error);
+            }
+          )
+        }
+
       },
-      error => console.log("error",error)
+      error => console.log("error", error)
     )
   }
 
@@ -406,37 +418,40 @@ export class EmployeeDetailComponent implements OnInit {
     const bank = this.fetchBranchDetail['bank']['id'];
     const branch = this.fetchBranchDetail['id'];
     const ifsc_code = this.bankDetails.value.ifsc_code;
-    const cancelled_cheque  = this.cancelled_cheque;
+    const cancelled_cheque = this.cancelled_cheque;
     const account_number = this.bankDetails.value.account_number;
     let bankDetailData: any;
 
     bankDetailData = {
-        account_number: account_number,
-        id: bank,
-        branch: branch,
-        ifsc_code: ifsc_code,
+      account_number: account_number,
+      id: bank,
+      branch: branch,
+      ifsc_code: ifsc_code,
     }
 
     let imageObj = new FormData();
-        imageObj.append("agent", this.currentUserPk)
-        imageObj.append("cancelled_cheque", cancelled_cheque)
+    imageObj.append("agent", this.currentUserPk)
+    imageObj.append("cancelled_cheque", cancelled_cheque)
 
     console.log(bankDetailData);
 
     this.misc.updateEmployeeBank(bankDetailData, this.bankData['id']).subscribe(
-      data =>{
+      data => {
         console.log(data);
-        this.misc.uploadAgentImages(imageObj).subscribe(
-          data => {
-            console.log(data);
-            // this.router.navigateByUrl('/dashboard/employee-list')
-          },
-          error => {
-            console.log("Error", error);
-          }
-        )
+        if(cancelled_cheque){
+          this.misc.uploadAgentImages(imageObj).subscribe(
+            data => {
+              console.log(data);
+              // this.router.navigateByUrl('/dashboard/employee-list')
+            },
+            error => {
+              console.log("Error", error);
+            }
+          )
+        }
+
       },
-      error => console.log("error",error)
+      error => console.log("error", error)
     )
   }
 
@@ -488,16 +503,16 @@ export class EmployeeDetailComponent implements OnInit {
       this.aadhar_front_image = file;
     }
     else if (event.target.id === 'aadhar_back_image') {
-    this.aadhar_back_image = file;
+      this.aadhar_back_image = file;
     }
     else if (event.target.id === 'pan_image') {
-    this.pan_image = file;
+      this.pan_image = file;
     }
     else if (event.target.id === 'cancelled_cheque') {
-    this.cancelled_cheque = file;
+      this.cancelled_cheque = file;
     }
     else if (event.target.id === 'profile_image') {
-    this.profile_image = file;
+      this.profile_image = file;
     }
     // this.convertToBase64(id, file);
   }
@@ -613,7 +628,7 @@ export class EmployeeDetailComponent implements OnInit {
     }
 
     console.log(userObj);
-     this.misc.updateEmployeeProfile(userObj, this.currentUserId).subscribe(
+    this.misc.updateEmployeeProfile(userObj, this.currentUserId).subscribe(
       data => {
         console.log(data);
         this.toastr.success("Employee Added Successfully")
@@ -621,10 +636,10 @@ export class EmployeeDetailComponent implements OnInit {
         let formData = new FormData();
         formData.append("agent", agentId)
         formData.append("profile", profile_image)
-        formData.append("aadhar_front",aadhar_front_image)
-        formData.append("aadhar_back",aadhar_back_image)
-        formData.append("pan",pan_image)
-        formData.append("cancelled_cheque",cancelled_cheque)
+        formData.append("aadhar_front", aadhar_front_image)
+        formData.append("aadhar_back", aadhar_back_image)
+        formData.append("pan", pan_image)
+        formData.append("cancelled_cheque", cancelled_cheque)
         this.misc.uploadAgentImages(formData).subscribe(
           data => {
             console.log(data);

@@ -317,7 +317,8 @@ export class PartnerUsComponent implements OnInit {
         dob: dob,
         gender: gender,
         email: email,
-        profile_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K"
+        profile_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K",
+        company: 6
       },
       kyc: {
         aadhar_number: adhaarNumber,

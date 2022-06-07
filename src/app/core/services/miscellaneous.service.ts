@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { ErrorHandlerService } from '../http/error-handler.service';
 import { NetworkRequestService } from './network-request.service';
+import { SsrHandlerService } from './ssr-handler.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class MiscellaneousService {
     private consts: ConstantsService,
     private http: HttpClient,
     private errorHandler: ErrorHandlerService,
+    private ssrService: SsrHandlerService,
   ) {
   }
 
@@ -103,8 +105,9 @@ export class MiscellaneousService {
 
 
   fetchAgents() {
-
-    return this.http.get(`${this.consts.apiAgent}agent/`, {
+    let userData = this.ssrService.getItem('userProfile');
+    userData = JSON.parse(userData);
+    return this.http.get(`${this.consts.apiAgent}agent/?company=${userData['company']}`, {
       headers: new HttpHeaders({
         'Authorization': `${this.cookie.get('_l_a_t')}`
       })
@@ -114,6 +117,12 @@ export class MiscellaneousService {
       );
   }
 
+  searchComapnyByName(data:any) {
+    return this.http.get(`${this.consts.searchCompanyByName}?name=${data}`)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
 
   leadLoanDetailById(id) {
 
@@ -229,10 +238,23 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+  pendingFinalBtLoanRequests() {
+
+    return this.http.get(`${this.consts.pending_final_bt_loan_requests}?lead_loan_type=bt`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
 
   fetchAllEmployees() {
+    let userData = this.ssrService.getItem('userProfile');
+    userData = JSON.parse(userData);
 
-    return this.http.get(this.consts.employeeApi, {
+    return this.http.get(`${this.consts.employeeApi}?company=${userData['company']}`, {
       headers: new HttpHeaders({
         'Authorization': `${this.cookie.get('_l_a_t')}`
       })
@@ -255,8 +277,9 @@ export class MiscellaneousService {
   }
 
   fetchReportingPersonbyRole(id) {
-
-    return this.http.get(`${this.consts.fetch_employees_by_role}?role=${id}`, {
+    let userData = this.ssrService.getItem('userProfile');
+    userData = JSON.parse(userData);
+    return this.http.get(`${this.consts.fetch_employees_by_role}?role=${id}&company=${userData['company']}`, {
       headers: new HttpHeaders({
         'Authorization': `${this.cookie.get('_l_a_t')}`
       })

@@ -7,6 +7,7 @@ import { ConstantsService } from 'src/app/config/constants.service';
 import { LoginService } from 'src/app/core/authentication/login.service';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 import { NetworkRequestService } from 'src/app/core/services/network-request.service';
+import { SsrHandlerService } from 'src/app/core/services/ssr-handler.service';
 
 @Component({
   selector: 'app-add-employee',
@@ -17,6 +18,7 @@ export class AddEmployeeComponent implements OnInit {
   Roles;
   isReportingPerson = false;
   reportingPersonByRole;
+  userData
   constructor(
     private formbuilder: FormBuilder,
     private conts: ConstantsService,
@@ -24,7 +26,8 @@ export class AddEmployeeComponent implements OnInit {
     private networkRequest: NetworkRequestService,
     private loginservice: LoginService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private ssrService: SsrHandlerService,
   ) {
     this.tabelData = [];
   }
@@ -78,6 +81,9 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    const profiData = this.ssrService.getItem('userProfile');
+    this.userData = JSON.parse(profiData);
 
     this.fetchRoles();
     this.getQualification();
@@ -353,6 +359,7 @@ export class AddEmployeeComponent implements OnInit {
         email: email,
         dob: dob,
         father_name: father_name,
+        company: this.userData['company']
       },
       kyc: {
         aadhar_number: aadhar_number,

@@ -49,7 +49,7 @@ export class AgentApprovalDetailComponent implements OnInit {
       data => {
         console.log("profiles is:", data)
         this.profileData = data[0]
-        console.log(this.profileData);
+        // console.log(this.profileData);
 
       },
       error => {
