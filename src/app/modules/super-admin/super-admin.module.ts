@@ -19,9 +19,9 @@ const routes: Routes = [
       {
         path: '', component: SuperAdminDashboardComponent
       },
-      {
-        path: 'company-detail', component: CompanyDetailComponent
-      },
+      // {
+      //   path: 'company-detail', component: CompanyDetailComponent
+      // },
       {
         path: 'create-admin/:id', component: CreateAdminComponent
       },

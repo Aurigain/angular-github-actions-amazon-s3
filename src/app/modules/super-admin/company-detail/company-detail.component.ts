@@ -15,6 +15,7 @@ export class CompanyDetailComponent implements OnInit {
     private misc: MiscellaneousService,
     private activatedRoute: ActivatedRoute
   ) { }
+
   fetchCompanyDetails(id) {
     this.misc.getComapnyDetails(id).subscribe(
       data => {
