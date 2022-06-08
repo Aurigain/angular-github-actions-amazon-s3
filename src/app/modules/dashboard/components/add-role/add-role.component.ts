@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
+import { SsrHandlerService } from 'src/app/core/services/ssr-handler.service';
 
 @Component({
   selector: 'app-add-role',
@@ -14,13 +15,14 @@ export class AddRoleComponent implements OnInit {
     private misc: MiscellaneousService,
     private toastr: ToastrService,
     private router: Router,
+    private ssrService: SsrHandlerService,
   ) { }
   error;
   status: boolean = false;
   roleName;
   roleDescription;
   roleIndex;
-
+  companyId;
 
   statusCheck(event) {
 
@@ -36,7 +38,8 @@ export class AddRoleComponent implements OnInit {
       role_name: role_name,
       is_active: is_active,
       role_index: roleIndex,
-      role_description: roleDescription
+      role_description: roleDescription,
+      company: this.companyId
     }
 
     console.log(formData);
@@ -61,7 +64,9 @@ export class AddRoleComponent implements OnInit {
 
   }
   ngOnInit(): void {
-
+    let userData = this.ssrService.getItem('userProfile');
+    userData = JSON.parse(userData);
+    this.companyId = userData['company']
   }
 
 }

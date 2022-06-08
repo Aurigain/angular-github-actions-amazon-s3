@@ -50,7 +50,7 @@ export class AddEmployeeComponent implements OnInit {
   fetchRoles() {
     this.misc.fetchUserRoles().subscribe(
       data => {
-        this.Roles = data['data']
+        this.Roles = data
         console.log(this.Roles)
       }
     )

@@ -9,6 +9,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule } from '@angular/common/http';
 import { NgPipesModule } from 'ngx-pipes';
 import { SuperAdminNavbarComponent } from './super-admin-navbar/super-admin-navbar.component';
+import { CompanyDetailComponent } from './company-detail/company-detail.component';
+import { CreateAdminComponent } from './create-admin/create-admin.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,12 @@ const routes: Routes = [
     children: [
       {
         path: '', component: SuperAdminDashboardComponent
+      },
+      {
+        path: 'company-detail', component: CompanyDetailComponent
+      },
+      {
+        path: 'create-admin/:id', component: CreateAdminComponent
       },
     ]
   }
@@ -25,7 +33,9 @@ const routes: Routes = [
   declarations: [
     SuperAdminComponent,
     SuperAdminDashboardComponent,
-    SuperAdminNavbarComponent
+    SuperAdminNavbarComponent,
+    CompanyDetailComponent,
+    CreateAdminComponent
   ],
   imports: [
     CommonModule,

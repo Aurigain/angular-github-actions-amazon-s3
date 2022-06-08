@@ -117,8 +117,15 @@ export class MiscellaneousService {
       );
   }
 
-  searchComapnyByName(data:any) {
+  searchComapnyByName(data: any) {
     return this.http.get(`${this.consts.searchCompanyByName}?name=${data}`)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  getComapnyDetails(id) {
+    return this.http.get(`${this.consts.fetchcompanydetails}${id}/`)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
@@ -290,8 +297,10 @@ export class MiscellaneousService {
   }
 
   fetchUserRoles() {
+    let userData = this.ssrService.getItem('userProfile');
+    userData = JSON.parse(userData);
 
-    return this.http.get(this.consts.userRoleApi, {
+    return this.http.get(`${this.consts.fetchrolesbycompany}?company=${userData['company']}`, {
       headers: new HttpHeaders({
         'Authorization': `${this.cookie.get('_l_a_t')}`
       })
@@ -315,9 +324,9 @@ export class MiscellaneousService {
 
   uploadAgentImages(images) {
     return this.http.put(this.consts.agentImageUpload, images)
-    .pipe(
-      catchError(this.errorHandler.handleError)
-    );
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
   }
   fetchPermissions() {
 
@@ -343,52 +352,52 @@ export class MiscellaneousService {
       );
   }
 
-  createRole(data:any) {
+  createRole(data: any) {
     return this.http.post(this.consts.userRoleApi, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
 
-  createFreshLeadWeb(data:any) {
+  createFreshLeadWeb(data: any) {
     return this.http.post(this.consts.freshLead, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
-  createBTLeadWeb(data:any) {
+  createBTLeadWeb(data: any) {
     return this.http.post(this.consts.create_internal_bt_lead, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
 
-  addEmployee(data:any) {
+  addEmployee(data: any) {
     return this.http.post(this.consts.employeeApi, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
 
-  updateLeadProfile(data,id) {
+  updateLeadProfile(data, id) {
     return this.http.put(`${this.consts.updateLeadProfile}${id}/`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
-  updateLeadAddress(data,id) {
+  updateLeadAddress(data, id) {
     return this.http.put(`${this.consts.updateLeadAddress}${id}/`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
-  updateLeadJewellery(data,id) {
+  updateLeadJewellery(data, id) {
     return this.http.put(`${this.consts.updateLeadJewellery}${id}/`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
-  updateLeadLoanDetails(data,id) {
+  updateLeadLoanDetails(data, id) {
     return this.http.put(`${this.consts.updateLeadLoanDetails}${id}/`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
@@ -408,59 +417,59 @@ export class MiscellaneousService {
       );
   }
 
-  updateEmployeeProfile(data,id) {
+  updateEmployeeProfile(data, id) {
     return this.http.put(`${this.consts.updateAgentProfile}${id}/`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
 
-  updateEmployeeAddress(data,id) {
+  updateEmployeeAddress(data, id) {
     return this.http.put(`${this.consts.updateAgentAddress}${id}/`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
-  updateEmployeeKYC(data,id) {
+  updateEmployeeKYC(data, id) {
     return this.http.put(`${this.consts.updateAgentKYC}${id}/`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
-  updateEmployeeBank(data,id) {
+  updateEmployeeBank(data, id) {
     return this.http.put(`${this.consts.updateAgentBank}${id}/`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
 
-  balanceTransferPreFinalApproval(data:any) {
+  balanceTransferPreFinalApproval(data: any) {
     return this.http.put(this.consts.balanceTransferPreFinalApproval, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
-  balanceTransferFinalApproval(data:any) {
+  balanceTransferFinalApproval(data: any) {
     return this.http.put(this.consts.balanceTransferFinalApproval, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
-  createPermissions(data:any) {
+  createPermissions(data: any) {
     return this.http.post(this.consts.fetchPermissionsApi, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
 
-  contactUs(data:any) {
+  contactUs(data: any) {
     return this.http.post(this.consts.contactUs, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
 
-  userRolePermissionsMapping(data:any) {
+  userRolePermissionsMapping(data: any) {
     return this.http.post(this.consts.rolePermissionMappingApi, data)
       .pipe(
         catchError(this.errorHandler.handleError)

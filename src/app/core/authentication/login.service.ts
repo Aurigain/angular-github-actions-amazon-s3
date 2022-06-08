@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
 import { ProfileService } from './user-profile.service';
 import { map } from 'rxjs/operators';
 import { SsrHandlerService } from '../services/ssr-handler.service';
+import { PermissionsService } from './permissions.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,6 +31,7 @@ export class LoginService {
     private networkRequest: NetworkRequestService,
     private utils: UtilsService,
     private misc: MiscellaneousService,
+    private permissions: PermissionsService
   ) { }
 
   userProfileObj;
@@ -72,7 +74,7 @@ export class LoginService {
         console.log("Token set successfully");
         this.extraSteps().subscribe({
           error: err => {
-            console.log("error",err);
+            console.log("error", err);
             this.auth.clearStorages();
           },
           complete: () => {
@@ -80,7 +82,7 @@ export class LoginService {
             this.loginRedirect();
           }
         })
-      } catch(err){
+      } catch (err) {
         console.log(err);
       }
     });
@@ -92,12 +94,12 @@ export class LoginService {
     return new Observable(observer => {
       this.misc.userProfile().subscribe(
         data => {
-          console.log("profile data:",data);
+          console.log("profile data:", data);
 
           this.ssrService.setItem('userProfile', JSON.stringify(data));
           this.misc.fetchPermissionsById(data['user_group']).subscribe(
             data => {
-              console.log("permissions data:",data);
+              console.log("permissions data:", data);
               //@ts-ignore
               data.map((res) => {
                 this.userPermissions.push(res['permission']['permission_name']);
@@ -107,7 +109,7 @@ export class LoginService {
               observer.complete();
             },
             error => {
-              console.log("error:",error);
+              console.log("error:", error);
               observer.error("failed");
             }
           )
@@ -142,7 +144,12 @@ export class LoginService {
     }
   }
 
-  loginRedirect(){
-    this.router.navigate(['/dashboard']);
+  loginRedirect() {
+    if (this.permissions.isSuperAdmin()) {
+      this.router.navigateByUrl('/super-admin')
+    }
+    else {
+      this.router.navigate(['/dashboard']);
+    }
   }
 }

@@ -53,6 +53,27 @@ export class PermissionsService {
 
   }
 
+  isSuperAdmin() {
+    const token = this.cookie.get('_l_a_t');
+    const decodeToken = this.utils.decodeToken(token);
+
+    if (this.isauthenticated()) {
+      try {
+        const userType = decodeToken['user_group'];
+        if (userType.includes('superadmin')) {
+          console.log("superadminabab");
+          return true;
+        }
+      } catch (e) {
+        this.auth.logout();
+        return false;
+      }
+    } else {
+      return false;
+    }
+
+  }
+
   isAgent() {
     // console.log("aabbbbvv");
     const token = this.cookie.get('_l_a_t');

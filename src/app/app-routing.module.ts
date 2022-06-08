@@ -2,6 +2,7 @@ import { SuperAdminModule } from './modules/super-admin/super-admin.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
+import { SuperAdminGuard } from './core/guards/super-admin.guard';
 
 const routes: Routes = [
   {
@@ -15,8 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'super-admin',
-    loadChildren: () => import('./modules/super-admin/super-admin.module').then(m => m.SuperAdminModule),
-    // canLoad: [AuthGuard]
+    loadChildren: () => import('./modules/super-admin/super-admin.module').then(m => m.SuperAdminModule),canLoad: [SuperAdminGuard]
   },
 ];
 

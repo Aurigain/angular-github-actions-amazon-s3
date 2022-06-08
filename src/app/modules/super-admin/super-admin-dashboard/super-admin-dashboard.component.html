@@ -149,20 +149,20 @@
               <div class="input-group">
                 <form [formGroup]="searchCompany" class="example-form">
                   <div class="input-icons">
-                    <!-- <input [(ngModel)]="school" [formControl]="myControl" [matAutocomplete]="auto" matInput
-                        style="border:none;" type="text" class="input-field form-control shadow p-3  bg-white"
-                        formControlName="inputPara" placeholder="Search Schools" (input)="detectSchool($event)"> -->
-                    <input id="typeahead-basic" type="text" [formControl]="myControl" [(ngModel)]="school"
-                      class="input-field form-control shadow p-3  bg-white"
-                      style="border:none;position: relative;width: 90%;margin-left: 5%;" placeholder="Search School"
-                      [ngbTypeahead]="search" (input)="detectSchool($event)" formControlName="inputPara" />
-                    <i id="icon" *ngIf="searchIcon" style="color: #255166;font-size: larger;"
+                    <input
+                        id="typeahead-basic"
+                        type="text"
+                        [formControl]="myControl"
+                        [(ngModel)]="school"
+                        class="input-field form-control shadow p-3  bg-white"
+                        style="border:none;position: relative;width: 90%;margin-left: 5%;" placeholder="Search School"
+                        [ngbTypeahead]="search" (input)="detectSchool($event)" formControlName="inputPara" />
+
+                      <i id="icon" *ngIf="searchIcon" style="color: #255166;font-size: larger;"
                       class="fa fa-search icon"></i>
 
                   </div>
                 </form>
-                <!--<div class="input-group-btn">
-              </div>-->
               </div>
             </div>
           </div>

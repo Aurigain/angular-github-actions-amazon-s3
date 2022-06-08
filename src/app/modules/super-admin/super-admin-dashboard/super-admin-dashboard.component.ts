@@ -7,6 +7,7 @@ import { MiscellaneousService } from 'src/app/core/services/miscellaneous.servic
 import { NetworkRequestService } from 'src/app/core/services/network-request.service';
 import { SsrHandlerService } from 'src/app/core/services/ssr-handler.service';
 import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-super-admin-dashboard',
@@ -34,7 +35,8 @@ export class SuperAdminDashboardComponent implements OnInit {
     private ssrService: SsrHandlerService,
     private networkRequest: NetworkRequestService,
     private toastr: ToastrService,
-    private misc: MiscellaneousService
+    private misc: MiscellaneousService,
+    private router: Router,
   ) { }
 
   createSearchForm() {
@@ -140,6 +142,28 @@ export class SuperAdminDashboardComponent implements OnInit {
       data => {
         console.log(data);
         this.toastr.success("Company Create Successfully", "Success")
+        if(data['company']){
+          const id = data['company']['id'];
+          const formData = {
+            role_name: "admin",
+            is_active: true,
+            role_index: 1,
+            role_description: "admin role",
+            company: id
+          }
+          console.log(formData);
+          this.misc.createRole(formData).subscribe(
+            data => {
+              console.log(data);
+              this.toastr.success("Admin Created Successfully", "Sucess", {
+                timeOut: 3000,
+              });
+            },
+            err => {
+              this.toastr.error("Error creating Role", "Error");
+            }
+          )
+        }
       },
       error => {
         console.log(error);
@@ -150,6 +174,7 @@ export class SuperAdminDashboardComponent implements OnInit {
 
 
   schoolFilter() {
+
     let filtered = [];
     let schoolid;
     for (let i = 0; i < this.schoolData.length; i++) {
@@ -157,13 +182,15 @@ export class SuperAdminDashboardComponent implements OnInit {
         filtered.push(this.schoolData[i]);
       }
     }
+    console.log(this.schoolData)
+    console.log(filtered)
     schoolid = filtered[0]['id'];
-    //"selected school ID", schoolid)
-    // this.router.navigate(['/dashboard/school-detail'], {
-    //   queryParams: {
-    //     id: schoolid
-    //   }
-    // })
+    console.log("selected school ID", schoolid)
+    this.router.navigate(['/super-admin/company-detail'], {
+      queryParams: {
+        id: schoolid
+      }
+    })
   }
 
 
