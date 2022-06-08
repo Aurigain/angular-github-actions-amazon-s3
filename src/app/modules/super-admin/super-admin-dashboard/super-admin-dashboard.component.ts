@@ -18,6 +18,7 @@ export class SuperAdminDashboardComponent implements OnInit {
   options: string[] = [];
   searchIcon: boolean = true;
   errors;
+  fetchPermissions = [];
   filteredOptions: Observable<string[]>;
   rowFilter: number = 1;
   viewDetailbutton = false;
@@ -27,9 +28,10 @@ export class SuperAdminDashboardComponent implements OnInit {
   pinCodeDetail;
   school: any;
   schoolData;
-  myControl = new FormControl ();
+  myControl = new FormControl();
   isAddCompany: boolean = false;
   isSearchCompany: boolean = true;
+  permissionsArray = [];
   constructor(
     private formbuilder: FormBuilder,
     private ssrService: SsrHandlerService,
@@ -84,14 +86,14 @@ export class SuperAdminDashboardComponent implements OnInit {
       distinctUntilChanged(),
       map(term => term.length < 2 ? []
         : this.options.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
-        )
+      )
     )
 
-    private _filter(value: string): string[] {
-      const filterValue = value.toLowerCase();
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
 
-      return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-    }
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+  }
 
   searchPinCode() {
     const pincode = this.addCompany.value.pincode;
@@ -142,7 +144,7 @@ export class SuperAdminDashboardComponent implements OnInit {
       data => {
         console.log(data);
         this.toastr.success("Company Create Successfully", "Success")
-        if(data['company']){
+        if (data['company']) {
           const id = data['company']['id'];
           const formData = {
             role_name: "admin",
@@ -155,9 +157,29 @@ export class SuperAdminDashboardComponent implements OnInit {
           this.misc.createRole(formData).subscribe(
             data => {
               console.log(data);
-              this.toastr.success("Admin Created Successfully", "Sucess", {
-                timeOut: 3000,
-              });
+              const roleId = data['data']['id']
+              let formData = {
+                role: roleId,
+                permissions: this.permissionsArray
+              }
+              console.log("role mapping form data",formData);
+              this.misc.userRolePermissionsMapping(formData).subscribe(
+                data => {
+                  console.log(data);
+                  if (data['data']['error']) {
+                    this.toastr.error(data['data']['detail'], "Error", {
+                      timeOut: 4000,
+                    });
+                  }
+                  else {
+                    let successMsg = data['data']['detail'];
+                    this.toastr.success(successMsg, "Sucess", {
+                      timeOut: 3000,
+                    });
+                  }
+                },
+                err => console.log(err)
+              )
             },
             err => {
               this.toastr.error("Error creating Role", "Error");
@@ -172,6 +194,22 @@ export class SuperAdminDashboardComponent implements OnInit {
     )
   }
 
+  fetchAllPermissions() {
+    this.misc.fetchPermissions().subscribe(
+      data => {
+        console.log(data['data']);
+        this.fetchPermissions = data['data']
+        // this.permissionsArray.map
+        this.fetchPermissions.map(m => {
+          this.permissionsArray.push(m.id)
+        })
+        console.log("All Permissions", this.permissionsArray)
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
 
   schoolFilter() {
 
@@ -224,7 +262,7 @@ export class SuperAdminDashboardComponent implements OnInit {
       }
     )
     //"length", this.options.length, obj.target.value.length);
-    if (this.options.length == 0 || obj.target.value.length < 2){
+    if (this.options.length == 0 || obj.target.value.length < 2) {
       document.getElementById("typeahead-basic").classList.remove("input-field-radius");
       this.viewDetailbutton = false;
       this.searchIcon = true;
@@ -243,11 +281,11 @@ export class SuperAdminDashboardComponent implements OnInit {
     //this.school)
   }
 
-  switchToCreateCompany(){
-    this.isAddCompany =true;
+  switchToCreateCompany() {
+    this.isAddCompany = true;
     this.isSearchCompany = false;
   }
-  switchToSeacrchCompany(){
+  switchToSeacrchCompany() {
     this.isAddCompany = false;
     this.isSearchCompany = true;
   }
@@ -255,6 +293,7 @@ export class SuperAdminDashboardComponent implements OnInit {
     this.userData = this.ssrService.getItem('userProfile');
     console.log("fetched user data from local", JSON.parse(this.userData))
     this.createSearchForm();
+    this.fetchAllPermissions();
     this.addCompany = this.formbuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],

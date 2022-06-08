@@ -309,6 +309,16 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+  superAdminFetchUserRoles(id) {
+    return this.http.get(`${this.consts.fetchrolesbycompany}?company=${id}`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
 
   fetchUserRoleById(id) {
 

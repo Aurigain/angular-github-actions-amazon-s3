@@ -22,6 +22,7 @@ export class CreateAdminComponent implements OnInit {
   reportingPersonByRole;
   userData
   companyId;
+  roleId
   errors;
   constructor(
     private formbuilder: FormBuilder,
@@ -53,11 +54,24 @@ export class CreateAdminComponent implements OnInit {
   cancelled_cheque;
   employeelist;
   profile_image;
+
   fetchRoles() {
-    this.misc.fetchUserRoles().subscribe(
+    this.misc.superAdminFetchUserRoles(this.companyId).subscribe(
       data => {
-        this.Roles = data
-        console.log(this.Roles)
+        this.Roles = data;
+        let newRoles = [];
+        newRoles = this.Roles
+        newRoles.forEach(role => {
+          if(role['role_name'] === "admin"){
+            console.log("admin role")
+            this.roleId = role['id'];
+            console.log("admin role", this.roleId)
+          }
+        })
+
+      },
+      error =>{
+        console.log(error)
       }
     )
   }
@@ -74,17 +88,17 @@ export class CreateAdminComponent implements OnInit {
   }
 
 
-  fetchAllEmployees() {
-    this.misc.fetchAllEmployees().subscribe(
-      data => {
-        this.employeelist = data['data']
-        console.log("emp list: ", this.employeelist)
-      },
-      error => {
+  // fetchAllEmployees() {
+  //   this.misc.fetchAllEmployees().subscribe(
+  //     data => {
+  //       this.employeelist = data['data']
+  //       console.log("emp list: ", this.employeelist)
+  //     },
+  //     error => {
 
-      }
-    )
-  }
+  //     }
+  //   )
+  // }
 
   ngOnInit(): void {
 
@@ -99,7 +113,7 @@ export class CreateAdminComponent implements OnInit {
 
     this.fetchRoles();
     this.getQualification();
-    this.fetchAllEmployees();
+    // this.fetchAllEmployees();
     this.personalDetails = this.formbuilder.group({
 
       first_name: ['', [Validators.required, Validators.minLength(2), Validators.pattern("^[a-zA-Z\-\']+")]],
@@ -362,7 +376,7 @@ export class CreateAdminComponent implements OnInit {
         first_name: first_name,
         last_name: last_name,
         phonenumber: phonenumber,
-        role: 1,
+        role: this.roleId,
         profile_image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K",
         password: password,
         gender: gender,
