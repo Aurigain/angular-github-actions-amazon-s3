@@ -44,15 +44,21 @@ export class LoginService {
       );
   }
 
-  resetPassword(otp: any, data: any) {
-    return this.http.put(`${this.constsvc.resetPasswordUrl}/${otp}`, data)
+  // resetPassword(otp: any, data: any) {
+  //   return this.http.put(`${this.constsvc.resetPasswordUrl}/${otp}`, data)
+  //     .pipe(
+  //       catchError(this.errorHandler.handleError)
+  //     );
+  // }
+
+  updatePassword(data: any) {
+    return this.http.put(`${this.constsvc.updatePassword}`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );
   }
-
-  updatePassword(data: any) {
-    return this.http.put(`${this.constsvc.updatePassword}`, data)
+  resetPassword(data: any) {
+    return this.http.put(`${this.constsvc.resetpassword}`, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );

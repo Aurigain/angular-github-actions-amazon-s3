@@ -224,7 +224,7 @@ export class SuperAdminDashboardComponent implements OnInit {
     console.log(filtered)
     schoolid = filtered[0]['id'];
     console.log("selected school ID", schoolid)
-    this.router.navigate(['/super-admin/company-detail'], {
+    this.router.navigate(['/super-admin/company-details'], {
       queryParams: {
         id: schoolid
       }

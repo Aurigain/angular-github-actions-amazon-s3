@@ -11,6 +11,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { SuperAdminNavbarComponent } from './super-admin-navbar/super-admin-navbar.component';
 import { CompanyDetailComponent } from './company-detail/company-detail.component';
 import { CreateAdminComponent } from './create-admin/create-admin.component';
+import { TestSuperAdminComponent } from './test-super-admin/test-super-admin.component';
 
 const routes: Routes = [
   {
@@ -20,11 +21,14 @@ const routes: Routes = [
         path: '', component: SuperAdminDashboardComponent
       },
       // {
-      //   path: 'company-detail', component: CompanyDetailComponent
+      //   path: 'company-details', component: CompanyDetailComponent
       // },
       {
         path: 'create-admin/:id', component: CreateAdminComponent
       },
+      // {
+      //   path: 'test-admin', component: TestSuperAdminComponent
+      // },
     ]
   }
 ]
@@ -35,7 +39,8 @@ const routes: Routes = [
     SuperAdminDashboardComponent,
     SuperAdminNavbarComponent,
     CompanyDetailComponent,
-    CreateAdminComponent
+    CreateAdminComponent,
+    TestSuperAdminComponent
   ],
   imports: [
     CommonModule,

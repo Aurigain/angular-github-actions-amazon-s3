@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DoorStepAgentListComponent } from './door-step-agent-list.component';
+import { TestSuperAdminComponent } from './test-super-admin.component';
 
-describe('DoorStepAgentListComponent', () => {
-  let component: DoorStepAgentListComponent;
-  let fixture: ComponentFixture<DoorStepAgentListComponent>;
+describe('TestSuperAdminComponent', () => {
+  let component: TestSuperAdminComponent;
+  let fixture: ComponentFixture<TestSuperAdminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DoorStepAgentListComponent ]
+      declarations: [ TestSuperAdminComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DoorStepAgentListComponent);
+    fixture = TestBed.createComponent(TestSuperAdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
