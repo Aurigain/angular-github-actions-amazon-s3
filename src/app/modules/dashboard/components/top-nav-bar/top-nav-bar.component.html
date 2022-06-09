@@ -32,7 +32,7 @@
                             </div>
                             <div class="dropdown-item-name text-center">
                                 <div>{{userProfile?.full_name}}</div>
-                                <strong>(admin(web))</strong>
+                                <strong>{{userProfile?.user_group?.role_name}}</strong>
                             </div>
                             <div class="top-text">
                                 <a routerLink="change-password" class="dropdown-item text-danger pb-0">

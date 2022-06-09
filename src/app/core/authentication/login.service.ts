@@ -103,7 +103,7 @@ export class LoginService {
           console.log("profile data:", data);
 
           this.ssrService.setItem('userProfile', JSON.stringify(data));
-          this.misc.fetchPermissionsById(data['user_group']).subscribe(
+          this.misc.fetchPermissionsById(data['user_group']['id']).subscribe(
             data => {
               console.log("permissions data:", data);
               //@ts-ignore
