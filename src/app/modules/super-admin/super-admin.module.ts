@@ -1,17 +1,18 @@
-import { RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SuperAdminComponent } from './super-admin.component';
-import { SuperAdminDashboardComponent } from './super-admin-dashboard/super-admin-dashboard.component';
+import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgPipesModule } from 'ngx-pipes';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule } from '@angular/common/http';
-import { NgPipesModule } from 'ngx-pipes';
+import { SuperAdminComponent } from './super-admin.component';
+import { SuperAdminDashboardComponent } from './super-admin-dashboard/super-admin-dashboard.component';
+import { TestSuperAdminComponent } from './test-super-admin/test-super-admin.component';
+import { CreateAdminComponent } from './create-admin/create-admin.component';
 import { SuperAdminNavbarComponent } from './super-admin-navbar/super-admin-navbar.component';
 import { CompanyDetailComponent } from './company-detail/company-detail.component';
-import { CreateAdminComponent } from './create-admin/create-admin.component';
-import { TestSuperAdminComponent } from './test-super-admin/test-super-admin.component';
+
 
 const routes: Routes = [
   {
@@ -20,15 +21,12 @@ const routes: Routes = [
       {
         path: '', component: SuperAdminDashboardComponent
       },
-      // {
-      //   path: 'company-details', component: CompanyDetailComponent
-      // },
       {
         path: 'create-admin/:id', component: CreateAdminComponent
       },
-      // {
-      //   path: 'test-admin', component: TestSuperAdminComponent
-      // },
+      {
+        path: 'company-details', component: CompanyDetailComponent
+      },
     ]
   }
 ]
@@ -37,10 +35,10 @@ const routes: Routes = [
   declarations: [
     SuperAdminComponent,
     SuperAdminDashboardComponent,
-    SuperAdminNavbarComponent,
-    CompanyDetailComponent,
+    TestSuperAdminComponent,
     CreateAdminComponent,
-    TestSuperAdminComponent
+    SuperAdminNavbarComponent,
+    CompanyDetailComponent
   ],
   imports: [
     CommonModule,
@@ -51,6 +49,7 @@ const routes: Routes = [
     HttpClientModule,
     NgPipesModule,
     RouterModule.forChild(routes),
-  ]
+  ],
+  exports: [RouterModule]
 })
 export class SuperAdminModule { }

@@ -290,8 +290,8 @@ export class SuperAdminDashboardComponent implements OnInit {
     this.isSearchCompany = true;
   }
   ngOnInit(): void {
-    this.userData = this.ssrService.getItem('userProfile');
-    console.log("fetched user data from local", JSON.parse(this.userData))
+    // this.userData = this.ssrService.getItem('userProfile');
+    // console.log("fetched user data from local", JSON.parse(this.userData))
     this.createSearchForm();
     this.fetchAllPermissions();
     this.addCompany = this.formbuilder.group({
