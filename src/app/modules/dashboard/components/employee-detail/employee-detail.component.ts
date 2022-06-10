@@ -67,7 +67,7 @@ export class EmployeeDetailComponent implements OnInit {
         console.log("qualificationList", data['data']);
       },
       error => {
-        console.log("error", error);
+        this.toastr.error(error['message']['error'] ,"Error")
       }
     );
   }
@@ -81,7 +81,7 @@ export class EmployeeDetailComponent implements OnInit {
         this.getAllUserDetails(this.username);
       },
       error => {
-        console.log("error", error);
+        this.toastr.error(error['message']['error'] ,"Error")
       }
     )
   }
@@ -93,7 +93,7 @@ export class EmployeeDetailComponent implements OnInit {
         console.log("emp list: ", this.employeelist)
       },
       error => {
-
+        this.toastr.error(error['message']['error'] ,"Error")
       }
     )
   }
@@ -127,7 +127,7 @@ export class EmployeeDetailComponent implements OnInit {
         }
       },
       error => {
-        console.log("error", error)
+        this.toastr.error(error['message']['error'] ,"Error")
       })
     this.misc.fetchAgentKycByUserName(username).subscribe(
       data => {
@@ -141,7 +141,7 @@ export class EmployeeDetailComponent implements OnInit {
         })
       },
       error => {
-        console.log("error", error)
+        this.toastr.error(error['message']['error'] ,"Error")
       }
     )
     this.misc.fetchAgentAddressByUserName(username).subscribe(
@@ -157,7 +157,7 @@ export class EmployeeDetailComponent implements OnInit {
 
       },
       error => {
-        console.log("error", error)
+        this.toastr.error(error['message']['error'] ,"Error")
       }
     )
     this.misc.fetchAgentBankByUserName(username).subscribe(
@@ -173,7 +173,7 @@ export class EmployeeDetailComponent implements OnInit {
         this.searchIFSC();
       },
       error => {
-        console.log("error", error)
+        this.toastr.error(error['message']['error'] ,"Error")
       }
     )
   }
@@ -319,7 +319,7 @@ export class EmployeeDetailComponent implements OnInit {
               // this.router.navigateByUrl('/dashboard/employee-list')
             },
             error => {
-              console.log("Error", error);
+              this.toastr.error(error['message']['error'], "Error")
             }
           )
         }
@@ -327,7 +327,7 @@ export class EmployeeDetailComponent implements OnInit {
       },
       error => {
         console.log("error", error);
-        this.toastr.error(error, "Error")
+        this.toastr.error(error['message']['error'], "Error")
       }
 
     )
@@ -358,7 +358,9 @@ export class EmployeeDetailComponent implements OnInit {
         console.log(data);
         this.toastr.success("Basic Details Updated", "Success")
       },
-      error => console.log("error", error)
+      error => {
+        this.toastr.error(error['message']['error'], "Error")
+      }
     )
   }
 
@@ -382,13 +384,13 @@ export class EmployeeDetailComponent implements OnInit {
     let imageObj = new FormData();
     imageObj.append("agent", this.currentUserPk)
 
-    if(aadhar_front_image){
+    if (aadhar_front_image) {
       imageObj.append("aadhar_front", aadhar_front_image)
     }
-    if(aadhar_back_image){
+    if (aadhar_back_image) {
       imageObj.append("aadhar_back", aadhar_back_image)
     }
-    if(pan_image){
+    if (pan_image) {
       imageObj.append("pan", pan_image)
     }
 
@@ -396,20 +398,22 @@ export class EmployeeDetailComponent implements OnInit {
       data => {
         console.log(data);
 
-        if(aadhar_front_image || aadhar_back_image || pan_image){
+        if (aadhar_front_image || aadhar_back_image || pan_image) {
           this.misc.uploadAgentImages(imageObj).subscribe(
             data => {
               console.log(data);
               // this.router.navigateByUrl('/dashboard/employee-list')
             },
             error => {
-              console.log("Error", error);
+              this.toastr.error(error['message']['error'], "Error")
             }
           )
         }
 
       },
-      error => console.log("error", error)
+      error => {
+        this.toastr.error(error['message']['error'], "Error")
+      }
     )
   }
 
@@ -438,20 +442,20 @@ export class EmployeeDetailComponent implements OnInit {
     this.misc.updateEmployeeBank(bankDetailData, this.bankData['id']).subscribe(
       data => {
         console.log(data);
-        if(cancelled_cheque){
+        if (cancelled_cheque) {
           this.misc.uploadAgentImages(imageObj).subscribe(
             data => {
               console.log(data);
               // this.router.navigateByUrl('/dashboard/employee-list')
             },
             error => {
-              console.log("Error", error);
+              this.toastr.error(error['message']['error'], "Error")
             }
           )
         }
 
       },
-      error => console.log("error", error)
+      error => { this.toastr.error(error['message']['error'], "Error") }
     )
   }
 
@@ -470,7 +474,7 @@ export class EmployeeDetailComponent implements OnInit {
 
         },
         error => {
-          console.log("error", error);
+          this.toastr.error(error['message']['error'] ,"Error")
         }
       );
     }
@@ -491,7 +495,7 @@ export class EmployeeDetailComponent implements OnInit {
             })
           },
           error => {
-            console.log("Cannot Find Bank")
+            this.toastr.error(error['message']['error'] ,"Error")
           }
         )
     }
@@ -645,12 +649,12 @@ export class EmployeeDetailComponent implements OnInit {
             console.log(data);
           },
           error => {
-            console.log("Error", error);
+            this.toastr.error(error['message']['error'] ,"Error")
           }
         )
       },
       error => {
-        console.log(error);
+        this.toastr.error(error['message']['error'] ,"Error")
       }
     )
   }

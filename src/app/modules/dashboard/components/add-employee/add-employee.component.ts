@@ -405,8 +405,9 @@ export class AddEmployeeComponent implements OnInit {
             this.router.navigateByUrl('/dashboard/employee-list')
           },
           error => {
+
             console.log("Error", error);
-            this.toastr.error(error['error'] ,"Error")
+            this.toastr.error(error['message']['error'] ,"Error")
           }
         )
       },
