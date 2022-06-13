@@ -15,133 +15,143 @@
 
           <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="m-2">
-                <div id="accordion">
-                    <div class="card">
-                      <div class="card-header" id="headingOne">
+              <div id="accordion">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
 
-                          <button class="btn btn-link  text-size" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down mr-2"></i>
-                             Fresh Lead
-                          </button>
+                    <button class="btn btn-link  text-size" data-toggle="collapse" data-target="#collapseOne"
+                      aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down mr-2"></i>
+                      Fresh Lead
+                    </button>
 
-                        <!-- <a routerLink="fresh-leads/add-update/0"><button class="btn btn-primary  float-right"><i class="fa fa-add mr-2"></i>New Fresh Lead</button></a> -->
-                      </div>
-                      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                          <table class="table">
-                            <thead class="text-white">
-                              <tr>
-                                <th>#</th>
-                                <th>Full Name</th>
-                                <th>Father Name</th>
-                                <th>Product</th>
-                                <th>Pincode</th>
-                                <th>Mobile Number</th>
-                                <th>Loan Amount</th>
-                                <th>Lead Status</th>
-                                <th>Lead Source By</th>
-                                <!-- <th>Action</th> -->
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr
-                                *ngFor="let user of filterArray | paginate: { itemsPerPage: 5, currentPage: p }; let i = index ">
-                                <td>{{(p-1) * rowFilter + i + 1}}</td>
-                                <td> <span>N</span> {{user.FullName}}</td>
-                                <td>{{user.FatherName}}</td>
-                                <td>Product</td>
-                                <td>110059</td>
-                                <td>95400558622</td>
-                                <td>98622</td>
-                                <td>New</td>
-                                <!-- <td> <button type="button" class="btn btn-primary btn-sm">New</button> -->
-                                <td>Mayank</td>
-                                <!-- <td>
-                                  <div ngbDropdown class="menu">
-                                    <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
-                                    <div ngbDropdownMenu class="sub-menu">
-                                      <a ngbDropdownItem [routerLink]="['add-update', user.Id]" class="edit"><i class="fas fa-edit pr-1"></i>Edit User</a>
-                                      <a ngbDropdownItem class="delete" [routerLink]="['detail', user.Id]"><i class="fas fa-eye pr-1"></i>Detail</a>
-                                      <a ngbDropdownItem data-toggle="modal" data-target="#changeStatus" class="change"><i class="fas fa-book-reader pr-1"></i>Change Status</a>
-                                      <a ngbDropdownItem data-toggle="modal" data-target="#appointmentBooking" class="booking"><i class="fas fa-calendar-check pr-1"></i>Appointment Booking</a>
-                                    </div>
-                                  </div>
-                                </td> -->
-                              </tr>
+                    <!-- <a routerLink="fresh-leads/add-update/0"><button class="btn btn-primary  float-right"><i class="fa fa-add mr-2"></i>New Fresh Lead</button></a> -->
+                  </div>
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                      <table class="table">
+                        <thead class="text-white">
+                          <tr>
+                            <th>#</th>
+                            <th>Full Name</th>
+                            <th>Product</th>
+                            <th>Pincode</th>
+                            <th>Mobile Number</th>
+                            <th>Loan Amount</th>
+                            <th>Lead Status</th>
+                            <th>Lead Source By</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="let user of fetchedUserList | paginate: { itemsPerPage: 5, currentPage: p }; let i = index ">
+                            <td>{{(p-1) * rowFilter + i + 1}}</td>
+                            <td>{{user?.lead?.fullname |titlecase}}</td>
+                            <!-- <td>{{user.FatherName}}</td> -->
+                            <td>{{user?.loan_type?.loan_type |titlecase}}</td>
+                            <td>110059</td>
+                            <td>{{user?.lead?.phonenumber}}</td>
+                            <td>{{user?.loan_amount_needed}}</td>
+                            <td>{{user?.current_status?.status | titlecase}}</td>
+                            <!-- <td> <button type="button" class="btn btn-primary btn-sm">New</button> -->
+                            <td>{{user?.lead?.source}}</td>
+                            <td>
+                              <div ngbDropdown class="menu">
+                                <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                                <div ngbDropdownMenu class="sub-menu">
+                                  <a ngbDropdownItem [routerLink]="['fresh-leads/detail', user.id]" class="edit"><i
+                                      class="fas fa-edit pr-1"></i>View Lead</a>
+                                  <a ngbDropdownItem [routerLink]="['fresh-leads/add-update', user?.lead?.id]"
+                                    class="delete"><i class="fas fa-edit pr-1"></i>Update Lead</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
 
-                            </tbody>
+                        </tbody>
 
-                          </table>
-                          <a routerLink="fresh-leads"><button class="btn btn-primary btn-sm float-right mb-2 mr-2">More</button></a>
-                        </div>
-                      </div>
+                      </table>
+                      <a routerLink="fresh-leads"><button
+                          class="btn btn-primary btn-sm float-right mb-2 mr-2">More</button></a>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
           </div>
           <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="m-2">
-                <div id="accordion">
-                    <div class="card">
-                      <div class="card-header" id="headingOne">
+              <div id="accordion">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
 
-                          <button class="btn btn-link  text-size" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
-                            Balance Transfer
-                          </button>
-                          <!-- <a routerLink="balance-transfer-leads/add-update/0"><button class="btn btn-primary  float-right"><i class="fa fa-add mr-2"></i>New BT Lead</button></a> -->
-                      </div>
-                      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                          <table class="table">
-                            <thead class="text-white">
-                              <tr>
-                                <th>#</th>
-                                <th>Full Name</th>
-                                <th>Father Name</th>
-                                <th>Product</th>
-                                <th>Pincode</th>
-                                <th>Mobile Number</th>
-                                <th>Loan Amount</th>
-                                <th>Lead Status</th>
-                                <th>Lead Source By</th>
-                                <!-- <th>Action</th> -->
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr
-                                *ngFor="let user of filterArray | paginate: { itemsPerPage: 5, currentPage: p }; let i = index ">
-                                <td>{{(p-1) * rowFilter + i + 1}}</td>
-                                <td> <span>N</span> {{user.FullName}}</td>
-                                <td>{{user.FatherName}}</td>
-                                <td>Product</td>
-                                <td>110059</td>
-                                <td>95400558622</td>
-                                <td>98622</td>
-                                <td>New</td>
-                                <!-- <td> <button type="button" class="btn btn-primary btn-sm">New</button> -->
-                                <td>Mayank</td>
-                                <!-- <td>
-                                  <div ngbDropdown class="menu">
-                                    <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
-                                    <div ngbDropdownMenu class="sub-menu">
-                                      <a ngbDropdownItem [routerLink]="['add-update', user.Id]" class="edit"><i class="fas fa-edit pr-1"></i>Edit User</a>
-                                      <a ngbDropdownItem class="delete" [routerLink]="['detail', user.Id]"><i class="fas fa-eye pr-1"></i>Detail</a>
-                                      <a ngbDropdownItem data-toggle="modal" data-target="#changeStatus" class="change"><i class="fas fa-book-reader pr-1"></i>Change Status</a>
-                                      <a ngbDropdownItem data-toggle="modal" data-target="#appointmentBooking" class="booking"><i class="fas fa-calendar-check pr-1"></i>Appointment Booking</a>
-                                    </div>
-                                  </div>
-                                </td> -->
-                              </tr>
-
-                            </tbody>
-
-                          </table>
-                          <a routerLink="balance-transfer-leads">
-                            <button class="btn btn-primary btn-sm float-right mb-2 mr-2">More</button>
+                    <button class="btn btn-link  text-size" data-toggle="collapse" data-target="#collapseOne"
+                      aria-expanded="true" aria-controls="collapseOne"><i class="fas fa-caret-down"></i>
+                      Balance Transfer
+                    </button>
+                    <!-- <a routerLink="balance-transfer-leads/add-update/0"><button class="btn btn-primary  float-right"><i class="fa fa-add mr-2"></i>New BT Lead</button></a> -->
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                      <table class="table">
+                        <thead class="text-white">
+                          <tr>
+                            <th>Lead Id</th>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>Type</th>
+                            <!-- <th>RM Name</th> -->
+                            <th>Source</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="let user of btLeadList | paginate: { itemsPerPage: 5, currentPage: p }; let i = index ">
+                            <td>{{user?.id}}</td>
+                            <td>{{user?.lead?.fullname}}</td>
+                            <td>{{user?.lead?.phonenumber}}</td>
+                            <td>{{user?.loan_type?.loan_type | titlecase}}</td>
+                            <!-- <td>RM 1</td> -->
+                            <td>{{user?.lead?.source}}</td>
+                            <td>{{user?.current_status?.status}}</td>
+                            <!-- <td>
+                          <a
+                          class="booking"
+                          [routerLink]="['detail', user?.lead?.id,]">
+                            <button class="btn btn-primary">
+                              View
+                            </button>
                           </a>
-                        </div>
-                      </div>
+                        </td> -->
+                            <td>
+                              <div ngbDropdown class="menu">
+                                <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+                                <div ngbDropdownMenu class="sub-menu">
+                                  <a ngbDropdownItem [routerLink]="['balance-transfer-leads/detail', user?.lead?.id]" class="edit"><i
+                                      class="fas fa-edit pr-1"></i>View Lead</a>
+                                  <a ngbDropdownItem [routerLink]="['balance-transfer-leads/add-update', user?.lead?.id]" class="delete"
+                                    *ngIf="user?.loan_type?.loan_type === 'bt_internal'"><i
+                                      class="fas fa-edit pr-1"></i>Update Lead</a>
+                                  <a ngbDropdownItem [routerLink]="['balance-transfer-leads/add-update-external', user?.lead?.id]"
+                                    class="delete" *ngIf="user?.loan_type?.loan_type === 'bt_external'"><i
+                                      class="fas fa-edit pr-1"></i>Update Lead</a>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+
+                        </tbody>
+
+                      </table>
+                      <a routerLink="balance-transfer-leads">
+                        <button class="btn btn-primary btn-sm float-right mb-2 mr-2">More</button>
+                      </a>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
           </div>
 
@@ -235,19 +245,22 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-danger" data-dismiss="modal"> <i class="fas fa-times pr-1"></i>Cancel</button>
-          <a (click)="changeStatus()"><button type="button" class="btn btn-look1"><i class="fas fa-check pr-1"></i>Update</button></a>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal"> <i
+              class="fas fa-times pr-1"></i>Cancel</button>
+          <a (click)="changeStatus()"><button type="button" class="btn btn-look1"><i
+                class="fas fa-check pr-1"></i>Update</button></a>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade m-5" style="margin-top: 5%;" id="appointmentBooking" data-backdrop="static" data-keyboard="false"
-    tabindex="-1" aria-labelledby="appointmentBookingLabel" aria-hidden="true">
+  <div class="modal fade m-5" style="margin-top: 5%;" id="appointmentBooking" data-backdrop="static"
+    data-keyboard="false" tabindex="-1" aria-labelledby="appointmentBookingLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-white" id="appointmentBookingLabel"><i class="far fa-clock pr-1"></i>Appointment Booking</h5>
+          <h5 class="modal-title text-white" id="appointmentBookingLabel"><i class="far fa-clock pr-1"></i>Appointment
+            Booking</h5>
           <!-- <span class="text-success ml-5 pt-1" *ngIf="successMsg">{{successMsg}}</span> -->
           <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -313,7 +326,8 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fas fa-times pr-1"></i>Cancel</button>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i
+              class="fas fa-times pr-1"></i>Cancel</button>
           <a (click)="submitAppointmentDetails()">
             <button type="button" class="btn btn-look1"> <i class="fas fa-check pr-1"></i>Update</button></a>
         </div>

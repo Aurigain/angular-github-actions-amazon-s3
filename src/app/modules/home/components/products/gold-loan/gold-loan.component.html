@@ -246,10 +246,10 @@
                               <input type="text" class="form-control mb-4 mt-4" [(ngModel)]="otp" name="otp"
                                 placeholder="Enter OTP" aria-label="Username" aria-describedby="basic-addon1" required>
                               <button [disabled]="!newLoanForm.valid" type="button" (click)="submitOTP()"
-                                [ngStyle]="{'font-family': 'Poppins'}" class="btn mt-4 btnSendOtp btn-block">Verify
+                                [ngStyle]="{'font-family': 'Poppins'}" class="btn btn-primary btn-block">Verify
                                 OTP</button>
                               <button type="button" (click)="sendOTP()" [ngStyle]="{'font-family': 'Poppins'}"
-                                class="btn btn-primary btn-block">Resend OTP</button>
+                                class="btn mt-4 btnSendOtp btn-block">Resend OTP</button>
 
                             </div>
                             <form *ngIf="!isLoanForm && !isOtpForm" (ngSubmit)="submitDetailForm()"

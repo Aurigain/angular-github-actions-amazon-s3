@@ -5,7 +5,29 @@
         <span class="title"><i class="fa fa-home" style="margin-left: -5px"></i> Dashboard</span>
       </a>
     </li>
-
+    <li *ngIf="checkUpperPermission('Employee List','Role Master')">
+      <a routerLinkActive="active" href="#agent" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Employee Management</a>
+      <ul class="collapse list-unstyled" id="agent">
+        <li *ngIf="checkPermission('Employee List')">
+          <a routerLink="employee-list" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
+              aria-hidden="true"></i>Employee List</a>
+        </li>
+        <li *ngIf="checkPermission('Role Master')">
+          <a routerLink="user-role-master" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
+              aria-hidden="true"></i>Role Master</a>
+        </li>
+        <!-- <li>
+          <a routerLink="agent-mapping" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
+              aria-hidden="true"></i>Agent Mapping</a>
+        </li>
+        <li>
+          <a routerLink="agent-performance" data-toggle="collapse" aria-expanded="false"><i class="fas fa-address-card"
+              aria-hidden="true"></i>Agent
+            Performance</a>
+        </li> -->
+      </ul>
+    </li>
     <li *ngIf="checkUpperPermission('Fresh Lead', 'BT Lead')">
       <a routerLinkActive="active" href="#course" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span><i class="fa fa-book" style="margin-left: -5px"></i></span>
@@ -73,7 +95,7 @@
         </li> -->
       </ul>
     </li>
-    <li *ngIf="checkUpperPermission('Master')">
+    <!-- <li *ngIf="checkUpperPermission('Master')">
       <a routerLinkActive="active" href="#master" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span><i class="fa fa-book" style="margin-left: -5px"></i></span>
         Master</a>
@@ -82,8 +104,8 @@
           <a routerLink="manager/banks"><i class="fa fa-user" aria-hidden="true"></i>Banks</a>
         </li>
       </ul>
-    </li>
-    <li *ngIf="checkUpperPermission('Commissions Setting', 'Commissions Reversal')">
+    </li> -->
+    <!-- <li *ngIf="checkUpperPermission('Commissions Setting', 'Commissions Reversal')">
       <a routerLinkActive="active" href="#commissions" data-toggle="collapse" aria-expanded="false"
         class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>
@@ -98,40 +120,11 @@
           <a routerLink="commissions-reversal" data-toggle="collapse" aria-expanded="false"><i
               class="fas fa-address-card" aria-hidden="true"></i>Commissions
             Reversal</a>
-          <!-- <ul class="collapse list-unstyled " id="submenu2">
-                                <li>
-                                    <a href="#">Fresh Lead</a>
-                                </li>
-                                <li>
-                                    <a href="#">BT Lead</a>
-                                </li>
-                            </ul> -->
+
         </li>
       </ul>
-    </li>
-    <li *ngIf="checkUpperPermission('Employee List','Role Master')">
-      <a routerLinkActive="active" href="#agent" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-        <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Employee Management</a>
-      <ul class="collapse list-unstyled" id="agent">
-        <li *ngIf="checkPermission('Employee List')">
-          <a routerLink="employee-list" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
-              aria-hidden="true"></i>Employee List</a>
-        </li>
-        <li *ngIf="checkPermission('Role Master')">
-          <a routerLink="user-role-master" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
-              aria-hidden="true"></i>Role Master</a>
-        </li>
-        <!-- <li>
-          <a routerLink="agent-mapping" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
-              aria-hidden="true"></i>Agent Mapping</a>
-        </li>
-        <li>
-          <a routerLink="agent-performance" data-toggle="collapse" aria-expanded="false"><i class="fas fa-address-card"
-              aria-hidden="true"></i>Agent
-            Performance</a>
-        </li> -->
-      </ul>
-    </li>
+    </li> -->
+
     <!-- <li>
       <a routerLinkActive="active" href="#user" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Customer Management</a>
@@ -175,8 +168,8 @@
               class="fa fa-diamond" aria-hidden="true"></i>BT Approval</a>
         </li>
         <li *ngIf="checkPermission('Compliance Panel')">
-          <a routerLink="compliance-panel" data-toggle="collapse" aria-expanded="false"><i
-              class="fa fa-diamond" aria-hidden="true"></i>Compliance Panel</a>
+          <a routerLink="compliance-panel" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
+              aria-hidden="true"></i>Compliance Panel</a>
         </li>
         <li *ngIf="checkPermission('Final BT Approval')">
           <a routerLink="final-approval" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"

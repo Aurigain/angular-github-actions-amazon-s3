@@ -266,7 +266,7 @@ export class EmployeeDetailComponent implements OnInit {
     this.misc.fetchReportingPersonbyRole(id).subscribe(
       data => {
         this.isReportingPerson = true;
-        console.log("data", data);
+        console.log("reporting person by role", data);
         this.reportingPersonByRole = data
       },
       error => {

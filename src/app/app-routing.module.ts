@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'super-admin',
-    loadChildren: () => import('./modules/super-admin/super-admin.module').then(m => m.SuperAdminModule)
+    loadChildren: () => import('./modules/super-admin/super-admin.module').then(m => m.SuperAdminModule), canLoad: [SuperAdminGuard]
   },
 ];
 

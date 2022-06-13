@@ -32,14 +32,15 @@ export class PermissionsService {
     }
   }
 
-  isAdmin() {
+  isAdmin():boolean {
     const token = this.cookie.get('_l_a_t');
     const decodeToken = this.utils.decodeToken(token);
 
     if (this.isauthenticated()) {
       try {
         const userType = decodeToken['user_group'];
-        if (userType.includes('admin') || userType.includes('superadmin')) {
+        console.log("userType is:", userType);
+        if (userType === 'admin') {
           console.log("superadminabab");
           return true;
         }
@@ -53,14 +54,14 @@ export class PermissionsService {
 
   }
 
-  isSuperAdmin() {
+  isSuperAdmin(): boolean{
     const token = this.cookie.get('_l_a_t');
     const decodeToken = this.utils.decodeToken(token);
 
     if (this.isauthenticated()) {
       try {
         const userType = decodeToken['user_group'];
-        if (userType.includes('superadmin')) {
+        if (userType === 'superadmin') {
           console.log("superadminabab");
           return true;
         }
@@ -82,7 +83,7 @@ export class PermissionsService {
     if (this.isauthenticated()) {
       try {
         const userType = decodeToken['user_group'];
-        if (userType.includes('agent')) {
+        if (userType === 'agent') {
           console.log("superadminabab");
           return true;
         }

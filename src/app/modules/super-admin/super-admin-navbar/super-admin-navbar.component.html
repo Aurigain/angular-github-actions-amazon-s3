@@ -33,12 +33,12 @@
                           </div>
                           <div class="dropdown-item-name text-center">
                               <div>{{userProfile?.full_name}}</div>
-                              <strong>(admin(web))</strong>
+                              <strong>{{userProfile?.user_group?.role_name |titlecase}}</strong>
                           </div>
                           <div class="top-text">
-                              <a href="javascript:void(0);" class="dropdown-item text-danger pb-0">
+                              <!-- <a href="javascript:void(0);" class="dropdown-item text-danger pb-0">
                                   <i class="fas fa-key pr-1"></i>Change password
-                              </a>
+                              </a> -->
                               <a href="javascript:void(0);" (click)="logout()" class="dropdown-item sign-out">
                                   <i class="fas fa-sign-out-alt pr-1"></i>Sign Out
                               </a>

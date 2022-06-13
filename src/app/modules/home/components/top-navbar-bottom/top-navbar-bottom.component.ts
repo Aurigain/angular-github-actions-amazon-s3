@@ -13,6 +13,8 @@ export class TopNavbarBottomComponent implements OnInit {
   ) { }
 
   isAuthenticated = this.permissions.isauthenticated();
+  isSuperAdmin = this.permissions.isSuperAdmin();
+  isAdmin = this.permissions.isAdmin();
 
   ngOnInit(): void {
   }

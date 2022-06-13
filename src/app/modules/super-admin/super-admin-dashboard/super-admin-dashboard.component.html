@@ -3,187 +3,191 @@
     <div class="col-xl-12 col-lg-12 col-md-12">
       <div class="widget bg-white h-100">
         <div class="widget-header">
-          <div class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
+          <div class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left  ml-5 pt-3">
             <h3> Super Admin Dashboard</h3>
           </div>
         </div>
         <ng-container *ngIf="isAddCompany">
-        <div class="ml-5">
-          <form [formGroup]="addCompany" (ngSubmit)="submitAddCompanyForm()">
-            <div class="row">
-              <button class="bg-transparent mt-5 border-0"><i (click)="switchToSeacrchCompany()"
-                  class="fa fa-arrow-alt-circle-left fa-2x"></i></button>
-            </div>
-            <div class="row" style="margin-top: 60px">
-              <div class="col-md-8 ">
-                <div class="form-group row">
-                  <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">COMPANY NAME</label>
-                  <div class="col-sm-8">
-                    <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
-                      type="text" id="staticEmail" formControlName="name" class="form-control shadow p-3  bg-white">
-                  </div>
-                  <span *ngIf="name.invalid && name.touched" class="col-sm-4 col-form-label"></span>
-                  <div *ngIf="name.invalid && name.touched" class="col-md-4"
-                    style="margin-left: -20px; margin-top: 5px;">
-                    <small class="text-danger" *ngIf="name.errors?.['required']"> Company Name is required</small><br>
-                    <small class="text-danger" *ngIf="name.errors?.['required']">Company Name must be at least 2
-                      characters</small>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">Email</label>
-                  <div class="col-sm-8">
-                    <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
-                      type="email" id="staticEmail" formControlName="email" class="form-control shadow p-3  bg-white">
-                  </div>
-                  <span *ngIf="email.invalid && email.touched" class="col-sm-4 col-form-label"></span>
-                  <div *ngIf="email.invalid && email.touched" class="col-md-4"
-                    style="margin-left: -20px; margin-top: 5px;">
-                    <small class="text-danger" *ngIf="email.errors?.['required']"> Company Email is required</small><br>
-                    <small class="text-danger" *ngIf="email.errors?.['email']">Company Email must be at least 2
-                      characters</small>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">Website</label>
-                  <div class="col-sm-8">
-                    <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
-                      type="email" id="staticEmail" formControlName="website" class="form-control shadow p-3  bg-white">
-                  </div>
-                  <span *ngIf="website.invalid && website.touched" class="col-sm-4 col-form-label"></span>
-                  <div *ngIf="website.invalid && website.touched" class="col-md-4"
-                    style="margin-left: -20px; margin-top: 5px;">
-                    <small class="text-danger" *ngIf="website.errors?.['required']"> Company website is
-                      required</small><br>
-
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">Head Name</label>
-                  <div class="col-sm-8">
-                    <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
-                      type="email" id="staticEmail" formControlName="head" class="form-control shadow p-3  bg-white"
-                      placeholder="Company Head Name">
-                  </div>
-                  <span *ngIf="head.invalid && head.touched" class="col-sm-4 col-form-label"></span>
-                  <div *ngIf="head.invalid && head.touched" class="col-md-4"
-                    style="margin-left: -20px; margin-top: 5px;">
-                    <small class="text-danger" *ngIf="head.errors?.['required']"> Company head is required</small><br>
-
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">Head Contact
-                    Number</label>
-                  <div class="col-sm-8">
-                    <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
-                      type="email" id="staticEmail" formControlName="head_contact_no"
-                      class="form-control shadow p-3  bg-white" placeholder="Company Head Contact Number">
-                  </div>
-                  <span *ngIf="head_contact_no.invalid && head_contact_no.touched"
-                    class="col-sm-4 col-form-label"></span>
-                  <div *ngIf="head_contact_no.invalid && head_contact_no.touched" class="col-md-4"
-                    style="margin-left: -20px; margin-top: 5px;">
-                    <small class="text-danger" *ngIf="head_contact_no.errors?.['required']"> Company head_contact_no is
-                      required</small><br>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-md-4">
-                    <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">Pincode</label>
+          <div class="ml-5">
+            <form [formGroup]="addCompany" (ngSubmit)="submitAddCompanyForm()">
+              <div class="row">
+                <button class="bg-transparent mt-5 border-0"><i (click)="switchToSeacrchCompany()"
+                    class="fa fa-arrow-alt-circle-left fa-2x"></i></button>
+              </div>
+              <div class="row" style="margin-top: 60px">
+                <div class="col-md-8 ">
+                  <div class="form-group row">
+                    <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">COMPANY
+                      NAME</label>
                     <div class="col-sm-8">
                       <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
-                        type="email" id="staticEmail" formControlName="pincode"
-                        class="form-control shadow p-3  bg-white" placeholder="Enter Pincode" (input)="searchPinCode()">
+                        type="text" id="staticEmail" formControlName="name" class="form-control shadow p-3  bg-white">
                     </div>
-                    <span *ngIf="pincode.invalid && pincode.touched" class="col-sm-4 col-form-label"></span>
-                    <div *ngIf="pincode.invalid && pincode.touched" class="col-md-4"
+                    <span *ngIf="name.invalid && name.touched" class="col-sm-4 col-form-label"></span>
+                    <div *ngIf="name.invalid && name.touched" class="col-md-4"
                       style="margin-left: -20px; margin-top: 5px;">
-                      <small class="text-danger" *ngIf="pincode.errors?.['required']">Pincode is required</small><br>
+                      <small class="text-danger" *ngIf="name.errors?.['required']"> Company Name is required</small><br>
+                      <small class="text-danger" *ngIf="name.errors?.['required']">Company Name must be at least 2
+                        characters</small>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">City</label>
+                  <div class="form-group row">
+                    <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">Email</label>
                     <div class="col-sm-8">
                       <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
-                        type="email" id="staticEmail" formControlName="city" class="form-control shadow p-3  bg-white"
-                        readonly>
+                        type="email" id="staticEmail" formControlName="email" class="form-control shadow p-3  bg-white">
+                    </div>
+                    <span *ngIf="email.invalid && email.touched" class="col-sm-4 col-form-label"></span>
+                    <div *ngIf="email.invalid && email.touched" class="col-md-4"
+                      style="margin-left: -20px; margin-top: 5px;">
+                      <small class="text-danger" *ngIf="email.errors?.['required']"> Company Email is
+                        required</small><br>
+                      <small class="text-danger" *ngIf="email.errors?.['email']">Company Email must be at least 2
+                        characters</small>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">State</label>
+                  <div class="form-group row">
+                    <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">Website</label>
                     <div class="col-sm-8">
                       <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
-                        type="email" id="staticEmail" formControlName="state" class="form-control shadow p-3  bg-white"
-                        readonly>
+                        type="email" id="staticEmail" formControlName="website"
+                        class="form-control shadow p-3  bg-white">
                     </div>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">Street Name</label>
-                  <div class="col-sm-8">
-                    <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
-                      type="email" id="staticEmail" formControlName="street" class="form-control shadow p-3  bg-white"
-                      placeholder="Company Street Name">
-                  </div>
-                  <span *ngIf="street.invalid && street.touched" class="col-sm-4 col-form-label"></span>
-                  <div *ngIf="street.invalid && street.touched" class="col-md-4"
-                    style="margin-left: -20px; margin-top: 5px;">
-                    <small class="text-danger" *ngIf="street.errors?.['required']"> Company street is
-                      required</small><br>
+                    <span *ngIf="website.invalid && website.touched" class="col-sm-4 col-form-label"></span>
+                    <div *ngIf="website.invalid && website.touched" class="col-md-4"
+                      style="margin-left: -20px; margin-top: 5px;">
+                      <small class="text-danger" *ngIf="website.errors?.['required']"> Company website is
+                        required</small><br>
 
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">Head Name</label>
+                    <div class="col-sm-8">
+                      <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
+                        type="email" id="staticEmail" formControlName="head" class="form-control shadow p-3  bg-white"
+                        placeholder="Company Head Name">
+                    </div>
+                    <span *ngIf="head.invalid && head.touched" class="col-sm-4 col-form-label"></span>
+                    <div *ngIf="head.invalid && head.touched" class="col-md-4"
+                      style="margin-left: -20px; margin-top: 5px;">
+                      <small class="text-danger" *ngIf="head.errors?.['required']"> Company head is required</small><br>
+
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">Head Contact
+                      Number</label>
+                    <div class="col-sm-8">
+                      <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
+                        type="email" id="staticEmail" formControlName="head_contact_no"
+                        class="form-control shadow p-3  bg-white" placeholder="Company Head Contact Number">
+                    </div>
+                    <span *ngIf="head_contact_no.invalid && head_contact_no.touched"
+                      class="col-sm-4 col-form-label"></span>
+                    <div *ngIf="head_contact_no.invalid && head_contact_no.touched" class="col-md-4"
+                      style="margin-left: -20px; margin-top: 5px;">
+                      <small class="text-danger" *ngIf="head_contact_no.errors?.['required']"> Company head_contact_no
+                        is
+                        required</small><br>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-4">
+                      <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">Pincode</label>
+                      <div class="col-sm-8">
+                        <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
+                          type="email" id="staticEmail" formControlName="pincode"
+                          class="form-control shadow p-3  bg-white" placeholder="Enter Pincode"
+                          (input)="searchPinCode()">
+                      </div>
+                      <span *ngIf="pincode.invalid && pincode.touched" class="col-sm-4 col-form-label"></span>
+                      <div *ngIf="pincode.invalid && pincode.touched" class="col-md-4"
+                        style="margin-left: -20px; margin-top: 5px;">
+                        <small class="text-danger" *ngIf="pincode.errors?.['required']">Pincode is required</small><br>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">City</label>
+                      <div class="col-sm-8">
+                        <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
+                          type="email" id="staticEmail" formControlName="city" class="form-control shadow p-3  bg-white"
+                          readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">State</label>
+                      <div class="col-sm-8">
+                        <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
+                          type="email" id="staticEmail" formControlName="state"
+                          class="form-control shadow p-3  bg-white" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="staticEmail" style="color: #255166;" class="col-sm-4 col-form-label">Street Name</label>
+                    <div class="col-sm-8">
+                      <input class="set" style="position: relative; left: -17%;border:none;border-radius: 30px;"
+                        type="email" id="staticEmail" formControlName="street" class="form-control shadow p-3  bg-white"
+                        placeholder="Company Street Name">
+                    </div>
+                    <span *ngIf="street.invalid && street.touched" class="col-sm-4 col-form-label"></span>
+                    <div *ngIf="street.invalid && street.touched" class="col-md-4"
+                      style="margin-left: -20px; margin-top: 5px;">
+                      <small class="text-danger" *ngIf="street.errors?.['required']"> Company street is
+                        required</small><br>
+
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row justify-content-center">
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </form>
-        </div>
+              <div class="row justify-content-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
         </ng-container>
+
         <ng-container *ngIf="isSearchCompany">
-        <div class="row" style="margin-top: 100px">
-          <div class="col-md-6">
-            <div class="form-group row">
-              <div class="input-group">
+          <div class="container" style="margin-top: 100px">
+            <div class="row">
+              <div class="col-md-10">
                 <form [formGroup]="searchCompany" class="example-form">
-                  <div class="input-icons">
-                    <input
-                        id="typeahead-basic"
-                        type="text"
-                        [formControl]="myControl"
-                        [(ngModel)]="school"
+                  <div class="form-row">
+                    <div class="col-md-10">
+                      <input id="typeahead-basic" type="text" [formControl]="myControl" [(ngModel)]="school"
                         class="input-field form-control shadow p-3  bg-white"
-                        style="border:none;position: relative;width: 90%;margin-left: 5%;" placeholder="Search School"
+                        style="border:none;position: relative;width: 90%;margin-left: 5%;" placeholder="Search Company"
                         [ngbTypeahead]="search" (input)="detectSchool($event)" formControlName="inputPara" />
-
+                    </div>
+                    <div class="col-md-2">
                       <i id="icon" *ngIf="searchIcon" style="color: #255166;font-size: larger;"
-                      class="fa fa-search icon"></i>
-
+                        class="fa fa-search icon"></i>
+                    </div>
                   </div>
                 </form>
               </div>
+
+              <div class="col-md-2">
+                <div class="form-group row float-right" id="addSchool">
+                  <button (click)="switchToCreateCompany()" style="width: 137px;margin-left: -7%;position: relative;
+            background: white;border-radius: 30px; color: #587A8A;" type="button"
+                    class="btn btn-light shadow  bg-white">Add Company
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group row" id="addSchool">
-              <button (click)="switchToCreateCompany()" style="width: 137px;margin-left: -7%;position: relative;
-          background: white;border-radius: 30px; color: #587A8A;" type="button"
-                class="btn btn-light shadow  bg-white">Add Company
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group row" id="viewDetails">
-            <button *ngIf="viewDetailbutton" (click)="schoolFilter()"
-              style="width: 145px; margin-top: 10px; background: white;border-radius: 30px;margin-left: 2%;"
-              type="button" class="btn btn-light shadow  bg-white">View Details
-            </button>
 
           </div>
-        </div>
+          <div class="container">
+            <div class="form-group row" id="viewDetails">
+              <button *ngIf="viewDetailbutton" (click)="schoolFilter()"
+                style="width: 145px; margin-top: 10px; background: white;border-radius: 30px;margin-left: 2%;"
+                type="button" class="btn btn-light shadow  bg-white">View Details
+              </button>
+
+            </div>
+          </div>
         </ng-container>
 
       </div>
@@ -191,4 +195,3 @@
   </div>
 
 </div>
-

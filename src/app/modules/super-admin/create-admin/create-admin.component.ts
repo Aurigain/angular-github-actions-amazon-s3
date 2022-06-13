@@ -56,21 +56,22 @@ export class CreateAdminComponent implements OnInit {
   profile_image;
 
   fetchRoles() {
+    console.log("iddss:")
     this.misc.superAdminFetchUserRoles(this.companyId).subscribe(
       data => {
         this.Roles = data;
+        console.log("data if:", data)
         let newRoles = [];
         newRoles = this.Roles
         newRoles.forEach(role => {
-          if(role['role_name'] === "admin"){
-            console.log("admin role")
+          if (role['role_name'] === "admin") {
             this.roleId = role['id'];
             console.log("admin role", this.roleId)
           }
         })
 
       },
-      error =>{
+      error => {
         console.log(error)
       }
     )

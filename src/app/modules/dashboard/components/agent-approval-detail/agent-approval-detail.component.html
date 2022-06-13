@@ -36,7 +36,7 @@
                   <tbody class="table-custom">
                     <tr>
                       <td><strong>Name</strong></td>
-                      <td>{{profileData?.full_name}}</td>
+                      <td>{{profileData?.full_name | titlecase}}</td>
                     </tr>
                     <tr>
                       <td><strong>Mobile Number</strong></td>
@@ -44,7 +44,7 @@
                     </tr>
                     <tr>
                       <td><strong>Address</strong></td>
-                      <td>{{addressData?.address_line1}} {{addressData?.address_line2}} {{addressData?.city?.name}}
+                      <td>{{addressData?.address_line1}}, {{addressData?.address_line2}}, {{addressData?.city?.name}},
                         {{addressData?.state?.name}}</td>
                     </tr>
                     <!-- <tr>
@@ -57,14 +57,27 @@
                     </tr>
                     <tr>
                       <td><strong>Current Occupation</strong></td>
-                      <td>{{kycData?.occupation}}</td>
+                      <td>{{kycData?.occupation |titlecase}}</td>
                     </tr>
                     <tr>
                       <td><strong>KYC</strong></td>
                       <td>
                         <strong class="">Aadhar Number:</strong> {{kycData?.aadhar_number}} <br>
-                        <strong class="strong">PAN Number:</strong> {{kycData?.pan_number}}
+                        <strong class="strong">PAN Number:</strong> {{kycData?.pan_number}}<br>
+                        <strong class="strong">Account Number:</strong> {{bankData?.account_number}}
                       </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Supervisor</strong></td>
+                      <td *ngIf="!profileData?.reporting_person">
+                        Not Assigned
+                      </td>
+                      <td *ngIf="profileData?.reporting_person">
+                        <strong class="">Name:</strong> <br>
+                        <strong class="strong">PAN Number:</strong> {{kycData?.pan_number}}<br>
+                        <strong class="strong">Account Number:</strong> {{bankData?.account_number}}
+                      </td>
+
                     </tr>
                   </tbody>
                 </table>
@@ -120,8 +133,9 @@
         </div>
 
         <div class="d-flex justify-content-center mt-3">
-          <a (click)="agentApproval()" *ngIf="!profileData?.is_approved"><button class="btn btn-success mr-3"><i
+          <a (click)="agentApproval()" *ngIf="!profileData?.is_approved && profileData?.reporting_person"><button class="btn btn-success mr-3"><i
                 class="fa fa-check mr-2"></i>Approve</button></a>
+          <p *ngIf="!profileData?.is_approved && !profileData?.is_approved" class="text-danger">* Cannot Approve Agent - First Assign Reporting Person</p>
           <a (click)="agentDisApproval()" *ngIf="profileData?.is_approved"><button class="btn btn-outline-danger"><i
                 class="fa fa-multiply mr-2"></i>Disapprove</button></a>
 

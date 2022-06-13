@@ -3,13 +3,13 @@
     <div class="col-xl-12 col-lg-12 col-md-12">
       <div class="widget bg-white pb-4">
         <div class="widget-header">
-          <div class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
+          <div class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left mt-2 ml-2">
             <div>
               <h3>Company Deatils</h3>
               <nav class="custom-breadcrum">
                 <ol class="breadcrumb justify-content-center justify-content-sm-start">
                   <li class="breadcrumb-item">
-                    <a routerlink="../super-admin">Super Admin Dashboard</a>
+                    <a routerLink="../">Super Admin Dashboard</a>
                   </li>
                   <li aria-current="page" class="breadcrumb-item active">
                     Company Details
@@ -39,12 +39,13 @@
                   <tr>
                     <td style="width: 25%;"><strong>Website:</strong></td>
                     <td style="width: 25%;">{{companyDetails?.website}}</td>
-                    <td style="width: 25%;"><strong>Create At:</strong></td>
-                    <td style="width: 25%;">{{companyDetails?.city_details?.created_at | date: 'mediumDate'}}</td>
-                  </tr>
-                  <tr>
+                    <!-- <td style="width: 25%;"><strong>Create At:</strong></td>
+                    <td style="width: 25%;">{{companyDetails?.city_details?.created_at | date: 'mediumDate'}}</td> -->
                     <td style="width: 25%;"><strong>Head Name:</strong></td>
                     <td style="width: 25%;">{{companyDetails?.head}}</td>
+                  </tr>
+                  <tr>
+
                     <td style="width: 25%;"><strong>Head Number:</strong></td>
                     <td style="width: 25%;">{{companyDetails?.head_contact_no}}</td>
                   </tr>

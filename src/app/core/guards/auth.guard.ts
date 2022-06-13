@@ -7,13 +7,13 @@ import { PermissionsService } from '../authentication/permissions.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanLoad, CanActivateChild {
-  
+
   constructor(
     private router: Router,
     private permissions: PermissionsService
   ) { }
   canLoad():boolean{
-    if (this.permissions.isauthenticated()){  
+    if (this.permissions.isauthenticated() && !this.permissions.isSuperAdmin()){
       return true;
     }
     else{
@@ -21,7 +21,7 @@ export class AuthGuard implements CanLoad, CanActivateChild {
       return false;
     }
   }
-  
+
   canActivateChild(): boolean {
     return this.canLoad();
   }

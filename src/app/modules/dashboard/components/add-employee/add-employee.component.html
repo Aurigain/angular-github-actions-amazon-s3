@@ -70,21 +70,6 @@
                             Name</small>
                         </div>
                       </div>
-                      <!-- <div class="form-group col-md-4">
-                        <label for="inputEmployeeCode">Employee Code</label>
-                        <input type="number" formControlName="employeeCode" class="form-control" id="inputEmail"
-                          placeholder="Employee Code">
-
-                        <ng-container
-                          *ngIf="personalDetails.get('employeeCode').invalid && personalDetails.get('employeeCode').touched"
-                          class="col-sm-3 col-form-label"></ng-container>
-                        <div
-                          *ngIf="personalDetails.get('employeeCode').invalid && personalDetails.get('employeeCode').touched"
-                          class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger"
-                            *ngIf="personalDetails.get('employeeCode').errors?.['required']">Enter Employee Code</small>
-                        </div>
-                      </div> -->
                       <div class="form-group col-md-4">
                         <label for="inputDate">Phone Number</label>
                         <input formControlName="phone_number" type="number" class="form-control"
@@ -104,41 +89,34 @@
                         <label for="inputDate">Password</label>
                         <input formControlName="password" type="password" class="form-control"
                           placeholder="Enter Password">
-                        <div
-                          *ngIf="personalDetails.get('phone_number').invalid && personalDetails.get('phone_number').touched"
+                        <div *ngIf="personalDetails.get('password').invalid && personalDetails.get('password').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
                           <small class="text-danger"
-                            *ngIf="personalDetails.get('phone_number').errors?.['required']">Address
+                            *ngIf="personalDetails.get('password').errors?.['required']">Password
                             is required</small>
                         </div>
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputDate">Email</label>
-                        <input formControlName="email" type="email" class="form-control"
-                          placeholder="Enter Email">
-                        <div
-                          *ngIf="personalDetails.get('phone_number').invalid && personalDetails.get('phone_number').touched"
+                        <input formControlName="email" type="email" class="form-control" placeholder="Enter Email">
+                        <div *ngIf="personalDetails.get('email').invalid && personalDetails.get('email').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger"
-                            *ngIf="personalDetails.get('phone_number').errors?.['required']">Address
+                          <small class="text-danger" *ngIf="personalDetails.get('email').errors?.['required']">Email
                             is required</small>
                         </div>
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputDate">DOB</label>
-                        <input formControlName="dob" type="date" class="form-control"
-                          placeholder="Enter DOB">
-                        <div
-                          *ngIf="personalDetails.get('phone_number').invalid && personalDetails.get('phone_number').touched"
+                        <input formControlName="dob" type="date" class="form-control" placeholder="Enter DOB">
+                        <div *ngIf="personalDetails.get('dob').invalid && personalDetails.get('dob').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger"
-                            *ngIf="personalDetails.get('phone_number').errors?.['required']">Address
+                          <small class="text-danger" *ngIf="personalDetails.get('dob').errors?.['required']">DOB
                             is required</small>
                         </div>
                       </div>
                     </div>
                     <div class="form-row">
-                      <div class="form-group col-md-4">
+                      <div class="form-group col-md-3">
                         <label for="inputDate">Gender</label>
                         <select class="form-control" formControlName="gender" id="exampleFormControlSelect1">
                           <option value="">Select Gender</option>
@@ -146,37 +124,35 @@
                           <option value="female">Female</option>
                           <option value="other">Other</option>
                         </select>
-                        <div
-                          *ngIf="personalDetails.get('phone_number').invalid && personalDetails.get('phone_number').touched"
+                        <div *ngIf="personalDetails.get('gender').invalid && personalDetails.get('gender').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger"
-                            *ngIf="personalDetails.get('phone_number').errors?.['required']">Address
+                          <small class="text-danger" *ngIf="personalDetails.get('gender').errors?.['required']">Gender
                             is required</small>
                         </div>
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputDate">Father Name</label>
-                        <input formControlName="father_name" type="text" class="form-control"
-                          placeholder="Enter Email">
+                        <input formControlName="father_name" type="text" class="form-control" placeholder="Enter Email">
                         <div
-                          *ngIf="personalDetails.get('phone_number').invalid && personalDetails.get('phone_number').touched"
+                          *ngIf="personalDetails.get('father_name').invalid && personalDetails.get('father_name').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
                           <small class="text-danger"
-                            *ngIf="personalDetails.get('phone_number').errors?.['required']">Address
+                            *ngIf="personalDetails.get('father_name').errors?.['required']">Father Name
                             is required</small>
                         </div>
                       </div>
-                      <div class="form-group col-md-4">
-                        <label for="inputDate">Profile Image</label>
-                        <input formControlName="profile_image"
-                         id="profile_image" (change)="onChange($event)" type="file" class="form-control">
 
-                        <div
-                          *ngIf="personalDetails.get('phone_number').invalid && personalDetails.get('phone_number').touched"
-                          class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger"
-                            *ngIf="personalDetails.get('phone_number').errors?.['required']">Address
-                            is required</small>
+                      <div class="form-group col-md-5">
+                        <label class="control-label">Profile Image</label>
+                        <div class="input-group mb-2">
+                          <div class="custom-file">
+                            <input type="file" (change)="onChange($event)" id="profile_image" class="custom-file-input"
+                              required />
+                            <label class="custom-file-label" for="profile_image" *ngIf="!profile_image">Choose
+                              file</label>
+                            <label class="custom-file-label" for="profile_image"
+                              *ngIf="profile_image">{{profile_image?.name}}</label>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -207,12 +183,15 @@
                         <select id="inputState" class="form-control" formControlName="reporting_person"
                           placeholder="Reporting Person">
                           <option value="" selected>Select Reporting Person</option>
-                          <option *ngFor="let emp of reportingPersonByRole" [value]="emp?.shareReferralCode">{{emp?.full_name}}</option>
+                          <option *ngFor="let emp of reportingPersonByRole" [value]="emp?.shareReferralCode">
+                            {{emp?.full_name}}</option>
                         </select>
 
-                        <div *ngIf="personalDetails.get('reporting_person').invalid && personalDetails.get('reporting_person').touched"
+                        <div
+                          *ngIf="personalDetails.get('reporting_person').invalid && personalDetails.get('reporting_person').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger" *ngIf="personalDetails.get('reporting_person').errors?.['required']">Reporting person is
+                          <small class="text-danger"
+                            *ngIf="personalDetails.get('reporting_person').errors?.['required']">Reporting person is
                             required</small>
                         </div>
                       </div>
@@ -241,67 +220,57 @@
                         <label for="inputBankName">IFSC Code</label>
                         <input formControlName="ifsc_code" type="text" class="form-control" placeholder="IFSC Code"
                           (input)="searchIFSC()">
-
-                        <!-- <div *ngIf="bankDetails.get('bankName').invalid && bankDetails.get('bankName').touched"
+                        <div *ngIf="bankDetails.get('ifsc_code').invalid && bankDetails.get('ifsc_code').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger" *ngIf="bankDetails.get('bankName').errors?.['required']">Bank Name
-                            is required</small>
-                        </div> -->
+                          <small class="text-danger" *ngIf="bankDetails.get('ifsc_code').errors?.['required']">IFSC Code
+                            is
+                            required</small>
+                        </div>
                       </div>
 
                       <div class="form-group col-md-4">
                         <label for="inputAmountOld">Bank Name</label>
-                        <input formControlName="bank" type="text" class="form-control" placeholder="Bank Name">
+                        <input formControlName="bank" type="text" class="form-control" placeholder="Bank Name" readonly>
 
-                        <!-- <ng-container
-                          *ngIf="bankDetails.get('amountOld').invalid && bankDetails.get('amountOld').touched"
-                          class="col-sm-3 col-form-label"></ng-container>
-                        <div *ngIf="bankDetails.get('amountOld').invalid && bankDetails.get('amountOld').touched"
-                          class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger" *ngIf="bankDetails.get('amountOld').errors?.['required']">Enter
-                            Amount</small>
-                        </div> -->
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputAmountOld">Branch Name</label>
-                        <input formControlName="branch" type="text" class="form-control" placeholder="Branch Name">
+                        <input formControlName="branch" type="text" class="form-control" placeholder="Branch Name"
+                          readonly>
 
-                        <!-- <ng-container
-                          *ngIf="bankDetails.get('amountOld').invalid && bankDetails.get('amountOld').touched"
-                          class="col-sm-3 col-form-label"></ng-container>
-                        <div *ngIf="bankDetails.get('amountOld').invalid && bankDetails.get('amountOld').touched"
-                          class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger" *ngIf="bankDetails.get('amountOld').errors?.['required']">Enter
-                            Amount</small>
-                        </div> -->
+
                       </div>
 
-                      <div class="form-group col-md-4">
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-5">
                         <label for="inputdateOld">Account Number</label>
                         <input formControlName="account_number" type="number" class="form-control"
                           placeholder="Enter Account Number">
-                        <!-- <ng-container *ngIf="bankDetails.get('dateOld').invalid && bankDetails.get('dateOld').touched"
-                          class="col-sm-3 col-form-label"></ng-container>
-                        <div *ngIf="bankDetails.get('dateOld').invalid && bankDetails.get('dateOld').touched"
+
+                        <div
+                          *ngIf="bankDetails.get('account_number').invalid && bankDetails.get('account_number').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger" *ngIf="bankDetails.get('dateOld').errors?.['required']">Date
+                          <small class="text-danger"
+                            *ngIf="bankDetails.get('account_number').errors?.['required']">Account Number is
                             required</small>
-                        </div> -->
+                        </div>
                       </div>
-                      <div class="form-group">
-                        <label for="inputdateOld">Cancelled Cheque</label>
-                        <input formControlName="cancelled_cheque" (change)="onChange($event)" type="file" class="form-control" id="cancelled_cheque"
-                          placeholder="Upload Cheque" >
-                        <!-- <ng-container *ngIf="bankDetails.get('dateOld').invalid && bankDetails.get('dateOld').touched"
-                          class="col-sm-3 col-form-label"></ng-container>
-                        <div *ngIf="bankDetails.get('dateOld').invalid && bankDetails.get('dateOld').touched"
-                          class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger" *ngIf="bankDetails.get('dateOld').errors?.['required']">Date
-                            required</small>
-                        </div> -->
+
+                      <div class="form-group col-md-7">
+                        <label class="control-label">Cancelled Cheque</label>
+                        <div class="input-group mb-2">
+                          <div class="custom-file">
+                            <input type="file" (change)="onChange($event)" id="cancelled_cheque"
+                              class="custom-file-input" />
+                            <label class="custom-file-label" for="cancelled_cheque" *ngIf="!cancelled_cheque">Choose
+                              file</label>
+                            <label class="custom-file-label" for="cancelled_cheque"
+                              *ngIf="cancelled_cheque">{{cancelled_cheque?.name}}</label>
+                          </div>
+                        </div>
                       </div>
                     </div>
-
                   </form>
                 </div>
                 <div class="row">
@@ -330,26 +299,34 @@
                           <option *ngFor="let qualification of qualificationList" [value]="qualification.id">
                             {{qualification?.label}}</option>
                         </select>
-                        <div style="margin-left: 10px;" *ngIf="qualification.invalid && qualification.touched">
-                          <small *ngIf="qualification.errors?.['required']" class="text-danger">Qualification is
-                            required</small>
+                        <div
+                          *ngIf="kycDetailForm.get('qualification').invalid && kycDetailForm.get('qualification').touched"
+                          class="custom-invalid-feedback" style="margin-top: 5px;">
+                          <small class="text-danger"
+                            *ngIf="kycDetailForm.get('qualification').errors?.['required']">Qualification
+                            is required</small>
                         </div>
                       </div>
                       <div class="form-group col-md-6">
                         <input type="number" class="form-control" id="inputAadhar" placeholder="AADHAR Number Name"
                           formControlName="aadhar_number" required />
-                        <!-- <div style="margin-left: 10px;" *ngIf="adhaarNumber.invalid && adhaarNumber.touched">
-                          <small *ngIf="adhaarNumber.errors?.['required']" class="text-danger">Adhaar Number is
-                            required</small>
-                        </div> -->
+                        <div
+                          *ngIf="kycDetailForm.get('aadhar_number').invalid && kycDetailForm.get('aadhar_number').touched"
+                          class="custom-invalid-feedback" style="margin-top: 5px;">
+                          <small class="text-danger"
+                            *ngIf="kycDetailForm.get('aadhar_number').errors?.['required']">Aadhar number
+                            is required</small>
+                        </div>
                       </div>
                       <div class="form-group col-md-6">
                         <input type="text" class="form-control" id="inputPan" placeholder="PAN Number"
                           formControlName="pan_number" required />
-                        <!-- <div style="margin-left: 10px;" *ngIf="panNumber.invalid && panNumber.touched">
-                          <small *ngIf="panNumber.errors?.['required']" class="text-danger">PAN number is
-                            required</small>
-                        </div> -->
+                        <div *ngIf="kycDetailForm.get('pan_number').invalid && kycDetailForm.get('pan_number').touched"
+                          class="custom-invalid-feedback" style="margin-top: 5px;">
+                          <small class="text-danger" *ngIf="kycDetailForm.get('pan_number').errors?.['required']">Pan
+                            number
+                            is required</small>
+                        </div>
                       </div>
                       <div class="form-group col-md-6">
                         <input [class.is-invalid]="occupation.invalid && occupation.touched" type="text"
@@ -375,9 +352,12 @@
                         <label class="control-label"> AAdhar Card (Front)</label>
                         <div class="input-group mb-2">
                           <div class="custom-file">
-                            <input type="file" (change)="onChange($event)" id="aadhar_front_image" class="custom-file-input"
-                              formControlName="aadhar_front_image" />
-                            <label class="custom-file-label" for="aadhar_front_image">Choose file</label>
+                            <input type="file" (change)="onChange($event)" id="aadhar_front_image"
+                              class="custom-file-input" />
+                            <label class="custom-file-label" for="aadhar_front_image" *ngIf="!aadhar_front_image">Choose
+                              file</label>
+                            <label class="custom-file-label" for="aadhar_front_image"
+                              *ngIf="aadhar_front_image">{{aadhar_front_image?.name}}</label>
                           </div>
                         </div>
                       </div>
@@ -386,9 +366,12 @@
                         <label class="control-label"> AAdhar Card (Back)</label>
                         <div class="input-group mb-2">
                           <div class="custom-file">
-                            <input type="file" (change)="onChange($event)" id="aadhar_back_image" class="custom-file-input"
-                              formControlName="aadhar_back_image"/>
-                            <label class="custom-file-label" for="aadharback">Choose file</label>
+                            <input type="file" (change)="onChange($event)" id="aadhar_back_image"
+                              class="custom-file-input" />
+                            <label class="custom-file-label" for="aadharback" *ngIf="!aadhar_back_image">Choose
+                              file</label>
+                            <label class="custom-file-label" for="aadharback"
+                              *ngIf="aadhar_back_image">{{aadhar_back_image?.name}}</label>
                           </div>
                         </div>
                       </div>
@@ -397,9 +380,9 @@
                         <label class="control-label"> Pan Card</label>
                         <div class="input-group mb-2">
                           <div class="custom-file">
-                            <input type="file" (change)="onChange($event)" class="custom-file-input" id="pan_image" formControlName="pan_image"
-                              />
-                            <label class="custom-file-label" for="panimg">Choose file</label>
+                            <input type="file" (change)="onChange($event)" class="custom-file-input" id="pan_image" />
+                            <label class="custom-file-label" for="panimg" *ngIf="!pan_image">Choose file</label>
+                            <label class="custom-file-label" for="panimg" *ngIf="pan_image">{{pan_image?.name}}</label>
                           </div>
                         </div>
                       </div>
@@ -428,42 +411,45 @@
                       <div class="form-group col-md-6">
                         <input class="form-control" id="exampleFormControlSelect1" formControlName="address_line1"
                           placeholder="Address Line 1">
-                        <!-- <div style="margin-left: 10px;" *ngIf="qualification.invalid && qualification.touched">
-                          <small *ngIf="qualification.errors?.['required']" class="text-danger">Qualification is
+                        <div
+                          *ngIf="addressDetailForm.get('address_line1').invalid && addressDetailForm.get('address_line1').touched"
+                          class="custom-invalid-feedback" style="margin-top: 5px;">
+                          <small class="text-danger"
+                            *ngIf="addressDetailForm.get('address_line1').errors?.['required']">Address Line 1 is
                             required</small>
-                        </div> -->
+                        </div>
                       </div>
                       <div class="form-group col-md-6">
                         <input class="form-control" id="exampleFormControlSelect1" formControlName="address_line2"
                           placeholder="Address Line 2">
-                        <!-- <div style="margin-left: 10px;" *ngIf="adhaarNumber.invalid && adhaarNumber.touched">
-                          <small *ngIf="adhaarNumber.errors?.['required']" class="text-danger">Adhaar Number is
+                        <div
+                          *ngIf="addressDetailForm.get('address_line2').invalid && addressDetailForm.get('address_line2').touched"
+                          class="custom-invalid-feedback" style="margin-top: 5px;">
+                          <small class="text-danger"
+                            *ngIf="addressDetailForm.get('address_line2').errors?.['required']">Address Line 2 is
                             required</small>
-                        </div> -->
+                        </div>
                       </div>
                       <div class="form-group col-md-6">
                         <input class="form-control" id="exampleFormControlSelect1" formControlName="pincode"
                           placeholder="pincode" required (input)="searchPinCode()">
-                        <!-- <div style="margin-left: 10px;" *ngIf="panNumber.invalid && panNumber.touched">
-                          <small *ngIf="panNumber.errors?.['required']" class="text-danger">PAN number is
+                        <div
+                          *ngIf="addressDetailForm.get('pincode').invalid && addressDetailForm.get('pincode').touched"
+                          class="custom-invalid-feedback" style="margin-top: 5px;">
+                          <small class="text-danger"
+                            *ngIf="addressDetailForm.get('pincode').errors?.['required']">Pincode is
                             required</small>
-                        </div> -->
+                        </div>
                       </div>
                       <div class="form-group col-md-6">
                         <input class="form-control" id="exampleFormControlSelect1" formControlName="city"
-                          placeholder="City">
-                        <!-- <div style="margin-left: 10px;" *ngIf="panNumber.invalid && panNumber.touched">
-                          <small *ngIf="panNumber.errors?.['required']" class="text-danger">PAN number is
-                            required</small>
-                        </div> -->
+                          placeholder="City" readonly>
+
                       </div>
                       <div class="form-group col-md-6">
                         <input class="form-control" id="exampleFormControlSelect1" formControlName="state"
-                          placeholder="State">
-                        <!-- <div style="margin-left: 10px;" *ngIf="panNumber.invalid && panNumber.touched">
-                          <small *ngIf="panNumber.errors?.['required']" class="text-danger">PAN number is
-                            required</small>
-                        </div> -->
+                          placeholder="State" readonly>
+
                       </div>
 
                     </div>

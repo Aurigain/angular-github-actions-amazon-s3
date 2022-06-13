@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SideNavBarService } from '../../side-nav.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SsrHandlerService } from 'src/app/core/services/ssr-handler.service';
+import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -13,7 +14,7 @@ export class DashboardHomeComponent implements OnInit {
   // constructor(
   //   public sidenavservice: SideNavBarService
   // ) { }
-
+  fetchedUserList;
   rowFilter: number = 1;
   updateStatusForm:FormGroup;
   AppointmentDetailForm:FormGroup;
@@ -22,6 +23,7 @@ export class DashboardHomeComponent implements OnInit {
     private formbuilder: FormBuilder,
     public sidenavservice: SideNavBarService,
     private ssrService: SsrHandlerService,
+    private misc: MiscellaneousService,
   ) { }
 
   get pinCode(){
@@ -29,7 +31,7 @@ export class DashboardHomeComponent implements OnInit {
   }
 
   p:number = 1;
-
+  btLeadList
   selectedForm: FormGroup;
   originalArray = [
   {Id: 10018, FullName: 'Yishu', FatherName: 'Tetzzy', Email: null, type: 'approved', DateOfBirth: '0001-01-01T00:00:00',},
@@ -84,11 +86,34 @@ export class DashboardHomeComponent implements OnInit {
 
   }
 
+  fetchFreshLead(){
+    this.misc.fetchFreshLead().subscribe(
+      data =>{
+        console.log("fetchedddd",data);
+        this.fetchedUserList = data;
+      },
+      error =>{
+        console.log(error);
+      }
+      )
+  }
+
+  fetchBtLeads(){
+    this.misc.fetchBTLead().subscribe(
+      data => {
+        console.log(data);
+        this.btLeadList = data
+      }
+    )
+  }
+
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
 
     this.userData = this.ssrService.getItem('userProfile');
     console.log("fetched user data from local", JSON.parse(this.userData))
+    this.fetchFreshLead();
+    this.fetchBtLeads();
     this.filter('');
     this.selectedForm = this.formbuilder.group({
       selectCategory: ['']
