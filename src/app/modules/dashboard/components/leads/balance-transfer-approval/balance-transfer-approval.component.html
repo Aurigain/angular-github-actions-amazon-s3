@@ -111,6 +111,25 @@
                         </div>
                       </div>
                     </div>
+                    <div class="col-md-2 box">
+                      <div class="mt-4 text-center">Father's Name</div>
+                    </div>
+                    <div class="col-md-3 box">
+                      <div class="mt-4 text-center">{{profileData?.father_name}}
+                      </div>
+                    </div>
+                    <div class="col-md-3 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3"><a
+                            (click)="loadImage(profileData?.fullname, documentDetails?.kyc_document_poi)" href="#"
+                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.kyc_document_poi" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
+
+                      </div>
+                    </div>
                   </div>
 
                   <!-- <div class="row">
@@ -397,7 +416,7 @@
 
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
-                        {{leadDetails?.loan_type?.loan_type}}
+                        {{leadDetails?.loan_type?.loan?.loan}}
                       </div>
                     </div>
                   </div>
@@ -446,7 +465,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row" *ngIf="accountTransferDetails?.account_type === 'existing'">
+                  <div class="row">
                     <div class="col-md-6 box">
                       <div class="mt-4 text-center">Existing Loan Account Number</div>
                     </div>
@@ -457,6 +476,30 @@
                       </div>
                     </div>
                   </div>
+                  <div class="row" *ngIf="accountTransferDetails?.account_type === 'existing'">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Age of Last Loan (in months)</div>
+                    </div>
+
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+                        {{leadDetails?.age_of_last_loan_in_months}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row" *ngIf="accountTransferDetails?.account_type === 'existing'">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">BANK IFSC</div>
+                    </div>
+
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+                        {{accountTransferDetails?.branch?.ifsc_code}}
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="row">
                     <div class="col-md-6 box">
                       <div class="mt-4 text-center">Bank Name</div>
@@ -486,7 +529,7 @@
 
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
-                        {{accountTransferDetails?.age_of_last_loan_in_months}}
+                        {{leadDetails?.age_of_last_loan_in_months}}
                       </div>
                     </div>
                   </div>
@@ -527,7 +570,7 @@
 
                 </div>
 
-                <div class="m-3" *ngIf="accountTransferDetails?.account_type === 'existing'">
+                <div class="m-3">
                   <div class="form-group">
                     <div class="row gender-row justify-content-center">
                       <label class="radio-inline">
@@ -601,7 +644,7 @@
                     </div>
                   </div>
                   <div class="row"
-                    *ngIf="accountTransferDetails?.account_type === 'bank' || accountTransferDetails?.account_type === 'security' || accountTransferDetails?.account_type === 'other'">
+                    *ngIf="accountTransferDetails?.account_type === 'existing' || accountTransferDetails?.account_type === 'security' || accountTransferDetails?.account_type === 'other'">
                     <div class="col-md-6 box">
                       <div class="mt-4 text-center">IFSC Code</div>
                     </div>
@@ -620,8 +663,7 @@
                       </div>
                     </div> -->
                   </div>
-                  <div class="row"
-                    *ngIf="accountTransferDetails?.account_type === 'security'">
+                  <div class="row" *ngIf="accountTransferDetails?.account_type === 'security' || accountTransferDetails?.account_type === 'other'">
                     <div class="col-md-6 box">
                       <div class="mt-4 text-center">Security Cheque Transfer</div>
                     </div>
@@ -631,11 +673,11 @@
                     <div class="col-md-3 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a (click)="loadImage('ssad', documentDetails?.security_cheque_1)" href="#"
-                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                        <p class="text-center py-3"><a (click)="loadImage('ssad', accountTransferDetails?.security_cheque_1)"
+                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
                             <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                            <img [src]="documentDetails?.security_cheque_1" width="50" height="50"
-                              alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+                            <img [src]="accountTransferDetails?.security_cheque_1" width="50" height="50" alt="bank details"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
 
                       </div>
                     </div>

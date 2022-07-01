@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ConstantsService } from 'src/app/config/constants.service';
 import { LoginService } from 'src/app/core/authentication/login.service';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
@@ -41,7 +42,8 @@ export class BalanceTransferApprovalComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private misc: MiscellaneousService,
-    private networkRequest: NetworkRequestService
+    private networkRequest: NetworkRequestService,
+    private toastr: ToastrService
 
   ) {
     this.tabelData = [];
@@ -323,10 +325,8 @@ export class BalanceTransferApprovalComponent implements OnInit {
 
 
   stepUp() {
-    console.log("name remark is:", this.nameRe);
-    console.log("clicked")
     this.currentStep += 1;
-    console.log(this.currentStep);
+
   }
   stepDown() {
     this.currentStep -= 1;
@@ -434,8 +434,8 @@ export class BalanceTransferApprovalComponent implements OnInit {
           address_remark: addressRemark,
           customer_image_status: photoChecker,
           customer_image_status_remark: photoRemark,
-          existing_loan_status: 'True',
-          existing_loan_remark: 'No remark',
+          existing_loan_status: existing_loan_status,
+          existing_loan_remark: existing_loan_remark,
           fund_transfer_status: fund_transfer_status,
           fund_transfer_remark: fund_transfer_remark,
           appointment_status: appointment_status,
@@ -443,6 +443,7 @@ export class BalanceTransferApprovalComponent implements OnInit {
           agreement_status: agreement_status,
           agreement_remark: agreement_remark,
         }
+
       }
     }
 
@@ -450,10 +451,14 @@ export class BalanceTransferApprovalComponent implements OnInit {
 
     this.misc.balanceTransferPreFinalApproval(personalData).subscribe(
       data => {
+        this.toastr.success(data['message'], "Success", {
+          timeOut: 3000,
+        })
         console.log(data);
       },
       error => {
         console.log(error);
+        this.toastr.error(error['message'], "Error")
       }
     )
 

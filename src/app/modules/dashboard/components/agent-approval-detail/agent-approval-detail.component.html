@@ -83,8 +83,7 @@
                 </table>
               </div>
               <div class="col-md-4">
-                <img width="250" height="250" [src]="profileData?.image"
-                  class="float-right mr-3 mb-3" alt="demoImage">
+                <img width="250" height="250" [src]="profileData?.image" class="float-right mr-3 mb-3" alt="demoImage">
               </div>
             </div>
 
@@ -133,9 +132,10 @@
         </div>
 
         <div class="d-flex justify-content-center mt-3">
-          <a (click)="agentApproval()" *ngIf="!profileData?.is_approved && profileData?.reporting_person"><button class="btn btn-success mr-3"><i
-                class="fa fa-check mr-2"></i>Approve</button></a>
-          <p *ngIf="!profileData?.is_approved && !profileData?.is_approved" class="text-danger">* Cannot Approve Agent - First Assign Reporting Person</p>
+          <a (click)="agentApproval()" *ngIf="!profileData?.is_approved && profileData?.reporting_person"><button
+              class="btn btn-success mr-3"><i class="fa fa-check mr-2"></i>Approve</button></a>
+          <p *ngIf="!profileData?.is_approved && !profileData?.reporting_person" class="text-danger">* Cannot Approve Agent -
+            First Assign Reporting Person</p>
           <a (click)="agentDisApproval()" *ngIf="profileData?.is_approved"><button class="btn btn-outline-danger"><i
                 class="fa fa-multiply mr-2"></i>Disapprove</button></a>
 

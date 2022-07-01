@@ -29,7 +29,10 @@ export class ConstantsService {
   selectQueryApi = `${environment.BASE_URL}/api/bank/contact_queries/`;
   fetchFreshLead = `${environment.BASE_URL}/api/lead/fresh_loan_requests/`;
   fetchBTLead = `${environment.BASE_URL}/api/lead/bt_loan_requests/`;
+  makerLeadList = `${environment.BASE_URL}/api/lead/maker_bt_lead_lists/`;
+  checkerLeadList = `${environment.BASE_URL}/api/lead/checker_bt_lead_lists/`;
   all_loan_requests = `${environment.BASE_URL}/api/lead/all_loan_requests/`;
+  all_loan_type = `${environment.BASE_URL}/api/loan/loan/`;
   pending_final_bt_loan_requests = `${environment.BASE_URL}/api/lead/pending_final_bt_loan_requests/`;
   fetchLeadDetail = `${environment.BASE_URL}/api/lead/loan_request_by_id/`;
   fetchLeadProfile = `${environment.BASE_URL}/api/lead/fetch_lead_profile/`;
@@ -45,6 +48,8 @@ export class ConstantsService {
   fetch_employees_by_role = `${environment.BASE_URL}/api/agent/fetch_employees_by_role/`;
   updateLeadProfile = `${environment.BASE_URL}/api/lead/edit_lead_profile/`;
   updateLeadAddress = `${environment.BASE_URL}/api/lead/edit_lead_address/`;
+  maker_bt_lead_approval = `${environment.BASE_URL}/api/lead/maker_bt_lead_approval/`;
+  checker_bt_lead_approval = `${environment.BASE_URL}/api/lead/checker_bt_lead_approval/`;
   updateLeadJewellery = `${environment.BASE_URL}/api/lead/edit_lead_loan_request/`;
   updateLeadLoanDetails = `${environment.BASE_URL}/api/lead/edit_lead_loan_account_details/`;
   updateLeadLoanDocuments = `${environment.BASE_URL}/api/lead/update_lead_loan_request_documents/`;
@@ -60,6 +65,7 @@ export class ConstantsService {
   contactUs = `${environment.BASE_URL}/api/bank/contact_us/`;
   fetchBranch = `${environment.BASE_URL}/api/bank/fetch_branch/`;
   rolePermissionMappingApi = `${environment.BASE_URL}/api/user/user_role_permission_mapping/`;
+  companyAllowedLoans = `${environment.BASE_URL}/api/loan/company_allowed_loan/`;
   updatePassword = `${environment.BASE_URL}/api/user/updatepassword/`;
   resetpassword = `${environment.BASE_URL}/api/user/resetpassword/`;
   agentImageUpload = `${environment.BASE_URL}/api/agent/update_employee_images/`;

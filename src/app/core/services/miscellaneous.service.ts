@@ -234,9 +234,43 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+
+  fetchMakerList() {
+
+    return this.http.get(this.consts.makerLeadList, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  fetchCheckerList() {
+
+    return this.http.get(this.consts.checkerLeadList, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
   FetchAllLoanRequests() {
 
     return this.http.get(`${this.consts.all_loan_requests}?lead_loan_type=bt`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  FetchLoanTypes() {
+
+    return this.http.get(`${this.consts.all_loan_type}`, {
       headers: new HttpHeaders({
         'Authorization': `${this.cookie.get('_l_a_t')}`
       })
@@ -395,6 +429,19 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+  makerUpdate(data) {
+    return this.http.put(`${this.consts.maker_bt_lead_approval}`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  checkerUpdate(data) {
+    return this.http.put(`${this.consts.checker_bt_lead_approval}`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
   updateLeadAddress(data, id) {
     return this.http.put(`${this.consts.updateLeadAddress}${id}/`, data)
       .pipe(
@@ -481,6 +528,13 @@ export class MiscellaneousService {
 
   userRolePermissionsMapping(data: any) {
     return this.http.post(this.consts.rolePermissionMappingApi, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+
+  assignLoanType(data: any) {
+    return this.http.post(this.consts.companyAllowedLoans, data)
       .pipe(
         catchError(this.errorHandler.handleError)
       );

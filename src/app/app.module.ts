@@ -11,6 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NetworkRequestInterceptor } from './intercepters/network-request.interceptor';
 import { environment } from 'src/environments/environment';
 import { NgPipesModule } from 'ngx-pipes';
+import { JSON2CSV } from './core/services/json2csv';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NgPipesModule } from 'ngx-pipes';
   ],
   providers: [
     CookieService,
+    JSON2CSV,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: NetworkRequestInterceptor,

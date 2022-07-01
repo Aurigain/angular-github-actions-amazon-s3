@@ -1,104 +1,108 @@
 <div class="layout-px-spacing">
   <div class="row h-100" style="min-height: 100vh;">
-      <div class="col-xl-12 col-lg-12 col-md-12">
-          <div class="widget bg-white pb-4">
-              <div class="widget-header">
-                  <div
-                      class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
-                      <div>
-                          <h3>Accounts Maker Panel Deatils</h3>
-                          <nav class="custom-breadcrum">
-                              <ol class="breadcrumb justify-content-center justify-content-sm-start" >
-                                  <li class="breadcrumb-item">
-                                  <a routerlink="../dashboard">Home</a>
-                                  </li>
-                                  <li class="breadcrumb-item">
-                                  <a routerLink="../../">Account Maker Panel</a
-                                  >
-                                  </li>
-                                  <li aria-current="page" class="breadcrumb-item active">
-                                  Account Maker Panel &ndash; Details
-                                  </li>
-                              </ol>
-                          </nav>
-                      </div>
-                  </div>
+    <div class="col-xl-12 col-lg-12 col-md-12">
+      <div class="widget bg-white pb-4">
+        <div class="widget-header">
+          <div class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
+            <div>
+              <h3>Accounts Maker Panel Deatils</h3>
+              <nav class="custom-breadcrum">
+                <ol class="breadcrumb justify-content-center justify-content-sm-start">
+                  <li class="breadcrumb-item">
+                    <a routerlink="../dashboard">Home</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a routerLink="../../">Account Maker Panel</a>
+                  </li>
+                  <li aria-current="page" class="breadcrumb-item active">
+                    Account Maker Panel &ndash; Details
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 box">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="box2">
+              <h5>
+                <!-- <img src="" alt="personal"> -->
+                Personal Details
+              </h5>
+            </div>
+            <div class="row">
+              <div class="col-md-8 pl-3">
+                <table class="table table-borderless">
+                  <tbody class="table-custom">
+                    <tr>
+                      <td><strong>Name</strong></td>
+                      <td>{{makerDetail?.lead?.fullname}}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <div class="mt-5 box">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="box2">
-                        <h5>
-                            <!-- <img src="" alt="personal"> -->
-                            Personal Details
-                        </h5>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8 pl-3">
-                          <table class="table table-borderless">
-                            <tbody class="table-custom">
-                                <tr>
-                                    <td><strong>Mode of Transfer</strong></td>
-                                    <td>Mode of Transfer</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
-                    </div>
-
-                </div>
             </div>
 
-            <div class="mt-5 box">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="box2">
-                        <h5>
-                            <!-- <img src="" alt="personal"> -->
-                            Bank Details
-                        </h5>
-                    </div>
-                    <div class="bottom-box">
-                        <div class="row">
-                          <div class="col-md-8 pl-3">
-                            <table class="table table-borderless">
-                              <tbody class="table-custom">
-                                  <tr>
-                                      <td><strong>IFSC Code</strong></td>
-                                      <td>IFSC Code</td>
-                                  </tr>
-                                   <tr>
-                                      <td><strong>Bank Name</strong></td>
-                                      <td>Bank Name</td>
-                                  </tr>
-                                   <tr>
-                                      <td><strong>Branch Name</strong></td>
-                                      <td>Branch Name</td>
-                                  </tr>
-                                   <tr>
-                                      <td><strong>Branch Address</strong></td>
-                                      <td>Branch Address</td>
-                                  </tr>
-                                   <tr>
+          </div>
+        </div>
+
+        <div class="mt-5 box">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="box2">
+              <h5>
+                <!-- <img src="" alt="personal"> -->
+                Bank Details
+              </h5>
+            </div>
+            <div class="bottom-box">
+              <div class="row">
+                <div class="col-md-8 pl-3">
+                  <table class="table table-borderless">
+                    <tbody class="table-custom">
+                      <tr>
+                        <td><strong>Loan Type</strong></td>
+                        <td>{{makerDetail?.loan_type?.loan_type |titlecase}} &ndash; {{makerDetail?.loan_type?.loan?.loan}}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>IFSC Code</strong></td>
+                        <td>{{makerDetail?.transfer_branch?.ifsc_code}}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Bank Name</strong></td>
+                        <td>{{makerDetail?.transfer_branch?.bank?.name}}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Branch Name</strong></td>
+                        <td>{{makerDetail?.transfer_branch?.name}}</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Branch Address</strong></td>
+                        <td>{{makerDetail?.transfer_branch?.address}}</td>
+                      </tr>
+                      <!-- <tr>
                                       <td><strong>Customer Name</strong></td>
                                       <td>Customer Name</td>
-                                  </tr>
-                                   <tr>
-                                      <td><strong>Account Number</strong></td>
-                                      <td>Account Number</td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                          </div>
-                          <div class="col-md-4">
-                            <p class="text-center py-3"><a href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                              <i class="fa-solid fa-circle-plus fa-2x position-absolute bg-white shadow"></i>
-                              <img src="https://thispersondoesnotexist.com/image" width="250" height="250" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
-
-                          </div>
-                        </div>
-                    </div>
+                                  </tr> -->
+                      <tr>
+                        <td><strong>Account Number</strong></td>
+                        <td>{{makerDetail?.loan_account_number}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
+                <!-- <div class="col-md-4">
+                  <p class="text-center py-3"><a href="#" data-toggle="modal" aria-label="screens"
+                      data-target="#mScreenshot">
+                      <i class="fa-solid fa-circle-plus fa-2x position-absolute bg-white shadow"></i>
+                      <img src="https://thispersondoesnotexist.com/image" width="250" height="250" alt="bank details"
+                        class="img-fluid img-thumbnail lazyload"></a></p>
+
+                </div> -->
+              </div>
             </div>
-            <!-- <div class="mt-5">
+          </div>
+        </div>
+        <!-- <div class="mt-5">
               <div class="form-group">
                 <div class="row gender-row">
                   <div class="col-md-6 text-center pl-4">
@@ -116,36 +120,28 @@
                 </div>
               </div>
             </div> -->
-            <div class="mt-5 form-row justify-content-center">
-              <div class="col-md-2">
-                <select class="form-control">
-                  <option value="">Mark Status</option>
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
-                </select>
-              </div>
-              <div class="col-md-2">
-                <select class="form-control">
-                  <option value="">Select Bank</option>
-                  <option value="bank1">Bank 1</option>
-                  <option value="bank2">Bank 2</option>
-                  <option value="bank3">Bank 3</option>
-                </select>
-              </div>
-            </div>
-            <div class="mt-5">
-              <div class="ml-3">
-                <button class="btn btn-primary">Download</button>
-                <button class="btn btn-primary mr-4 float-right">Save & Submit</button>
-              </div>
-              <button class="btn btn-outline-primary mt-3 ml-3">Cancel</button>
-            </div>
+        <div class="row mt-2 justify-content-center">
+          <label class="col-md-3"><strong>Mark Status : </strong></label>
+          <select class="form-control col-md-4" [(ngModel)]="markStatus">
+            <!-- <option value="">Mark Status</option> -->
+            <option value="not uploaded" selected>Not Uploaded</option>
+            <option value="uploaded">Uploaded</option>
+
+          </select>
+        </div>
+
+        <div class="mt-5">
+          <div class="ml-3">
+            <button  class="btn btn-primary" (click)="download()"> Download </button>
+            <button [disabled]="markStatus !== 'uploaded'" (click)="submitMaker()" class="btn btn-primary mr-4 float-right">Save & Submit</button>
           </div>
+          <a routerLink="../../"><button class="btn btn-outline-primary mt-3 ml-3">Cancel</button></a>
+        </div>
       </div>
+    </div>
   </div>
 
-  <div class="modal fade" id="mScreenshot">
+  <!-- <div class="modal fade" id="mScreenshot">
     <div class="modal-dialog modal-lg">
     <div class="modal-content" style="top:50px;">
     <ngb-carousel>
@@ -162,6 +158,6 @@
 
     </div>
     </div>
-  </div>
+  </div> -->
 
 </div>

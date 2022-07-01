@@ -83,7 +83,7 @@ export class CreateAdminComponent implements OnInit {
         console.log("qualificationList", data['data']);
       },
       error => {
-        console.log("error", error);
+        // this.toastr.error(error['message']['error'], "Error")
       }
     );
   }
@@ -429,12 +429,12 @@ export class CreateAdminComponent implements OnInit {
             console.log(data);
           },
           error => {
-            console.log("Error", error);
+            this.toastr.error(error['message']['error'], "Error")
           }
         )
       },
       error => {
-        console.log(error);
+        this.toastr.error(error['message']['error'], "Error")
       }
     )
   }

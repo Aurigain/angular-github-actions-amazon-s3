@@ -413,7 +413,7 @@ export class AddEmployeeComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.toastr.error(error['error'] ,"Error")
+        this.toastr.error(error['message']['error'] ,"Error")
       }
     )
   }

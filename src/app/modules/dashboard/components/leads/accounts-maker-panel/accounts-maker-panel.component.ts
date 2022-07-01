@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
 @Component({
   selector: 'app-accounts-maker-panel',
@@ -13,7 +14,18 @@ export class AccountsMakerPanelComponent implements OnInit {
   successMsg: any;
   constructor(
     private formbuilder: FormBuilder,
+    private misc: MiscellaneousService
   ) { }
+  makerLeadList;
+
+  fetchMakerList() {
+    this.misc.fetchMakerList().subscribe(
+      data => {
+        console.log(data);
+        this.makerLeadList = data
+      }
+    )
+  }
 
   deleteUser(id){
     this.successMsg = null;
@@ -107,6 +119,7 @@ export class AccountsMakerPanelComponent implements OnInit {
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
     this.filter('');
+    this.fetchMakerList();
     this.selectedForm = this.formbuilder.group({
       selectCategory: ['']
      })

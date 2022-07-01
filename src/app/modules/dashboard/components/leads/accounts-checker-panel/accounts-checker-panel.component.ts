@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
 @Component({
   selector: 'app-accounts-checker-panel',
@@ -11,8 +12,10 @@ export class AccountsCheckerPanelComponent implements OnInit {
   updateStatusForm:FormGroup;
   AppointmentDetailForm:FormGroup;
   successMsg: any;
+  checkerLeadList;
   constructor(
     private formbuilder: FormBuilder,
+    private misc: MiscellaneousService
   ) { }
 
   deleteUser(id){
@@ -104,9 +107,19 @@ export class AccountsCheckerPanelComponent implements OnInit {
 
   }
 
+  fetchCheckerList() {
+    this.misc.fetchCheckerList().subscribe(
+      data => {
+        console.log(data);
+        this.checkerLeadList = data
+      }
+    )
+  }
+
   ngOnInit(): void {
     // this.filterArray = this.originalArray;
     this.filter('');
+    this.fetchCheckerList();
     this.selectedForm = this.formbuilder.group({
       selectCategory: ['']
      })

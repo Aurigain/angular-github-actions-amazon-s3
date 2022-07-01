@@ -19,6 +19,7 @@ export class SuperAdminDashboardComponent implements OnInit {
   searchIcon: boolean = true;
   errors;
   fetchPermissions = [];
+  loanTypes;
   filteredOptions: Observable<string[]>;
   rowFilter: number = 1;
   viewDetailbutton = false;
@@ -32,6 +33,8 @@ export class SuperAdminDashboardComponent implements OnInit {
   isAddCompany: boolean = false;
   isSearchCompany: boolean = true;
   permissionsArray = [];
+
+  selectedLoanTypes = []
   constructor(
     private formbuilder: FormBuilder,
     private ssrService: SsrHandlerService,
@@ -140,6 +143,12 @@ export class SuperAdminDashboardComponent implements OnInit {
       street: street,
       registered: true
     }
+
+    const loanTypes = [];
+    for (let i = 0; i < this.selectedLoanTypes.length; i++) {
+      loanTypes.push(this.selectedLoanTypes[i]['id'])
+    }
+
     this.networkRequest.postWithHeader(formData, `/api/createcompany/`).subscribe(
       data => {
         console.log(data);
@@ -162,7 +171,7 @@ export class SuperAdminDashboardComponent implements OnInit {
                 role: roleId,
                 permissions: this.permissionsArray
               }
-              console.log("role mapping form data",formData);
+              console.log("role mapping form data", formData);
               this.misc.userRolePermissionsMapping(formData).subscribe(
                 data => {
                   console.log(data);
@@ -180,11 +189,27 @@ export class SuperAdminDashboardComponent implements OnInit {
                 },
                 err => console.log(err)
               )
+
             },
             err => {
               this.toastr.error("Error creating Role", "Error");
             }
           )
+
+          loanTypes.forEach(loanType => {
+            let assingLoanTypeData = {
+              company: id,
+              loan: loanType
+            }
+            console.log(assingLoanTypeData);
+            this.misc.assignLoanType(assingLoanTypeData).subscribe(
+              data => {
+                console.log(data);
+              },
+              err => console.log(err)
+            )
+          })
+
         }
       },
       error => {
@@ -289,11 +314,62 @@ export class SuperAdminDashboardComponent implements OnInit {
     this.isAddCompany = false;
     this.isSearchCompany = true;
   }
+
+  fetchLoanTypes() {
+
+    this.misc.FetchLoanTypes().subscribe(data => {
+      console.log("loan type", data)
+      this.loanTypes = data['data']
+    })
+  }
+
+
+  selectUnselectSingleLoanId(id, event) {
+    let count = 0;
+    if (event.target.checked) {
+      for (let i = 0; i < this.loanTypes.length; i++) {
+        if (this.loanTypes[i]['id'] == id) {
+          var element = <HTMLInputElement>document.getElementById(this.loanTypes[i]['id']);
+          element.checked = true;
+          this.selectedLoanTypes.push(this.loanTypes[i]);
+        }
+      }
+
+      this.selectedLoanTypes = [...new Set(this.selectedLoanTypes.map(m => m))];
+      for (let i = 0; i < this.selectedLoanTypes.length; i++) {
+        for (let j = 0; j < this.loanTypes.length; j++) {
+          if (this.selectedLoanTypes[i]['id'] == this.loanTypes[j]['id']) {
+            count = count + 1;
+          }
+        }
+      }
+
+      // if (count == this.fetchPermissions.length) {
+      //   var element = <HTMLInputElement> document.getElementById("flexCheckCheckedAll");
+      //   element.checked = true;
+      // }
+    }
+    else {
+      for (let i = 0; i < this.selectedLoanTypes.length; i++) {
+        if (this.selectedLoanTypes[i]['id'] == id) {
+          this.selectedLoanTypes.splice(i, 1);
+          var element = <HTMLInputElement>document.getElementById(id);
+          element.checked = false;
+
+
+          // var element = <HTMLInputElement> document.getElementById("flexCheckCheckedAll");
+          // element.checked = false;
+        }
+
+      }
+    }
+  }
   ngOnInit(): void {
     // this.userData = this.ssrService.getItem('userProfile');
     // console.log("fetched user data from local", JSON.parse(this.userData))
     this.createSearchForm();
     this.fetchAllPermissions();
+    this.fetchLoanTypes();
     this.addCompany = this.formbuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],

@@ -146,16 +146,17 @@
         class="dropdown-toggle">
         <span class="title"><i class="fa fa-book" style="margin-left: -5px"></i></span>Accounts Panels</a>
       <ul class="collapse list-unstyled" id="checkers">
-        <li *ngIf="checkPermission('Accounts Checker Panel')">
-          <a routerLink="accounts-checker-panel" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
-              aria-hidden="true"></i>Account Checker
-            Panel</a>
-        </li>
         <li *ngIf="checkPermission('Accounts Maker Panel')">
           <a routerLink="accounts-maker-panel" data-toggle="collapse" aria-expanded="false"><i
               class="fas fa-address-card" aria-hidden="true"></i>Account Maker
             Panel</a>
         </li>
+        <li *ngIf="checkPermission('Accounts Checker Panel')">
+          <a routerLink="accounts-checker-panel" data-toggle="collapse" aria-expanded="false"><i class="fa fa-diamond"
+              aria-hidden="true"></i>Account Checker
+            Panel</a>
+        </li>
+
       </ul>
     </li>
     <li *ngIf="checkUpperPermission('BT Approval', 'Compliance Panel', 'Final BT Approval', 'Agent Approval')">

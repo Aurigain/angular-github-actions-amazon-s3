@@ -3,7 +3,8 @@
     <div class="col-xl-12 col-lg-12 col-md-12">
       <div class="widget bg-white h-100">
         <div class="widget-header">
-          <div class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left  ml-5 pt-3">
+          <div
+            class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left  ml-5 pt-3">
             <h3> Super Admin Dashboard</h3>
           </div>
         </div>
@@ -137,6 +138,18 @@
                       <small class="text-danger" *ngIf="street.errors?.['required']"> Company street is
                         required</small><br>
 
+                    </div>
+                  </div>
+                  <p><strong>Allowed Loan Types</strong></p>
+                  <div class="row" *ngFor="let loantype of loanTypes let i = index">
+                    <div class="col-md-5">
+                      <label class="form-check-label" for="dashboard">
+                        {{loantype?.loan}}
+                      </label>
+                    </div>
+                    <div class="col-md-5">
+                      <input class="form-check-input largerCheckBox" type="checkbox"
+                        (change)="selectUnselectSingleLoanId(loantype?.id, $event)" value="" id="{{loantype?.id}}">
                     </div>
                   </div>
                 </div>
