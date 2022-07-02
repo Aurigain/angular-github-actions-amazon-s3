@@ -74,12 +74,14 @@
                       <td>{{user?.lead?.phonenumber}}</td>
                       <td>{{user?.loan_type?.loan_type | titlecase}}</td>
                       <td>{{user?.created_at | date: 'mediumDate'}}</td>
-                      <td>{{user?.lead?.source}}</td>
+                      <td>{{user?.lead?.source | titlecase}}</td>
+
                       <td *ngIf="!user?.lead?.is_approved">New</td>
                       <td *ngIf="user?.lead?.is_approved && !user?.lead?.fully_approved">Pending</td>
                       <td *ngIf="user?.lead?.is_approved && user?.lead?.fully_approved">Approved</td>
+                      <td *ngIf="!user?.lead?.approved_by">None</td>
                       <td *ngIf="user?.lead?.approved_by">{{user?.lead?.approved_by?.full_name}}</td>
-                      <td></td>
+
                       <td>
                         <a
                         class="booking"

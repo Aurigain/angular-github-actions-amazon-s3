@@ -64,6 +64,7 @@ export class AccountsMakerPanelDetailsComponent implements OnInit {
     this.misc.makerUpdate(formData).subscribe(
       data => {
         console.log(data);
+        this.toastr.success("Lead Moved to Checker", "Success")
       },
       error=>{
         this.toastr.error(error['message']['message'] ,"Error")

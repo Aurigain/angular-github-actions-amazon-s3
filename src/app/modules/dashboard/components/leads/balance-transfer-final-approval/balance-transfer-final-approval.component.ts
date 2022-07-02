@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MiscellaneousService } from 'src/app/core/services/miscellaneous.service';
 
@@ -18,7 +18,8 @@ export class BalanceTransferFinalApprovalComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private misc: MiscellaneousService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -75,9 +76,10 @@ export class BalanceTransferFinalApprovalComponent implements OnInit {
       data => {
         console.log(data);
         this.toastr.success("Status Updated Sucessfully", "Success")
+        this.router.navigate(['dashboard/final-approval'])
       },
       error => {
-        console.log(error);
+        this.toastr.error(error['message'], "Error")
       }
     )
   }

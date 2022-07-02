@@ -11,7 +11,7 @@ import { MiscellaneousService } from 'src/app/core/services/miscellaneous.servic
 export class AccountsCheckerPanelDetailsComponent implements OnInit {
   checkerLeadList;
   currentUserId:number;
-  makerDetail;
+  checkerDetail;
   markStatus = "not uploaded";
   profileData;
   accountNumber;
@@ -27,10 +27,10 @@ export class AccountsCheckerPanelDetailsComponent implements OnInit {
     this.currentUserId = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log(this.currentUserId);
 
-    this.fetchMakerList();
+    this.fetchCheckerList();
   }
 
-  fetchMakerList() {
+  fetchCheckerList() {
     this.misc.fetchCheckerList().subscribe(
       data => {
         console.log(data);
@@ -38,7 +38,7 @@ export class AccountsCheckerPanelDetailsComponent implements OnInit {
         for(let i = 0; i < this.checkerLeadList.length; i++){
           if(this.checkerLeadList[i]['lead']['id']=== this.currentUserId){
             console.log("matched")
-            this.makerDetail = this.checkerLeadList[i];
+            this.checkerDetail = this.checkerLeadList[i];
           }
         }
       }
@@ -47,7 +47,7 @@ export class AccountsCheckerPanelDetailsComponent implements OnInit {
 
   submitChecker(){
     let formData ={
-      lead: this.makerDetail['lead']['id'],
+      lead: this.checkerDetail['lead']['id'],
       final_status: "True",
       account_number: this.accountNumber,
     }
@@ -55,7 +55,7 @@ export class AccountsCheckerPanelDetailsComponent implements OnInit {
     this.misc.checkerUpdate(formData).subscribe(
       data => {
         console.log(data);
-        this.toastr.success("Success")
+        this.toastr.success(data['message'],"Success")
       },
       error=>{
         this.toastr.error(error['message']['message'] ,"Error")

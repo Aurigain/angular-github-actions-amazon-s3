@@ -41,7 +41,8 @@ export class CompliancePanelDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private misc: MiscellaneousService,
-    private networkRequest: NetworkRequestService
+    private networkRequest: NetworkRequestService,
+    private toastr: ToastrService
 
   ) {
     this.tabelData = [];
@@ -429,9 +430,10 @@ export class CompliancePanelDetailComponent implements OnInit {
     this.misc.balanceTransferPreFinalApproval(personalData).subscribe(
       data => {
         console.log(data);
+        this.toastr.success(data['message'], "Success!");
       },
       error => {
-        console.log(error);
+        this.toastr.success(error['message'], "Error!");
       }
     )
 
