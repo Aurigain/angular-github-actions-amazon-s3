@@ -335,9 +335,17 @@ export class CompliancePanelDetailComponent implements OnInit {
   }
 
   checkFinalStatus() {
-    if (this.nameChecker==='True' && this.addressChecker==='True' && this.photoChecker==='True') {
-      this.isPersonalDetailCorrect = true;
-      console.log(this.nameChecker, this.addressChecker, this.photoChecker);
+    if (this.leadDetails['loan_type']['loan_type'] === 'bt_internal') {
+      if (this.nameChecker === 'True' && this.photoChecker === 'True') {
+        this.isPersonalDetailCorrect = true;
+        console.log(this.nameChecker, this.photoChecker);
+      }
+    }
+    if (this.leadDetails['loan_type']['loan_type'] === 'bt_external') {
+      if (this.nameChecker === 'True' && this.addressChecker === 'True' && this.photoChecker === 'True') {
+        this.isPersonalDetailCorrect = true;
+        console.log(this.nameChecker, this.addressChecker, this.photoChecker);
+      }
     }
     if (this.existing_loan_status==='True') {
       this.isAccountTransferDetailCorrect = true;
@@ -393,6 +401,8 @@ export class CompliancePanelDetailComponent implements OnInit {
         lead: this.currentUserId,
         personal_status: nameChecker,
         personal_details_remark: nameRemark,
+        address_status: "True",
+        address_remark: "not provided",
         customer_image_status: photoChecker,
         customer_image_status_remark: photoRemark,
         existing_loan_status: existing_loan_status,
@@ -433,7 +443,7 @@ export class CompliancePanelDetailComponent implements OnInit {
         this.toastr.success(data['message'], "Success!");
       },
       error => {
-        this.toastr.success(error['message'], "Error!");
+        this.toastr.success(error['message']['message'], "Error!");
       }
     )
 

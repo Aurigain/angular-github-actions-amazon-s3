@@ -335,28 +335,28 @@ export class BalanceTransferApprovalComponent implements OnInit {
 
   checkFinalStatus() {
 
-    if(this.leadDetails['loan_type']['loan_type']==='bt_internal'){
-      if (this.nameChecker==='True' && this.photoChecker==='True') {
+    if (this.leadDetails['loan_type']['loan_type'] === 'bt_internal') {
+      if (this.nameChecker === 'True' && this.photoChecker === 'True') {
         this.isPersonalDetailCorrect = true;
         console.log(this.nameChecker, this.photoChecker);
       }
     }
-    if(this.leadDetails['loan_type']['loan_type']==='bt_external'){
-      if (this.nameChecker==='True' && this.addressChecker==='True' && this.photoChecker==='True') {
+    if (this.leadDetails['loan_type']['loan_type'] === 'bt_external') {
+      if (this.nameChecker === 'True' && this.addressChecker === 'True' && this.photoChecker === 'True') {
         this.isPersonalDetailCorrect = true;
         console.log(this.nameChecker, this.addressChecker, this.photoChecker);
       }
     }
-    if (this.existing_loan_status==='True') {
+    if (this.existing_loan_status === 'True') {
       this.isAccountTransferDetailCorrect = true;
     }
-    if (this.fund_transfer_status==='True') {
+    if (this.fund_transfer_status === 'True') {
       this.isFundingDetailCorrect = true;
     }
-    if (this.appointment_status==='True') {
+    if (this.appointment_status === 'True') {
       this.isDocumentDetailCorrect = true;
     }
-    if (this.agreement_status==='True') {
+    if (this.agreement_status === 'True') {
       this.isAppointmentDetailCorrect = true;
     }
   }
@@ -396,12 +396,14 @@ export class BalanceTransferApprovalComponent implements OnInit {
     const agreement_remark = this.agreement_remark;
 
     let personalData;
-    if(this.leadDetails['loan_type']['loan_type'] === 'bt_internal'){
+    if (this.leadDetails['loan_type']['loan_type'] === 'bt_internal') {
       personalData = {
         lead: this.currentUserId,
         personal_status: nameChecker,
         personal_details_remark: nameRemark,
         customer_image_status: photoChecker,
+        address_status: "True",
+        address_remark: "not available",
         customer_image_status_remark: photoRemark,
         existing_loan_status: existing_loan_status,
         existing_loan_remark: existing_loan_remark,
@@ -415,7 +417,7 @@ export class BalanceTransferApprovalComponent implements OnInit {
     }
     else {
 
-      if(this.accountTransferDetails['account_type'] === 'existing'){
+      if (this.accountTransferDetails['account_type'] === 'existing') {
         personalData = {
           lead: this.currentUserId,
           personal_status: nameChecker,
@@ -467,7 +469,7 @@ export class BalanceTransferApprovalComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.toastr.error(error['message'], "Error")
+        this.toastr.error(error['message']['message'], "Error")
       }
     )
 
