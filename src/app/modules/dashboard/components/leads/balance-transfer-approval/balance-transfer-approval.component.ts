@@ -334,9 +334,18 @@ export class BalanceTransferApprovalComponent implements OnInit {
   }
 
   checkFinalStatus() {
-    if (this.nameChecker==='True' && this.addressChecker==='True' && this.photoChecker==='True') {
-      this.isPersonalDetailCorrect = true;
-      console.log(this.nameChecker, this.addressChecker, this.photoChecker);
+
+    if(this.leadDetails['loan_type']['loan_type']==='bt_internal'){
+      if (this.nameChecker==='True' && this.photoChecker==='True') {
+        this.isPersonalDetailCorrect = true;
+        console.log(this.nameChecker, this.photoChecker);
+      }
+    }
+    if(this.leadDetails['loan_type']['loan_type']==='bt_external'){
+      if (this.nameChecker==='True' && this.addressChecker==='True' && this.photoChecker==='True') {
+        this.isPersonalDetailCorrect = true;
+        console.log(this.nameChecker, this.addressChecker, this.photoChecker);
+      }
     }
     if (this.existing_loan_status==='True') {
       this.isAccountTransferDetailCorrect = true;
