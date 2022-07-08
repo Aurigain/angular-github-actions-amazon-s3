@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -66,7 +66,14 @@ export class LoginService {
 
   searchBank(ifscCode) {
     // return this.http.get(`${this.constsvc.fetchBranch}?ifsc=${ifscCode}`)
-    return this.http.get(`https://ifsc.razorpay.com/${ifscCode}`)
+
+    let httpOptions = {
+      headers: new HttpHeaders({
+        skip: "true",
+        Accept: '*/*',
+      })
+    };
+    return this.http.get(`https://ifsc.razorpay.com/${ifscCode}`, httpOptions)
       .pipe(
         catchError(this.errorHandler.handleError)
       );

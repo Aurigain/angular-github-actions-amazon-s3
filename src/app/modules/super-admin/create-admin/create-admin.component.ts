@@ -264,15 +264,17 @@ export class CreateAdminComponent implements OnInit {
       this.loginservice.searchBank(ifscCode)
         .subscribe(
           data => {
-            this.fetchBranchDetail = data[0];
+            // console.log(data);
+            this.fetchBranchDetail = data;
             console.log(this.fetchBranchDetail)
             this.bankDetails.patchValue({
-              bank: this.fetchBranchDetail['bank']['name'],
-              branch: this.fetchBranchDetail['name']
+              bank: this.fetchBranchDetail['BANK'],
+              branch: this.fetchBranchDetail['BRANCH']
             })
           },
           error => {
-            console.log("Cannot Find Bank")
+            // console.log("")
+            this.toastr.error("Cannot Find Bank, Check the IFSC code again")
           }
         )
     }
@@ -350,8 +352,8 @@ export class CreateAdminComponent implements OnInit {
     const profile_image = this.profile_image;
 
 
-    const bank = this.fetchBranchDetail['bank']['id'];
-    const branch = this.fetchBranchDetail['id'];
+    // const bank = this.fetchBranchDetail['bank']['id'];
+    // const branch = this.fetchBranchDetail['id'];
     const ifsc_code = this.bankDetails.value.ifsc_code;
     const cancelled_cheque = this.cancelled_cheque;
 
@@ -404,8 +406,8 @@ export class CreateAdminComponent implements OnInit {
       },
       bank_details: {
         account_number: account_number,
-        id: bank,
-        branch: branch,
+        // id: bank,
+        // branch: branch,
         ifsc_code: ifsc_code,
         cancelled_cheque: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K"
       },

@@ -40,11 +40,11 @@ export class PartnerUsComponent implements OnInit {
   successForm: any = [];
   formCompleted: boolean = false;
   qualificationList: any;
-  aadhar_front_image:File;
-  aadhar_back_image:File;
-  pan_image:File;
-  cancelled_cheque:File;
-  profile_image:File;
+  aadhar_front_image: File;
+  aadhar_back_image: File;
+  pan_image: File;
+  cancelled_cheque: File;
+  profile_image: File;
   fetchBranchDetail;
   constructor(
     private formbuilder: FormBuilder,
@@ -146,15 +146,17 @@ export class PartnerUsComponent implements OnInit {
       this.loginservice.searchBank(ifscCode)
         .subscribe(
           data => {
-            this.fetchBranchDetail= data[0];
+            // console.log(data);
+            this.fetchBranchDetail = data;
             console.log(this.fetchBranchDetail)
             this.bankDetailForm.patchValue({
-              bankName: this.fetchBranchDetail['bank']['name'],
-              branchName: this.fetchBranchDetail['name']
+              bank: this.fetchBranchDetail['BANK'],
+              branch: this.fetchBranchDetail['BRANCH']
             })
           },
           error => {
-            console.log("Cannot Find Bank")
+            // console.log("")
+            this.toastr.error("Cannot Find Bank, Check the IFSC code again")
           }
         )
     }
@@ -196,7 +198,7 @@ export class PartnerUsComponent implements OnInit {
 
     console.log(pinCode.toString().length);
 
-    if(pinCode.toString().length == 6) {
+    if (pinCode.toString().length == 6) {
       this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${pinCode}`).subscribe(
         data => {
           console.log("internal data is", data['data']);
@@ -219,16 +221,16 @@ export class PartnerUsComponent implements OnInit {
       this.aadhar_front_image = file;
     }
     else if (event.target.id === 'aadhar_back_image') {
-    this.aadhar_back_image = file;
+      this.aadhar_back_image = file;
     }
     else if (event.target.id === 'pan_image') {
-    this.pan_image = file;
+      this.pan_image = file;
     }
     else if (event.target.id === 'cancelled_cheque') {
-    this.cancelled_cheque = file;
+      this.cancelled_cheque = file;
     }
     else if (event.target.id === 'profile_image') {
-    this.profile_image = file;
+      this.profile_image = file;
     }
     // this.convertToBase64(id, file);
   }
@@ -295,12 +297,12 @@ export class PartnerUsComponent implements OnInit {
     const panNumber = this.kycDetailForm.value.panNumber;
     const occupation = this.kycDetailForm.value.occupation;
 
-    const bankName = this.fetchBranchDetail['bank']['id'];
+    // const bankName = this.fetchBranchDetail['bank']['id'];
     const accountNumber = this.bankDetailForm.value.accountNumber;
-    const ifscCode = this.fetchBranchDetail['ifsc_code'];
-    const branchName = this.fetchBranchDetail['id'];
+    const ifscCode = this.ifscCode.value.ifscCode;
+    // const branchName = this.fetchBranchDetail['id'];
 
-    const profile_image =  this.profile_image;
+    const profile_image = this.profile_image;
     const aadhar_front_image = this.aadhar_front_image;
     const aadhar_back_image = this.aadhar_back_image;
     const pan_image = this.pan_image;
@@ -338,8 +340,8 @@ export class PartnerUsComponent implements OnInit {
       },
       bank_details: {
         account_number: accountNumber,
-        id: bankName,
-        branch: branchName,
+        // id: bankName,
+        // branch: branchName,
         ifsc_code: ifscCode,
         cancelled_cheque: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K"
       },
@@ -356,10 +358,10 @@ export class PartnerUsComponent implements OnInit {
           let formData = new FormData();
           formData.append("agent", agentId)
           formData.append("profile", profile_image)
-          formData.append("aadhar_front",aadhar_front_image)
-          formData.append("aadhar_back",aadhar_back_image)
-          formData.append("pan",pan_image)
-          formData.append("cancelled_cheque",cancelled_cheque)
+          formData.append("aadhar_front", aadhar_front_image)
+          formData.append("aadhar_back", aadhar_back_image)
+          formData.append("pan", pan_image)
+          formData.append("cancelled_cheque", cancelled_cheque)
           this.misc.uploadAgentImages(formData).subscribe(
             data => {
               console.log(data);
@@ -543,11 +545,10 @@ export class PartnerUsComponent implements OnInit {
 
     this.misc.sendOtp(phoneNumber).subscribe(
       data => {
-        if(data['data']['error'])
-        {
+        if (data['data']['error']) {
           this.toastr.error(data['data']['detail'], "Error!")
         }
-        if(!data['data']['error']){
+        if (!data['data']['error']) {
           this.isAuthenticationForm = false;
           this.isOtpForm = true;
           this.toastr.success("OTP sent successfully", "Success!");

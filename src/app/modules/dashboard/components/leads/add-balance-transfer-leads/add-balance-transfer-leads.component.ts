@@ -430,7 +430,7 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
     const appointment_time = this.appointmentDetailsForm.value.appointment_time;
     const ifsc = this.appointmentDetailsForm.value.ifsc;
 
-    let appointmentDetailData ={
+    let appointmentDetailData = {
       appointment_date: appointment_date,
       appointment_time: appointment_time,
       ifsc: ifsc,
@@ -476,15 +476,17 @@ export class AddBalanceTransferLeadsComponent implements OnInit {
       this.loginservice.searchBank(ifscCode)
         .subscribe(
           data => {
-            this.fetchBranchDetail = data[0];
+            // console.log(data);
+            this.fetchBranchDetail = data;
             console.log(this.fetchBranchDetail)
             this.appointmentDetailsForm.patchValue({
-              bank: this.fetchBranchDetail['bank']['name'],
-              branch: this.fetchBranchDetail['name']
+              bank: this.fetchBranchDetail['BANK'],
+              branch: this.fetchBranchDetail['BRANCH']
             })
           },
           error => {
-            console.log("Cannot Find Bank")
+            // console.log("")
+            this.toastr.error("Cannot Find Bank, Check the IFSC code again")
           }
         )
     }

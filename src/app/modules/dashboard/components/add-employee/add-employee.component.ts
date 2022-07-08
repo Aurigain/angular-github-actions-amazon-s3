@@ -243,18 +243,13 @@ export class AddEmployeeComponent implements OnInit {
       this.loginservice.searchBank(ifscCode)
         .subscribe(
           data => {
-             //@ts-ignore
-            if (data.length == 0) {
-              this.toastr.error("Cannot Find IFSC Code Detail")
-            }
-            else {
-              this.fetchBranchDetail = data[0];
-              console.log(this.fetchBranchDetail)
-              this.bankDetails.patchValue({
-                bank: this.fetchBranchDetail['BANK'],
-                branch: this.fetchBranchDetail['BRANCH']
-              })
-            }
+            // console.log(data);
+            this.fetchBranchDetail = data;
+            console.log(this.fetchBranchDetail)
+            this.bankDetails.patchValue({
+              bank: this.fetchBranchDetail['BANK'],
+              branch: this.fetchBranchDetail['BRANCH']
+            })
           },
           error => {
             // console.log("")
@@ -336,8 +331,8 @@ export class AddEmployeeComponent implements OnInit {
     const profile_image = this.profile_image;
 
 
-    const bank = this.fetchBranchDetail['bank']['id'];
-    const branch = this.fetchBranchDetail['id'];
+    // const bank = this.fetchBranchDetail['bank']['id'];
+    // const branch = this.fetchBranchDetail['id'];
     const ifsc_code = this.bankDetails.value.ifsc_code;
     const cancelled_cheque = this.cancelled_cheque;
 
@@ -392,8 +387,8 @@ export class AddEmployeeComponent implements OnInit {
       },
       bank_details: {
         account_number: account_number,
-        id: bank,
-        branch: branch,
+        // id: bank,
+        // branch: branch,
         ifsc_code: ifsc_code,
         cancelled_cheque: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K"
       },

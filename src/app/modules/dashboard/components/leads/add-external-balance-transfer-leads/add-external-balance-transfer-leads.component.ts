@@ -165,16 +165,19 @@ export class AddExternalBalanceTransferLeadsComponent implements OnInit {
       this.loginservice.searchBank(ifscCode)
         .subscribe(
           data => {
-            this.fetchBranchDetail = data[0];
+            // console.log(data);
+            this.fetchBranchDetail = data;
             console.log(this.fetchBranchDetail)
             this.appointmentDetailsForm.patchValue({
-              bank: this.fetchBranchDetail['bank']['name'],
-              branch: this.fetchBranchDetail['name']
+              bank: this.fetchBranchDetail['BANK'],
+              branch: this.fetchBranchDetail['BRANCH']
             })
           },
           error => {
-            console.log("Cannot Find Bank")
+            // console.log("")
+            this.toastr.error("Cannot Find Bank, Check the IFSC code again")
           }
+
         )
     }
   }

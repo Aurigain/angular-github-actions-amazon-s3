@@ -492,21 +492,17 @@ export class EmployeeDetailComponent implements OnInit {
       this.loginservice.searchBank(ifscCode)
         .subscribe(
           data => {
-            //@ts-ignore
-            if (data.length == 0) {
-              this.toastr.error("Cannot Find IFSC Code Detail")
-            }
-            else {
-              this.fetchBranchDetail = data[0];
-              console.log(this.fetchBranchDetail)
-              this.bankDetails.patchValue({
-                bank: this.fetchBranchDetail['bank']['name'],
-                branch: this.fetchBranchDetail['name']
-              })
-            }
+            // console.log(data);
+            this.fetchBranchDetail = data;
+            console.log(this.fetchBranchDetail)
+            this.bankDetails.patchValue({
+              bank: this.fetchBranchDetail['BANK'],
+              branch: this.fetchBranchDetail['BRANCH']
+            })
           },
           error => {
-            this.toastr.error(error['message']['error'], "Error")
+            // console.log("")
+            this.toastr.error("Cannot Find Bank, Check the IFSC code again")
           }
         )
     }
@@ -582,8 +578,8 @@ export class EmployeeDetailComponent implements OnInit {
     const dob = this.personalDetails.value.dob;
     const email = this.personalDetails.value.email;
 
-    const bank = this.fetchBranchDetail['bank']['id'];
-    const branch = this.fetchBranchDetail['id'];
+    // const bank = this.fetchBranchDetail['bank']['id'];
+    // const branch = this.fetchBranchDetail['id'];
     const ifsc_code = this.bankDetails.value.ifsc_code;
     const cancelled_cheque = this.cancelled_cheque;
     const account_number = this.bankDetails.value.account_number;
@@ -635,8 +631,8 @@ export class EmployeeDetailComponent implements OnInit {
       },
       bank_details: {
         account_number: account_number,
-        id: bank,
-        branch: branch,
+        // id: bank,
+        // branch: branch,
         ifsc_code: ifsc_code,
         cancelled_cheque: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAChYAAAJYCAYAAACE1k6K"
       },
