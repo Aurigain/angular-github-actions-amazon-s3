@@ -83,7 +83,8 @@
                     <div ngbDropdown class="menu">
                       <button ngbDropdownToggle><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
                       <div ngbDropdownMenu class="sub-menu">
-                        <a ngbDropdownItem [routerLink]="['detail', user.id]" class="edit"><i class="fas fa-edit pr-1"></i>View Lead</a>
+                        <a ngbDropdownItem
+                        [routerLink]="['detail', user?.lead?.id]" class="edit"><i class="fas fa-edit pr-1"></i>View Lead</a>
                         <a ngbDropdownItem [routerLink]="['add-update', user?.lead?.id]" class="delete"><i class="fas fa-edit pr-1"></i>Update Lead</a>
                         <!-- <a ngbDropdownItem class="delete"><i class="fas fa-eye pr-1"></i>Delete User</a> -->
                         <!-- <a ngbDropdownItem class="delete" [routerLink]="['detail', user.Id]"><i class="fas fa-eye pr-1"></i>Detail</a>

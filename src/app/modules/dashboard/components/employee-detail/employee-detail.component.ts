@@ -67,7 +67,7 @@ export class EmployeeDetailComponent implements OnInit {
         console.log("qualificationList", data['data']);
       },
       error => {
-        this.toastr.error(error['message']['error'] ,"Error")
+        this.toastr.error(error['message']['error'], "Error")
       }
     );
   }
@@ -81,7 +81,7 @@ export class EmployeeDetailComponent implements OnInit {
         this.getAllUserDetails(this.username);
       },
       error => {
-        this.toastr.error(error['message']['error'] ,"Error")
+        this.toastr.error(error['message']['error'], "Error")
       }
     )
   }
@@ -93,7 +93,7 @@ export class EmployeeDetailComponent implements OnInit {
         console.log("emp list: ", this.employeelist)
       },
       error => {
-        this.toastr.error(error['message']['error'] ,"Error")
+        this.toastr.error(error['message']['error'], "Error")
       }
     )
   }
@@ -127,7 +127,7 @@ export class EmployeeDetailComponent implements OnInit {
         }
       },
       error => {
-        this.toastr.error(error['message']['error'] ,"Error")
+        this.toastr.error(error['message']['error'], "Error")
       })
     this.misc.fetchAgentKycByUserName(username).subscribe(
       data => {
@@ -141,7 +141,7 @@ export class EmployeeDetailComponent implements OnInit {
         })
       },
       error => {
-        this.toastr.error(error['message']['error'] ,"Error")
+        this.toastr.error(error['message']['error'], "Error")
       }
     )
     this.misc.fetchAgentAddressByUserName(username).subscribe(
@@ -157,7 +157,7 @@ export class EmployeeDetailComponent implements OnInit {
 
       },
       error => {
-        this.toastr.error(error['message']['error'] ,"Error")
+        this.toastr.error(error['message']['error'], "Error")
       }
     )
     this.misc.fetchAgentBankByUserName(username).subscribe(
@@ -173,7 +173,7 @@ export class EmployeeDetailComponent implements OnInit {
         this.searchIFSC();
       },
       error => {
-        this.toastr.error(error['message']['error'] ,"Error")
+        this.toastr.error(error['message']['error'], "Error")
       }
     )
   }
@@ -192,6 +192,7 @@ export class EmployeeDetailComponent implements OnInit {
       phone_number: ['', [Validators.required,]],
       role: ['', [Validators.required,]],
       reporting_person: ['', [Validators.required,]],
+      reporting_person_role_group: ['', [Validators.required,]],
       profile_image: ['', [Validators.required]],
       password: ['', [Validators.required]],
       gender: ['', [Validators.required]],
@@ -466,15 +467,19 @@ export class EmployeeDetailComponent implements OnInit {
       this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${pincode}`).subscribe(
         data => {
           console.log("internal data is", data['data']);
-          this.pinCodeDetail = data['data'][0];
-          this.addressDetailForm.patchValue({
-            city: this.pinCodeDetail['city'],
-            state: this.pinCodeDetail['state'],
-          })
-
+          if (data['data'].length == 0) {
+            this.toastr.error("Cannot Find PinCode Detail")
+          }
+          else {
+            this.pinCodeDetail = data['data'][0];
+            this.addressDetailForm.patchValue({
+              city: this.pinCodeDetail['city'],
+              state: this.pinCodeDetail['state'],
+            })
+          }
         },
         error => {
-          this.toastr.error(error['message']['error'] ,"Error")
+          this.toastr.error(error['message']['error'], "Error")
         }
       );
     }
@@ -487,15 +492,21 @@ export class EmployeeDetailComponent implements OnInit {
       this.loginservice.searchBank(ifscCode)
         .subscribe(
           data => {
-            this.fetchBranchDetail = data[0];
-            console.log(this.fetchBranchDetail)
-            this.bankDetails.patchValue({
-              bank: this.fetchBranchDetail['bank']['name'],
-              branch: this.fetchBranchDetail['name']
-            })
+            //@ts-ignore
+            if (data.length == 0) {
+              this.toastr.error("Cannot Find IFSC Code Detail")
+            }
+            else {
+              this.fetchBranchDetail = data[0];
+              console.log(this.fetchBranchDetail)
+              this.bankDetails.patchValue({
+                bank: this.fetchBranchDetail['bank']['name'],
+                branch: this.fetchBranchDetail['name']
+              })
+            }
           },
           error => {
-            this.toastr.error(error['message']['error'] ,"Error")
+            this.toastr.error(error['message']['error'], "Error")
           }
         )
     }
@@ -649,12 +660,12 @@ export class EmployeeDetailComponent implements OnInit {
             console.log(data);
           },
           error => {
-            this.toastr.error(error['message']['error'] ,"Error")
+            this.toastr.error(error['message']['error'], "Error")
           }
         )
       },
       error => {
-        this.toastr.error(error['message']['error'] ,"Error")
+        this.toastr.error(error['message']['error'], "Error")
       }
     )
   }

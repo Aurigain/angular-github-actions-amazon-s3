@@ -147,12 +147,20 @@
                         <div class="input-group mb-2">
                           <div class="custom-file">
                             <input type="file" (change)="onChange($event)" id="profile_image" class="custom-file-input"
-                              required />
+                              formControlName="profile_image" required />
                             <label class="custom-file-label" for="profile_image" *ngIf="!profile_image">Choose
                               file</label>
                             <label class="custom-file-label" for="profile_image"
                               *ngIf="profile_image">{{profile_image?.name}}</label>
                           </div>
+
+                        </div>
+                        <div
+                          *ngIf="personalDetails.get('profile_image').invalid && personalDetails.get('profile_image').touched"
+                          class="custom-invalid-feedback" style="margin-top: 5px;">
+                          <small class="text-danger"
+                            *ngIf="personalDetails.get('profile_image').errors?.['required']">Profile photo
+                            is required</small>
                         </div>
                       </div>
                     </div>
@@ -172,10 +180,18 @@
                       </div>
                       <div class="form-group col-md-4">
                         <label for="inputDate">Reporting Person Role Group</label>
-                        <select id="inputRole" class="form-control" (change)="fetchReportingPersonbyRole($event)">
+                        <select id="inputRole" class="form-control" (change)="fetchReportingPersonbyRole($event)"
+                          formControlName="reporting_person_role_group">
                           <option value="" selected>Select Role</option>
                           <option *ngFor="let role of Roles" [value]="role?.id">{{role.role_name |titlecase}}</option>
                         </select>
+                        <div
+                          *ngIf="personalDetails.get('reporting_person_role_group').invalid && personalDetails.get('reporting_person_role_group').touched"
+                          class="custom-invalid-feedback" style="margin-top: 5px;">
+                          <small class="text-danger"
+                            *ngIf="personalDetails.get('reporting_person_role_group').errors?.['required']">Reporting
+                            Person Role Group is required</small>
+                        </div>
                       </div>
                       <div class="form-group col-md-4" *ngIf="isReportingPerson">
                         <label for="inputDate">Reporting Person</label>
@@ -205,8 +221,8 @@
 
                   <div class="form-btn">
 
-                    <a (click)="savePersonalDetails()"><button type="submit" class="btn btn-primary"><i
-                          class="fa fa-check"></i> Next</button></a>
+                    <a (click)="savePersonalDetails()"><button [disabled]="!personalDetails.valid" type="submit"
+                        class="btn btn-primary"><i class="fa fa-check"></i> Next</button></a>
                   </div>
                 </div>
               </div>
@@ -262,12 +278,19 @@
                         <div class="input-group mb-2">
                           <div class="custom-file">
                             <input type="file" (change)="onChange($event)" id="cancelled_cheque"
-                              class="custom-file-input" />
+                              class="custom-file-input" formControlName="cancelled_cheque" />
                             <label class="custom-file-label" for="cancelled_cheque" *ngIf="!cancelled_cheque">Choose
                               file</label>
                             <label class="custom-file-label" for="cancelled_cheque"
                               *ngIf="cancelled_cheque">{{cancelled_cheque?.name}}</label>
                           </div>
+                        </div>
+                        <div
+                          *ngIf="bankDetails.get('cancelled_cheque').invalid && bankDetails.get('cancelled_cheque').touched"
+                          class="custom-invalid-feedback" style="margin-top: 5px;">
+                          <small class="text-danger"
+                            *ngIf="bankDetails.get('cancelled_cheque').errors?.['required']">Cancelled cheque is
+                            required</small>
                         </div>
                       </div>
                     </div>
@@ -280,8 +303,8 @@
                   </div>
                   <div class="form-btn">
 
-                    <a (click)="saveBankDetails()"><button type="submit" class="btn btn-primary"><i
-                          class="fa fa-arrow-right"></i> Next</button></a>
+                    <a (click)="saveBankDetails()"><button [disabled]="!bankDetails.valid" type="submit"
+                        class="btn btn-primary"><i class="fa fa-arrow-right"></i> Next</button></a>
                   </div>
                 </div>
               </div>
@@ -353,12 +376,20 @@
                         <div class="input-group mb-2">
                           <div class="custom-file">
                             <input type="file" (change)="onChange($event)" id="aadhar_front_image"
-                              class="custom-file-input" />
+                              class="custom-file-input" formControlName="aadhar_front_image" />
                             <label class="custom-file-label" for="aadhar_front_image" *ngIf="!aadhar_front_image">Choose
                               file</label>
                             <label class="custom-file-label" for="aadhar_front_image"
                               *ngIf="aadhar_front_image">{{aadhar_front_image?.name}}</label>
                           </div>
+
+                        </div>
+                        <div
+                          *ngIf="kycDetailForm.get('aadhar_front_image').invalid && kycDetailForm.get('aadhar_front_image').touched"
+                          class="custom-invalid-feedback" style="margin-top: 5px;">
+                          <small class="text-danger"
+                            *ngIf="kycDetailForm.get('aadhar_front_image').errors?.['required']">Aadhar front image
+                            is required</small>
                         </div>
                       </div>
 
@@ -367,12 +398,19 @@
                         <div class="input-group mb-2">
                           <div class="custom-file">
                             <input type="file" (change)="onChange($event)" id="aadhar_back_image"
-                              class="custom-file-input" />
+                              class="custom-file-input" formControlName="aadhar_back_image" />
                             <label class="custom-file-label" for="aadharback" *ngIf="!aadhar_back_image">Choose
                               file</label>
                             <label class="custom-file-label" for="aadharback"
                               *ngIf="aadhar_back_image">{{aadhar_back_image?.name}}</label>
                           </div>
+                        </div>
+                        <div
+                          *ngIf="kycDetailForm.get('aadhar_back_image').invalid && kycDetailForm.get('aadhar_back_image').touched"
+                          class="custom-invalid-feedback" style="margin-top: 5px;">
+                          <small class="text-danger"
+                            *ngIf="kycDetailForm.get('aadhar_back_image').errors?.['required']">Aadhar back image
+                            is required</small>
                         </div>
                       </div>
 
@@ -380,10 +418,16 @@
                         <label class="control-label"> Pan Card</label>
                         <div class="input-group mb-2">
                           <div class="custom-file">
-                            <input type="file" (change)="onChange($event)" class="custom-file-input" id="pan_image" />
+                            <input type="file" (change)="onChange($event)" class="custom-file-input" id="pan_image"
+                              formControlName="pan_image" />
                             <label class="custom-file-label" for="panimg" *ngIf="!pan_image">Choose file</label>
                             <label class="custom-file-label" for="panimg" *ngIf="pan_image">{{pan_image?.name}}</label>
                           </div>
+                        </div>
+                        <div *ngIf="kycDetailForm.get('pan_image').invalid && kycDetailForm.get('pan_image').touched"
+                          class="custom-invalid-feedback" style="margin-top: 5px;">
+                          <small class="text-danger" *ngIf="kycDetailForm.get('pan_image').errors?.['required']">Pan
+                            image is required</small>
                         </div>
                       </div>
                     </div>
@@ -396,8 +440,8 @@
                   </div>
                   <div class="form-btn">
 
-                    <a (click)="saveBankDetails()"><button type="submit" class="btn btn-primary"><i
-                          class="fa fa-arrow-right"></i> Next</button></a>
+                    <a (click)="saveBankDetails()"><button [disabled]="!kycDetailForm.valid" type="submit"
+                        class="btn btn-primary"><i class="fa fa-arrow-right"></i> Next</button></a>
                   </div>
                 </div>
               </div>
@@ -462,7 +506,8 @@
                   </div>
                   <div class="form-btn">
 
-                    <a (click)="saveForms()"><button type="submit" class="btn btn-success"><i class="fa fa-check"></i>
+                    <a (click)="saveForms()"><button [disabled]="!addressDetailForm.valid" type="submit"
+                        class="btn btn-success"><i class="fa fa-check"></i>
                         Submit</button></a>
                   </div>
                 </div>

@@ -68,13 +68,13 @@ export class AddEmployeeComponent implements OnInit {
   }
 
 
-  fetchAllEmployees(){
+  fetchAllEmployees() {
     this.misc.fetchAllEmployees().subscribe(
       data => {
         this.employeelist = data['data']
-        console.log("emp list: ",this.employeelist)
+        console.log("emp list: ", this.employeelist)
       },
-      error =>{
+      error => {
 
       }
     )
@@ -96,6 +96,7 @@ export class AddEmployeeComponent implements OnInit {
       phone_number: ['', [Validators.required,]],
       role: ['', [Validators.required,]],
       reporting_person: ['', [Validators.required,]],
+      reporting_person_role_group: ['', [Validators.required,]],
       profile_image: ['', [Validators.required]],
       password: ['', [Validators.required]],
       gender: ['', [Validators.required]],
@@ -201,11 +202,16 @@ export class AddEmployeeComponent implements OnInit {
       this.networkRequest.getWithHeaders(`/api/pincode/?pincode=${pincode}`).subscribe(
         data => {
           console.log("internal data is", data['data']);
-          this.pinCodeDetail = data['data'][0];
-          this.addressDetailForm.patchValue({
-            city: this.pinCodeDetail['city'],
-            state: this.pinCodeDetail['state'],
-          })
+          if (data['data'].length == 0) {
+            this.toastr.error("Cannot Find PinCode Detail")
+          }
+          else {
+            this.pinCodeDetail = data['data'][0];
+            this.addressDetailForm.patchValue({
+              city: this.pinCodeDetail['city'],
+              state: this.pinCodeDetail['state'],
+            })
+          }
         },
         error => {
           console.log("error", error);
@@ -215,11 +221,11 @@ export class AddEmployeeComponent implements OnInit {
   }
 
 
-  fetchReportingPersonbyRole(event){
+  fetchReportingPersonbyRole(event) {
     const id = event.target.value;
     console.log("iddd", id)
     this.misc.fetchReportingPersonbyRole(id).subscribe(
-      data =>{
+      data => {
         this.isReportingPerson = true;
         console.log("data", data);
         this.reportingPersonByRole = data
@@ -232,20 +238,27 @@ export class AddEmployeeComponent implements OnInit {
 
 
   searchIFSC() {
-    const ifscCode = this.bankDetails.value.ifsc_code;
+    const ifscCode = (this.bankDetails.value.ifsc_code).toUpperCase();
     if (ifscCode.length == 11) {
       this.loginservice.searchBank(ifscCode)
         .subscribe(
           data => {
-            this.fetchBranchDetail = data[0];
-            console.log(this.fetchBranchDetail)
-            this.bankDetails.patchValue({
-              bank: this.fetchBranchDetail['bank']['name'],
-              branch: this.fetchBranchDetail['name']
-            })
+             //@ts-ignore
+            if (data.length == 0) {
+              this.toastr.error("Cannot Find IFSC Code Detail")
+            }
+            else {
+              this.fetchBranchDetail = data[0];
+              console.log(this.fetchBranchDetail)
+              this.bankDetails.patchValue({
+                bank: this.fetchBranchDetail['bank']['name'],
+                branch: this.fetchBranchDetail['name']
+              })
+            }
           },
           error => {
-            console.log("Cannot Find Bank")
+            // console.log("")
+            this.toastr.error("Cannot Find Bank, Check the IFSC code again")
           }
         )
     }
@@ -257,16 +270,16 @@ export class AddEmployeeComponent implements OnInit {
       this.aadhar_front_image = file;
     }
     else if (event.target.id === 'aadhar_back_image') {
-    this.aadhar_back_image = file;
+      this.aadhar_back_image = file;
     }
     else if (event.target.id === 'pan_image') {
-    this.pan_image = file;
+      this.pan_image = file;
     }
     else if (event.target.id === 'cancelled_cheque') {
-    this.cancelled_cheque = file;
+      this.cancelled_cheque = file;
     }
     else if (event.target.id === 'profile_image') {
-    this.profile_image = file;
+      this.profile_image = file;
     }
     // this.convertToBase64(id, file);
   }
@@ -320,13 +333,13 @@ export class AddEmployeeComponent implements OnInit {
     const dob = this.personalDetails.value.dob;
     const email = this.personalDetails.value.email;
     // const profile_image =  (<HTMLInputElement>document.getElementById('profile_image')).files[0];
-    const profile_image =  this.profile_image;
+    const profile_image = this.profile_image;
 
 
     const bank = this.fetchBranchDetail['bank']['id'];
     const branch = this.fetchBranchDetail['id'];
     const ifsc_code = this.bankDetails.value.ifsc_code;
-    const cancelled_cheque  = this.cancelled_cheque;
+    const cancelled_cheque = this.cancelled_cheque;
 
     // (<HTMLInputElement>document.getElementById('pdf')).files[0];
     const account_number = this.bankDetails.value.account_number;
@@ -341,9 +354,9 @@ export class AddEmployeeComponent implements OnInit {
     const aadhar_number = this.kycDetailForm.value.aadhar_number;
     const occupation = this.kycDetailForm.value.occupation;
     const pan_number = this.kycDetailForm.value.pan_number;
-    const aadhar_front_image  = this.aadhar_front_image
+    const aadhar_front_image = this.aadhar_front_image
     const aadhar_back_image = this.aadhar_back_image
-    const pan_image  = this.pan_image
+    const pan_image = this.pan_image
 
 
     const userObj = {
@@ -395,10 +408,10 @@ export class AddEmployeeComponent implements OnInit {
         let formData = new FormData();
         formData.append("agent", agentId)
         formData.append("profile", profile_image)
-        formData.append("aadhar_front",aadhar_front_image)
-        formData.append("aadhar_back",aadhar_back_image)
-        formData.append("pan",pan_image)
-        formData.append("cancelled_cheque",cancelled_cheque)
+        formData.append("aadhar_front", aadhar_front_image)
+        formData.append("aadhar_back", aadhar_back_image)
+        formData.append("pan", pan_image)
+        formData.append("cancelled_cheque", cancelled_cheque)
         this.misc.uploadAgentImages(formData).subscribe(
           data => {
             console.log(data);
@@ -407,13 +420,13 @@ export class AddEmployeeComponent implements OnInit {
           error => {
 
             console.log("Error", error);
-            this.toastr.error(error['message']['error'] ,"Error")
+            this.toastr.error(error['message']['error'], "Error")
           }
         )
       },
       error => {
         console.log(error);
-        this.toastr.error(error['message']['error'] ,"Error")
+        this.toastr.error(error['message']['error'], "Error")
       }
     )
   }

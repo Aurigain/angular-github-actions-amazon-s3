@@ -93,7 +93,7 @@
                           *ngIf="personalDetails.get('phone_number').invalid && personalDetails.get('phone_number').touched"
                           class="custom-invalid-feedback" style="margin-top: 5px;">
                           <small class="text-danger"
-                            *ngIf="personalDetails.get('phone_number').errors?.['required']">Address
+                            *ngIf="personalDetails.get('phone_number').errors?.['required']">Phone number
                             is required</small>
                         </div>
                       </div>
@@ -209,12 +209,12 @@
 
                   <div class="form-btn">
 
-                    <a (click)="stepUp()"><button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>
+                    <a (click)="stepUp()"><button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right"></i>
                         Next</button></a>
                   </div>
 
                   <div class="form-btn">
-                    <a (click)="savePersonalDetails()"><button type="submit" class="btn btn-primary"><i
+                    <a (click)="savePersonalDetails()"><button type="submit" class="btn btn-success"><i
                           class="fa fa-check"></i> Update</button></a>
                   </div>
                 </div>
@@ -310,7 +310,7 @@
                   </div>
                   <div class="form-btn">
 
-                    <a (click)="saveBankDetail()"><button type="submit" class="btn btn-primary"><i
+                    <a (click)="saveBankDetail()"><button type="submit" class="btn btn-success"><i
                           class="fa fa-arrow-right"></i> Update & Next</button></a>
                   </div>
                 </div>
@@ -435,7 +435,7 @@
                   </div>
                   <div class="form-btn">
 
-                    <a (click)="saveKYCDetails()"><button type="submit" class="btn btn-primary"><i
+                    <a (click)="saveKYCDetails()"><button type="submit" class="btn btn-success"><i
                           class="fa fa-arrow-right"></i>Update & Next</button></a>
                   </div>
                 </div>

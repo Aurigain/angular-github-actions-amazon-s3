@@ -96,7 +96,8 @@ security_cheque_1_img
       weight_of_gold_grams: weightOfGold,
       how_soon_need_loan_in_days: dateOfLoan,
       source: "web",
-      loan_id: 1
+      loan_id: 1,
+      company: 6
     }
     console.log(detailFormData);
 
