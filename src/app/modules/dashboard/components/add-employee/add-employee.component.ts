@@ -251,8 +251,8 @@ export class AddEmployeeComponent implements OnInit {
               this.fetchBranchDetail = data[0];
               console.log(this.fetchBranchDetail)
               this.bankDetails.patchValue({
-                bank: this.fetchBranchDetail['bank']['name'],
-                branch: this.fetchBranchDetail['name']
+                bank: this.fetchBranchDetail['BANK'],
+                branch: this.fetchBranchDetail['BRANCH']
               })
             }
           },
