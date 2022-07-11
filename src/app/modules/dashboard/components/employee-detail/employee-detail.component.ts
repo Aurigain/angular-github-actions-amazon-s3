@@ -377,7 +377,7 @@ export class EmployeeDetailComponent implements OnInit {
 
     kycDetailData = {
       occupation: occupation,
-      // qualification: qualification,
+      qualification: qualification,
     }
 
     console.log(kycDetailData);

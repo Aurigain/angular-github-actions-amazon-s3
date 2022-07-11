@@ -199,6 +199,14 @@
                             required</small>
                         </div>
                       </div>
+                      <div class="form-group col-md-4" *ngIf="!isReportingPerson && profileData?.reporting_person">
+                        <label for="inputDate">Current Reporting Person</label>
+                        <p class="text-center mt-1">{{profileData?.reporting_person?.full_name}}</p>
+                      </div>
+                      <div class="form-group col-md-4" *ngIf="!isReportingPerson && !profileData?.reporting_person">
+                        <label for="inputDate">Current Reporting Person</label>
+                        <p class="text-center mt-1">No Reporting Person Assigned</p>
+                      </div>
 
 
                     </div>

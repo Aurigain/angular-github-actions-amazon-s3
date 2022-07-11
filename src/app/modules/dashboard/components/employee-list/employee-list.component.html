@@ -6,19 +6,20 @@
           <div class="row d-block d-sm-flex align-items-center justify-content-between text-center text-sm-left">
             <div>
               <nav class="custom-breadcrum">
-                <ol class="breadcrumb justify-content-center justify-content-sm-start" >
+                <ol class="breadcrumb justify-content-center justify-content-sm-start">
                   <li class="breadcrumb-item">
-                  <a routerlink="/dashboard" href="/dashboard">Home</a>
+                    <a routerlink="/dashboard" href="/dashboard">Home</a>
                   </li>
                   <li aria-current="page" class="breadcrumb-item active">
-                  Employee List
+                    Employee List
                   </li>
-              </ol>
+                </ol>
               </nav>
               <h1>Employee List Panel</h1>
 
             </div>
-            <a routerLink="../add-employee"><button class="btn btn-primary"><i class="fa fa-add mr-2"></i>Add New Employee</button></a>
+            <a routerLink="../add-employee"><button class="btn btn-primary"><i class="fa fa-add mr-2"></i>Add New
+                Employee</button></a>
           </div>
         </div>
 
@@ -72,7 +73,8 @@
                   <td>{{employee.pincode}}</td>
                   <td>DM</td>
                   <td>{{employee?.is_agent ? "Agent": "Employee"}}</td>
-                  <td><a [routerLink]="['detail', employee?.userid]"><button class="btn btn-primary">View/Edit</button></a></td>
+                  <td><a [routerLink]="['detail', employee?.userid]"><button
+                        class="btn btn-primary">View/Edit</button></a></td>
                   <!-- <td><select class="form-control">
                     <option value="">Status</option>
                     <option value="approve">Approve</option>
@@ -129,19 +131,22 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-danger" data-dismiss="modal"> <i class="fas fa-times pr-1"></i>Cancel</button>
-          <a (click)="changeStatus()"><button type="button" class="btn btn-look1"><i class="fas fa-check pr-1"></i>Update</button></a>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal"> <i
+              class="fas fa-times pr-1"></i>Cancel</button>
+          <a (click)="changeStatus()"><button type="button" class="btn btn-look1"><i
+                class="fas fa-check pr-1"></i>Update</button></a>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade m-5" style="margin-top: 5%;" id="appointmentBooking" data-backdrop="static" data-keyboard="false"
-    tabindex="-1" aria-labelledby="appointmentBookingLabel" aria-hidden="true">
+  <div class="modal fade m-5" style="margin-top: 5%;" id="appointmentBooking" data-backdrop="static"
+    data-keyboard="false" tabindex="-1" aria-labelledby="appointmentBookingLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-white" id="appointmentBookingLabel"><i class="far fa-clock pr-1"></i>Appointment Booking</h5>
+          <h5 class="modal-title text-white" id="appointmentBookingLabel"><i class="far fa-clock pr-1"></i>Appointment
+            Booking</h5>
           <!-- <span class="text-success ml-5 pt-1" *ngIf="successMsg">{{successMsg}}</span> -->
           <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -207,7 +212,8 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fas fa-times pr-1"></i>Cancel</button>
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i
+              class="fas fa-times pr-1"></i>Cancel</button>
           <a (click)="submitAppointmentDetails()">
             <button type="button" class="btn btn-look1"> <i class="fas fa-check pr-1"></i>Update</button></a>
         </div>
