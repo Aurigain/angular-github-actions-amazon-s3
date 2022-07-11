@@ -32,7 +32,9 @@ export class CompliancePanelDetailComponent implements OnInit {
   image = {
     url: ['']
   }
-
+  fetchBranchDetail
+  exisitingBankName
+  exisitingBranchName
 
   dynamicImage = "https://eaadharcards.in/wp-content/uploads/2019/04/Aadhaar-Card-Sample.png";
   constructor(
@@ -42,7 +44,8 @@ export class CompliancePanelDetailComponent implements OnInit {
     private router: Router,
     private misc: MiscellaneousService,
     private networkRequest: NetworkRequestService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private loginservice: LoginService
 
   ) {
     this.tabelData = [];
@@ -303,6 +306,7 @@ export class CompliancePanelDetailComponent implements OnInit {
     this.misc.fetchLeadAccountTransferDetailById(id).subscribe(data => {
       console.log("account transfer details:", data[0]);
       this.accountTransferDetails = data[0];
+      this.searchIFSC(this.accountTransferDetails['existing_loan_account']['ifsc_code'])
       if (this.accountTransferDetails['is_approved']) {
         this.fund_transfer_status = "True";
         this.fund_transfer_remark = this.accountTransferDetails['remarks']
@@ -347,16 +351,16 @@ export class CompliancePanelDetailComponent implements OnInit {
         console.log(this.nameChecker, this.addressChecker, this.photoChecker);
       }
     }
-    if (this.existing_loan_status==='True') {
+    if (this.existing_loan_status === 'True') {
       this.isAccountTransferDetailCorrect = true;
     }
-    if (this.fund_transfer_status==='True') {
+    if (this.fund_transfer_status === 'True') {
       this.isFundingDetailCorrect = true;
     }
-    if (this.appointment_status==='True') {
+    if (this.appointment_status === 'True') {
       this.isDocumentDetailCorrect = true;
     }
-    if (this.agreement_status==='True') {
+    if (this.agreement_status === 'True') {
       this.isAppointmentDetailCorrect = true;
     }
   }
@@ -378,6 +382,21 @@ export class CompliancePanelDetailComponent implements OnInit {
       }
     })
   }
+  searchIFSC(ifscCode) {
+    this.loginservice.searchBank(ifscCode).subscribe(
+      data => {
+        // console.log(data);
+        this.fetchBranchDetail = data;
+        this.exisitingBankName = this.fetchBranchDetail['BANK'];
+        this.exisitingBranchName = this.fetchBranchDetail['BRANCH'];
+
+      },
+      error => {
+        // console.log("")
+        this.toastr.error("Cannot Find Bank, Check the IFSC code again")
+      }
+    )
+  }
 
   savePersonalDetails() {
     const nameChecker = this.nameChecker;
@@ -396,7 +415,7 @@ export class CompliancePanelDetailComponent implements OnInit {
     const agreement_remark = this.agreement_remark;
 
     let personalData;
-    if(this.leadDetails['loan_type']['loan_type'] === 'bt_internal'){
+    if (this.leadDetails['loan_type']['loan_type'] === 'bt_internal') {
       personalData = {
         lead: this.currentUserId,
         personal_status: nameChecker,

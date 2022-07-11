@@ -116,8 +116,8 @@ export class AddEmployeeComponent implements OnInit {
 
     this.kycDetailForm = this.formbuilder.group({
       qualification: [''],
-      aadhar_number: ['', [Validators.required,]],
-      pan_number: ['', [Validators.required,]],
+      aadhar_number: ['', [Validators.required, Validators.pattern(this.conts.regexAadhar)]],
+      pan_number: ['', [Validators.required, Validators.pattern(this.conts.regexPAN)]],
       occupation: ['', [Validators.required,]],
       aadhar_front_image: ['', [Validators.required,]],
       aadhar_back_image: ['', [Validators.required,]],

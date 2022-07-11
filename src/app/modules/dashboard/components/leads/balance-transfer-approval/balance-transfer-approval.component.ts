@@ -34,7 +34,9 @@ export class BalanceTransferApprovalComponent implements OnInit {
     url: ['']
   }
 
-
+  fetchBranchDetail
+  exisitingBankName;
+  exisitingBranchName;
   dynamicImage = "https://eaadharcards.in/wp-content/uploads/2019/04/Aadhaar-Card-Sample.png";
   constructor(
     private formbuilder: FormBuilder,
@@ -43,7 +45,8 @@ export class BalanceTransferApprovalComponent implements OnInit {
     private router: Router,
     private misc: MiscellaneousService,
     private networkRequest: NetworkRequestService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private loginservice: LoginService
 
   ) {
     this.tabelData = [];
@@ -300,10 +303,30 @@ export class BalanceTransferApprovalComponent implements OnInit {
     )
   }
 
+
+  searchIFSC(ifscCode) {
+    this.loginservice.searchBank(ifscCode).subscribe(
+      data => {
+        // console.log(data);
+        this.fetchBranchDetail = data;
+        this.exisitingBankName = this.fetchBranchDetail['BANK'];
+        this.exisitingBranchName = this.fetchBranchDetail['BRANCH'];
+
+      },
+      error => {
+        // console.log("")
+        this.toastr.error("Cannot Find Bank, Check the IFSC code again")
+      }
+    )
+  }
+
   fetchBTLeadAccountTransferDetails(id) {
     this.misc.fetchLeadAccountTransferDetailById(id).subscribe(data => {
       console.log("account transfer details:", data[0]);
       this.accountTransferDetails = data[0];
+
+      this.searchIFSC(this.accountTransferDetails['existing_loan_account']['ifsc_code'])
+
       if (this.accountTransferDetails['is_approved']) {
         this.fund_transfer_status = "True";
         this.fund_transfer_remark = this.accountTransferDetails['remarks']
@@ -315,6 +338,7 @@ export class BalanceTransferApprovalComponent implements OnInit {
       if (this.accountTransferDetails['existing_loan_account']['is_approved']) {
         this.existing_loan_status = "True";
         this.existing_loan_remark = this.accountTransferDetails['existing_loan_account']['remarks']
+
       }
       else {
         this.existing_loan_status = "False";

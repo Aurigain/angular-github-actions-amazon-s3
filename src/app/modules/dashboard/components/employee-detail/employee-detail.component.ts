@@ -420,8 +420,8 @@ export class EmployeeDetailComponent implements OnInit {
 
   saveBankDetail() {
 
-    const bank = this.fetchBranchDetail['bank']['id'];
-    const branch = this.fetchBranchDetail['id'];
+    // const bank = this.fetchBranchDetail['bank']['id'];
+    // const branch = this.fetchBranchDetail['id'];
     const ifsc_code = this.bankDetails.value.ifsc_code;
     const cancelled_cheque = this.cancelled_cheque;
     const account_number = this.bankDetails.value.account_number;
@@ -429,8 +429,8 @@ export class EmployeeDetailComponent implements OnInit {
 
     bankDetailData = {
       account_number: account_number,
-      id: bank,
-      branch: branch,
+      // id: bank,
+      // branch: branch,
       ifsc_code: ifsc_code,
     }
 

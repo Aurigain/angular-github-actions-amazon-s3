@@ -495,7 +495,7 @@
 
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
-                        {{accountTransferDetails?.branch?.ifsc_code}}
+                        {{accountTransferDetails?.existing_loan_account?.ifsc_code}}
                       </div>
                     </div>
                   </div>
@@ -507,7 +507,7 @@
 
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
-                        {{appointmentDetails?.branch?.bank?.name}}
+                        {{exisitingBankName}}
                       </div>
                     </div>
                   </div>
@@ -518,7 +518,7 @@
 
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
-                        {{appointmentDetails?.branch?.name}}
+                        {{exisitingBranchName}}
                       </div>
                     </div>
                   </div>
@@ -649,7 +649,7 @@
                       <div class="mt-4 text-center">IFSC Code</div>
                     </div>
                     <div class="col-md-6 box">
-                      <div class="mt-4 text-center">{{accountTransferDetails?.branch?.ifsc_code}}</div>
+                      <div class="mt-4 text-center">{{accountTransferDetails?.ifsc_code}}</div>
                     </div>
                     <!-- <div class="col-md-3 box">
                       <div class="my-3 text-center">
@@ -876,7 +876,7 @@
 
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
-                        {{appointmentDetails?.branch?.ifsc_code}}
+                        {{appointmentDetails?.ifsc_code}}
                       </div>
                     </div>
                   </div>

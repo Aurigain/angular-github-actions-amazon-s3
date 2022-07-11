@@ -17,6 +17,8 @@ export class ConstantsService {
     otpLength: 6
   }
 
+  regexAadhar = /^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$/;
+  regexPAN = /[A-Z]{5}[0-9]{4}[A-Z]{1}/;
   constructor() { }
 
   // loginApiUrl = `${environment.BASE_URL}/api/users/login/`;
