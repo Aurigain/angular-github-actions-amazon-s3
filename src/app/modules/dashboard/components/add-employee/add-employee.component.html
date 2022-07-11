@@ -185,13 +185,6 @@
                           <option value="" selected>Select Role</option>
                           <option *ngFor="let role of Roles" [value]="role?.id">{{role.role_name |titlecase}}</option>
                         </select>
-                        <div
-                          *ngIf="personalDetails.get('reporting_person_role_group').invalid && personalDetails.get('reporting_person_role_group').touched"
-                          class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger"
-                            *ngIf="personalDetails.get('reporting_person_role_group').errors?.['required']">Reporting
-                            Person Role Group is required</small>
-                        </div>
                       </div>
                       <div class="form-group col-md-4" *ngIf="isReportingPerson">
                         <label for="inputDate">Reporting Person</label>
@@ -203,13 +196,6 @@
                             {{emp?.full_name}}</option>
                         </select>
 
-                        <div
-                          *ngIf="personalDetails.get('reporting_person').invalid && personalDetails.get('reporting_person').touched"
-                          class="custom-invalid-feedback" style="margin-top: 5px;">
-                          <small class="text-danger"
-                            *ngIf="personalDetails.get('reporting_person').errors?.['required']">Reporting person is
-                            required</small>
-                        </div>
                       </div>
 
 
