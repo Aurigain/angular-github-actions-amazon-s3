@@ -68,11 +68,12 @@
               <tbody>
                 <tr
                   *ngFor="let employee of employeelist | paginate: { itemsPerPage: rowFilter, currentPage: p }; let i = index ">
-                  <td>{{employee?.id}}</td>
+                  <td>{{employee?.username}}</td>
                   <td>{{employee?.name}}</td>
-                  <td>{{employee.pincode}}</td>
-                  <td>DM</td>
-                  <td>{{employee?.is_agent ? "Agent": "Employee"}}</td>
+                  <td>{{employee?.pincode}}</td>
+                  <td *ngIf="employee?.reporting_person">{{employee?.reporting_person}}</td>
+                  <td *ngIf="!employee?.reporting_person">Not Assigned</td>
+                  <td>{{employee?.role | titlecase}}</td>
                   <td><a [routerLink]="['detail', employee?.userid]"><button
                         class="btn btn-primary">View/Edit</button></a></td>
                   <!-- <td><select class="form-control">

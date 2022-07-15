@@ -28,7 +28,7 @@ export class BalanceTransferApprovalComponent implements OnInit {
   photoRemark = "";
   // nameChecker;
   // nameRemark = "";
-
+  text;
   nameRe = "";
   image = {
     url: ['']
@@ -90,7 +90,8 @@ export class BalanceTransferApprovalComponent implements OnInit {
 
   ];
 
-  loadImage(data, dynamicImage) {
+  loadImage(text, data, dynamicImage) {
+    this.text = text;
     this.dataVerify = data;
     this.imageVerify = dynamicImage;
   }
@@ -303,7 +304,9 @@ export class BalanceTransferApprovalComponent implements OnInit {
     )
   }
 
-
+  stepChange(number) {
+    this.currentStep = number;
+  }
   searchIFSC(ifscCode) {
     this.loginservice.searchBank(ifscCode).subscribe(
       data => {
@@ -315,7 +318,6 @@ export class BalanceTransferApprovalComponent implements OnInit {
       },
       error => {
         // console.log("")
-        this.toastr.error("Cannot Find Bank, Check the IFSC code again")
       }
     )
   }

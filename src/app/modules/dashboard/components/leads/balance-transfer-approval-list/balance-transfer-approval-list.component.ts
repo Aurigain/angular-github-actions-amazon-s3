@@ -79,7 +79,7 @@ export class BalanceTransferApprovalListComponent implements OnInit {
     this.filterArray = [];
     console.log(query);
     this.filterArray = (query) ? this.originalArray.filter(p => p.FullName.toLowerCase().includes(query.toLowerCase())) : this.originalArray;
-    console.log(this.filterArray);
+    // console.log(this.filterArray);
     this.rowFilter = this.filterArray.length;
   }
 
@@ -124,7 +124,7 @@ export class BalanceTransferApprovalListComponent implements OnInit {
     this.selectedForm = this.formbuilder.group({
       selectCategory: ['']
     })
-    console.log(this.originalArray);
+    // console.log(this.originalArray);
 
     this.updateStatusForm = this.formbuilder.group({
       status: ['', Validators.required],

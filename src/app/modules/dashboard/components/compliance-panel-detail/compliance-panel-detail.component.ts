@@ -27,7 +27,7 @@ export class CompliancePanelDetailComponent implements OnInit {
   photoRemark = "";
   // nameChecker;
   // nameRemark = "";
-
+  text;
   nameRe = "";
   image = {
     url: ['']
@@ -89,7 +89,8 @@ export class CompliancePanelDetailComponent implements OnInit {
 
   ];
 
-  loadImage(data, dynamicImage) {
+  loadImage(text, data, dynamicImage) {
+    this.text = text;
     this.dataVerify = data;
     this.imageVerify = dynamicImage;
   }
@@ -300,6 +301,10 @@ export class CompliancePanelDetailComponent implements OnInit {
         console.log("error", error);
       }
     )
+  }
+
+  stepChange(number){
+    this.currentStep = number;
   }
 
   fetchBTLeadAccountTransferDetails(id) {

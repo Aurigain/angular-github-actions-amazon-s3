@@ -22,7 +22,8 @@ export class BalanceTransferFinalApprovalDetailComponent implements OnInit {
   currentUserId: number;
   nameChecker;
   compliance_status
-  compliance_remark
+  compliance_remark;
+  text;
   remarkIs;
   nameRemark = "";
   addressChecker;
@@ -93,8 +94,11 @@ export class BalanceTransferFinalApprovalDetailComponent implements OnInit {
     { Id: 10009, FullName: 'Aashish Jain', FatherName: 'Ashok Kumar', Email: 'aashish@gmail.com', type: 'rejected', DateOfBirth: '0001-01-01T00:00:00', status: 'Active' },
 
   ];
-
-  loadImage(data, dynamicImage) {
+  stepChange(number){
+    this.currentStep = number;
+  }
+  loadImage(text, data, dynamicImage) {
+    this.text = text;
     this.dataVerify = data;
     this.imageVerify = dynamicImage;
   }
