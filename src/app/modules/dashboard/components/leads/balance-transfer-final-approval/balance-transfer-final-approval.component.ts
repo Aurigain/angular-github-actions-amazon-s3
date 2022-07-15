@@ -14,7 +14,8 @@ export class BalanceTransferFinalApprovalComponent implements OnInit {
   remark;
   final_approval_status
   final_approval_remark
-  leadDetails
+  leadDetails;
+  accountTransferDetails
   constructor(
     private route: ActivatedRoute,
     private misc: MiscellaneousService,
@@ -36,8 +37,8 @@ export class BalanceTransferFinalApprovalComponent implements OnInit {
         this.leadDetails = data[0];
 
 
-
-        if(this.leadDetails['lead']['fully_approved']){
+        this.fetchBTLeadAccountTransferDetails(id);
+        if (this.leadDetails['lead']['fully_approved']) {
           this.final_approval_status = 'True'
           this.final_approval_remark = this.leadDetails['lead']['final_remarks']
         }
@@ -61,7 +62,13 @@ export class BalanceTransferFinalApprovalComponent implements OnInit {
     )
   }
 
-  saveFinalStatus(){
+  fetchBTLeadAccountTransferDetails(id) {
+    this.misc.fetchLeadAccountTransferDetailById(id).subscribe(data => {
+      console.log("account transfer details:", data[0]);
+      this.accountTransferDetails = data[0];
+    })
+  }
+  saveFinalStatus() {
     const final_approval_status = this.final_approval_status
     const final_approval_remark = this.final_approval_remark
 

@@ -311,7 +311,12 @@ export class CompliancePanelDetailComponent implements OnInit {
     this.misc.fetchLeadAccountTransferDetailById(id).subscribe(data => {
       console.log("account transfer details:", data[0]);
       this.accountTransferDetails = data[0];
-      this.searchIFSC(this.accountTransferDetails['existing_loan_account']['ifsc_code'])
+      if(this.leadDetails['loan_type']['loan_type'] === 'bt_external'){
+        this.searchIFSC(this.accountTransferDetails['existing_loan_account']['ifsc_code'])
+      }
+      if(this.leadDetails['loan_type']['loan_type'] === 'bt_internal'){
+        this.searchIFSC(this.appointmentDetails['ifsc_code'])
+      }
       if (this.accountTransferDetails['is_approved']) {
         this.fund_transfer_status = "True";
         this.fund_transfer_remark = this.accountTransferDetails['remarks']
@@ -440,22 +445,44 @@ export class CompliancePanelDetailComponent implements OnInit {
       }
     }
     else {
-      personalData = {
-        lead: this.currentUserId,
-        personal_status: nameChecker,
-        personal_details_remark: nameRemark,
-        address_status: addressChecker,
-        address_remark: addressRemark,
-        customer_image_status: photoChecker,
-        customer_image_status_remark: photoRemark,
-        existing_loan_status: existing_loan_status,
-        existing_loan_remark: existing_loan_remark,
-        fund_transfer_status: fund_transfer_status,
-        fund_transfer_remark: fund_transfer_remark,
-        appointment_status: appointment_status,
-        appointment_remark: appointment_remark,
-        agreement_status: agreement_status,
-        agreement_remark: agreement_remark,
+      if (this.accountTransferDetails['account_type'] === 'existing') {
+        personalData = {
+          lead: this.currentUserId,
+          personal_status: nameChecker,
+          personal_details_remark: nameRemark,
+          address_status: addressChecker,
+          address_remark: addressRemark,
+          customer_image_status: photoChecker,
+          customer_image_status_remark: photoRemark,
+          existing_loan_status: existing_loan_status,
+          existing_loan_remark: existing_loan_remark,
+          fund_transfer_status: fund_transfer_status,
+          fund_transfer_remark: fund_transfer_remark,
+          appointment_status: appointment_status,
+          appointment_remark: appointment_remark,
+          agreement_status: agreement_status,
+          agreement_remark: agreement_remark,
+        }
+      }
+      else {
+        personalData = {
+          lead: this.currentUserId,
+          personal_status: nameChecker,
+          personal_details_remark: nameRemark,
+          address_status: addressChecker,
+          address_remark: addressRemark,
+          customer_image_status: photoChecker,
+          customer_image_status_remark: photoRemark,
+          existing_loan_status: "True",
+          existing_loan_remark: "not required",
+          fund_transfer_status: fund_transfer_status,
+          fund_transfer_remark: fund_transfer_remark,
+          appointment_status: appointment_status,
+          appointment_remark: appointment_remark,
+          agreement_status: agreement_status,
+          agreement_remark: agreement_remark,
+        }
+
       }
     }
 

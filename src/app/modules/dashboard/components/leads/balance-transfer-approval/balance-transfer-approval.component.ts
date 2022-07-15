@@ -327,7 +327,12 @@ export class BalanceTransferApprovalComponent implements OnInit {
       console.log("account transfer details:", data[0]);
       this.accountTransferDetails = data[0];
 
-      this.searchIFSC(this.accountTransferDetails['existing_loan_account']['ifsc_code'])
+      if(this.leadDetails['loan_type']['loan_type'] === 'bt_external'){
+        this.searchIFSC(this.accountTransferDetails['existing_loan_account']['ifsc_code'])
+      }
+      if(this.leadDetails['loan_type']['loan_type'] === 'bt_internal'){
+        this.searchIFSC(this.appointmentDetails['ifsc_code'])
+      }
 
       if (this.accountTransferDetails['is_approved']) {
         this.fund_transfer_status = "True";
@@ -477,8 +482,8 @@ export class BalanceTransferApprovalComponent implements OnInit {
           address_remark: addressRemark,
           customer_image_status: photoChecker,
           customer_image_status_remark: photoRemark,
-          existing_loan_status: existing_loan_status,
-          existing_loan_remark: existing_loan_remark,
+          existing_loan_status: "True",
+          existing_loan_remark: "not required",
           fund_transfer_status: fund_transfer_status,
           fund_transfer_remark: fund_transfer_remark,
           appointment_status: appointment_status,

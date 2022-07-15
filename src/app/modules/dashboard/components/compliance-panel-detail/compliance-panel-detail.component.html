@@ -112,42 +112,26 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  <!-- <div class="row">
                     <div class="col-md-2 box">
-                      <div class="mt-4 text-center">Address</div>
+                      <div class="mt-4 text-center">Father's Name</div>
                     </div>
                     <div class="col-md-3 box">
-                      <div class="mt-4 text-center">Delhi</div>
+                      <div class="mt-4 text-center">{{profileData?.father_name}}
+                      </div>
                     </div>
                     <div class="col-md-3 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a (click)="loadImage(dynamicImage)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                          <img src="https://thispersondoesnotexist.com/image" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
+                        <p class="text-center py-3"><a
+                            (click)="loadImage('Father\'s Name',profileData?.father_name, documentDetails?.kyc_document_poi)"
+                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.kyc_document_poi" width="50" height="50" alt="KYC POI"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
 
                       </div>
                     </div>
-                    <div class="col-md-4 box">
-                      <div class="m-3">
-                        <div class="form-group">
-                          <div class="row gender-row">
-                            <label  class="radio-inline">
-                              <input type="radio" value="ok" name="addressChecker" [(ngModel)]="addressChecker"> OK
-                            </label>
-                            <label  class="radio-inline">
-                              <input [(ngModel)]="addressChecker" type="radio" value="not ok" name="addressChecker">Not Ok
-                            </label>
-                          </div>
-                        </div>
-                        <div class="text-center">
-                          <input [(ngModel)]="addressRemark" name="addressRemark" value="" type="text" class="form-control mb-2">
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
+                  </div>
 
                   <div class="row">
                     <div class="col-md-2 box">
@@ -187,17 +171,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- <div class="row">
-                    <div class="col-md-2 box">
-                      <div class="mt-4 text-center">Father's Name</div>
-                    </div>
 
-                    <div class="col-md-3 box">
-                      <div class="my-3 text-center">
-                        Father's Name will come here...
-                      </div>
-                    </div>
-                  </div> -->
                   <div class="row">
                     <div class="col-md-6 box">
                       <div class="mt-4 text-center">Mobile Number</div>
@@ -221,22 +195,11 @@
                       </div>
                     </div>
                   </div>
-                  <!-- <div class="row">
-                    <div class="col-md-2 box">
-                      <div class="mt-4 text-center">Alternate Mobile Number</div>
-                    </div>
 
-                    <div class="col-md-3 box">
-                      <div class="my-3 text-center">
-                        Alternate Mobile Number will come here...
-                      </div>
-                    </div>
-                  </div> -->
 
                 </div>
 
                 <div class="text-center mt-2">
-                  <!-- <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button> -->
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
                 </div>
               </div>
@@ -257,15 +220,6 @@
                         <div class="col-md-6 box">
                           <div class="mt-4 text-center">{{leadDetails?.gross_weight_gold}}</div>
                         </div>
-                        <!-- <div class="col-md-3 box">
-                      <div class="my-3 text-center">
-
-                        <p class="text-center py-3"><a (click)="loadImage(profileData?.fullname, documentDetails?.loan_document)" href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                          <img [src]="documentDetails?.kyc_document_poi" width="50" height="50" alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
-
-                      </div>
-                    </div> -->
                       </div>
                       <div class="row">
                         <div class="col-md-6 box">
@@ -325,144 +279,141 @@
                 </div>
                 <div class="text-center mt-2">
                   <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button>
-                  <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
+                  <ng-template
+                    *ngIf="leadDetails?.loan_type?.loan_type === 'bt_internal' || (leadDetails?.loan_type?.loan_type === 'bt_external' && accountTransferDetails?.account_type === 'existing') then thenBlock else elseBlock">
+                  </ng-template>
+                  <ng-template #thenBlock><button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
+                  </ng-template>
+                  <ng-template #elseBlock><button class="btn btn-primary mr-3" (click)="currentStep = 4">Save &
+                      Next</button>
+                  </ng-template>
                 </div>
               </div>
-              <div class="my-4">
-                <h5><a class="hover-link" (click)="stepChange(3)"> <i class="fa"
-                      [ngClass]="{'fa-minus': currentStep === 3, 'fa-plus': currentStep !==3}"></i>
-                    Existing Loan Detail</a></h5>
-              </div>
-              <div class="form-div p-4" *ngIf="currentStep === 3">
-                <div class="container inner-form-div">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="row" *ngIf="accountTransferDetails?.account_type === 'existing'">
-                        <div class="col-md-6 box">
-                          <div class="mt-4 text-center">Outstanding Amount</div>
-                        </div>
-
-                        <div class="col-md-6 box">
-                          <div class="my-3 text-center">
-                            {{accountTransferDetails?.existing_loan_account?.outstanding_loan_amount}}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row" *ngIf="accountTransferDetails?.account_type === 'existing'">
-                        <div class="col-md-6 box">
-                          <div class="mt-4 text-center">Existing Loan Account Number</div>
-                        </div>
-
-                        <div class="col-md-6 box">
-                          <div class="my-3 text-center">
-                            {{accountTransferDetails?.existing_loan_account?.existing_loan_account_number}}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6 box">
-                          <div class="mt-4 text-center">Bank Name</div>
-                        </div>
-
-                        <div class="col-md-6 box">
-                          <div class="my-3 text-center">
-                            {{exisitingBankName}}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6 box">
-                          <div class="mt-4 text-center">Bank Branch</div>
-                        </div>
-
-                        <div class="col-md-6 box">
-                          <div class="my-3 text-center">
-                            {{exisitingBranchName}}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row" *ngIf="accountTransferDetails?.account_type == 'multiple'">
-                        <div class="col-md-6 box">
-                          <div class="mt-4 text-center">Age Of Lastest Loan (in Months)</div>
-                        </div>
-
-                        <div class="col-md-6 box">
-                          <div class="my-3 text-center">
-                            {{accountTransferDetails?.age_of_last_loan_in_months}}
-                          </div>
-                        </div>
-                      </div>
-                      <!-- <div class="row">
-                    <div class="col-md-2 box">
-                      <div class="mt-4 text-center">Security Cheque 1</div>
-                    </div>
-                    <div class="col-md-3 box">
-                      <div class="my-3 text-center">
-
-                        <p class="text-center py-3"><a
-                            (click)="loadImage('Security Cheque 1', documentDetails?.security_cheque_1)" href="#"
-                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                            <img [src]="documentDetails?.security_cheque_1" width="50" height="50" alt="bank details"
-                              class="img-fluid img-thumbnail lazyload"></a></p>
-
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-2 box">
-                      <div class="mt-4 text-center">Security Cheque 2</div>
-                    </div>
-                    <div class="col-md-3 box">
-                      <div class="my-3 text-center">
-
-                        <p class="text-center py-3"><a
-                            (click)="loadImage('Security Cheque 1', documentDetails?.security_cheque_2)" href="#"
-                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                            <img [src]="documentDetails?.security_cheque_2" width="50" height="50" alt="bank details"
-                              class="img-fluid img-thumbnail lazyload"></a></p>
-
-                      </div>
-                    </div>
-                  </div> -->
-                    </div>
-                    <div class="col-md-6">
-                      <div class="my-4">
-                        <a (click)="loadImage('Loan Document','Mark fail if doesn\'t exist/match', documentDetails?.loan_document)"
-                          href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                          <img [src]="documentDetails?.loan_document" alt="Loan Document"
-                            class="img-fluid img-thumbnail lazyload"></a>
-                      </div>
-                    </div>
-                  </div>
+              <div
+                *ngIf="leadDetails?.loan_type?.loan_type === 'bt_internal' || (leadDetails?.loan_type?.loan_type === 'bt_external' && accountTransferDetails?.account_type === 'existing')">
+                <div class="my-4">
+                  <h5><a class="hover-link" (click)="stepChange(3)"> <i class="fa"
+                        [ngClass]="{'fa-minus': currentStep === 3, 'fa-plus': currentStep !==3}"></i>
+                      Existing Loan Detail</a></h5>
                 </div>
 
-                <div class="m-3">
-                  <div class="form-group">
-                    <div class="row gender-row justify-content-center">
-                      <label class="radio-inline">
-                        <input type="radio" value="True" name="existing_loan_status" [(ngModel)]="existing_loan_status">
-                        OK
-                      </label>
-                      <label class="radio-inline">
+                <div class="form-div p-4" *ngIf="currentStep === 3">
+                  <div class="container inner-form-div">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="row" *ngIf="accountTransferDetails?.account_type === 'existing'">
+                          <div class="col-md-6 box">
+                            <div class="mt-4 text-center">Outstanding Amount</div>
+                          </div>
 
-                        <input [(ngModel)]="existing_loan_status" type="radio" value="False"
-                          name="existing_loan_status">Not Ok
-                      </label>
+                          <div class="col-md-6 box">
+                            <div class="my-3 text-center">
+                              {{accountTransferDetails?.existing_loan_account?.outstanding_loan_amount}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row" *ngIf="accountTransferDetails?.account_type === 'existing'">
+                          <div class="col-md-6 box">
+                            <div class="mt-4 text-center">Existing Loan Account Number</div>
+                          </div>
 
+                          <div class="col-md-6 box">
+                            <div class="my-3 text-center">
+                              {{accountTransferDetails?.existing_loan_account?.existing_loan_account_number}}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row"
+                          *ngIf="leadDetails?.loan_type?.loan_type === 'bt_external' && accountTransferDetails?.account_type === 'existing'">
+                          <div class="col-md-6 box">
+                            <div class="mt-4 text-center">Age of Last Loan (in months)</div>
+                          </div>
+
+                          <div class="col-md-6 box">
+                            <div class="my-3 text-center">
+                              {{leadDetails?.age_of_last_loan_in_months}}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6 box">
+                            <div class="mt-4 text-center">BANK IFSC</div>
+                          </div>
+
+                          <div class="col-md-6 box">
+                            <div class="my-3 text-center">
+                              <p *ngIf="leadDetails?.loan_type?.loan_type === 'bt_internal'">
+                                {{appointmentDetails?.ifsc_code}}</p>
+                              <p *ngIf="leadDetails?.loan_type?.loan_type === 'bt_external'">
+                                {{accountTransferDetails?.existing_loan_account?.ifsc_code}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6 box">
+                            <div class="mt-4 text-center">Bank Name</div>
+                          </div>
+
+
+                          <div class="col-md-6 box">
+                            <div class="my-3 text-center">
+                              {{exisitingBankName}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6 box">
+                            <div class="mt-4 text-center">Bank Branch</div>
+                          </div>
+
+                          <div class="col-md-6 box">
+                            <div class="my-3 text-center">
+                              {{exisitingBranchName}}
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="col-md-6">
+                        <div class="my-4">
+                          <a (click)="loadImage('Loan Document','Mark fail if doesn\'t exist/match', documentDetails?.loan_document)"
+                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.loan_document" alt="Loan Document"
+                              class="img-fluid img-thumbnail lazyload"></a>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="text-center">
-                    <strong>Exisitng Loan Remark:</strong>
-                    <input [(ngModel)]="existing_loan_remark" name="nameRemark" value="" type="text"
-                      class="form-control mb-2">
+
+                  <div class="m-3">
+                    <div class="form-group">
+                      <div class="row gender-row justify-content-center">
+                        <label class="radio-inline">
+                          <input type="radio" value="True" name="existing_loan_status"
+                            [(ngModel)]="existing_loan_status">
+                          OK
+                        </label>
+                        <label class="radio-inline">
+
+                          <input [(ngModel)]="existing_loan_status" type="radio" value="False"
+                            name="existing_loan_status">Not Ok
+                        </label>
+
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <strong>Exisitng Loan Remark:</strong>
+                      <input [(ngModel)]="existing_loan_remark" name="nameRemark" value="" type="text"
+                        class="form-control mb-2">
+                    </div>
                   </div>
-                </div>
-                <div class="text-center mt-2">
-                  <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button>
-                  <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
+                  <div class="text-center mt-2">
+                    <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button>
+                    <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
+                  </div>
                 </div>
               </div>
               <div class="my-4">
@@ -474,6 +425,7 @@
                 <div class="container inner-form-div">
                   <div class="row">
                     <div class="col-md-6">
+
                       <div class="row">
                         <div class="col-md-6 box">
                           <div class="mt-4 text-center">Loan Account Number</div>
@@ -490,53 +442,29 @@
                           <div class="mt-4 text-center">{{accountTransferDetails?.balance_transfer_amount}}</div>
                         </div>
                       </div>
-                      <div class="row" *ngIf="accountTransferDetails?.account_type === 'bank'">
-                        <div class="col-md-6 box">
-                          <div class="mt-4 text-center">Security Cheque Transfer</div>
-                        </div>
-                        <div class="col-md-6 box">
-                          <div class="my-3 text-center">
-
-                            <p class="text-center py-3"><a
-                                (click)="loadImage('Security Cheque Transfer', 'Mark fail if doesn\'t exist/match', documentDetails?.security_cheque_transfer)"
-                                href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                                <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                                <img [src]="documentDetails?.security_cheque_transfer" width="50" height="50"
-                                  alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
-
+                      <div
+                        *ngIf="(leadDetails?.loan_type?.loan_type !== 'bt_internal' && accountTransferDetails?.account_type !== 'existing') || leadDetails?.loan_type?.loan_type === 'bt_external' ">
+                        <div class="row"
+                          *ngIf="accountTransferDetails?.account_type === 'existing' || accountTransferDetails?.account_type === 'security' || accountTransferDetails?.account_type === 'other'">
+                          <div class="col-md-6 box">
+                            <div class="mt-4 text-center">IFSC Code</div>
+                          </div>
+                          <div class="col-md-6 box">
+                            <div class="mt-4 text-center">{{accountTransferDetails?.ifsc_code}}</div>
                           </div>
                         </div>
                       </div>
-                      <div class="row"
-                        *ngIf="accountTransferDetails?.account_type === 'bank' || accountTransferDetails?.account_type === 'security' || accountTransferDetails?.account_type === 'other'">
-                        <div class="col-md-6 box">
-                          <div class="mt-4 text-center">IFSC Code</div>
-                        </div>
-                        <div class="col-md-6 box">
-                          <div class="mt-4 text-center">{{accountTransferDetails?.ifsc_code}}</div>
-                        </div>
-                        <!-- <div class="col-md-3 box">
-                      <div class="my-3 text-center">
-
-                        <p class="text-center py-3"><a (click)="loadImage('ssad',dynamicImage)" href="#"
-                            data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                            <img src="https://thispersondoesnotexist.com/image" width="50" height="50"
-                              alt="bank details" class="img-fluid img-thumbnail lazyload"></a></p>
-
-                      </div>
-                    </div> -->
-                      </div>
-
                     </div>
                     <div class="col-md-6">
                       <div class="my-4">
-                        <a *ngIf="accountTransferDetails?.account_type === 'existing'" (click)="loadImage('Loan Document','Mark fail if doesn\'t exist/match', documentDetails?.loan_document)"
+                        <a *ngIf="accountTransferDetails?.account_type === 'existing'"
+                          (click)="loadImage('Loan Document','Mark fail if doesn\'t exist/match', documentDetails?.loan_document)"
                           href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
                           <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                           <img [src]="documentDetails?.loan_document" alt="Loan Document"
                             class="img-fluid img-thumbnail lazyload"></a>
-                        <a *ngIf="accountTransferDetails?.account_type !== 'existing'" (click)="loadImage('Document','Mark fail if doesn\'t exist/match', accountTransferDetails?.security_cheque_1)"
+                        <a *ngIf="accountTransferDetails?.account_type !== 'existing'"
+                          (click)="loadImage('Document','Mark fail if doesn\'t exist/match', accountTransferDetails?.security_cheque_1)"
                           href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
                           <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                           <img [src]="accountTransferDetails?.security_cheque_1" alt="Loan Document"
@@ -568,7 +496,13 @@
                 </div>
 
                 <div class="text-center mt-2">
-                  <button class="btn btn-outline-primary mr-3" (click)="stepDown()">Back</button>
+                  <ng-template
+                    *ngIf="leadDetails?.loan_type?.loan_type === 'bt_internal' || (leadDetails?.loan_type?.loan_type === 'bt_external' && accountTransferDetails?.account_type === 'existing') then thenBlock else elseBlock">
+                  </ng-template>
+                  <ng-template #thenBlock><button class="btn btn-secondary mr-3" (click)="stepDown()">Back</button>
+                  </ng-template>
+                  <ng-template #elseBlock><button class="btn btn-secondary mr-3" (click)="currentStep = 2">Back</button>
+                  </ng-template>
                   <button class="btn btn-primary mr-3" (click)="stepUp()">Save & Next</button>
                 </div>
               </div>
@@ -867,7 +801,6 @@
           </table>
           <div class="text-center">
             <a routerLink="../../../compliance-panel">
-              <!--Change the ID with dynamic Id-->
               <button (click)="savePersonalDetails()" class="btn btn-primary mr-3" data-dismiss="modal">
                 Save & Submit
               </button>
@@ -881,30 +814,4 @@
       </div>
     </div>
   </div>
-  <!-- <div class="modal fade" id="mScreenshot">
-    <div class="modal-dialog">
-    <div class="modal-content" style="top:50px; left:25%">
-    <div class="modal-header">
-    <p class="modal-title">IMAGE NAME</p>
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-    </div>
-    <div class="modal-body">
-    <div id="carousel-screenshots" class="carousel slide" data-ride="carousel" data-interval="10000">
-    <div class="carousel-inner">
-    <div class="carousel-item active" *ngFor="let img of image?.url">
-    <p><img [src]="img" width="800" height="601" class="img-fluid lazyload" alt="run the tool"></p>
-
-    </div>
-    </div>
-    <ul class="carousel-indicators">
-    <li data-target="#carousel-screenshots" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-screenshots" data-slide-to="1"></li>
-    <li data-target="#carousel-screenshots" data-slide-to="2"></li>
-    <li data-target="#carousel-screenshots" data-slide-to="3"></li>
-    </ul>
-    <a class="carousel-control-prev" href="#carousel-screenshots" aria-label="screens pre" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a class="carousel-control-next" aria-label="screens next" href="#carousel-screenshots" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> </div>
-    </div>
-    </div>
-    </div>
-    </div> -->
 </div>

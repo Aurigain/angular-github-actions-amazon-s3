@@ -335,7 +335,12 @@ export class BalanceTransferFinalApprovalDetailComponent implements OnInit {
     this.misc.fetchLeadAccountTransferDetailById(id).subscribe(data => {
       console.log("account transfer details:", data[0]);
       this.accountTransferDetails = data[0];
-      this.searchIFSC(this.accountTransferDetails['existing_loan_account']['ifsc_code'])
+      if(this.leadDetails['loan_type']['loan_type'] === 'bt_external'){
+        this.searchIFSC(this.accountTransferDetails['existing_loan_account']['ifsc_code'])
+      }
+      if(this.leadDetails['loan_type']['loan_type'] === 'bt_internal'){
+        this.searchIFSC(this.appointmentDetails['ifsc_code'])
+      }
       if (this.accountTransferDetails['is_approved']) {
         this.fund_transfer_status = "True";
         this.fund_transfer_remark = this.accountTransferDetails['remarks']
