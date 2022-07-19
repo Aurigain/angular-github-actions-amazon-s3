@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./agent-approval-detail.component.scss']
 })
 export class AgentApprovalDetailComponent implements OnInit {
-
+  ii ='https://wittlock.github.io/ngx-image-zoom/assets/thumb.jpg'
   image = {
     url: []
   }

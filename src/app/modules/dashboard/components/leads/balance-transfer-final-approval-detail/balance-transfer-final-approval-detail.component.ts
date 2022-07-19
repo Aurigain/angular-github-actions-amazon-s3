@@ -37,7 +37,9 @@ export class BalanceTransferFinalApprovalDetailComponent implements OnInit {
   image = {
     url: ['']
   }
-
+  appointmentBankName
+  appointmentBranchName
+  appointmentCityName
   fetchBranchDetail
   exisitingBankName
   exisitingBranchName
@@ -284,6 +286,21 @@ export class BalanceTransferFinalApprovalDetailComponent implements OnInit {
     this.misc.fetchLeadAppointmentById(id).subscribe(data => {
       console.log("appointment details:", data[0]);
       this.appointmentDetails = data[0];
+
+      this.loginservice.searchBank(this.appointmentDetails['ifsc_code']).subscribe(
+        data => {
+          // console.log(data);
+          let fetchedData = data;
+          this.appointmentBankName = fetchedData['BANK'];
+          this.appointmentBranchName = fetchedData['BRANCH'];
+          this.appointmentCityName = fetchedData['CITY'];
+
+        },
+        error => {
+          // console.log("")
+        }
+      )
+
       if (this.appointmentDetails['is_approved']) {
         this.appointment_status = "True";
         this.appointment_remark = this.appointmentDetails['remarks']

@@ -125,7 +125,14 @@
             <div class="float-right"><a (click)="closePreview()"><button class="btn btn-danger">Close</button></a></div>
             <div class="bottom-box">
               <div class="row">
-                <img [src]="previewImg" width="500" height="500">
+                <lib-ngx-image-zoom
+                [thumbImage]="previewImg"
+                [fullImage]="previewImg"
+                [magnification]="1"
+                [enableLens]="true"
+                [lensWidth]="200">
+                </lib-ngx-image-zoom>
+                <!-- <img [src]="previewImg" width="500" height="500"> -->
               </div>
             </div>
           </div>
@@ -134,7 +141,8 @@
         <div class="d-flex justify-content-center mt-3">
           <a (click)="agentApproval()" *ngIf="!profileData?.is_approved && profileData?.reporting_person"><button
               class="btn btn-success mr-3"><i class="fa fa-check mr-2"></i>Approve</button></a>
-          <p *ngIf="!profileData?.is_approved && !profileData?.reporting_person" class="text-danger">* Cannot Approve Agent -
+          <p *ngIf="!profileData?.is_approved && !profileData?.reporting_person" class="text-danger">* Cannot Approve
+            Agent -
             First Assign Reporting Person</p>
           <a (click)="agentDisApproval()" *ngIf="profileData?.is_approved"><button class="btn btn-outline-danger"><i
                 class="fa fa-multiply mr-2"></i>Disapprove</button></a>

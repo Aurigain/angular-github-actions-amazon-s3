@@ -33,6 +33,9 @@ export class BalanceTransferApprovalComponent implements OnInit {
   image = {
     url: ['']
   }
+  appointmentBankName
+  appointmentBranchName
+  appointmentCityName
 
   fetchBranchDetail
   exisitingBankName;
@@ -273,6 +276,21 @@ export class BalanceTransferApprovalComponent implements OnInit {
     this.misc.fetchLeadAppointmentById(id).subscribe(data => {
       console.log("appointment details:", data[0]);
       this.appointmentDetails = data[0];
+
+      this.loginservice.searchBank(this.appointmentDetails['ifsc_code']).subscribe(
+        data => {
+          // console.log(data);
+          let fetchedData = data;
+          this.appointmentBankName = fetchedData['BANK'];
+          this.appointmentBranchName = fetchedData['BRANCH'];
+          this.appointmentCityName = fetchedData['CITY'];
+
+        },
+        error => {
+          // console.log("")
+        }
+      )
+
       if (this.appointmentDetails['is_approved']) {
         this.appointment_status = "True";
         this.appointment_remark = this.appointmentDetails['remarks']
@@ -327,10 +345,10 @@ export class BalanceTransferApprovalComponent implements OnInit {
       console.log("account transfer details:", data[0]);
       this.accountTransferDetails = data[0];
 
-      if(this.leadDetails['loan_type']['loan_type'] === 'bt_external'){
+      if (this.leadDetails['loan_type']['loan_type'] === 'bt_external') {
         this.searchIFSC(this.accountTransferDetails['existing_loan_account']['ifsc_code'])
       }
-      if(this.leadDetails['loan_type']['loan_type'] === 'bt_internal'){
+      if (this.leadDetails['loan_type']['loan_type'] === 'bt_internal') {
         this.searchIFSC(this.appointmentDetails['ifsc_code'])
       }
 

@@ -56,6 +56,7 @@ import { AddPermissionsComponent } from './components/add-permissions/add-permis
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { NgPipesModule } from 'ngx-pipes';
 import { AddExternalBalanceTransferLeadsComponent } from './components/leads/add-external-balance-transfer-leads/add-external-balance-transfer-leads.component';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 const routes: Routes = [
   {
@@ -261,6 +262,7 @@ const routes: Routes = [
     NgxPaginationModule,
     HttpClientModule,
     NgPipesModule,
+    NgxImageZoomModule,
     RouterModule.forChild(routes),
   ],
   exports: [RouterModule]

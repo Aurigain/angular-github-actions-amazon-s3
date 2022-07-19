@@ -12,6 +12,7 @@ import { NetworkRequestInterceptor } from './intercepters/network-request.interc
 import { environment } from 'src/environments/environment';
 import { NgPipesModule } from 'ngx-pipes';
 import { JSON2CSV } from './core/services/json2csv';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { JSON2CSV } from './core/services/json2csv';
     NgxPaginationModule,
     NgbModule,
     NgPipesModule,
+    NgxImageZoomModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
   ],

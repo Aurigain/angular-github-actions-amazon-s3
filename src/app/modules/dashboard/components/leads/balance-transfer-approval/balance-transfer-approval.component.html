@@ -683,6 +683,39 @@
                   </div>
                   <div class="row">
                     <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Bank Name</div>
+                    </div>
+
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+                        {{appointmentBankName}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">Branch Name</div>
+                    </div>
+
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+                        {{appointmentBranchName}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 box">
+                      <div class="mt-4 text-center">City</div>
+                    </div>
+
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+                        {{appointmentCityName}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Appointment time
                       </div>
                     </div>
@@ -753,7 +786,15 @@
           <button style="z-index: 10;" type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <img [src]="imageVerify" alt="{{dataVerify}}" width="500" height="500" class="img-fluid">
+          <lib-ngx-image-zoom
+            [thumbImage]="imageVerify"
+            [fullImage]="imageVerify"
+            [magnification]="1"
+            [enableLens]="true"
+            [lensWidth]="200"
+            [altText]="dataVerify">
+          </lib-ngx-image-zoom>
+          <!-- <img [src]="imageVerify" alt="{{dataVerify}}" width="500" height="500" class="img-fluid"> -->
         </div>
       </div>
     </div>

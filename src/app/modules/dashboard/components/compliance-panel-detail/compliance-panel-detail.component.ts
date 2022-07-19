@@ -35,7 +35,9 @@ export class CompliancePanelDetailComponent implements OnInit {
   fetchBranchDetail
   exisitingBankName
   exisitingBranchName
-
+  appointmentBankName
+  appointmentBranchName
+  appointmentCityName
   dynamicImage = "https://eaadharcards.in/wp-content/uploads/2019/04/Aadhaar-Card-Sample.png";
   constructor(
     private formbuilder: FormBuilder,
@@ -272,6 +274,21 @@ export class CompliancePanelDetailComponent implements OnInit {
     this.misc.fetchLeadAppointmentById(id).subscribe(data => {
       console.log("appointment details:", data[0]);
       this.appointmentDetails = data[0];
+
+      this.loginservice.searchBank(this.appointmentDetails['ifsc_code']).subscribe(
+        data => {
+          // console.log(data);
+          let fetchedData = data;
+          this.appointmentBankName = fetchedData['BANK'];
+          this.appointmentBranchName = fetchedData['BRANCH'];
+          this.appointmentCityName = fetchedData['CITY'];
+
+        },
+        error => {
+          // console.log("")
+        }
+      )
+
       if (this.appointmentDetails['is_approved']) {
         this.appointment_status = "True";
         this.appointment_remark = this.appointmentDetails['remarks']

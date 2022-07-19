@@ -301,3 +301,17 @@ color: white;
 .position-absolute {
   position: absolute!important;
 }
+
+// .ngxImageZoomContainer img{
+//   max-width: 250px;
+//   max-height: 250px;
+// }
+::ng-deep .ngxImageZoomContainer > img{
+  width: 750px !important;
+  // height: auto !important;
+}
+
+#mScreenshot{
+  // position: relative;
+  z-index: 99999;
+}
