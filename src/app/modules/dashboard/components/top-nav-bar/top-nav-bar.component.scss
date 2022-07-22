@@ -12,13 +12,15 @@
     background: #000;
 }
 
-
 .aurigain-notification {
     // .notification-bell {
     //     color: #fff;
     // }
     #dropdownForm1{
         left: -4rem;
+    }
+    .dropdown-toggle::after{
+        display: none;
     }
     .nav-link {
         font-size: .9rem;
@@ -52,15 +54,20 @@
     }
     .notificationDig{
         position: absolute;
-        top: -7px;
-        left: 21px;
+        background: white;
+        border-radius: 50%;
+        font-size: .8rem;
+        top: -4px;
+        left: 19px;
     }
     .bellbg{
-        background: white;
-        color: #000;
-    padding: 0.3rem;
-    border-radius: 50%;
+        color: yellow;
+
     }
+    // .msgbox{
+    //     color: #fff;
+    //     font-size: 1.7rem;
+    // }
 }
 
 @media (min-width: 576px) {
