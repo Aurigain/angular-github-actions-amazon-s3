@@ -28,6 +28,9 @@ export class ConstantsService {
   fetchcompanydetails = `${environment.BASE_URL}/api/fetchcompanydetails/`;
   apiAgent = `${environment.BASE_URL}/api/agent/`;
   agentProfile = `${environment.BASE_URL}/api/profile/`;
+  notificationList = `${environment.BASE_URL}/api/notifications_list/`;
+  changeNotificationStatus = `${environment.BASE_URL}/api/change_notification_status/`;
+  sendBulkNotification = `${environment.BASE_URL}/api/send_bulk_notifications/`;
   selectQueryApi = `${environment.BASE_URL}/api/bank/contact_queries/`;
   fetchFreshLead = `${environment.BASE_URL}/api/lead/fresh_loan_requests/`;
   fetchBTLead = `${environment.BASE_URL}/api/lead/bt_loan_requests/`;

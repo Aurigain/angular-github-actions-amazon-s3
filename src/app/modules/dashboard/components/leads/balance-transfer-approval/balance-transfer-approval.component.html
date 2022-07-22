@@ -441,7 +441,7 @@
                         </div>
                       </div>
                       <div
-                        *ngIf="(leadDetails?.loan_type?.loan_type !== 'bt_internal' && accountTransferDetails?.account_type !== 'existing') || leadDetails?.loan_type?.loan_type === 'bt_external' ">
+                        *ngIf="(leadDetails?.loan_type?.loan_type == 'bt_internal' && accountTransferDetails?.account_type !== 'existing') || leadDetails?.loan_type?.loan_type === 'bt_external' ">
                         <div class="row"
                           *ngIf="accountTransferDetails?.account_type === 'existing' || accountTransferDetails?.account_type === 'security' || accountTransferDetails?.account_type === 'other'">
                           <div class="col-md-6 box">

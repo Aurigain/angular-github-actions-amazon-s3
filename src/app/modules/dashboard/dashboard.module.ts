@@ -57,6 +57,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { NgPipesModule } from 'ngx-pipes';
 import { AddExternalBalanceTransferLeadsComponent } from './components/leads/add-external-balance-transfer-leads/add-external-balance-transfer-leads.component';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { CreateBulkNotificationComponent } from './components/create-bulk-notification/create-bulk-notification.component';
 
 const routes: Routes = [
   {
@@ -198,6 +199,9 @@ const routes: Routes = [
       {
         path: 'change-password', component: ChangePasswordComponent
       },
+      {
+        path: 'send-bulk-notification', component: CreateBulkNotificationComponent
+      },
     ]
   }
 ]
@@ -253,6 +257,7 @@ const routes: Routes = [
     AddPermissionsComponent,
     ChangePasswordComponent,
     AddExternalBalanceTransferLeadsComponent,
+    CreateBulkNotificationComponent,
   ],
   imports: [
     CommonModule,

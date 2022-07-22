@@ -19,11 +19,18 @@ export class TopNavBarComponent implements OnInit {
     private auth: AuthService
   ) { }
 
+  readList
+  unreadList
+
   userProfile;
+  currentStep = 1;
   // media = environment.media;
 
   toggleVal: boolean = false;
 
+  setStep(id) {
+    this.currentStep = id;
+  }
   logout() {
     this.auth.logout()
   }
@@ -38,13 +45,30 @@ export class TopNavBarComponent implements OnInit {
       data => {
         this.userProfile = data;
         console.log(data);
-        console.log("profile data:",this.userProfile);
+        console.log("profile data:", this.userProfile);
+      }
+    );
+  }
+
+  getNotificationsList() {
+    this.misc.getNotificationListByStatus("read").subscribe(
+      data => {
+        this.readList = data;
+        console.log("readList",data);
+
+      }
+    );
+    this.misc.getNotificationListByStatus("unread").subscribe(
+      data => {
+        this.unreadList = data;
+        console.log("unread List",data);
       }
     );
   }
 
   ngOnInit(): void {
     this.getUserProfile();
+    this.getNotificationsList();
   }
 
 }

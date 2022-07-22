@@ -665,7 +665,34 @@ export class MiscellaneousService {
         catchError(this.errorHandler.handleError)
       );
   }
+  getNotificationListByStatus(status) {
 
+    return this.http.get(`${this.consts.notificationList}${status}/`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  changeNotificationStatus(id) {
+
+    return this.http.get(`${this.consts.changeNotificationStatus}${id}`, {
+      headers: new HttpHeaders({
+        'Authorization': `${this.cookie.get('_l_a_t')}`
+      })
+    })
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
+  sendBulkNotification(data: any) {
+    return this.http.post(`${this.consts.sendBulkNotification}`, data)
+      .pipe(
+        catchError(this.errorHandler.handleError)
+      );
+  }
   /**
    * Intialize mathjax configurations
    */

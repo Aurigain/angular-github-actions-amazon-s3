@@ -73,7 +73,7 @@
                       <td>{{user?.lead?.phonenumber}}</td>
                       <td>{{user?.loan_type?.loan_type | titlecase}}</td>
                       <td>{{user?.created_at | date: 'mediumDate'}}</td>
-                      <td>{{user?.lead?.source}}</td>
+                      <td>{{user?.lead?.sourced_by?.full_name}}</td>
                       <!-- <td>{{user?.lead?.approved_by?.full_name}}</td> -->
                       <td>
                         <a

@@ -1,0 +1,24 @@
+<div class="container">
+  <form [formGroup]="notificationForm" (ngSubmit)="submitForm()">
+
+    <div class="row">
+      <label for="">Subject</label>
+      <input type="text" class="form-control" formControlName="subject">
+    </div>
+    <div class="row my-3">
+      <label for="">Message</label><br>
+      <textarea name="" id="" cols="100" rows="10" formControlName="message" class="form-control"></textarea>
+    </div>
+    <div class="row">
+      <label for=""> Send Message To Role Group: </label>
+      <!-- <input type="text" class="form-control" formControlName="role"> -->
+      <select formControlName="role" class="form-control col-md-4 ml-3">
+        <option value="" selected>Select Role</option>
+        <option [value]="role?.role_name" *ngFor="let role of roleList">{{role?.role_name |titlecase}}</option>
+      </select>
+    </div>
+    <div class="text-center mt-3"><button class="btn btn-primary">Send Notification</button></div>
+
+
+  </form>
+</div>

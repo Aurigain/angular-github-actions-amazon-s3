@@ -74,7 +74,7 @@
                       <td>{{user?.lead?.phonenumber}}</td>
                       <td>{{user?.loan_type?.loan_type | titlecase}}</td>
                       <td>{{user?.created_at | date: 'mediumDate'}}</td>
-                      <td>{{user?.lead?.source | titlecase}}</td>
+                      <td>{{user?.lead?.sourced_by?.full_name | titlecase}}</td>
 
                       <td *ngIf="!user?.lead?.is_approved">New</td>
                       <td *ngIf="user?.lead?.is_approved && !user?.lead?.fully_approved">Pending</td>

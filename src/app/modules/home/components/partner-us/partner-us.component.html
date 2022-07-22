@@ -118,22 +118,27 @@
                   (ngSubmit)="submitAuthenticationForm()">
                   <div class="form-row">
                     <div class="form-group col-md-5">
-                      <input [class.is-invalid]="first_name.invalid && first_name.touched" type="text" class="form-control"
-                        id="first_name" placeholder="First Name" formControlName="first_name" required />
+                      <input [class.is-invalid]="first_name.invalid && first_name.touched" type="text"
+                        class="form-control" id="first_name" placeholder="First Name" formControlName="first_name"
+                        required />
                       <div style="margin-left: 10px;" *ngIf="first_name.invalid && first_name.touched">
                         <small *ngIf="first_name.errors?.['required']" class="text-danger">Name is required</small><br>
                         <!-- <small *ngIf="name.errors?.['pattern']" class="text-danger">Name should not contain number or special correctors</small><br> -->
-                        <small *ngIf="first_name.errors?.['minlength']" class="text-danger">first name should not contain atleast 2
+                        <small *ngIf="first_name.errors?.['minlength']" class="text-danger">first name should not
+                          contain atleast 2
                           characters</small>
                       </div>
                     </div>
                     <div class="form-group col-md-5">
-                      <input [class.is-invalid]="last_name.invalid && last_name.touched" type="text" class="form-control"
-                        id="last_name" placeholder="Last Name" formControlName="last_name" required />
+                      <input [class.is-invalid]="last_name.invalid && last_name.touched" type="text"
+                        class="form-control" id="last_name" placeholder="Last Name" formControlName="last_name"
+                        required />
                       <div style="margin-left: 10px;" *ngIf="last_name.invalid && last_name.touched">
-                        <small *ngIf="last_name.errors?.['required']" class="text-danger">last name is required</small><br>
+                        <small *ngIf="last_name.errors?.['required']" class="text-danger">last name is
+                          required</small><br>
                         <!-- <small *ngIf="name.errors?.['pattern']" class="text-danger">Name should not contain number or special correctors</small><br> -->
-                        <small *ngIf="last_name.errors?.['minlength']" class="text-danger">last name should not contain atleast 2
+                        <small *ngIf="last_name.errors?.['minlength']" class="text-danger">last name should not contain
+                          atleast 2
                           characters</small>
                       </div>
                     </div>
@@ -224,7 +229,8 @@
                       <label class="control-label">Profile Image</label>
                       <div class="input-group mb-2">
                         <div class="custom-file">
-                          <input type="file" formControlName="profile_image" class="custom-file-input" id="profile_image" (change)="onChange($event)" />
+                          <input type="file" formControlName="profile_image" class="custom-file-input"
+                            id="profile_image" (change)="onChange($event)" />
                           <label class="custom-file-label" for="profile_image">Choose file</label>
                         </div>
                       </div>
@@ -279,8 +285,8 @@
                         formControlName="district"
                         required
                       /> -->
-                      <input [class.is-invalid]="city.invalid && city.touched" class="form-control"
-                        id="city" formControlName="city" >
+                      <input [class.is-invalid]="city.invalid && city.touched" class="form-control" id="city"
+                        formControlName="city">
                       <div style="margin-left: 10px;" *ngIf="city.invalid && city.touched">
                         <small *ngIf="city.errors?.['required']" class="text-danger">City is required</small>
                       </div>
@@ -300,8 +306,8 @@
                       </div>
                     </div> -->
                     <div class="form-group col-md-6">
-                      <input [class.is-invalid]="state.invalid && state.touched" class="form-control"
-                        id="state" formControlName="state">
+                      <input [class.is-invalid]="state.invalid && state.touched" class="form-control" id="state"
+                        formControlName="state">
                       <div style="margin-left: 10px;" *ngIf="state.invalid && state.touched">
                         <small *ngIf="state.errors?.['required']" class="text-danger">State is required</small>
                       </div>
@@ -380,7 +386,8 @@
                       <label class="control-label"> AAdhar Card (Front)</label>
                       <div class="input-group mb-2">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="aadhar_front_image" formControlName="aadhar_front_image" (change)="onChange($event)" />
+                          <input type="file" class="custom-file-input" id="aadhar_front_image"
+                            formControlName="aadhar_front_image" (change)="onChange($event)" />
                           <label class="custom-file-label" for="aadharfront">Choose file</label>
                         </div>
                       </div>
@@ -390,7 +397,8 @@
                       <label class="control-label"> AAdhar Card (Back)</label>
                       <div class="input-group mb-2">
                         <div class="custom-file">
-                          <input type="file" formControlName="aadhar_back_image" class="custom-file-input" id="aadhar_back_image" (change)="onChange($event)"  />
+                          <input type="file" formControlName="aadhar_back_image" class="custom-file-input"
+                            id="aadhar_back_image" (change)="onChange($event)" />
                           <label class="custom-file-label" for="aadharback">Choose file</label>
                         </div>
                       </div>
@@ -400,7 +408,8 @@
                       <label class="control-label"> Pan Card</label>
                       <div class="input-group mb-2">
                         <div class="custom-file">
-                          <input type="file" formControlName="pan_image" class="custom-file-input" id="pan_image" (change)="onChange($event)" />
+                          <input type="file" formControlName="pan_image" class="custom-file-input" id="pan_image"
+                            (change)="onChange($event)" />
                           <label class="custom-file-label" for="panimg">Choose file</label>
                         </div>
                       </div>
@@ -464,7 +473,8 @@
                       <label class="control-label"> CANCELLED CHEQUE</label>
                       <div class="input-group mb-2">
                         <div class="custom-file">
-                          <input type="file" formControlName="cancelled_cheque" class="custom-file-input" id="cancelled_cheque" (change)="onChange($event)"/>
+                          <input type="file" formControlName="cancelled_cheque" class="custom-file-input"
+                            id="cancelled_cheque" (change)="onChange($event)" />
                           <label class="custom-file-label" for="cheque">Choose file</label>
                         </div>
                       </div>
@@ -483,36 +493,6 @@
                 </form>
               </div>
 
-              <!-- <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 5 }"
-                id="nav-referral"
-                role="tabpanel"
-                aria-labelledby="nav-referral-tab"
-              >
-                <form [formGroup]="refrralDetailForm">
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="inputReferral"
-                        placeholder=" Enter Referral Code"
-                        formControlName="referralCode"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
-                    <div class="col-12 mt-2">
-                      <a (click)="submitAgentForm()">
-                        <button type="submit" class="btn btn-primary">
-                          Submit
-                        </button>
-                      </a>
-                    </div>
-                  </div>
-                </form>
-              </div> -->
             </div>
           </div>
         </div>
