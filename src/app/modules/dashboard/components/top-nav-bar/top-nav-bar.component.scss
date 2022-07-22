@@ -12,13 +12,11 @@
     background: #000;
 }
 
-.navbar .navbar-item .nav {
-    margin: 0 -20px 0 0;
-}
+
 .aurigain-notification {
-    .notification-bell {
-        color: #fff;
-    }
+    // .notification-bell {
+    //     color: #fff;
+    // }
     #dropdownForm1{
         left: -4rem;
     }
@@ -34,7 +32,7 @@
 
     .tab-content-height {
         height: 40vh;
-        // width: 18vw;
+        width: 18vw;
         overflow: auto;
     }
 
@@ -51,6 +49,17 @@
 
     .infoFontweight {
         font-weight: 700;
+    }
+    .notificationDig{
+        position: absolute;
+        top: -7px;
+        left: 21px;
+    }
+    .bellbg{
+        background: white;
+        color: #000;
+    padding: 0.3rem;
+    border-radius: 50%;
     }
 }
 
