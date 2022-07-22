@@ -1,4 +1,3 @@
-
 /* top header container */
 .header-container {
     z-index: 99999;
@@ -13,15 +12,59 @@
     background: #000;
 }
 
-@media (min-width: 576px){
-.navbar-expand-sm {
-    flex-flow: row nowrap;
-    justify-content: flex-start;
+.navbar .navbar-item .nav {
+    margin: 0 -20px 0 0;
 }
+.aurigain-notification {
+    .notification-bell {
+        color: #fff;
+    }
+    #dropdownForm1{
+        left: -4rem;
+    }
+    .nav-link {
+        font-size: .9rem;
+        line-height: 1rem !important;
+    }
+
+    .nav-pills .nav-link.active {
+        color: #fff;
+        background: #212529;
+    }
+
+    .tab-content-height {
+        height: 40vh;
+        // width: 18vw;
+        overflow: auto;
+    }
+
+    .notificationBackground {
+        background: #d3def1;
+        padding: 3px;
+        margin-bottom: 4px;
+    }
+
+    .notificationInfotext {
+        font-size: .8rem;
+
+    }
+
+    .infoFontweight {
+        font-weight: 700;
+    }
 }
-header .m-29{
+
+@media (min-width: 576px) {
+    .navbar-expand-sm {
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+    }
+}
+
+header .m-29 {
     margin-left: -29px;
 }
+
 .navbar-expand-sm .navbar-item {
     display: flex;
     /* flex-direction: column; */
@@ -31,14 +74,14 @@ header .m-29{
 }
 
 .navbar .theme-brand {
-    padding: 0.9px 0 0.9px 27px!important;
+    padding: 0.9px 0 0.9px 27px !important;
     border-radius: 6px 6px 0 0;
     justify-content: space-between;
 
 }
 
 .flex-row {
-    flex-direction: row!important;
+    flex-direction: row !important;
 }
 
 ul {
@@ -59,20 +102,22 @@ ul {
 }
 
 .navbar .theme-brand li.theme-text a {
-    font-size: 24px!important;
-    color: #fff!important;
+    font-size: 24px !important;
+    color: #fff !important;
     line-height: 2.75rem;
     padding: 0 0.8rem;
     text-transform: none;
     position: unset;
     font-weight: 700;
 }
-@media (max-width: 767px){
-.navbar .theme-brand li.theme-text {
-    display: none;
-    margin-right: 0;
+
+@media (max-width: 767px) {
+    .navbar .theme-brand li.theme-text {
+        display: none;
+        margin-right: 0;
+    }
 }
-}
+
 .dropdown-item-img {
     height: 80px;
     width: 80px;
@@ -86,22 +131,26 @@ ul {
     box-shadow: 0 0 20px #ddd;
     border: none;
 }
-.dropdown-item-img img{
+
+.dropdown-item-img img {
     width: 100%;
 }
+
 .dropdown-item-name {
     white-space: normal;
     line-height: 22px;
     margin: 10px 0 5px;
     text-transform: capitalize;
 }
-.dropdown-item .top-text a{
-    display: block!important;
+
+.dropdown-item .top-text a {
+    display: block !important;
     color: #3b3f5c;
-    font-size: 13px!important;
-    font-weight: 600!important;
-    padding: 1px 5px!important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 1px 5px !important;
 }
+
 .navbar-expand-sm .navbar-item {
     display: flex;
     /* flex-direction: column; */
@@ -110,17 +159,19 @@ ul {
     list-style: none;
 }
 
-@media (min-width: 768px){
-.ml-md-auto, .mx-md-auto {
-    margin-left: auto!important;
-}
+@media (min-width: 768px) {
+
+    .ml-md-auto,
+    .mx-md-auto {
+        margin-left: auto !important;
+    }
 }
 
 
-@media (min-width: 992px){
-.d-lg-flex {
-    display: flex!important;
-}
+@media (min-width: 992px) {
+    .d-lg-flex {
+        display: flex !important;
+    }
 }
 
 .theme-change-btn-grp a {
@@ -133,22 +184,22 @@ ul {
 }
 
 .btn-theme-default {
-    background: #e8e8e8!important;
+    background: #e8e8e8 !important;
 }
 
 .btn-theme-dark {
-    background: #f7b900!important;
+    background: #f7b900 !important;
 }
 
 .btn-theme-primary {
-    background: #4361ee!important;
+    background: #4361ee !important;
 }
 
 .btn-theme-green {
-    background: #24695c!important;
+    background: #24695c !important;
 }
 
-a{
+a {
     color: #515365;
     outline: none;
 }
@@ -157,7 +208,10 @@ a{
     margin: 0 20px 0 16px;
 }
 
-.dropdown, .dropleft, .dropright, .dropup {
+.dropdown,
+.dropleft,
+.dropright,
+.dropup {
     position: relative;
 }
 
@@ -252,16 +306,16 @@ a{
 }
 
 .text-danger {
-    color: #e7515a!important;
+    color: #e7515a !important;
 }
 
-.pb-0, .py-0 {
-    padding-bottom: 0!important;
+.pb-0,
+.py-0 {
+    padding-bottom: 0 !important;
 }
 
 .dropdown-item-sign-out {
-    color: #002767!important;
+    color: #002767 !important;
 }
+
 /* top header complete */
-
-

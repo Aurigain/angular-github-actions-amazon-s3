@@ -14,53 +14,61 @@
     </button>
 
 
-    <ul class="navbar-item flex-row ml-md-auto">
-      <li>
+    <ul class="navbar-item flex-row ml-md-auto aurigain-notification">
+      <li class="pt-1">
         <div class="row">
           <div class="col">
             <div ngbDropdown class="d-inline-block">
-              <button type="button" class="btn btn-outline-primary" id="dropdownForm1" ngbDropdownToggle><i
+              <button type="button" class="btn notification-bell" id="dropdownForm1" ngbDropdownToggle><i
                   class="fa-solid fa-bell"></i></button>
               <div ngbDropdownMenu aria-labelledby="dropdownForm1">
 
                 <nav>
-                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <div class="nav nav-pills" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link" [ngClass]="{ active: currentStep == 1 }" id="basic-tab"
-                      data-toggle="tab" href="#nav-basic" role="tab" aria-controls="nav-basic" aria-selected="true"
+                      data-toggle="pill" href="#nav-basic" role="tab" aria-controls="nav-basic" aria-selected="true"
                       (click)="setStep(1)">Read</a>
 
                     <a class="nav-item nav-link" [ngClass]="{ active: currentStep == 2 }" id="nav-address-tab"
-                      data-toggle="tab" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false"
+                      data-toggle="pill" href="#nav-address" role="tab" aria-controls="nav-address" aria-selected="false"
                       (click)="setStep(2)">UnRead</a>
                   </div>
                 </nav>
 
-                <div class="tab-content bg-light p-5" id="nav-tabContent">
+                <div class="tab-content bg-light p-1 tab-content-height" id="nav-tabContent">
                   <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 1 }" id="nav-basic"
                     role="tabpanel" aria-labelledby="nav-basic-tab">
                     <div class="notification new ng-scope" *ngIf="readList">
-                      <div class="notification-text ng-binding" *ngFor="let notification of readList">
-                        <span class="highlight ng-binding">{{notification?.subject}}</span>
-                        <p>{{notification?.notification}}</p>
+                      <div class="notification-text ng-binding notificationBackground notificationInfotext" *ngFor="let notification of readList">
+                        <div>
+                          <span class="highlight ng-binding notificationInfotext infoFontweight">{{notification?.subject}}</span>
+                        </div>
+                        <div>
+                          <span class="notificationInfotext">{{notification?.notification}}</span>
+                        </div> 
                       </div>
                     </div>
                     <div class="notification new ng-scope" *ngIf="!readList">
-                      <div class="notification-text ng-binding">
-                        <p>No Read Notification</p>
+                      <div class="notification-text ng-binding notificationBackground notificationInfotext">
+                        <p class="notificationInfotext">No Read Notification</p>
                       </div>
                     </div>
                   </div>
                   <div class="tab-pane fade" [ngClass]="{ 'show active': currentStep == 2 }" id="nav-basic"
                     role="tabpanel" aria-labelledby="nav-basic-tab">
                     <div class="notification new ng-scope" *ngIf="unreadList">
-                      <div class="notification-text ng-binding" *ngFor="let notification of unreadList">
-                        <span class="highlight ng-binding">{{notification?.subject}}</span>
-                        <p>{{notification?.notification}}</p>
+                      <div class="notification-text ng-binding notificationBackground" *ngFor="let notification of unreadList">
+                        <div>
+                          <span class="highlight ng-binding notificationInfotext infoFontweight">{{notification?.subject}}</span>
+                        </div>
+                        <div>
+                          <span class="notificationInfotext">{{notification?.notification}}</span>
+                        </div> 
                       </div>
                     </div>
-                    <div class="notification new ng-scope" *ngIf="!unreadList">
+                    <div class="notification new ng-scope notificationBackground" *ngIf="!unreadList">
                       <div class="notification-text ng-binding" >
-                       <p>No UnRead Notifications</p>
+                       <p class="notificationInfotext">No UnRead Notifications</p>
                       </div>
                     </div>
                   </div>
@@ -72,12 +80,12 @@
         </div>
 
       </li>
-      <li class="theme-change-btn-grp d-none d-lg-flex align-items-center mr-2">
+      <!-- <li class="theme-change-btn-grp d-none d-lg-flex align-items-center mr-2">
         <a href="javascript:void(0);" class="btn-theme-default"></a>
         <a href="javascript:void(0);" class="btn-theme-dark"></a>
         <a href="javascript:void(0);" class="btn-theme-primary"></a>
         <a href="javascript:void(0);" class="btn-theme-green"></a>
-      </li>
+      </li> -->
 
 
       <li class="nav-item dropdown user-profile-dropdown">
