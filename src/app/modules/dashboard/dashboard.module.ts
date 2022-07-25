@@ -58,6 +58,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { AddExternalBalanceTransferLeadsComponent } from './components/leads/add-external-balance-transfer-leads/add-external-balance-transfer-leads.component';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { CreateBulkNotificationComponent } from './components/create-bulk-notification/create-bulk-notification.component';
+import { NotificationViewComponent } from './components/notification-view/notification-view.component';
 
 const routes: Routes = [
   {
@@ -258,6 +259,7 @@ const routes: Routes = [
     ChangePasswordComponent,
     AddExternalBalanceTransferLeadsComponent,
     CreateBulkNotificationComponent,
+    NotificationViewComponent,
   ],
   imports: [
     CommonModule,
