@@ -10,65 +10,10 @@
 .header-container .navbar {
     padding: 0;
     background: #000;
+    height: 45px !important;
 }
 
-.aurigain-notification {
-    // .notification-bell {
-    //     color: #fff;
-    // }
-    #dropdownForm1{
-        left: -4rem;
-    }
-    .dropdown-toggle::after{
-        display: none;
-    }
-    .nav-link {
-        font-size: .9rem;
-        line-height: 1rem !important;
-    }
 
-    .nav-pills .nav-link.active {
-        color: #fff;
-        background: #212529;
-    }
-
-    .tab-content-height {
-        height: 40vh;
-        width: 18vw;
-        overflow: auto;
-    }
-
-    .notificationBackground {
-        background: #d3def1;
-        padding: 3px;
-        margin-bottom: 4px;
-    }
-
-    .notificationInfotext {
-        font-size: .8rem;
-
-    }
-
-    .infoFontweight {
-        font-weight: 700;
-    }
-    .notificationDig{
-        position: absolute;
-        background: white;
-        border-radius: 50%;
-        font-size: .8rem;
-        top: -4px;
-        left: 19px;
-    }
-    .bellbg{
-        color: yellow;
-
-    }
-    // .msgbox{
-    //     color: #fff;
-    //     font-size: 1.7rem;
-    // }
-}
 
 @media (min-width: 576px) {
     .navbar-expand-sm {
@@ -332,6 +277,60 @@ a {
 
 .dropdown-item-sign-out {
     color: #002767 !important;
+}
+
+.aurigain-notification {
+    
+    .dropdown-toggle::after{
+        display: none;
+    }
+    .nav-link {
+        font-size: .9rem;
+        line-height: 1rem !important;
+    }
+
+    .nav-pills .nav-link.active {
+        color: #fff;
+        background: #212529;
+    }
+
+    .tab-content-height {
+        max-height: 40vh;
+        width: 18vw;
+        overflow: auto;
+    }
+
+    .notificationBackground {
+        background: #d3def1;
+        padding: 3px;
+        margin-bottom: 4px;
+    }
+
+    .notificationInfotext {
+        font-size: .8rem;
+
+    }
+
+    .infoFontweight {
+        font-weight: 700;
+    }
+    .notificationDig{
+        position: absolute;
+        background: red;
+        border-radius: 50%;
+        font-size: .8rem;
+        top: -4px;
+        left: -14px;
+        padding: 3px;
+        min-width: 25px;
+        text-align: center;
+    }
+    .bellbg{
+        color: yellow;
+        margin-left: -68px;
+        font-size: 1.4rem;
+    }
+    
 }
 
 /* top header complete */
