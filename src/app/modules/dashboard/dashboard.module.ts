@@ -203,6 +203,9 @@ const routes: Routes = [
       {
         path: 'send-bulk-notification', component: CreateBulkNotificationComponent
       },
+      {
+        path: 'notification-view', component: NotificationViewComponent
+      },
     ]
   }
 ]

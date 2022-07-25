@@ -54,16 +54,25 @@ export class TopNavBarComponent implements OnInit {
     this.misc.getNotificationListByStatus("read").subscribe(
       data => {
         this.readList = data;
-        console.log("readList",data);
+        console.log("readList", data);
 
       }
     );
     this.misc.getNotificationListByStatus("unread").subscribe(
       data => {
         this.unreadList = data;
-        console.log("unread List",data);
+        console.log("unread List", data);
       }
     );
+  }
+
+  readNotification(id) {
+    this.misc.changeNotificationStatus(id).subscribe(
+      data => {
+        console.log("readNotification", data);
+        this.getNotificationsList();
+      }
+    )
   }
 
   ngOnInit(): void {
