@@ -11,3 +11,11 @@
     border-color: #212529 #212529 #212529;
   }
 }
+@media screen and (max-width:426px) {
+  .notificationView{
+    padding: 20px 10px;
+    li a{
+      font-size: 14px;
+    }
+  }
+}
