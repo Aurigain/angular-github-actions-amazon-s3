@@ -332,5 +332,11 @@ a {
     }
     
 }
-
+@media screen and (max-width:768px) {
+    .aurigain-notification{
+        .tab-content-height{
+            width: 100%;
+        }
+    }
+}
 /* top header complete */
