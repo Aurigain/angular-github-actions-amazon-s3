@@ -15,11 +15,15 @@ export class AccountsMakerPanelDetailsComponent implements OnInit {
   currentUserId: number;
   makerDetail;
   markStatus = "not uploaded";
+  documentDetails;
   profileData;
   fetchBranchDetail
   BankName
   BranchName
-  BranchAddress
+  BranchAddress;
+  text;
+  dataVerify;
+  imageVerify;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -32,8 +36,14 @@ export class AccountsMakerPanelDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.currentUserId = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log(this.currentUserId);
-
+    this.fetchBTLeadDocumentDetails(this.currentUserId)
     this.fetchMakerList();
+  }
+
+  loadImage(text, data, dynamicImage) {
+    this.text = text;
+    this.dataVerify = data;
+    this.imageVerify = dynamicImage;
   }
 
   searchIFSC(ifscCode) {
@@ -77,6 +87,15 @@ export class AccountsMakerPanelDetailsComponent implements OnInit {
         }
       }
     )
+  }
+
+  fetchBTLeadDocumentDetails(id) {
+    console.log("insideeeee")
+    this.misc.fetchLeadDocumentById(id).subscribe(data => {
+      console.log("document details:", data[0]);
+      this.documentDetails = data[0];
+
+    })
   }
 
   submitMaker() {

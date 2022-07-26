@@ -90,14 +90,14 @@
                     </tbody>
                   </table>
                 </div>
-                <!-- <div class="col-md-4">
-                  <p class="text-center py-3"><a href="#" data-toggle="modal" aria-label="screens"
+                <div class="col-md-4">
+                  <p class="text-center py-3"><a (click)="loadImage('Account Number',makerDetail?.loan_account_number, documentDetails?.loan_document)" data-toggle="modal" aria-label="screens"
                       data-target="#mScreenshot">
                       <i class="fa-solid fa-circle-plus fa-2x position-absolute bg-white shadow"></i>
-                      <img src="https://thispersondoesnotexist.com/image" width="250" height="250" alt="bank details"
+                      <img [src]="documentDetails?.loan_document" width="250" height="250" alt="bank details"
                         class="img-fluid img-thumbnail lazyload"></a></p>
 
-                </div> -->
+                </div>
               </div>
             </div>
           </div>
@@ -141,23 +141,26 @@
     </div>
   </div>
 
-  <!-- <div class="modal fade" id="mScreenshot">
+  <div class="modal fade" id="mScreenshot">
     <div class="modal-dialog modal-lg">
-    <div class="modal-content" style="top:50px;">
-    <ngb-carousel>
-      <ng-template ngbSlide *ngFor="let img of image?.url; let i as index">
+      <div class="modal-content" style="top:50px;">
         <div class="modal-header">
-          <p>Detail of Image comes here...</p>
+          <p><strong>{{text | titlecase}} : </strong>{{dataVerify}}</p>
           <button style="z-index: 10;" type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <img [src]="img" alt="Random first slide" class="img-fluid w-100">
+          <lib-ngx-image-zoom
+            [thumbImage]="imageVerify"
+            [fullImage]="imageVerify"
+            [magnification]="1"
+            [enableLens]="true"
+            [lensWidth]="200"
+            [altText]="dataVerify">
+          </lib-ngx-image-zoom>
+          <!-- <img [src]="imageVerify" alt="{{dataVerify}}" width="500" height="500" class="img-fluid"> -->
         </div>
-      </ng-template>
-    </ngb-carousel>
-
+      </div>
     </div>
-    </div>
-  </div> -->
+  </div>
 
 </div>
