@@ -1,0 +1,71 @@
+<div class="container">
+  <h2>Notification View</h2>
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" [destroyOnHide]="false" class="nav-tabs justify-content-center">
+    <li [ngbNavItem]="1" [destroyOnHide]="true">
+      <a ngbNavLink>Read Notification</a>
+      <ng-template ngbNavContent>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">Notification Detail</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let notification of readList; index as i">
+              <th scope="row">{{notification?.type}}</th>
+              <td class="subject">
+                <div> <strong>{{notification?.subject}}</strong>
+                </div>
+                <div class="body" style="height: 24px;">
+                  <div class="full">
+                    {{notification?.notification}}
+                  </div>
+
+                </div>
+              </td>
+              <td>{{ notification.created_at | date: 'mediumDate'}}</td>
+              <!-- <td>{{ country.population | number }}</td> -->
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2" [destroyOnHide]="true">
+      <a ngbNavLink>UnRead Notifications<span class="mx-1">({{unreadList.length}})</span></a>
+      <ng-template ngbNavContent>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">Notification Detail</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let notification of unreadList; index as i">
+              <th scope="row">{{notification?.type}}</th>
+              <td class="subject" (click)="readNotification(notification?.id)">
+                <div> <strong>{{notification?.subject}}</strong>
+                </div>
+                <div class="body" style="height: 24px;">
+                  <div class="full">
+                    {{notification?.notification}}
+                  </div>
+
+                </div>
+              </td>
+              <td>{{ notification.created_at | date: 'mediumDate'}}</td>
+              <!-- <td>{{ country.population | number }}</td> -->
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </li>
+
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>

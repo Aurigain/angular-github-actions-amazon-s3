@@ -1,7 +1,8 @@
 #content{
 	width: 100%;
 	padding: 20px;
-	min-height: 94vh;
+	// min-height: 94vh;
+	min-height: calc(100vh - 45px - 32px);
 	transition: all 0.3s;
 	margin-left: 250px;
 	overflow: hidden;

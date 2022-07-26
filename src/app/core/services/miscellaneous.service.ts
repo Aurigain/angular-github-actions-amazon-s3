@@ -678,7 +678,7 @@ export class MiscellaneousService {
   }
   changeNotificationStatus(id) {
 
-    return this.http.get(`${this.consts.changeNotificationStatus}${id}`, {
+    return this.http.get(`${this.consts.changeNotificationStatus}${id}/`, {
       headers: new HttpHeaders({
         'Authorization': `${this.cookie.get('_l_a_t')}`
       })
