@@ -61,7 +61,8 @@
                     <tbody class="table-custom">
                       <tr>
                         <td><strong>Loan Type</strong></td>
-                        <td>{{makerDetail?.loan_type?.loan_type |titlecase}} &ndash; {{makerDetail?.loan_type?.loan?.loan}}</td>
+                        <td>{{makerDetail?.loan_type?.loan_type |titlecase}} &ndash;
+                          {{makerDetail?.loan_type?.loan?.loan}}</td>
                       </tr>
                       <tr>
                         <td><strong>IFSC Code</strong></td>
@@ -90,9 +91,20 @@
                     </tbody>
                   </table>
                 </div>
-                <div class="col-md-4">
-                  <p class="text-center py-3"><a (click)="loadImage('Account Number',makerDetail?.loan_account_number, documentDetails?.loan_document)" data-toggle="modal" aria-label="screens"
-                      data-target="#mScreenshot">
+                <div class="col-md-4" *ngIf="accountTransferDetails?.account_type !=='existing'">
+                  {{accountTransferDetails?.account_type}}
+                  <p class="text-center py-3"><a
+                      (click)="loadImage('Account Number',makerDetail?.loan_account_number, accountTransferDetails?.security_cheque_1)"
+                      data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                      <i class="fa-solid fa-circle-plus fa-2x position-absolute bg-white shadow"></i>
+                      <img [src]="accountTransferDetails?.security_cheque_1" width="250" height="250" alt="bank details"
+                        class="img-fluid img-thumbnail lazyload"></a></p>
+
+                </div>
+                <div class="col-md-4" *ngIf="accountTransferDetails?.account_type === 'existing'">
+                  <p class="text-center py-3"><a
+                      (click)="loadImage('Account Number',makerDetail?.loan_account_number, documentDetails?.loan_document)"
+                      data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
                       <i class="fa-solid fa-circle-plus fa-2x position-absolute bg-white shadow"></i>
                       <img [src]="documentDetails?.loan_document" width="250" height="250" alt="bank details"
                         class="img-fluid img-thumbnail lazyload"></a></p>
@@ -132,8 +144,9 @@
 
         <div class="mt-5">
           <div class="ml-3">
-            <button  class="btn btn-primary" (click)="download()"> Download </button>
-            <button [disabled]="markStatus !== 'uploaded'" (click)="submitMaker()" class="btn btn-primary mr-4 float-right">Save & Submit</button>
+            <button class="btn btn-primary" (click)="download()"> Download </button>
+            <button [disabled]="markStatus !== 'uploaded'" (click)="submitMaker()"
+              class="btn btn-primary mr-4 float-right">Save & Submit</button>
           </div>
           <a routerLink="../../"><button class="btn btn-outline-primary mt-3 ml-3">Cancel</button></a>
         </div>
@@ -149,13 +162,8 @@
           <button style="z-index: 10;" type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <lib-ngx-image-zoom
-            [thumbImage]="imageVerify"
-            [fullImage]="imageVerify"
-            [magnification]="1"
-            [enableLens]="true"
-            [lensWidth]="200"
-            [altText]="dataVerify">
+          <lib-ngx-image-zoom [thumbImage]="imageVerify" [fullImage]="imageVerify" [magnification]="2"
+            [enableLens]="true" [enableScrollZoom]="true" [lensWidth]="200" [altText]="dataVerify">
           </lib-ngx-image-zoom>
           <!-- <img [src]="imageVerify" alt="{{dataVerify}}" width="500" height="500" class="img-fluid"> -->
         </div>

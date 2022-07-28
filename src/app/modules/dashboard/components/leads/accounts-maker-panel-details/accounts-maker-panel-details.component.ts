@@ -15,6 +15,7 @@ export class AccountsMakerPanelDetailsComponent implements OnInit {
   currentUserId: number;
   makerDetail;
   markStatus = "not uploaded";
+  accountTransferDetails;
   documentDetails;
   profileData;
   fetchBranchDetail
@@ -36,6 +37,7 @@ export class AccountsMakerPanelDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.currentUserId = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log(this.currentUserId);
+    this.fetchBTLeadAccountTransferDetails(this.currentUserId)
     this.fetchBTLeadDocumentDetails(this.currentUserId)
     this.fetchMakerList();
   }
@@ -89,15 +91,20 @@ export class AccountsMakerPanelDetailsComponent implements OnInit {
     )
   }
 
-  fetchBTLeadDocumentDetails(id) {
-    console.log("insideeeee")
-    this.misc.fetchLeadDocumentById(id).subscribe(data => {
-      console.log("document details:", data[0]);
-      this.documentDetails = data[0];
+  fetchBTLeadAccountTransferDetails(id) {
 
+    this.misc.fetchLeadAccountTransferDetailById(id).subscribe(data => {
+      console.log("account transfer details:", data[0]);
+      this.accountTransferDetails = data[0];
     })
   }
 
+  fetchBTLeadDocumentDetails(id) {
+    this.misc.fetchLeadDocumentById(id).subscribe(data => {
+      console.log("document details:", data[0]);
+      this.documentDetails = data[0];
+    })
+  }
   submitMaker() {
     let formData = {
       lead: this.makerDetail['lead']['id'],
@@ -131,7 +138,7 @@ export class AccountsMakerPanelDetailsComponent implements OnInit {
       },
     ];
 
-
+    console.log("jsonData", jsonData)
 
     this.json2csv.downloadFile(jsonData, 'jsontocsv');
   }

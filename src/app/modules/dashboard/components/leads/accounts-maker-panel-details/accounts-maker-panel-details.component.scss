@@ -145,3 +145,13 @@ table tr td {
 .position-absolute {
   position: absolute!important;
 }
+
+::ng-deep .ngxImageZoomContainer > img{
+  width: 750px !important;
+  // height: auto !important;
+}
+
+#mScreenshot{
+  // position: relative;
+  z-index: 99999;
+}

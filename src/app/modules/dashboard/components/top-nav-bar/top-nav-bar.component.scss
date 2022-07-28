@@ -280,7 +280,7 @@ a {
 }
 
 .aurigain-notification {
-    
+
     .dropdown-toggle::after{
         display: none;
     }
@@ -330,7 +330,7 @@ a {
         margin-left: -68px;
         font-size: 1.4rem;
     }
-    
+
 }
 @media screen and (max-width:768px) {
     .aurigain-notification{
@@ -340,3 +340,6 @@ a {
     }
 }
 /* top header complete */
+.notification-text{
+  cursor: pointer;
+}
