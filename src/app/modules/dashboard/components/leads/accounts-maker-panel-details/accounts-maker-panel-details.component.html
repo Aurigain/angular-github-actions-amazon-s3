@@ -92,7 +92,6 @@
                   </table>
                 </div>
                 <div class="col-md-4" *ngIf="accountTransferDetails?.account_type !=='existing'">
-                  {{accountTransferDetails?.account_type}}
                   <p class="text-center py-3"><a
                       (click)="loadImage('Account Number',makerDetail?.loan_account_number, accountTransferDetails?.security_cheque_1)"
                       data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
