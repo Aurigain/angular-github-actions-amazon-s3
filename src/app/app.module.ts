@@ -13,6 +13,8 @@ import { environment } from 'src/environments/environment';
 import { NgPipesModule } from 'ngx-pipes';
 import { JSON2CSV } from './core/services/json2csv';
 import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { ModalModule } from 'ng-modal-lib';
+import { AngularImageViewerModule } from 'angular-x-image-viewer';
 
 @NgModule({
   declarations: [
@@ -21,11 +23,14 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
+    // BrowserAnimationsModule.,
     HttpClientModule,
     NgxPaginationModule,
     NgbModule,
     NgPipesModule,
+    AngularImageViewerModule,
     NgxImageZoomModule,
+    ModalModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
   ],

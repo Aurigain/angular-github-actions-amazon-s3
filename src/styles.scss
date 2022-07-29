@@ -12,10 +12,29 @@ body{
   input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
   }
-  
+
   input[type=number] {
     -moz-appearance: textfield;
   }
-  
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+
+
+.modal-demo .ui-modal {
+  max-width: 1000px;
+  max-height:750px;
+  /* for resize limits use min-width, min-height, max-width, max-height in css */
+}
+.modal-demo .ui-modal-overlay, .modal-demo .ui-modal {
+  z-index: 99999;
+}
+/* colors */
+:root {
+  --dt-color-primary: #002767;
+}
+/* for IE */
+.ui-modal-header {
+  background-color: #002767;
+}

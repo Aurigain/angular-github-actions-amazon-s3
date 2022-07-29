@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApplicationApprovalComponent } from './components/leads/application-approval/application-approval.component';
 import { UpdateStatusComponent } from './components/leads/update-status/update-status.component';
 import { ViewApplicationComponent } from './components/leads/view-application/view-application.component';
@@ -59,6 +60,9 @@ import { AddExternalBalanceTransferLeadsComponent } from './components/leads/add
 import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { CreateBulkNotificationComponent } from './components/create-bulk-notification/create-bulk-notification.component';
 import { NotificationViewComponent } from './components/notification-view/notification-view.component';
+import { ModalModule } from 'ng-modal-lib';
+import { ImageViewerModule } from 'ngx-image-viewer';
+import { AngularImageViewerModule } from 'angular-x-image-viewer';
 
 const routes: Routes = [
   {
@@ -271,6 +275,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     NgxPaginationModule,
     HttpClientModule,
+    ModalModule,
+    AngularImageViewerModule,
     NgPipesModule,
     NgxImageZoomModule,
     RouterModule.forChild(routes),
