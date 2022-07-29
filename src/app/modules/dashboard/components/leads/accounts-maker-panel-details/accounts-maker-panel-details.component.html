@@ -92,18 +92,17 @@
                   </table>
                 </div>
                 <div class="col-md-4" *ngIf="accountTransferDetails?.account_type !=='existing'">
-                  <p class="text-center py-3"><a
-                      (click)="loadImage('Account Number',makerDetail?.loan_account_number, accountTransferDetails?.security_cheque_1)"
-                      data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                  <p class="text-center py-3" (click)="modalRoot.show()"
+                    *ngIf="accountTransferDetails?.security_cheque_1"><a
+                      (click)="loadImage('Account Number',makerDetail?.loan_account_number, accountTransferDetails?.security_cheque_1)">
                       <i class="fa-solid fa-circle-plus fa-2x position-absolute bg-white shadow"></i>
                       <img [src]="accountTransferDetails?.security_cheque_1" width="250" height="250" alt="bank details"
                         class="img-fluid img-thumbnail lazyload"></a></p>
 
                 </div>
                 <div class="col-md-4" *ngIf="accountTransferDetails?.account_type === 'existing'">
-                  <p class="text-center py-3"><a
-                      (click)="loadImage('Account Number',makerDetail?.loan_account_number, documentDetails?.loan_document)"
-                      data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                  <p class="text-center py-3" (click)="modalRoot.show()" *ngIf="documentDetails?.loan_document"><a
+                      (click)="loadImage('Account Number',makerDetail?.loan_account_number, documentDetails?.loan_document)">
                       <i class="fa-solid fa-circle-plus fa-2x position-absolute bg-white shadow"></i>
                       <img [src]="documentDetails?.loan_document" width="250" height="250" alt="bank details"
                         class="img-fluid img-thumbnail lazyload"></a></p>
@@ -153,7 +152,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="mScreenshot">
+  <!-- <div class="modal fade" id="mScreenshot">
     <div class="modal-dialog modal-lg">
       <div class="modal-content" style="top:50px;">
         <div class="modal-header">
@@ -164,10 +163,24 @@
           <lib-ngx-image-zoom [thumbImage]="imageVerify" [fullImage]="imageVerify" [magnification]="2"
             [enableLens]="true" [enableScrollZoom]="true" [lensWidth]="200" [altText]="dataVerify">
           </lib-ngx-image-zoom>
-          <!-- <img [src]="imageVerify" alt="{{dataVerify}}" width="500" height="500" class="img-fluid"> -->
+
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+  <app-modal #modalRoot class="modal-demo">
+    <ng-container class="app-modal-header"><strong>{{text | titlecase}} : </strong>{{dataVerify}}</ng-container>
+    <ng-container class="app-modal-body">
+      <!-- <lib-ngx-image-zoom [thumbImage]="imageVerify" [fullImage]="imageVerify" [magnification]="1" [enableLens]="true"
+        [lensWidth]="200" [altText]="dataVerify">
+      </lib-ngx-image-zoom> -->
+      <angular-image-viewer [src]="imageVerify"></angular-image-viewer>
+    </ng-container>
+    <ng-container class="app-modal-footer">
+
+      <button type="button" class="button button2" style="float: right;" (click)="modalRoot.hide()">Close
+      </button>
+    </ng-container>
+  </app-modal>
 
 </div>

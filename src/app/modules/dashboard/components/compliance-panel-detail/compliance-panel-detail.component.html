@@ -43,13 +43,14 @@
                     <div class="col-md-3 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a
+                        <p class="text-center py-3" (click)="modalRoot.show()"
+                          *ngIf="documentDetails?.kyc_document_poi"><a
                             (click)="loadImage('Name', profileData?.fullname, documentDetails?.kyc_document_poi)"
-                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            >
                             <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                             <img [src]="documentDetails?.kyc_document_poi" width="50" height="50" alt="bank details"
                               class="img-fluid img-thumbnail lazyload"></a></p>
-
+                        <p *ngIf="!documentDetails?.kyc_document_poi">Not Uploaded</p>
                       </div>
                     </div>
                     <div class="col-md-4 box">
@@ -83,13 +84,14 @@
                     <div class="col-md-3 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a
+                        <p class="text-center py-3" (click)="modalRoot.show()"
+                          *ngIf="documentDetails?.kyc_document_poa"><a
                             (click)="loadImage('Address',addressDetails?.address_line1 + ',' + addressDetails?.address_line2 + ',' + addressDetails?.city?.name + ',' + addressDetails?.state?.name, documentDetails?.kyc_document_poa)"
-                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            >
                             <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                             <img [src]="documentDetails?.kyc_document_poa" width="50" height="50" alt="bank details"
                               class="img-fluid img-thumbnail lazyload"></a></p>
-
+                        <p *ngIf="!documentDetails?.kyc_document_poa">Not Uploaded</p>
                       </div>
                     </div>
                     <div class="col-md-4 box">
@@ -122,13 +124,14 @@
                     <div class="col-md-3 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a
+                        <p class="text-center py-3" (click)="modalRoot.show()"
+                          *ngIf="documentDetails?.kyc_document_poi"><a
                             (click)="loadImage('Father\'s Name',profileData?.father_name, documentDetails?.kyc_document_poi)"
-                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            >
                             <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                             <img [src]="documentDetails?.kyc_document_poi" width="50" height="50" alt="KYC POI"
                               class="img-fluid img-thumbnail lazyload"></a></p>
-
+                        <p *ngIf="!documentDetails?.kyc_document_poi">Not Uploaded</p>
                       </div>
                     </div>
                   </div>
@@ -140,14 +143,14 @@
                     <div class="col-md-3 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3">
+                        <p class="text-center py-3" (click)="modalRoot.show()" *ngIf="documentDetails?.customer_photo">
                           <a (click)="loadImage('Customer Photo','Mark fail if blur or doesn\'t match aadhar photo', documentDetails?.customer_photo)"
-                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            >
                             <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                             <img [src]="documentDetails?.customer_photo" width="50" height="50" alt="bank details"
                               class="img-fluid img-thumbnail lazyload"></a>
                         </p>
-
+                        <p *ngIf="!documentDetails?.customer_photo">Not Uploaded</p>
                       </div>
                     </div>
                     <div class="col-md-7 box">
@@ -268,11 +271,14 @@
                     </div>
                     <div class="col-md-6">
                       <div class="my-4">
-                        <a (click)="loadImage('Loan Document','Mark fail if doesn\'t exist/match', documentDetails?.loan_document)"
-                          href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                          <img [src]="documentDetails?.loan_document" alt="Loan Document"
-                            class="img-fluid img-thumbnail lazyload"></a>
+                        <p class="text-center py-3" (click)="modalRoot.show()" *ngIf="documentDetails?.loan_document"><a
+                            (click)="loadImage('Loan Document','Mark fail if doesn\'t exist/match', documentDetails?.loan_document)"
+                            >
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.loan_document" alt="Loan Document"
+                              class="img-fluid img-thumbnail lazyload"></a>
+                        </p>
+                        <p *ngIf="!documentDetails?.loan_document">Not Uploaded</p>
                       </div>
                     </div>
                   </div>
@@ -378,11 +384,14 @@
                       </div>
                       <div class="col-md-6">
                         <div class="my-4">
-                          <a (click)="loadImage('Loan Document','Mark fail if doesn\'t exist/match', documentDetails?.loan_document)"
-                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                            <img [src]="documentDetails?.loan_document" alt="Loan Document"
-                              class="img-fluid img-thumbnail lazyload"></a>
+                          <p class="text-center py-3" (click)="modalRoot.show()" *ngIf="documentDetails?.loan_document">
+                            <a (click)="loadImage('Loan Document','Mark fail if doesn\'t exist/match', documentDetails?.loan_document)"
+                              >
+                              <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                              <img [src]="documentDetails?.loan_document" alt="Loan Document"
+                                class="img-fluid img-thumbnail lazyload"></a>
+                          </p>
+                          <p *ngIf="!documentDetails?.loan_document">Not Uploaded</p>
                         </div>
                       </div>
                     </div>
@@ -457,18 +466,25 @@
                     </div>
                     <div class="col-md-6">
                       <div class="my-4">
-                        <a *ngIf="accountTransferDetails?.account_type === 'existing'"
-                          (click)="loadImage('Loan Document','Mark fail if doesn\'t exist/match', documentDetails?.loan_document)"
-                          href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                          <img [src]="documentDetails?.loan_document" alt="Loan Document"
-                            class="img-fluid img-thumbnail lazyload"></a>
-                        <a *ngIf="accountTransferDetails?.account_type !== 'existing'"
-                          (click)="loadImage('Document','Mark fail if doesn\'t exist/match', accountTransferDetails?.security_cheque_1)"
-                          href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
-                          <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
-                          <img [src]="accountTransferDetails?.security_cheque_1" alt="Loan Document"
-                            class="img-fluid img-thumbnail lazyload"></a>
+
+                        <p class="text-center py-3" (click)="modalRoot.show()"
+                          *ngIf="accountTransferDetails?.account_type === 'existing' && documentDetails?.loan_document">
+                          <a (click)="loadImage('Loan Document','Mark fail if doesn\'t exist/match', documentDetails?.loan_document)"
+                            >
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.loan_document" alt="Loan Document"
+                              class="img-fluid img-thumbnail lazyload"></a>
+                        </p>
+                        <p class="text-center py-3" (click)="modalRoot.show()"
+                          *ngIf="accountTransferDetails?.account_type !== 'existing' && accountTransferDetails?.security_cheque_1">
+                          <a (click)="loadImage('Document','Mark fail if doesn\'t exist/match', accountTransferDetails?.security_cheque_1)"
+                            >
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="accountTransferDetails?.security_cheque_1" alt="Loan Document"
+                              class="img-fluid img-thumbnail lazyload"></a>
+                        </p>
+                        <p *ngIf="!documentDetails?.loan_document || !accountTransferDetails?.security_cheque_1">Not
+                          Uploaded</p>
                       </div>
                     </div>
                   </div>
@@ -515,18 +531,36 @@
                 <div class="container inner-form-div">
                   <div class="row">
                     <div class="col-md-6 box">
+                      <div class="mt-4 text-center">KYC (POA)</div>
+                    </div>
+                    <div class="col-md-6 box">
+                      <div class="my-3 text-center">
+
+                        <p class="text-center py-3" (click)="modalRoot.show()"
+                          *ngIf="documentDetails?.kyc_document_poa"><a
+                            (click)="loadImage('Address','Mark fail if doesn\'t exist/match', documentDetails?.kyc_document_poa)">
+                            <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
+                            <img [src]="documentDetails?.kyc_document_poa" width="50" height="50" alt="kyc_document_poa"
+                              class="img-fluid img-thumbnail lazyload"></a></p>
+                        <p *ngIf="!documentDetails?.kyc_document_poa">Not Uploaded</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 box">
                       <div class="mt-4 text-center">Security Cheque 1</div>
                     </div>
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a
+                        <p class="text-center py-3" (click)="modalRoot.show()"
+                          *ngIf="documentDetails?.security_cheque_1"><a
                             (click)="loadImage('Security Cheque 1', 'Mark fail if doesn\'t exist/match',documentDetails?.security_cheque_1)"
-                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            >
                             <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                             <img [src]="documentDetails?.security_cheque_1" width="50" height="50" alt="bank details"
                               class="img-fluid img-thumbnail lazyload"></a></p>
-
+                        <p *ngIf="!documentDetails?.security_cheque_1">Not Uploaded</p>
                       </div>
                     </div>
                   </div>
@@ -538,13 +572,14 @@
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a
+                        <p class="text-center py-3" (click)="modalRoot.show()"
+                          *ngIf="documentDetails?.security_cheque_2"><a
                             (click)="loadImage('Security Cheque 2', 'Mark fail if doesn\'t exist/match', documentDetails?.security_cheque_2)"
-                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            >
                             <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                             <img [src]="documentDetails?.security_cheque_2" width="50" height="50" alt="bank details"
                               class="img-fluid img-thumbnail lazyload"></a></p>
-
+                        <p *ngIf="!documentDetails?.security_cheque_2">Not Uploaded</p>
                       </div>
                     </div>
                   </div>
@@ -555,13 +590,13 @@
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a
+                        <p class="text-center py-3" (click)="modalRoot.show()" *ngIf="documentDetails?.loan_document"><a
                             (click)="loadImage('Loan Document', 'Mark fail if doesn\'t exist/match',documentDetails?.loan_document)"
-                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            >
                             <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                             <img [src]="documentDetails?.loan_document" width="50" height="50" alt="bank details"
                               class="img-fluid img-thumbnail lazyload"></a></p>
-
+                        <p *ngIf="!documentDetails?.loan_document">Not Uploaded</p>
                       </div>
                     </div>
                   </div>
@@ -573,13 +608,14 @@
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a
-                            (click)="loadImage('Promissory Note', 'Mark fail if doesn\'t exist/match',documentDetails?.promissory_note)"
-                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                        <p class="text-center py-3" (click)="modalRoot.show()" *ngIf="documentDetails?.promissory_note">
+                          <a (click)="loadImage('Promissory Note', 'Mark fail if doesn\'t exist/match',documentDetails?.promissory_note)"
+                            >
                             <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                             <img [src]="documentDetails?.promissory_note" width="50" height="50" alt="bank details"
-                              class="img-fluid img-thumbnail lazyload"></a></p>
-
+                              class="img-fluid img-thumbnail lazyload"></a>
+                        </p>
+                        <p *ngIf="!documentDetails?.promissory_note">Not Uploaded</p>
                       </div>
                     </div>
                   </div>
@@ -591,13 +627,14 @@
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a
+                        <p class="text-center py-3" (click)="modalRoot.show()"
+                          *ngIf="documentDetails?.agreement_last_page"><a
                             (click)="loadImage('Agreement Last Page', 'Mark fail if doesn\'t exist/match',documentDetails?.agreement_last_page)"
-                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            >
                             <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                             <img [src]="documentDetails?.agreement_last_page" width="50" height="50" alt="bank details"
                               class="img-fluid img-thumbnail lazyload"></a></p>
-
+                        <p *ngIf="!documentDetails?.agreement_last_page">Not Uploaded</p>
                       </div>
                     </div>
                   </div>
@@ -609,13 +646,14 @@
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a
+                        <p class="text-center py-3" (click)="modalRoot.show()"
+                          *ngIf="documentDetails?.foreclousre_letter"><a
                             (click)="loadImage('Foreclousre Letter', 'Mark fail if doesn\'t exist/match',documentDetails?.foreclousre_letter)"
-                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            >
                             <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                             <img [src]="documentDetails?.foreclousre_letter" width="50" height="50" alt="bank details"
                               class="img-fluid img-thumbnail lazyload"></a></p>
-
+                        <p *ngIf="!documentDetails?.foreclousre_letter">Not Uploaded</p>
                       </div>
                     </div>
                   </div>
@@ -628,13 +666,13 @@
                     <div class="col-md-6 box">
                       <div class="my-3 text-center">
 
-                        <p class="text-center py-3"><a
+                        <p class="text-center py-3" (click)="modalRoot.show()" *ngIf="documentDetails?.atm_withdrawl"><a
                             (click)="loadImage('Atm Withdrawl', 'Mark fail if doesn\'t exist/match',documentDetails?.atm_withdrawl)"
-                            href="#" data-toggle="modal" aria-label="screens" data-target="#mScreenshot">
+                            >
                             <i class="fa-solid fa-circle-plus  position-absolute bg-white shadow"></i>
                             <img [src]="documentDetails?.atm_withdrawl" width="50" height="50" alt="bank details"
                               class="img-fluid img-thumbnail lazyload"></a></p>
-
+                        <p *ngIf="!documentDetails?.atm_withdrawl">Not Uploaded</p>
                       </div>
                     </div>
                   </div>
@@ -780,7 +818,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="mScreenshot">
+  <!-- <div class="modal fade" id="mScreenshot">
     <div class="modal-dialog modal-lg">
       <div class="modal-content" style="top:50px;">
         <div class="modal-header">
@@ -796,12 +834,27 @@
             [lensWidth]="200"
             [altText]="dataVerify">
           </lib-ngx-image-zoom>
-          <!-- <img [src]="imageVerify" alt="{{dataVerify}}" width="500" height="500" class="img-fluid"> -->
+
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
+
+  <app-modal #modalRoot class="modal-demo">
+    <ng-container class="app-modal-header"><strong>{{text | titlecase}} : </strong>{{dataVerify}}</ng-container>
+    <ng-container class="app-modal-body">
+      <!-- <lib-ngx-image-zoom [thumbImage]="imageVerify" [fullImage]="imageVerify" [magnification]="1" [enableLens]="true"
+        [lensWidth]="200" [altText]="dataVerify">
+      </lib-ngx-image-zoom> -->
+      <angular-image-viewer [src]="imageVerify"></angular-image-viewer>
+    </ng-container>
+    <ng-container class="app-modal-footer">
+
+      <button type="button" class="button button2" style="float: right;" (click)="modalRoot.hide()">Close
+      </button>
+    </ng-container>
+  </app-modal>
 
   <div class="modal fade" id="review">
     <div class="modal-dialog modal-lg">

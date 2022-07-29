@@ -24,7 +24,7 @@ export class AccountsMakerPanelDetailsComponent implements OnInit {
   BranchAddress;
   text;
   dataVerify;
-  imageVerify;
+  imageVerify = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -43,9 +43,10 @@ export class AccountsMakerPanelDetailsComponent implements OnInit {
   }
 
   loadImage(text, data, dynamicImage) {
+    this.imageVerify = [];
     this.text = text;
     this.dataVerify = data;
-    this.imageVerify = dynamicImage;
+    this.imageVerify.push(dynamicImage);
   }
 
   searchIFSC(ifscCode) {

@@ -71,7 +71,7 @@ export class BalanceTransferFinalApprovalDetailComponent implements OnInit {
   profileData
   documentDetails;
   dataVerify;
-  imageVerify;
+  imageVerify = [];
   accountTransferDetails;
 
   existing_loan_status
@@ -100,9 +100,11 @@ export class BalanceTransferFinalApprovalDetailComponent implements OnInit {
     this.currentStep = number;
   }
   loadImage(text, data, dynamicImage) {
+    this.imageVerify = [];
     this.text = text;
     this.dataVerify = data;
-    this.imageVerify = dynamicImage;
+
+    this.imageVerify.push(dynamicImage);
   }
   get loanAccountNumber() {
     return this.loanDetails.get('loanAccountNumber')
