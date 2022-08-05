@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { PermissionsService } from 'src/app/core/authentication/permissions.service';
 
 @Component({
@@ -8,8 +9,9 @@ import { PermissionsService } from 'src/app/core/authentication/permissions.serv
 })
 export class TopNavbarBottomComponent implements OnInit {
 
-  constructor(
-    private permissions: PermissionsService
+  constructor(@Inject(DOCUMENT) private document: Document,
+    private permissions: PermissionsService,
+
   ) { }
 
   isAuthenticated = this.permissions.isauthenticated();
@@ -19,4 +21,7 @@ export class TopNavbarBottomComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goToUrl(): void {
+    this.document.location.href = 'http://finsgo.s3-website.ap-south-1.amazonaws.com/login';
+  }
 }
